@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ElementMap renders tags correctly 1`] = `
+<ElementMap
+  HTMLTag="div"
+  className=""
+  items={
+    Array [
+      "Name",
+      "Age",
+    ]
+  }
+>
+  <div
+    className=""
+    key="0"
+  >
+    Name
+  </div>
+  <div
+    className=""
+    key="1"
+  >
+    Age
+  </div>
+</ElementMap>
+`;
+
+exports[`ElementMap renders tags correctly 2`] = `
+<ElementMap
+  HTMLTag="span"
+  className="fancy"
+  items={
+    Array [
+      "Subject",
+      "Difficulty",
+    ]
+  }
+>
+  <span
+    className="fancy"
+    key="0"
+  >
+    Subject
+  </span>
+  <span
+    className="fancy"
+    key="1"
+  >
+    Difficulty
+  </span>
+</ElementMap>
+`;

@@ -1,0 +1,43 @@
+{
+  "name": "element-map",
+  "version": "0.0.0",
+  "description": "Simple component takes a list of elements and returns them wrapped in the provided HTML tag",
+  "main": "ElementMap.js",
+  "repository": "https://github.com/onaio/barnacle",
+  "author": "Ona Engineering",
+  "license": "Apache 2",
+  "private": true,
+  "scripts": {
+    "jest": "jest --coverage --verbose --color"
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "transform-es2015-modules-commonjs"
+        ]
+      }
+    }
+  },
+  "peerDependencies": {
+    "react": "^16.8.1"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1"
+  },
+  "devDependencies": {
+    "react": "^16.8.1",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "enzyme-to-json": "^3.3.5"
+  }
+}
