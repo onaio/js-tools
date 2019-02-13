@@ -68,3 +68,5 @@ To run tests, you do:
 ```sh
 yarn test
 ```
+
+This command translates to `yarn run jest` and so you can supply all the usual [jest options](https://jestjs.io/docs/en/cli).
