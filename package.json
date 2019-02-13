@@ -11,10 +11,15 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint packages --ext js,jsx"
   },
   "lint-staged": {
-    "*.{js,jsx,json,css,md}": [
+    "*.{js,jsx}": [
+      "eslint",
+      "git add"
+    ],
+    "*.{json,css,md}": [
       "prettier --write",
       "git add"
     ]
