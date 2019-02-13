@@ -1,8 +1,8 @@
 # dependencies
-/node_modules
+**/node_modules
 
 # testing
-/coverage
+**/coverage
 
 # production
 /build
@@ -19,8 +19,8 @@ yarn-debug.log*
 yarn-error.log*
 .env
 
-# code editors
-.vs/
-
 # lerna
 lerna-debug.log
+
+# code editors
+.vs/
