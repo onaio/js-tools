@@ -61,7 +61,7 @@ It’s also important to have the new package start at a version like 0.0.0 beca
 
 Here's an example sample `package.json`:
 
-```json
+```js
 // package.json
 {
   "name": "@onaio/my-new-package",
