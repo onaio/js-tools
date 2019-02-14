@@ -3,7 +3,7 @@
 exports[`ElementMap renders tags correctly 1`] = `
 <ElementMap
   HTMLTag="div"
-  className=""
+  className="element-map"
   items={
     Array [
       "Name",
@@ -12,13 +12,13 @@ exports[`ElementMap renders tags correctly 1`] = `
   }
 >
   <div
-    className=""
+    className="element-map"
     key="0"
   >
     Name
   </div>
   <div
-    className=""
+    className="element-map"
     key="1"
   >
     Age
@@ -32,8 +32,8 @@ exports[`ElementMap renders tags correctly 2`] = `
   className="fancy"
   items={
     Array [
-      "Subject",
-      "Difficulty",
+      "Fruit",
+      "Price",
     ]
   }
 >
@@ -41,13 +41,13 @@ exports[`ElementMap renders tags correctly 2`] = `
     className="fancy"
     key="0"
   >
-    Subject
+    Fruit
   </span>
   <span
     className="fancy"
     key="1"
   >
-    Difficulty
+    Price
   </span>
 </ElementMap>
 `;

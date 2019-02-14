@@ -31,7 +31,7 @@ ElementMap.propTypes = {
 };
 
 ElementMap.defaultProps = {
-  className: ''
+  className: 'element-map'
 };
 
 export default ElementMap;

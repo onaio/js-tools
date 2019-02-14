@@ -12,7 +12,7 @@ describe('ElementMap', () => {
 
   it('renders tags correctly', () => {
     const headerItems = ['Name', 'Age'];
-    const headerItems2 = ['Subject', 'Difficulty'];
+    const headerItems2 = ['Fruit', 'Price'];
     const wrapper = mount(<ElementMap items={headerItems} HTMLTag="div" />);
     const wrapper2 = mount(<ElementMap items={headerItems2} HTMLTag="span" className="fancy" />);
     expect(toJson(wrapper)).toMatchSnapshot();
