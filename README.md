@@ -60,8 +60,11 @@ Here's an example sample `package.json`:
     "url": "https://github.com/onaio/js-tools/issues"
   },
   "scripts": {
-    "jest": "jest --coverage --verbose --color"
+    "jest": "jest --coverage --verbose --color",
+    "transpile": "babel src -d dist --ignore '**/*.test.js,**/*.test.jsx'"
   },
+  // the list of files to be included by npm when the package is published
+  "files": ["dist/my-new-package.js"],
   // hook up global testing with lerna
   "jest": {
     "setupFiles": ["../../setupTests"]
@@ -109,6 +112,18 @@ You can run `eslint` on `.js`/`.jsx` files by doing:
 ```sh
 yarn lint
 ```
+
+## Transpiling
+
+You can transpile packages by doing:
+
+```sh
+lerna run transpile
+```
+
+What this does in the background is that it runs `babel src -d dist --ignore '**/*.test.js,**/*.test.jsx'` for each package.
+
+Your transpiled package is saved in the `dist` directory within each package. Note that this directory is ignored by `git`. Also see the `files` option the `package.json` above.
 
 ## Publishing
 
