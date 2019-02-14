@@ -25,4 +25,4 @@ jobs:
       # run linter~
       - run: yarn lint
       # run tests!
-      - run: yarn test --verbose --coverage=true --forceExit
+      - run: yarn test --verbose --coverage=true --forceExit --detectOpenHandles
