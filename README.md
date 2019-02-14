@@ -25,6 +25,18 @@ js-tools/
 
 The `packages` directory is meant to hold all our shared js tools as "packages".
 
+### Contribution Guidelines
+
+High level design goals/guidelines for packages are:
+
+- Clean standards-compliant code.
+- Don't reinvent the wheel.
+- Don't repeat yourself
+- As-good-as-possible Documentation.
+- A small set of orthogonal features. If two features are very similar, one should be removed.
+
+\*\* these are inspired by [fish](https://fishshell.com/docs/2.0/design.html).
+
 ## Creating a New Package
 
 ```sh
@@ -54,7 +66,7 @@ Here's an example sample `package.json`:
 {
   "name": "@onaio/my-new-package",
   "version": "0.0.0",
-  "main": "index.js", // replace this if different
+  "main": "dist/my-new-package.js", // replace this if different
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/onaio/js-tools/issues"
