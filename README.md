@@ -1,8 +1,29 @@
-# barnacle
+# js-tools
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
-`barnacle` is the home of shared `React` components and utilities for Ona.
+This is the home of shared javascript components and utilities for Ona.
+
+## Contribution
+
+Contribution is highly encouraged. If you have something - a tool, a component, a useful utility function, etc. - that would be useful to others then by all means please add it to this repository.
+
+Right now this repo is organised as such:
+
+```
+js-tools/
+  packages/
+    package1/
+      package.json
+      index.js
+    package1/
+      package.json
+      index.js
+  package.json
+  lerna.json
+```
+
+The `packages` directory is meant to hold all our shared js tools as "packages".
 
 ## Creating a New Package
 
@@ -16,13 +37,13 @@ Once we’re in the correct directory, we can create and cd into our new package
 mkdir my-new-package && cd my-new-package
 ```
 
-then we create a new package.json by running yarn init:
+Then we create a new package.json by running yarn init:
 
 ```sh
 yarn init
 ```
 
-The new name should follow our NPM Org scope ex. @my-scope-name
+The new name should follow our NPM Org scope e.g. `@onaio`
 
 It’s also important to have the new package start at a version like 0.0.0 because once we do our first publish using Lerna, it’ll be published at 0.1.0 or 1.0.0.
 
@@ -31,31 +52,41 @@ Here's an example sample `package.json`:
 ```json
 // package.json
 {
-    "name": "@my-scope-name/my-new-package",
-    "version" : "0.0.0",
-    "main" : "index.js",  // replace this if different
-    "scripts": {
-        "jest": "jest --coverage --verbose --color"
-    },
-    // hook up global testing with lerna
-    "jest": {
-        "setupFiles": [
-            "../../setupTests"
-        ]
-    },
-    "babel": {
-        "presets": [
-            "@babel/preset-env",
-            "@babel/preset-react"
-        ],
-        "env": {
-            "test": {
-                "plugins": [
-                "transform-es2015-modules-commonjs"
-                ]
-            }
-        }
+  "name": "@onaio/my-new-package",
+  "version": "0.0.0",
+  "main": "index.js", // replace this if different
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color"
+  },
+  // hook up global testing with lerna
+  "jest": {
+    "setupFiles": ["../../setupTests"]
+  },
+  "babel": {
+    "presets": ["@babel/preset-env", "@babel/preset-react"],
+    "env": {
+      "test": {
+        "plugins": ["transform-es2015-modules-commonjs"]
+      }
     }
+  },
+  // example minimal dependencies that you have to declare fr React components
+  "peerDependencies": {
+    "react": "^16.8.1"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1"
+  },
+  "devDependencies": {
+    "react": "^16.8.1",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "enzyme-to-json": "^3.3.5"
+  }
 }
 ```
 
@@ -70,3 +101,19 @@ yarn test
 ```
 
 This command translates to `yarn run jest` and so you can supply all the usual [jest options](https://jestjs.io/docs/en/cli).
+
+## Linting
+
+You can run `eslint` on `.js`/`.jsx` files by doing:
+
+```sh
+yarn lint
+```
+
+## Publishing
+
+TODO
+
+## Typescript Support
+
+Coming soon.
