@@ -89,7 +89,7 @@ Here's an example sample `package.json`:
       }
     }
   },
-  // example minimal dependencies that you have to declare fr React components
+  // example minimal dependencies that you have to declare for React components
   "peerDependencies": {
     "react": "^16.8.1"
   },
