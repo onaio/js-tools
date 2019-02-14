@@ -16,7 +16,7 @@ js-tools/
     package1/
       package.json
       index.js
-    package1/
+    package2/
       package.json
       index.js
   package.json
