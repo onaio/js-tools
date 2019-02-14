@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Simple component takes a list of elements and returns them wrapped in the provided HTML tag",
   "main": "ElementMap.js",
-  "repository": "https://github.com/onaio/barnacle",
+  "repository": "https://github.com/onaio/js-tools",
   "author": "Ona Engineering",
   "license": "Apache 2",
   "private": true,

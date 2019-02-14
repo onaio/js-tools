@@ -1,9 +1,9 @@
 {
-  "name": "barnacle",
+  "name": "js-tools",
   "version": "0.0.0",
   "description": "Ona shared components and utilities",
   "main": "index.js",
-  "repository": "https://github.com/onaio/barnacle",
+  "repository": "https://github.com/onaio/js-tools",
   "author": "Ona Engineering",
   "license": "Apache 2",
   "private": true,
