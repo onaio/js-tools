@@ -1,12 +1,15 @@
 {
-  "name": "element-map",
+  "name": "@onaio/element-map",
   "version": "0.0.0",
   "description": "Simple component takes a list of elements and returns them wrapped in the provided HTML tag",
-  "main": "ElementMap.js",
+  "main": "index.js",
   "repository": "https://github.com/onaio/js-tools",
   "author": "Ona Engineering",
-  "license": "Apache 2",
+  "license": "Apache-2.0",
   "private": true,
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
   "scripts": {
     "jest": "jest --coverage --verbose --color"
   },

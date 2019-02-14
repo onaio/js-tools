@@ -2,10 +2,9 @@
   "name": "js-tools",
   "version": "0.0.0",
   "description": "Ona shared components and utilities",
-  "main": "index.js",
   "repository": "https://github.com/onaio/js-tools",
   "author": "Ona Engineering",
-  "license": "Apache 2",
+  "license": "Apache-2.0",
   "private": true,
   "workspaces": [
     "packages/*"
