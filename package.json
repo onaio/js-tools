@@ -11,7 +11,9 @@
   ],
   "scripts": {
     "test": "jest",
-    "lint": "eslint packages --ext js,jsx"
+    "lint": "eslint packages --ext js,jsx",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "husky": {
     "hooks": {
@@ -56,6 +58,12 @@
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-test-renderer": "^16.8.1",
-    "typescript": "^3.3.3"
-  }
+    "typescript": "^3.3.3",
+    "@storybook/react": "^5.0.0",
+    "@storybook/addon-actions": "^5.0.0",
+    "@storybook/addon-links": "^5.0.0",
+    "@storybook/addons": "^5.0.0",
+    "babel-loader": "^8.0.5"
+  },
+  "dependencies": {}
 }
