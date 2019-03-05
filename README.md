@@ -37,6 +37,16 @@ High level design goals/guidelines for packages are:
 
 \*\* these are inspired by [fish](https://fishshell.com/docs/2.0/design.html).
 
+## Viewing Available Packages
+
+We use [Storybook](https://storybook.js.org/) to showcase most packages.
+
+To view this, simply run:
+
+```sh
+yarn storybook
+```
+
 ## Creating a New Package
 
 ```sh
@@ -104,6 +114,10 @@ Here's an example sample `package.json`:
   }
 }
 ```
+
+### Add a story
+
+Don't forget to [add a story](https://storybook.js.org/docs/basics/writing-stories/) for the new package, if possible. This allows easy discovery and documentation for other developers or users of `js-tools`.
 
 ## Testing
 
