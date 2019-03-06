@@ -6,7 +6,6 @@
   "repository": "https://github.com/onaio/js-tools",
   "author": "Ona Engineering",
   "license": "Apache-2.0",
-  "private": true,
   "files": [
     "dist/ElementMap.js"
   ],
@@ -15,25 +14,12 @@
   },
   "scripts": {
     "jest": "jest --coverage --verbose --color",
-    "transpile": "babel src -d dist --ignore '**/*.test.js,**/*.test.jsx'"
+    "transpile": "babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx'"
   },
   "jest": {
     "setupFiles": [
       "../../setupTests"
     ]
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "transform-es2015-modules-commonjs"
-        ]
-      }
-    }
   },
   "peerDependencies": {
     "react": "^16.8.1"
