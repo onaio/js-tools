@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { ComponentType } from 'react';
 // Import React Table
-import ReactTable, { FinalState, TableProps } from 'react-table';
+import ReactTable, { TableProps } from 'react-table';
 import 'react-table/react-table.css';
 import { columnsFromObject } from './utils';
 
-function DrillDownTableHOC(WrappedTable: ReactTable) {
+function DrillDownTableHOC(WrappedTable: ComponentType) {
   // HOC that enhances ReactTable
 
-  class ResultingTable extends React.Component<TableProps, FinalState> {
+  class ResultingTable extends React.Component<Partial<TableProps>, {}> {
     constructor(props: TableProps) {
       super(props);
     }
