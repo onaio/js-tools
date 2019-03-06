@@ -5,6 +5,8 @@ import 'react-table/react-table.css';
 import { columnsFromObject } from './utils';
 
 function DrillDownTableHOC(WrappedTable: ReactTable) {
+  // HOC that enhances ReactTable
+
   class ResultingTable extends React.Component<TableProps, FinalState> {
     constructor(props: TableProps) {
       super(props);
