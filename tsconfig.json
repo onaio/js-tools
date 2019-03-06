@@ -17,6 +17,6 @@
     "jsx": "preserve",
     "baseUrl": "packages"
   },
-  "include": ["packages", "**/*.ts", "**/*.tsx"],
+  "include": ["packages", "stories", "**/*.ts", "**/*.tsx"],
   "exclude": ["**/node_modules", "**/coverage", "**/dist", "**/*.spec.ts"]
 }
