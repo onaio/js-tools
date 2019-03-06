@@ -1,0 +1,33 @@
+{
+  "name": "@onaio/drill-down-table",
+  "version": "0.0.0",
+  "description": "Drill-down table",
+  "main": "dist/DrillDownTable.js",
+  "repository": "https://github.com/onaio/js-tools",
+  "author": "Ona Engineering",
+  "license": "Apache-2.0",
+  "files": [
+    "dist/DrillDownTable.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx'"
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "peerDependencies": {
+    "react": "^16.8.1"
+  },
+  "dependencies": {
+    "@types/react-table": "^6.7.22",
+    "prop-types": "^15.6.1",
+    "react-table": "^6.9.2"
+  }
+}
