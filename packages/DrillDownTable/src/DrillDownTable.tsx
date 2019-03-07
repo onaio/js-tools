@@ -1,6 +1,7 @@
 import React, { ComponentType } from 'react';
 import ReactTable, { TableProps } from 'react-table';
 import 'react-table/react-table.css';
+import { ID, PARENT_ID } from './constants';
 import { DataElement } from './utils';
 import WithHeaders from './WithHeaders';
 
@@ -17,8 +18,8 @@ interface DrillDownProps<T> extends Partial<TableProps<T>> {
 export function WithDrillDown(WrappedTable: ComponentType) {
   class TableWithDrills<T extends object> extends React.Component<Partial<DrillDownProps<T>>, {}> {
     public static defaultProps = {
-      identifierField: 'id',
-      parentIdentifierField: 'parent_id'
+      identifierField: ID,
+      parentIdentifierField: PARENT_ID
     };
 
     constructor(props: DrillDownProps<T>) {
