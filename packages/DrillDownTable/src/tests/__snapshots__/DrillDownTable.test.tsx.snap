@@ -2,6 +2,18 @@
 
 exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = `
 <ResultingTable
+  columns={
+    Array [
+      Object {
+        "Header": "Name",
+        "accessor": "location",
+      },
+      Object {
+        "Header": "Spray Coverage",
+        "accessor": "spray_coverage",
+      },
+    ]
+  }
   data={
     Array [
       Object {
@@ -205,24 +217,12 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
     columns={
       Array [
         Object {
-          "Header": "id",
-          "accessor": "id",
-        },
-        Object {
-          "Header": "location",
+          "Header": "Name",
           "accessor": "location",
         },
         Object {
-          "Header": "parent_id",
-          "accessor": "parent_id",
-        },
-        Object {
-          "Header": "spray_coverage",
+          "Header": "Spray Coverage",
           "accessor": "spray_coverage",
-        },
-        Object {
-          "Header": "spray_effectiveness",
-          "accessor": "spray_effectiveness",
         },
       ]
     }
@@ -466,7 +466,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
             className="-header"
             style={
               Object {
-                "minWidth": "500px",
+                "minWidth": "200px",
               }
             }
           >
@@ -474,7 +474,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
               className="rt-thead -header"
               style={
                 Object {
-                  "minWidth": "500px",
+                  "minWidth": "200px",
                 }
               }
             >
@@ -485,7 +485,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                 >
                   <ThComponent
                     className="rt-resizable-header -cursor-pointer"
-                    key="0-id"
+                    key="0-location"
                     style={
                       Object {
                         "flex": "100 0 auto",
@@ -511,7 +511,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       <div
                         className="rt-resizable-header-content"
                       >
-                        id
+                        Name
                       </div>
                       <Resizer
                         onMouseDown={[Function]}
@@ -527,7 +527,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   </ThComponent>
                   <ThComponent
                     className="rt-resizable-header -cursor-pointer"
-                    key="1-location"
+                    key="1-spray_coverage"
                     style={
                       Object {
                         "flex": "100 0 auto",
@@ -553,133 +553,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       <div
                         className="rt-resizable-header-content"
                       >
-                        location
-                      </div>
-                      <Resizer
-                        onMouseDown={[Function]}
-                        onTouchStart={[Function]}
-                      >
-                        <div
-                          className="rt-resizer"
-                          onMouseDown={[Function]}
-                          onTouchStart={[Function]}
-                        />
-                      </Resizer>
-                    </div>
-                  </ThComponent>
-                  <ThComponent
-                    className="rt-resizable-header -cursor-pointer"
-                    key="2-parent_id"
-                    style={
-                      Object {
-                        "flex": "100 0 auto",
-                        "maxWidth": null,
-                        "width": "100px",
-                      }
-                    }
-                    toggleSort={[Function]}
-                  >
-                    <div
-                      className="rt-th rt-resizable-header -cursor-pointer"
-                      onClick={[Function]}
-                      role="columnheader"
-                      style={
-                        Object {
-                          "flex": "100 0 auto",
-                          "maxWidth": null,
-                          "width": "100px",
-                        }
-                      }
-                      tabIndex="-1"
-                    >
-                      <div
-                        className="rt-resizable-header-content"
-                      >
-                        parent_id
-                      </div>
-                      <Resizer
-                        onMouseDown={[Function]}
-                        onTouchStart={[Function]}
-                      >
-                        <div
-                          className="rt-resizer"
-                          onMouseDown={[Function]}
-                          onTouchStart={[Function]}
-                        />
-                      </Resizer>
-                    </div>
-                  </ThComponent>
-                  <ThComponent
-                    className="rt-resizable-header -cursor-pointer"
-                    key="3-spray_coverage"
-                    style={
-                      Object {
-                        "flex": "100 0 auto",
-                        "maxWidth": null,
-                        "width": "100px",
-                      }
-                    }
-                    toggleSort={[Function]}
-                  >
-                    <div
-                      className="rt-th rt-resizable-header -cursor-pointer"
-                      onClick={[Function]}
-                      role="columnheader"
-                      style={
-                        Object {
-                          "flex": "100 0 auto",
-                          "maxWidth": null,
-                          "width": "100px",
-                        }
-                      }
-                      tabIndex="-1"
-                    >
-                      <div
-                        className="rt-resizable-header-content"
-                      >
-                        spray_coverage
-                      </div>
-                      <Resizer
-                        onMouseDown={[Function]}
-                        onTouchStart={[Function]}
-                      >
-                        <div
-                          className="rt-resizer"
-                          onMouseDown={[Function]}
-                          onTouchStart={[Function]}
-                        />
-                      </Resizer>
-                    </div>
-                  </ThComponent>
-                  <ThComponent
-                    className="rt-resizable-header -cursor-pointer"
-                    key="4-spray_effectiveness"
-                    style={
-                      Object {
-                        "flex": "100 0 auto",
-                        "maxWidth": null,
-                        "width": "100px",
-                      }
-                    }
-                    toggleSort={[Function]}
-                  >
-                    <div
-                      className="rt-th rt-resizable-header -cursor-pointer"
-                      onClick={[Function]}
-                      role="columnheader"
-                      style={
-                        Object {
-                          "flex": "100 0 auto",
-                          "maxWidth": null,
-                          "width": "100px",
-                        }
-                      }
-                      tabIndex="-1"
-                    >
-                      <div
-                        className="rt-resizable-header-content"
-                      >
-                        spray_effectiveness
+                        Spray Coverage
                       </div>
                       <Resizer
                         onMouseDown={[Function]}
@@ -701,7 +575,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
             className=""
             style={
               Object {
-                "minWidth": "500px",
+                "minWidth": "200px",
               }
             }
           >
@@ -709,7 +583,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
               className="rt-tbody"
               style={
                 Object {
-                  "minWidth": "500px",
+                  "minWidth": "200px",
                 }
               }
             >
@@ -729,34 +603,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          1
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -783,59 +630,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        />
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          80%
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -880,34 +675,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          4
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -934,61 +702,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          1
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          80%
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1033,34 +747,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          9
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1087,34 +774,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          4
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1139,33 +799,6 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                           70%
                         </div>
                       </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          90%
-                        </div>
-                      </TdComponent>
                     </div>
                   </TrComponent>
                 </div>
@@ -1186,34 +819,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          10
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1240,34 +846,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          4
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1292,33 +871,6 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                           80%
                         </div>
                       </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          100%
-                        </div>
-                      </TdComponent>
                     </div>
                   </TrComponent>
                 </div>
@@ -1339,34 +891,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          11
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1393,61 +918,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          4
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          100%
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1492,34 +963,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          5
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1546,61 +990,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          1
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          80%
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1645,34 +1035,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          12
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1699,34 +1062,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          5
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1751,33 +1087,6 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                           86%
                         </div>
                       </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          100%
-                        </div>
-                      </TdComponent>
                     </div>
                   </TrComponent>
                 </div>
@@ -1798,34 +1107,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          2
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1852,32 +1134,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        />
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1902,33 +1159,6 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                           75%
                         </div>
                       </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          85%
-                        </div>
-                      </TdComponent>
                     </div>
                   </TrComponent>
                 </div>
@@ -1949,34 +1179,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          6
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2003,61 +1206,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          2
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          80%
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2102,34 +1251,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          17
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2156,61 +1278,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          2
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          0%
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2255,34 +1323,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          13
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2309,34 +1350,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          6
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2361,33 +1375,6 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                           86%
                         </div>
                       </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          100%
-                        </div>
-                      </TdComponent>
                     </div>
                   </TrComponent>
                 </div>
@@ -2408,34 +1395,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          14
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2462,34 +1422,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          6
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2514,33 +1447,6 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                           86%
                         </div>
                       </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          90%
-                        </div>
-                      </TdComponent>
                     </div>
                   </TrComponent>
                 </div>
@@ -2561,34 +1467,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          17
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2615,34 +1494,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          6
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2667,33 +1519,6 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                           86%
                         </div>
                       </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          78%
-                        </div>
-                      </TdComponent>
                     </div>
                   </TrComponent>
                 </div>
@@ -2714,34 +1539,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          18
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2768,34 +1566,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          6
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2820,33 +1591,6 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                           80%
                         </div>
                       </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          100%
-                        </div>
-                      </TdComponent>
                     </div>
                   </TrComponent>
                 </div>
@@ -2867,34 +1611,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          3
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -2921,59 +1638,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        />
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          90%
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -3018,34 +1683,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          7
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -3072,61 +1710,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          3
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          80%
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -3171,34 +1755,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          15
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -3225,34 +1782,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          7
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -3277,33 +1807,6 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                           80%
                         </div>
                       </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          100%
-                        </div>
-                      </TdComponent>
                     </div>
                   </TrComponent>
                 </div>
@@ -3324,34 +1827,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          8
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -3378,61 +1854,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          3
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          80%
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -3477,34 +1899,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          16
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -3531,34 +1926,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          8
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -3583,33 +1951,6 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                           80%
                         </div>
                       </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          100%
-                        </div>
-                      </TdComponent>
                     </div>
                   </TrComponent>
                 </div>
@@ -3630,34 +1971,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                     >
                       <TdComponent
                         className=""
-                        key="0-id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          18
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="1-location"
+                        key="0-location"
                         onClick={[Function]}
                         style={
                           Object {
@@ -3684,59 +1998,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                       </TdComponent>
                       <TdComponent
                         className=""
-                        key="2-parent_id"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        />
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="3-spray_coverage"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flex": "100 0 auto",
-                            "maxWidth": null,
-                            "width": "100px",
-                          }
-                        }
-                      >
-                        <div
-                          className="rt-td"
-                          onClick={[Function]}
-                          role="gridcell"
-                          style={
-                            Object {
-                              "flex": "100 0 auto",
-                              "maxWidth": null,
-                              "width": "100px",
-                            }
-                          }
-                        >
-                          0%
-                        </div>
-                      </TdComponent>
-                      <TdComponent
-                        className=""
-                        key="4-spray_effectiveness"
+                        key="1-spray_coverage"
                         onClick={[Function]}
                         style={
                           Object {
@@ -3801,39 +2063,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                 "Expander": undefined,
                 "Filter": undefined,
                 "Footer": undefined,
-                "Header": "id",
-                "Pivot": undefined,
-                "PivotValue": undefined,
-                "Placeholder": undefined,
-                "accessor": [Function],
-                "aggregate": undefined,
-                "className": "",
-                "filterAll": false,
-                "filterMethod": undefined,
-                "filterable": undefined,
-                "footerClassName": "",
-                "footerStyle": Object {},
-                "getFooterProps": [Function],
-                "getHeaderProps": [Function],
-                "getProps": [Function],
-                "headerClassName": "",
-                "headerStyle": Object {},
-                "id": "id",
-                "minResizeWidth": 11,
-                "minWidth": 100,
-                "resizable": undefined,
-                "show": true,
-                "sortMethod": undefined,
-                "sortable": undefined,
-                "style": Object {},
-              },
-              Object {
-                "Aggregated": undefined,
-                "Cell": undefined,
-                "Expander": undefined,
-                "Filter": undefined,
-                "Footer": undefined,
-                "Header": "location",
+                "Header": "Name",
                 "Pivot": undefined,
                 "PivotValue": undefined,
                 "Placeholder": undefined,
@@ -3865,39 +2095,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                 "Expander": undefined,
                 "Filter": undefined,
                 "Footer": undefined,
-                "Header": "parent_id",
-                "Pivot": undefined,
-                "PivotValue": undefined,
-                "Placeholder": undefined,
-                "accessor": [Function],
-                "aggregate": undefined,
-                "className": "",
-                "filterAll": false,
-                "filterMethod": undefined,
-                "filterable": undefined,
-                "footerClassName": "",
-                "footerStyle": Object {},
-                "getFooterProps": [Function],
-                "getHeaderProps": [Function],
-                "getProps": [Function],
-                "headerClassName": "",
-                "headerStyle": Object {},
-                "id": "parent_id",
-                "minResizeWidth": 11,
-                "minWidth": 100,
-                "resizable": undefined,
-                "show": true,
-                "sortMethod": undefined,
-                "sortable": undefined,
-                "style": Object {},
-              },
-              Object {
-                "Aggregated": undefined,
-                "Cell": undefined,
-                "Expander": undefined,
-                "Filter": undefined,
-                "Footer": undefined,
-                "Header": "spray_coverage",
+                "Header": "Spray Coverage",
                 "Pivot": undefined,
                 "PivotValue": undefined,
                 "Placeholder": undefined,
@@ -3915,38 +2113,6 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                 "headerClassName": "",
                 "headerStyle": Object {},
                 "id": "spray_coverage",
-                "minResizeWidth": 11,
-                "minWidth": 100,
-                "resizable": undefined,
-                "show": true,
-                "sortMethod": undefined,
-                "sortable": undefined,
-                "style": Object {},
-              },
-              Object {
-                "Aggregated": undefined,
-                "Cell": undefined,
-                "Expander": undefined,
-                "Filter": undefined,
-                "Footer": undefined,
-                "Header": "spray_effectiveness",
-                "Pivot": undefined,
-                "PivotValue": undefined,
-                "Placeholder": undefined,
-                "accessor": [Function],
-                "aggregate": undefined,
-                "className": "",
-                "filterAll": false,
-                "filterMethod": undefined,
-                "filterable": undefined,
-                "footerClassName": "",
-                "footerStyle": Object {},
-                "getFooterProps": [Function],
-                "getHeaderProps": [Function],
-                "getProps": [Function],
-                "headerClassName": "",
-                "headerStyle": Object {},
-                "id": "spray_effectiveness",
                 "minResizeWidth": 11,
                 "minWidth": 100,
                 "resizable": undefined,
@@ -3965,39 +2131,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                 "Expander": undefined,
                 "Filter": undefined,
                 "Footer": undefined,
-                "Header": "id",
-                "Pivot": undefined,
-                "PivotValue": undefined,
-                "Placeholder": undefined,
-                "accessor": [Function],
-                "aggregate": undefined,
-                "className": "",
-                "filterAll": false,
-                "filterMethod": undefined,
-                "filterable": undefined,
-                "footerClassName": "",
-                "footerStyle": Object {},
-                "getFooterProps": [Function],
-                "getHeaderProps": [Function],
-                "getProps": [Function],
-                "headerClassName": "",
-                "headerStyle": Object {},
-                "id": "id",
-                "minResizeWidth": 11,
-                "minWidth": 100,
-                "resizable": undefined,
-                "show": true,
-                "sortMethod": undefined,
-                "sortable": undefined,
-                "style": Object {},
-              },
-              Object {
-                "Aggregated": undefined,
-                "Cell": undefined,
-                "Expander": undefined,
-                "Filter": undefined,
-                "Footer": undefined,
-                "Header": "location",
+                "Header": "Name",
                 "Pivot": undefined,
                 "PivotValue": undefined,
                 "Placeholder": undefined,
@@ -4029,39 +2163,7 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                 "Expander": undefined,
                 "Filter": undefined,
                 "Footer": undefined,
-                "Header": "parent_id",
-                "Pivot": undefined,
-                "PivotValue": undefined,
-                "Placeholder": undefined,
-                "accessor": [Function],
-                "aggregate": undefined,
-                "className": "",
-                "filterAll": false,
-                "filterMethod": undefined,
-                "filterable": undefined,
-                "footerClassName": "",
-                "footerStyle": Object {},
-                "getFooterProps": [Function],
-                "getHeaderProps": [Function],
-                "getProps": [Function],
-                "headerClassName": "",
-                "headerStyle": Object {},
-                "id": "parent_id",
-                "minResizeWidth": 11,
-                "minWidth": 100,
-                "resizable": undefined,
-                "show": true,
-                "sortMethod": undefined,
-                "sortable": undefined,
-                "style": Object {},
-              },
-              Object {
-                "Aggregated": undefined,
-                "Cell": undefined,
-                "Expander": undefined,
-                "Filter": undefined,
-                "Footer": undefined,
-                "Header": "spray_coverage",
+                "Header": "Spray Coverage",
                 "Pivot": undefined,
                 "PivotValue": undefined,
                 "Placeholder": undefined,
@@ -4079,38 +2181,6 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                 "headerClassName": "",
                 "headerStyle": Object {},
                 "id": "spray_coverage",
-                "minResizeWidth": 11,
-                "minWidth": 100,
-                "resizable": undefined,
-                "show": true,
-                "sortMethod": undefined,
-                "sortable": undefined,
-                "style": Object {},
-              },
-              Object {
-                "Aggregated": undefined,
-                "Cell": undefined,
-                "Expander": undefined,
-                "Filter": undefined,
-                "Footer": undefined,
-                "Header": "spray_effectiveness",
-                "Pivot": undefined,
-                "PivotValue": undefined,
-                "Placeholder": undefined,
-                "accessor": [Function],
-                "aggregate": undefined,
-                "className": "",
-                "filterAll": false,
-                "filterMethod": undefined,
-                "filterable": undefined,
-                "footerClassName": "",
-                "footerStyle": Object {},
-                "getFooterProps": [Function],
-                "getHeaderProps": [Function],
-                "getProps": [Function],
-                "headerClassName": "",
-                "headerStyle": Object {},
-                "id": "spray_effectiveness",
                 "minResizeWidth": 11,
                 "minWidth": 100,
                 "resizable": undefined,
@@ -4161,24 +2231,12 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
           columns={
             Array [
               Object {
-                "Header": "id",
-                "accessor": "id",
-              },
-              Object {
-                "Header": "location",
+                "Header": "Name",
                 "accessor": "location",
               },
               Object {
-                "Header": "parent_id",
-                "accessor": "parent_id",
-              },
-              Object {
-                "Header": "spray_coverage",
+                "Header": "Spray Coverage",
                 "accessor": "spray_coverage",
-              },
-              Object {
-                "Header": "spray_effectiveness",
-                "accessor": "spray_effectiveness",
               },
             ]
           }
@@ -4426,11 +2484,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "80%",
                 },
                 "_subRows": undefined,
-                "id": 1,
                 "location": "District A",
-                "parent_id": null,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "80%",
               },
               Object {
                 "_index": 1,
@@ -4443,11 +2498,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "80%",
                 },
                 "_subRows": undefined,
-                "id": 4,
                 "location": "HFC 1",
-                "parent_id": 1,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "80%",
               },
               Object {
                 "_index": 2,
@@ -4460,11 +2512,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "90%",
                 },
                 "_subRows": undefined,
-                "id": 9,
                 "location": "Operational Area 9",
-                "parent_id": 4,
                 "spray_coverage": "70%",
-                "spray_effectiveness": "90%",
               },
               Object {
                 "_index": 3,
@@ -4477,11 +2526,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 10,
                 "location": "Operational Area 10",
-                "parent_id": 4,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 4,
@@ -4494,11 +2540,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 11,
                 "location": "Operational Area 11",
-                "parent_id": 4,
                 "spray_coverage": "100%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 5,
@@ -4511,11 +2554,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "80%",
                 },
                 "_subRows": undefined,
-                "id": 5,
                 "location": "HFC 2",
-                "parent_id": 1,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "80%",
               },
               Object {
                 "_index": 6,
@@ -4528,11 +2568,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 12,
                 "location": "Operational Area 12",
-                "parent_id": 5,
                 "spray_coverage": "86%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 7,
@@ -4545,11 +2582,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "85%",
                 },
                 "_subRows": undefined,
-                "id": 2,
                 "location": "District B",
-                "parent_id": null,
                 "spray_coverage": "75%",
-                "spray_effectiveness": "85%",
               },
               Object {
                 "_index": 8,
@@ -4562,11 +2596,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "80%",
                 },
                 "_subRows": undefined,
-                "id": 6,
                 "location": "HFC 3",
-                "parent_id": 2,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "80%",
               },
               Object {
                 "_index": 9,
@@ -4579,11 +2610,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "0%",
                 },
                 "_subRows": undefined,
-                "id": 17,
                 "location": "HFC 17",
-                "parent_id": 2,
                 "spray_coverage": "0%",
-                "spray_effectiveness": "0%",
               },
               Object {
                 "_index": 10,
@@ -4596,11 +2624,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 13,
                 "location": "Operational Area 13",
-                "parent_id": 6,
                 "spray_coverage": "86%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 11,
@@ -4613,11 +2638,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "90%",
                 },
                 "_subRows": undefined,
-                "id": 14,
                 "location": "Operational Area 14",
-                "parent_id": 6,
                 "spray_coverage": "86%",
-                "spray_effectiveness": "90%",
               },
               Object {
                 "_index": 12,
@@ -4630,11 +2652,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "78%",
                 },
                 "_subRows": undefined,
-                "id": 17,
                 "location": "Operational Area 17",
-                "parent_id": 6,
                 "spray_coverage": "86%",
-                "spray_effectiveness": "78%",
               },
               Object {
                 "_index": 13,
@@ -4647,11 +2666,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 18,
                 "location": "Operational Area 18",
-                "parent_id": 6,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 14,
@@ -4664,11 +2680,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "90%",
                 },
                 "_subRows": undefined,
-                "id": 3,
                 "location": "District C",
-                "parent_id": null,
                 "spray_coverage": "90%",
-                "spray_effectiveness": "90%",
               },
               Object {
                 "_index": 15,
@@ -4681,11 +2694,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "80%",
                 },
                 "_subRows": undefined,
-                "id": 7,
                 "location": "HFC 4",
-                "parent_id": 3,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "80%",
               },
               Object {
                 "_index": 16,
@@ -4698,11 +2708,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 15,
                 "location": "Operational Area 15",
-                "parent_id": 7,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 17,
@@ -4715,11 +2722,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "80%",
                 },
                 "_subRows": undefined,
-                "id": 8,
                 "location": "HFC 5",
-                "parent_id": 3,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "80%",
               },
               Object {
                 "_index": 18,
@@ -4732,11 +2736,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 16,
                 "location": "Operational Area 16",
-                "parent_id": 8,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 19,
@@ -4749,11 +2750,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "0%",
                 },
                 "_subRows": undefined,
-                "id": 18,
                 "location": "District D",
-                "parent_id": null,
                 "spray_coverage": "0%",
-                "spray_effectiveness": "0%",
               },
             ]
           }
@@ -4780,11 +2778,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "80%",
                 },
                 "_subRows": undefined,
-                "id": 1,
                 "location": "District A",
-                "parent_id": null,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "80%",
               },
               Object {
                 "_index": 1,
@@ -4797,11 +2792,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "80%",
                 },
                 "_subRows": undefined,
-                "id": 4,
                 "location": "HFC 1",
-                "parent_id": 1,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "80%",
               },
               Object {
                 "_index": 2,
@@ -4814,11 +2806,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "90%",
                 },
                 "_subRows": undefined,
-                "id": 9,
                 "location": "Operational Area 9",
-                "parent_id": 4,
                 "spray_coverage": "70%",
-                "spray_effectiveness": "90%",
               },
               Object {
                 "_index": 3,
@@ -4831,11 +2820,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 10,
                 "location": "Operational Area 10",
-                "parent_id": 4,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 4,
@@ -4848,11 +2834,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 11,
                 "location": "Operational Area 11",
-                "parent_id": 4,
                 "spray_coverage": "100%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 5,
@@ -4865,11 +2848,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "80%",
                 },
                 "_subRows": undefined,
-                "id": 5,
                 "location": "HFC 2",
-                "parent_id": 1,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "80%",
               },
               Object {
                 "_index": 6,
@@ -4882,11 +2862,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 12,
                 "location": "Operational Area 12",
-                "parent_id": 5,
                 "spray_coverage": "86%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 7,
@@ -4899,11 +2876,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "85%",
                 },
                 "_subRows": undefined,
-                "id": 2,
                 "location": "District B",
-                "parent_id": null,
                 "spray_coverage": "75%",
-                "spray_effectiveness": "85%",
               },
               Object {
                 "_index": 8,
@@ -4916,11 +2890,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "80%",
                 },
                 "_subRows": undefined,
-                "id": 6,
                 "location": "HFC 3",
-                "parent_id": 2,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "80%",
               },
               Object {
                 "_index": 9,
@@ -4933,11 +2904,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "0%",
                 },
                 "_subRows": undefined,
-                "id": 17,
                 "location": "HFC 17",
-                "parent_id": 2,
                 "spray_coverage": "0%",
-                "spray_effectiveness": "0%",
               },
               Object {
                 "_index": 10,
@@ -4950,11 +2918,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 13,
                 "location": "Operational Area 13",
-                "parent_id": 6,
                 "spray_coverage": "86%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 11,
@@ -4967,11 +2932,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "90%",
                 },
                 "_subRows": undefined,
-                "id": 14,
                 "location": "Operational Area 14",
-                "parent_id": 6,
                 "spray_coverage": "86%",
-                "spray_effectiveness": "90%",
               },
               Object {
                 "_index": 12,
@@ -4984,11 +2946,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "78%",
                 },
                 "_subRows": undefined,
-                "id": 17,
                 "location": "Operational Area 17",
-                "parent_id": 6,
                 "spray_coverage": "86%",
-                "spray_effectiveness": "78%",
               },
               Object {
                 "_index": 13,
@@ -5001,11 +2960,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 18,
                 "location": "Operational Area 18",
-                "parent_id": 6,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 14,
@@ -5018,11 +2974,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "90%",
                 },
                 "_subRows": undefined,
-                "id": 3,
                 "location": "District C",
-                "parent_id": null,
                 "spray_coverage": "90%",
-                "spray_effectiveness": "90%",
               },
               Object {
                 "_index": 15,
@@ -5035,11 +2988,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "80%",
                 },
                 "_subRows": undefined,
-                "id": 7,
                 "location": "HFC 4",
-                "parent_id": 3,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "80%",
               },
               Object {
                 "_index": 16,
@@ -5052,11 +3002,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 15,
                 "location": "Operational Area 15",
-                "parent_id": 7,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 17,
@@ -5069,11 +3016,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "80%",
                 },
                 "_subRows": undefined,
-                "id": 8,
                 "location": "HFC 5",
-                "parent_id": 3,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "80%",
               },
               Object {
                 "_index": 18,
@@ -5086,11 +3030,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "100%",
                 },
                 "_subRows": undefined,
-                "id": 16,
                 "location": "Operational Area 16",
-                "parent_id": 8,
                 "spray_coverage": "80%",
-                "spray_effectiveness": "100%",
               },
               Object {
                 "_index": 19,
@@ -5103,11 +3044,8 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
                   "spray_effectiveness": "0%",
                 },
                 "_subRows": undefined,
-                "id": 18,
                 "location": "District D",
-                "parent_id": null,
                 "spray_coverage": "0%",
-                "spray_effectiveness": "0%",
               },
             ]
           }

@@ -26,8 +26,18 @@ describe('DrillDownTable/WithHeaders', () => {
   });
 
   it('renders correctly with custom columns', () => {
+    const columns = [
+      {
+        Header: 'Name',
+        accessor: 'location'
+      },
+      {
+        Header: 'Spray Coverage',
+        accessor: 'spray_coverage'
+      }
+    ];
     const SomeTable = WithHeaders(ReactTable);
-    const wrapper = mount(<SomeTable data={data} />);
+    const wrapper = mount(<SomeTable data={data} columns={columns} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
