@@ -4,7 +4,8 @@ module.exports = {
     'packages/**/*.{js,jsx,ts,tsx}',
     '!**/node_modules/**',
     '!**/coverage/**',
-    '!**/dist/**'
+    '!**/dist/**',
+    '!**/{tests,__tests__}/**'
   ],
   setupFiles: ['./setupTests'],
   roots: ['packages/'],
