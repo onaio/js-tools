@@ -9,7 +9,7 @@ import { columnsFromObject } from './utils';
  * are derived from the data itself.
  */
 function WithHeaders(WrappedTable: ComponentType) {
-  class TableWithHeaders extends React.Component<Partial<TableProps>, {}> {
+  class TableWithHeaders<T extends object> extends React.Component<Partial<TableProps<T>>, {}> {
     constructor(props: TableProps) {
       super(props);
     }
