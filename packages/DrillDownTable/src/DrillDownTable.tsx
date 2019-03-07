@@ -4,7 +4,12 @@ import ReactTable, { TableProps } from 'react-table';
 import 'react-table/react-table.css';
 import { columnsFromObject } from './utils';
 
-function DrillDownTableHOC(WrappedTable: ComponentType) {
+/** A Higher order component that ensures table headers (column) are present
+ * and are passed on to the WrappedTable component.
+ * If columns already exist as a prop then nothing happens, otherwise columns
+ * are derived from the data itself.
+ */
+export function WithHeaders(WrappedTable: ComponentType) {
   // HOC that enhances ReactTable
 
   class ResultingTable extends React.Component<Partial<TableProps>, {}> {
@@ -34,6 +39,6 @@ function DrillDownTableHOC(WrappedTable: ComponentType) {
   return ResultingTable;
 }
 
-const DrillDownTable = DrillDownTableHOC(ReactTable);
+const DrillDownTable = WithHeaders(ReactTable);
 
 export default DrillDownTable;
