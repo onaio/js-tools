@@ -33,8 +33,9 @@ export function WithDrillDown(WrappedTable: ComponentType) {
     }
 
     private filterForLevel(element: DataElement) {
-      if (element.hasOwnProperty('parent_id')) {
-        return element.parent_id === null;
+      const { parentIdentifierField } = this.props;
+      if (parentIdentifierField && element.hasOwnProperty(parentIdentifierField)) {
+        return element[parentIdentifierField] === null;
       }
       return false;
     }
@@ -42,7 +43,7 @@ export function WithDrillDown(WrappedTable: ComponentType) {
     private getHierarchicyData() {
       const { data } = this.props;
       if (data) {
-        return data.filter(this.filterForLevel);
+        return data.filter(this.filterForLevel, this);
       }
       return data;
     }
