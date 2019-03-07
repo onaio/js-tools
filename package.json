@@ -11,8 +11,8 @@
   ],
   "scripts": {
     "test": "jest",
-    "lint-js": "eslint 'packages/**/*.{js,jsx}'",
-    "lint-ts": "tslint -c tslint.json 'packages/**/*.{ts,tsx}'",
+    "lint-js": "eslint '{packages,stories}/**/*.{js,jsx}'",
+    "lint-ts": "tslint -c tslint.json '{packages,stories}/**/*.{ts,tsx}'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
