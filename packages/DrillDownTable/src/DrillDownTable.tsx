@@ -1,8 +1,8 @@
 import React, { ComponentType } from 'react';
-import ReactTable, { TableProps } from 'react-table';
+import ReactTable, { FinalState, TableProps } from 'react-table';
 import 'react-table/react-table.css';
 import { ID, PARENT_ID, ROOT_PARENT_ID } from './constants';
-import { DataElement } from './utils';
+import { FlexObject } from './utils';
 import WithHeaders from './WithHeaders';
 
 /** Interface to define props of Drill down table */
@@ -13,7 +13,7 @@ export interface DrillDownProps<T> extends Partial<TableProps<T>> {
 }
 
 /** Interface for state */
-interface State {
+interface State<T> extends Partial<FinalState<T>> {
   currentParentId: any;
 }
 
@@ -24,7 +24,7 @@ interface State {
 export function WithDrillDown(WrappedTable: ComponentType<any>) {
   class TableWithDrills<T extends object> extends React.Component<
     Partial<DrillDownProps<T>>,
-    State
+    Partial<State<T>>
   > {
     public static defaultProps = {
       identifierField: ID,
@@ -34,19 +34,26 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
 
     constructor(props: DrillDownProps<T>) {
       super(props);
+      this.getTrProps.bind(this);
       this.state = {
         currentParentId: this.props.rootParentId
       };
     }
 
     public render() {
-      const newProps = {
-        data: this.getHierarchicyData()
-      };
+      const { getTrProps } = this;
+      const nextLevelData = this.getLevelData();
+      const newProps: FlexObject = { getTrProps };
+
+      if (nextLevelData && nextLevelData.length > 0) {
+        newProps.data = nextLevelData;
+      }
+
       return <WrappedTable {...this.props} {...newProps} />;
     }
 
-    private filterForLevel(element: DataElement) {
+    /** callback used to filter data using parent field */
+    private filterForLevel(element: FlexObject) {
       const { parentIdentifierField } = this.props;
       const { currentParentId } = this.state;
       if (parentIdentifierField && element.hasOwnProperty(parentIdentifierField)) {
@@ -55,13 +62,30 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
       return false;
     }
 
-    private getHierarchicyData() {
+    /** Method to get data for the current hierarchical level */
+    private getLevelData() {
       const { data } = this.props;
       if (data) {
         return data.filter(this.filterForLevel, this);
       }
       return data;
     }
+
+    /** getTrProps hook set up to hand drill-down using click event */
+    private getTrProps = (row: object, instance: FlexObject) => {
+      return {
+        onClick: () => {
+          const { identifierField, parentIdentifierField } = this.props;
+          if (identifierField && parentIdentifierField) {
+            const newParentId = instance.original[identifierField];
+            this.setState({
+              currentParentId: newParentId
+            });
+          }
+        },
+        row
+      };
+    };
   }
 
   return TableWithDrills;
