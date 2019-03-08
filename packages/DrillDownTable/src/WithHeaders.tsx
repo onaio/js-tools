@@ -1,6 +1,7 @@
 import React, { ComponentType } from 'react';
 import { TableProps } from 'react-table';
 import 'react-table/react-table.css';
+import { DrillDownProps } from './DrillDownTable';
 import { columnsFromObject } from './utils';
 
 /** A Higher order component that ensures table headers (column) are present
