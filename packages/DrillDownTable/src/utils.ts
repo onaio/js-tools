@@ -15,7 +15,7 @@ export function columnsFromObject(item: object) {
   return columnsList;
 }
 
-/** Interface for elements in data */
-export interface DataElement {
+/** Interface for an object that is allowed to have any property */
+export interface FlexObject {
   [key: string]: any;
 }
