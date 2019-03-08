@@ -1,6 +1,7 @@
 import React, { ComponentType } from 'react';
 import ReactTable, { Column, FinalState, RowInfo, TableProps } from 'react-table';
 import 'react-table/react-table.css';
+import './DrillDownTable.css';
 import {
   CARET,
   CLICKABLE_CSS_CLASS,
@@ -8,9 +9,8 @@ import {
   LINKER_ITEM_CSS_CLASS,
   PARENT_ID,
   ROOT_PARENT_ID
-} from './constants';
-import './DrillDownTable.css';
-import { FlexObject } from './utils';
+} from './helpers/constants';
+import { FlexObject } from './helpers/utils';
 import WithHeaders from './WithHeaders';
 
 /** Interface to define props of Drill down table */
@@ -163,7 +163,7 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
       }
     }
 
-    /** getTrProps hook set up to hand drill-down using click event */
+    /** getTrProps hook set up to handle drill-down using click event */
     private getTrProps = (row: RowInfo, instance: RowInfo) => {
       return {
         onClick: () => {
