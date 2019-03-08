@@ -8,7 +8,10 @@ import DrillDownTable from '../../packages/DrillDownTable/src';
 import { data } from '../../packages/DrillDownTable/src/tests/fixtures';
 
 function renderTable() {
-  const props = { data };
+  const props = {
+    data,
+    linkerField: 'location'
+  };
   return <DrillDownTable {...props} />;
 }
 
