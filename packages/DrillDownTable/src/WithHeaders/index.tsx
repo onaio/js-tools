@@ -1,7 +1,7 @@
 import React, { ComponentType } from 'react';
 import { TableProps } from 'react-table';
 import 'react-table/react-table.css';
-import { columnsFromObject } from './utils';
+import { columnsFromObject } from '../helpers/utils';
 
 /** A Higher order component that ensures table headers (column) are present
  * and are passed on to the WrappedTable component.
