@@ -1,5 +1,5 @@
 import React, { ComponentType } from 'react';
-import ReactTable, { FinalState, TableProps } from 'react-table';
+import ReactTable, { Column, FinalState, RowInfo, TableProps } from 'react-table';
 import 'react-table/react-table.css';
 import { ID, PARENT_ID, ROOT_PARENT_ID } from './constants';
 import { FlexObject } from './utils';
@@ -8,6 +8,7 @@ import WithHeaders from './WithHeaders';
 /** Interface to define props of Drill down table */
 export interface DrillDownProps<T> extends Partial<TableProps<T>> {
   identifierField?: string;
+  linkerField?: string;
   parentIdentifierField?: string;
   rootParentId?: any;
 }
@@ -31,6 +32,7 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
   > {
     public static defaultProps = {
       identifierField: ID,
+      linkerField: ID,
       parentIdentifierField: PARENT_ID,
       rootParentId: ROOT_PARENT_ID
     };
@@ -52,7 +54,10 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
     public render() {
       const { getTrProps } = this;
       const nextLevelData = this.getLevelData();
-      const newProps: FlexObject = { getTrProps };
+      const newProps: FlexObject = {
+        columns: this.getModifiedColumns(),
+        getTrProps
+      };
 
       if (nextLevelData && nextLevelData.length > 0) {
         newProps.data = nextLevelData;
@@ -80,15 +85,76 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
       return data;
     }
 
+    /** Callback used to filter columns to get linker columns */
+    private filterLinkerColumns(element: Column) {
+      const { linkerField } = this.props;
+      if (linkerField) {
+        return element.accessor === linkerField;
+      }
+      return false;
+    }
+
+    /** Get linker column */
+    private getLinkerColumn() {
+      const { columns } = this.props;
+      if (columns && columns.length > 0) {
+        const linkerColumns = columns.filter(this.filterLinkerColumns, this);
+        if (linkerColumns.length > 0) {
+          return linkerColumns[0];
+        }
+      }
+      return null;
+    }
+
+    /** Check if a row of data has children */
+    private hasChildren(row: RowInfo) {
+      const { parentNodes } = this.state;
+      const { identifierField } = this.props;
+      return identifierField && parentNodes && parentNodes.includes(row.original[identifierField]);
+    }
+
+    /** Get modified columns
+     * Modify the linker column to include an indicator that you cna use it to
+     * drill-down
+     */
+    private getModifiedColumns() {
+      const { columns } = this.props;
+      if (columns && columns.length > 0) {
+        const linkerColumn = this.getLinkerColumn();
+        if (linkerColumn !== null) {
+          const otherColumns = columns.filter((element: Column) => {
+            return element.accessor !== linkerColumn.accessor;
+          });
+
+          const modifiedLinkerColumn: Column = {
+            Cell: row => {
+              return (
+                <span className="dd-row-item">
+                  {row.value}
+                  {this.hasChildren(row) && <span className="dd-row-caret">&nbsp;&#9660;</span>}
+                </span>
+              );
+            },
+            Header: linkerColumn.Header,
+            accessor: linkerColumn.accessor
+          };
+
+          otherColumns.unshift(modifiedLinkerColumn);
+          return otherColumns;
+        } else {
+          return columns;
+        }
+      }
+    }
+
     /** getTrProps hook set up to hand drill-down using click event */
-    private getTrProps = (row: object, instance: FlexObject) => {
+    private getTrProps = (row: RowInfo, instance: RowInfo) => {
       return {
         onClick: () => {
           const { identifierField, parentIdentifierField } = this.props;
-          const { parentNodes } = this.state;
           if (identifierField && parentIdentifierField) {
-            const newParentId = instance.original[identifierField];
-            if (newParentId && parentNodes && parentNodes.includes(newParentId)) {
+            if (this.hasChildren(instance)) {
+              const newParentId = instance.original[identifierField];
               const oldParentId = instance.original[parentIdentifierField];
               this.setState({
                 currentParentId: newParentId,
@@ -105,5 +171,5 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
   return TableWithDrills;
 }
 
-const DrillDownTable = WithDrillDown(WithHeaders(ReactTable));
+const DrillDownTable = WithHeaders(WithDrillDown(ReactTable));
 export default DrillDownTable;
