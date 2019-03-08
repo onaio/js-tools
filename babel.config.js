@@ -7,6 +7,7 @@ module.exports = function(api) {
       test: {
         plugins: ['transform-es2015-modules-commonjs']
       }
-    }
+    },
+    comments: false
   };
 };
