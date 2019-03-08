@@ -15,6 +15,9 @@ export interface DrillDownProps<T> extends Partial<TableProps<T>> {
 /** Interface for state */
 interface State<T> extends Partial<FinalState<T>> {
   currentParentId: any;
+  previousParentId: any;
+  originalData: FlexObject[];
+  parentNodes: string[];
 }
 
 /** A Higher order component that adds drill-down capability to render
@@ -31,12 +34,18 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
       parentIdentifierField: PARENT_ID,
       rootParentId: ROOT_PARENT_ID
     };
-
     constructor(props: DrillDownProps<T>) {
       super(props);
       this.getTrProps.bind(this);
+      const { data, parentIdentifierField } = this.props;
       this.state = {
-        currentParentId: this.props.rootParentId
+        currentParentId: this.props.rootParentId,
+        originalData: data,
+        parentNodes:
+          data && parentIdentifierField
+            ? data.map((el: FlexObject) => el[parentIdentifierField])
+            : [],
+        previousParentId: null
       };
     }
 
@@ -76,11 +85,16 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
       return {
         onClick: () => {
           const { identifierField, parentIdentifierField } = this.props;
+          const { parentNodes } = this.state;
           if (identifierField && parentIdentifierField) {
             const newParentId = instance.original[identifierField];
-            this.setState({
-              currentParentId: newParentId
-            });
+            if (newParentId && parentNodes && parentNodes.includes(newParentId)) {
+              const oldParentId = instance.original[parentIdentifierField];
+              this.setState({
+                currentParentId: newParentId,
+                previousParentId: oldParentId
+              });
+            }
           }
         },
         row
