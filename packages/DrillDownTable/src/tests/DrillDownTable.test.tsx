@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import DrillDownTable from '../DrillDownTable';
+import DrillDownTable from '..';
 
 describe('DrillDownTable', () => {
   beforeEach(() => {
