@@ -14,7 +14,7 @@
   },
   "scripts": {
     "jest": "jest --coverage --verbose --color",
-    "transpile": "babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx'"
+    "transpile": "babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__'"
   },
   "jest": {
     "setupFiles": [
