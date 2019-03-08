@@ -1,7 +1,15 @@
 import React, { ComponentType } from 'react';
 import ReactTable, { Column, FinalState, RowInfo, TableProps } from 'react-table';
 import 'react-table/react-table.css';
-import { ID, PARENT_ID, ROOT_PARENT_ID } from './constants';
+import {
+  CARET,
+  CLICKABLE_CSS_CLASS,
+  ID,
+  LINKER_ITEM_CSS_CLASS,
+  PARENT_ID,
+  ROOT_PARENT_ID
+} from './constants';
+import './DrillDownTable.css';
 import { FlexObject } from './utils';
 import WithHeaders from './WithHeaders';
 
@@ -11,6 +19,7 @@ export interface DrillDownProps<T> extends Partial<TableProps<T>> {
   linkerField?: string;
   parentIdentifierField?: string;
   rootParentId?: any;
+  CaretElement: Node;
 }
 
 /** Interface for state */
@@ -31,6 +40,7 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
     Partial<State<T>>
   > {
     public static defaultProps = {
+      CaretElement: CARET,
       identifierField: ID,
       linkerField: ID,
       parentIdentifierField: PARENT_ID,
@@ -110,7 +120,10 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
     private hasChildren(row: RowInfo) {
       const { parentNodes } = this.state;
       const { identifierField } = this.props;
-      return identifierField && parentNodes && parentNodes.includes(row.original[identifierField]);
+      if (identifierField && parentNodes && parentNodes.includes(row.original[identifierField])) {
+        return true;
+      }
+      return false;
     }
 
     /** Get modified columns
@@ -118,7 +131,7 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
      * drill-down
      */
     private getModifiedColumns() {
-      const { columns } = this.props;
+      const { columns, CaretElement } = this.props;
       if (columns && columns.length > 0) {
         const linkerColumn = this.getLinkerColumn();
         if (linkerColumn !== null) {
@@ -128,11 +141,14 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
 
           const modifiedLinkerColumn: Column = {
             Cell: row => {
+              const hasChildren: boolean = this.hasChildren(row);
               return (
-                <span className="dd-row-item">
-                  {row.value}
-                  {this.hasChildren(row) && <span className="dd-row-caret">&nbsp;&#9660;</span>}
-                </span>
+                <div className={hasChildren ? CLICKABLE_CSS_CLASS : LINKER_ITEM_CSS_CLASS}>
+                  <span>
+                    {row.value}
+                    {hasChildren && CaretElement}
+                  </span>
+                </div>
               );
             },
             Header: linkerColumn.Header,
