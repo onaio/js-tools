@@ -69,7 +69,7 @@ The new name should follow our NPM Org scope e.g. `@onaio`
 
 It’s also important to have the new package start at a version like 0.0.0 because once we do our first publish using Lerna, it’ll be published at 0.1.0 or 1.0.0.
 
-Here's an example sample `package.json`:
+Here's an example sample `package.json` for a `js`/`jsx` package:
 
 ```js
 // package.json
@@ -77,27 +77,20 @@ Here's an example sample `package.json`:
   "name": "@onaio/my-new-package",
   "version": "0.0.0",
   "main": "dist/my-new-package.js", // replace this if different
+  "author": "Ona Engineering",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/onaio/js-tools/issues"
   },
   "scripts": {
     "jest": "jest --coverage --verbose --color",
-    "transpile": "babel src -d dist --ignore '**/*.test.js,**/*.test.jsx'"
+    "transpile": "babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__'"
   },
   // the list of files to be included by npm when the package is published
   "files": ["dist/my-new-package.js"],
   // hook up global testing with lerna
   "jest": {
     "setupFiles": ["../../setupTests"]
-  },
-  "babel": {
-    "presets": ["@babel/preset-env", "@babel/preset-react"],
-    "env": {
-      "test": {
-        "plugins": ["transform-es2015-modules-commonjs"]
-      }
-    }
   },
   // example minimal dependencies that you have to declare for React components
   "peerDependencies": {
@@ -111,6 +104,42 @@ Here's an example sample `package.json`:
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.1",
     "enzyme-to-json": "^3.3.5"
+  }
+}
+```
+
+Here's an example sample `package.json` for a `ts`/`tsx` package:
+
+```js
+{
+  "name": "@onaio/my-new--typescript-package",
+  "version": "0.0.0",
+  "description": "My new my-new--typescript-package",
+  "main": "dist/my-new--typescript-package.js",
+  "repository": "https://github.com/onaio/js-tools",
+  "author": "Ona Engineering",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+  },
+  // the list of files to be included by npm when the package is published
+  "files": ["dist/my-new-typescript-package.js"],
+  // hook up global testing with lerna
+  "jest": {
+    "setupFiles": ["../../setupTests"]
+  },
+  // example minimal dependencies that you have to declare for React components
+  "peerDependencies": {
+    "react": "^16.8.1"
+  },
+  "dependencies": {
+    "@types/react-table": "^6.7.22",
+    "prop-types": "^15.6.1"
   }
 }
 ```
@@ -133,10 +162,16 @@ This command translates to `yarn run jest` and so you can supply all the usual [
 
 ## Linting
 
+You can run `tlint` on `.ts`/`.tsx` files by doing:
+
+```sh
+yarn lint-ts
+```
+
 You can run `eslint` on `.js`/`.jsx` files by doing:
 
 ```sh
-yarn lint
+yarn lint-js
 ```
 
 ## Transpiling
@@ -147,7 +182,7 @@ You can transpile packages by doing:
 lerna run transpile
 ```
 
-What this does in the background is that it runs `babel src -d dist --ignore '**/*.test.js,**/*.test.jsx'` for each package.
+What this does in the background is that it uses babel to transpile each package that has a `transpile` entry in the `scripts` section of the package's `package.json`.
 
 Your transpiled package is saved in the `dist` directory within each package. Note that this directory is ignored by `git`. Also see the `files` option the `package.json` above.
 
@@ -157,4 +192,18 @@ TODO
 
 ## Typescript Support
 
-Coming soon.
+It is actually recommended to create all new packages using `Typescript`. The instructions above on how to add a new package are all that you need to get started.
+
+In addition to the above instructions, you need to create a `tsconfig.json` file next to the package.json file inside your new package's directory.
+
+The contents of this file should be something like:
+
+```json
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": ["src"]
+}
+```
