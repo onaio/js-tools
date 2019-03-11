@@ -19,7 +19,7 @@ export interface DrillDownProps<T> extends Partial<TableProps<T>> {
   linkerField?: string;
   parentIdentifierField?: string;
   rootParentId?: any;
-  CaretElement: Node;
+  DrillDownIndicator: Node;
 }
 
 /** Interface for state */
@@ -40,7 +40,7 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
     Partial<State<T>>
   > {
     public static defaultProps = {
-      CaretElement: CARET,
+      DrillDownIndicator: CARET,
       identifierField: ID,
       linkerField: ID,
       parentIdentifierField: PARENT_ID,
@@ -131,7 +131,7 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
      * drill-down
      */
     private getModifiedColumns() {
-      const { columns, CaretElement } = this.props;
+      const { columns, DrillDownIndicator } = this.props;
       if (columns && columns.length > 0) {
         const linkerColumn = this.getLinkerColumn();
         if (linkerColumn !== null) {
@@ -146,7 +146,7 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
                 <div className={hasChildren ? CLICKABLE_CSS_CLASS : LINKER_ITEM_CSS_CLASS}>
                   <span>
                     {row.value}
-                    {hasChildren && CaretElement}
+                    {hasChildren && DrillDownIndicator}
                   </span>
                 </div>
               );

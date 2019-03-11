@@ -3,7 +3,7 @@
 exports[`DrillDownTable click to drill down works 1`] = `
 <ReactTable
   AggregatedComponent={[Function]}
-  CaretElement={
+  DrillDownIndicator={
     <span
       className="dd-caret"
     >
@@ -466,7 +466,7 @@ exports[`DrillDownTable click to drill down works 1`] = `
                   row={
                     Object {
                       "AggregatedComponent": [Function],
-                      "CaretElement": <span
+                      "DrillDownIndicator": <span
                         className="dd-caret"
                       >
                          ▼
@@ -1124,7 +1124,7 @@ exports[`DrillDownTable click to drill down works 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "CaretElement": <span
+                        "DrillDownIndicator": <span
                           className="dd-caret"
                         >
                            ▼
@@ -2040,7 +2040,7 @@ exports[`DrillDownTable click to drill down works 1`] = `
                   row={
                     Object {
                       "AggregatedComponent": [Function],
-                      "CaretElement": <span
+                      "DrillDownIndicator": <span
                         className="dd-caret"
                       >
                          ▼
@@ -2698,7 +2698,7 @@ exports[`DrillDownTable click to drill down works 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "CaretElement": <span
+                        "DrillDownIndicator": <span
                           className="dd-caret"
                         >
                            ▼
@@ -6580,7 +6580,7 @@ exports[`DrillDownTable click to drill down works 1`] = `
     >
       <ReactTablePagination
         AggregatedComponent={[Function]}
-        CaretElement={
+        DrillDownIndicator={
           <span
             className="dd-caret"
           >
@@ -7330,7 +7330,7 @@ exports[`DrillDownTable click to drill down works 1`] = `
 exports[`DrillDownTable click to drill down works 2`] = `
 <ReactTable
   AggregatedComponent={[Function]}
-  CaretElement={
+  DrillDownIndicator={
     <span
       className="dd-caret"
     >
@@ -7800,7 +7800,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
                   row={
                     Object {
                       "AggregatedComponent": [Function],
-                      "CaretElement": <span
+                      "DrillDownIndicator": <span
                         className="dd-caret"
                       >
                          ▼
@@ -8516,7 +8516,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "CaretElement": <span
+                        "DrillDownIndicator": <span
                           className="dd-caret"
                         >
                            ▼
@@ -9485,7 +9485,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
                   row={
                     Object {
                       "AggregatedComponent": [Function],
-                      "CaretElement": <span
+                      "DrillDownIndicator": <span
                         className="dd-caret"
                       >
                          ▼
@@ -10201,7 +10201,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "CaretElement": <span
+                        "DrillDownIndicator": <span
                           className="dd-caret"
                         >
                            ▼
@@ -11170,7 +11170,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
                   row={
                     Object {
                       "AggregatedComponent": [Function],
-                      "CaretElement": <span
+                      "DrillDownIndicator": <span
                         className="dd-caret"
                       >
                          ▼
@@ -11886,7 +11886,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "CaretElement": <span
+                        "DrillDownIndicator": <span
                           className="dd-caret"
                         >
                            ▼
@@ -15656,7 +15656,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
     >
       <ReactTablePagination
         AggregatedComponent={[Function]}
-        CaretElement={
+        DrillDownIndicator={
           <span
             className="dd-caret"
           >
@@ -16473,7 +16473,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
   }
 >
   <TableWithDrills
-    CaretElement={
+    DrillDownIndicator={
       <span
         className="dd-caret"
       >
@@ -16536,7 +16536,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
   >
     <ReactTable
       AggregatedComponent={[Function]}
-      CaretElement={
+      DrillDownIndicator={
         <span
           className="dd-caret"
         >
@@ -17006,7 +17006,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -17722,7 +17722,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -18691,7 +18691,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -19407,7 +19407,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -20376,7 +20376,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -21092,7 +21092,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -24862,7 +24862,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
         >
           <ReactTablePagination
             AggregatedComponent={[Function]}
-            CaretElement={
+            DrillDownIndicator={
               <span
                 className="dd-caret"
               >
@@ -25820,7 +25820,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
   }
 >
   <TableWithDrills
-    CaretElement={
+    DrillDownIndicator={
       <span
         className="dd-caret"
       >
@@ -25998,7 +25998,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
   >
     <ReactTable
       AggregatedComponent={[Function]}
-      CaretElement={
+      DrillDownIndicator={
         <span
           className="dd-caret"
         >
@@ -26429,7 +26429,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -27123,7 +27123,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -28045,7 +28045,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -28739,7 +28739,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -29661,7 +29661,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -30355,7 +30355,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -31277,7 +31277,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -31971,7 +31971,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -35060,7 +35060,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
         >
           <ReactTablePagination
             AggregatedComponent={[Function]}
-            CaretElement={
+            DrillDownIndicator={
               <span
                 className="dd-caret"
               >
@@ -35984,7 +35984,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
   linkerField="location"
 >
   <TableWithDrills
-    CaretElement={
+    DrillDownIndicator={
       <span
         className="dd-caret"
       >
@@ -36162,7 +36162,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
   >
     <ReactTable
       AggregatedComponent={[Function]}
-      CaretElement={
+      DrillDownIndicator={
         <span
           className="dd-caret"
         >
@@ -36593,7 +36593,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -37287,7 +37287,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -38209,7 +38209,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -38903,7 +38903,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -39825,7 +39825,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -40519,7 +40519,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -41441,7 +41441,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -42135,7 +42135,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -45224,7 +45224,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
         >
           <ReactTablePagination
             AggregatedComponent={[Function]}
-            CaretElement={
+            DrillDownIndicator={
               <span
                 className="dd-caret"
               >
@@ -46127,7 +46127,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
   }
 >
   <TableWithDrills
-    CaretElement={
+    DrillDownIndicator={
       <span
         className="dd-caret"
       >
@@ -46309,7 +46309,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
   >
     <ReactTable
       AggregatedComponent={[Function]}
-      CaretElement={
+      DrillDownIndicator={
         <span
           className="dd-caret"
         >
@@ -46786,7 +46786,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -47560,7 +47560,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -48590,7 +48590,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -49364,7 +49364,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -50394,7 +50394,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -51168,7 +51168,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -52198,7 +52198,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "CaretElement": <span
+                          "DrillDownIndicator": <span
                             className="dd-caret"
                           >
                              ▼
@@ -52972,7 +52972,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                         row={
                           Object {
                             "AggregatedComponent": [Function],
-                            "CaretElement": <span
+                            "DrillDownIndicator": <span
                               className="dd-caret"
                             >
                                ▼
@@ -56633,7 +56633,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
         >
           <ReactTablePagination
             AggregatedComponent={[Function]}
-            CaretElement={
+            DrillDownIndicator={
               <span
                 className="dd-caret"
               >
