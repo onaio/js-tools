@@ -26,6 +26,30 @@ describe('DrillDownTable', () => {
     wrapper.unmount();
   });
 
+  it('click to drill down works', () => {
+    const props = {
+      data
+    };
+    const wrapper = mount(<DrillDownTable {...props} />);
+    // drill down first level
+    expect(wrapper.find('.dd-linker-item.dd-clickable').length).toEqual(3);
+    wrapper
+      .find('.dd-linker-item.dd-clickable')
+      .first()
+      .simulate('click');
+    expect(toJson(wrapper.find('ReactTable'))).toMatchSnapshot();
+    // drill down second level
+    expect(wrapper.find('.dd-linker-item.dd-clickable').length).toEqual(2);
+    wrapper
+      .find('.dd-linker-item.dd-clickable')
+      .first()
+      .simulate('click');
+    expect(toJson(wrapper.find('ReactTable'))).toMatchSnapshot();
+    // there should now be no more drilling down possible
+    expect(wrapper.find('.dd-linker-item.dd-clickable').length).toEqual(0);
+    wrapper.unmount();
+  });
+
   it('renders correctly lowest level hierarchy', () => {
     const props = {
       data: dataLowestLevel
