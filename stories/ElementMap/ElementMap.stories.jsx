@@ -19,7 +19,11 @@ function renderTable() {
   const fruits = ['Apple', 'Banana', 'Grape', 'Orange', 'Plum'];
   return (
     <table>
-      <ElementMap items={fruits} HTMLTag="tr" />
+      <tbody>
+        <tr>
+          <ElementMap items={fruits} HTMLTag="td" />
+        </tr>
+      </tbody>
     </table>
   );
 }
