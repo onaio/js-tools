@@ -2,7 +2,7 @@
   "name": "@onaio/drill-down-table",
   "version": "0.0.0",
   "description": "Drill-down table",
-  "main": "src/index.js",
+  "main": "src/index.tsx",
   "repository": "https://github.com/onaio/js-tools",
   "author": "Ona Engineering",
   "license": "Apache-2.0",
