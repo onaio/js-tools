@@ -71,7 +71,7 @@ This defines the value of the `parentIdentifierField` on the highest hierarchy l
 
 Basically it defines the first hierarchical level that you want to show on your `DrillDownTable`.
 
-This is also option and defaults to `null`.
+This is also optional and defaults to `null`.
 
 #### linkerField
 
