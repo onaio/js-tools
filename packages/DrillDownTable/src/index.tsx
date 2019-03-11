@@ -127,7 +127,7 @@ export function WithDrillDown(WrappedTable: ComponentType<any>) {
     }
 
     /** Get modified columns
-     * Modify the linker column to include an indicator that you cna use it to
+     * Modify the linker column to include an indicator that you can use to
      * drill-down
      */
     private getModifiedColumns() {
