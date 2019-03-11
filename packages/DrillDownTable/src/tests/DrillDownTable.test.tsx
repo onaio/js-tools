@@ -17,6 +17,16 @@ describe('DrillDownTable', () => {
     shallow(<DrillDownTable {...props} />);
   });
 
+  it('renders correctly even with invalid linkerField', () => {
+    const props = {
+      data,
+      linkerField: 'fakeColumn'
+    };
+    const wrapper = mount(<DrillDownTable {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
   it('renders correctly with derived columns', () => {
     const props = {
       data
