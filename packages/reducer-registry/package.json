@@ -8,7 +8,7 @@
   "author": "Ona Engineering",
   "homepage": "https://github.com/onaio/js-tools",
   "license": "Apache-2.0",
-  "main": "src/reducer-registry.js",
+  "main": "src/index.ts",
   "files": [
     "dist"
   ],
