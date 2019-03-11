@@ -51,19 +51,19 @@ data = [
 
 ### WithHeaders
 
-As you know, you absolutely need to define `columns` when working with React Table. DrillDownTable includes another higher order component that we call `WithHeaders` that allows you to optionally define your table without defining any columns. The columns will be derived from the structure of your data. Obviously for maximu control over your table you would want to define columns, but in case you do not do that, then DrillDownTable will still work.
+As you know, you absolutely need to define `columns` when working with React Table. DrillDownTable includes another higher order component that we call `WithHeaders` that allows you to optionally define your table without defining any columns. The columns will be derived from the structure of your data. Obviously for maximum control over your table you would want to define columns, but in case you do not do that, then DrillDownTable will still work.
 
 ### The props
 
-When defining your DrillDownTable, we expect you to provide some additional props (as in apart from the props you would require for ReactTable on its own). These are:
+When defining your DrillDownTable, we expect you to provide some additional props (as in apart from the props you would need for ReactTable on its own). These are:
 
 #### identifierField
 
-Which field in the data represents the unique identifier for a row of data? This is optionally, but if you do not define it then the default is set to `id`.
+Which field in the data represents the unique identifier for a row of data? This is optional, but if you do not define it then the default is set to `id`.
 
 #### parentIdentifierField
 
-Which field in the data represents the unique identifier of the parent of a row of data? This is optionally, but if you do not define it then the default is set to `parent_id`.
+Which field in the data represents the unique identifier of the parent of a row of data? This is optional, but if you do not define it then the default is set to `parent_id`.
 
 #### rootParentId
 
@@ -71,9 +71,11 @@ This defines the value of the `parentIdentifierField` on the highest hierarchy l
 
 Basically it defines the first hierarchical level that you want to show on your `DrillDownTable`.
 
+This is also option and defaults to `null`.
+
 #### linkerField
 
-When the table is rendered, you can click anywhere on the row to drill down to the next level of the hierarchy. However, you may want to display some kind of indication that it is possible to drill down on a row of data. The `linkerField` prop allows you to define which field should have this indicator. By default this is set to the `id` field.
+When the table is rendered, you can click anywhere on a row to drill down to the next level of the hierarchy. However, you may want to display some kind of indication that it is possible to drill down on a row of data. The `linkerField` prop allows you to define which field should have this indicator. By default this is set to the `id` field.
 
 #### DrillDownIndicator
 
