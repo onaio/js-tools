@@ -1,3 +1,5 @@
+import { FlexObject } from '../helpers/utils';
+
 export const data = [
   {
     id: 1,
@@ -140,3 +142,9 @@ export const data = [
     spray_effectiveness: '0%'
   }
 ];
+
+export const dataParentsOnly = data.map((el: FlexObject) => el.parent_id);
+
+export const dataLowestLevel = data.filter((element: FlexObject) => {
+  return element.parent_id === 4;
+});

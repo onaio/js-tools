@@ -2,7 +2,7 @@ import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
 import DrillDownTable from '..';
-import { data } from './fixtures';
+import { data, dataLowestLevel } from './fixtures';
 
 describe('DrillDownTable', () => {
   beforeEach(() => {
@@ -20,6 +20,15 @@ describe('DrillDownTable', () => {
   it('renders correctly with derived columns', () => {
     const props = {
       data
+    };
+    const wrapper = mount(<DrillDownTable {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('renders correctly lowest level hierarchy', () => {
+    const props = {
+      data: dataLowestLevel
     };
     const wrapper = mount(<DrillDownTable {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
