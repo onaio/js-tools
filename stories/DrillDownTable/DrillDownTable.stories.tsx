@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 /* eslint-enable import/no-extraneous-dependencies */
 import 'react-table/react-table.css';
+import notes from '../../packages/DrillDownTable/README.md';
 import DrillDownTable from '../../packages/DrillDownTable/src';
 import { data } from '../../packages/DrillDownTable/src/tests/fixtures';
 
@@ -39,5 +40,5 @@ function renderDerivedTable() {
 }
 
 storiesOf('DrillDownTable', module)
-  .add('simple', renderTable)
-  .add('get columns from data', renderDerivedTable);
+  .add('simple', renderTable, { notes })
+  .add('get columns from data', renderDerivedTable, { notes });
