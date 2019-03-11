@@ -49,6 +49,10 @@ data = [
 ];
 ```
 
+### WithHeaders
+
+As you know, you absolutely need to define `columns` when working with React Table. DrillDownTable includes another higher order component that we call `WithHeaders` that allows you to optionally define your table without defining any columns. The columns will be derived from the structure of your data. Obviously for maximu control over your table you would want to define columns, but in case you do not do that, then DrillDownTable will still work.
+
 ### The props
 
 When defining your DrillDownTable, we expect you to provide some additional props (as in apart from the props you would require for ReactTable on its own). These are:
@@ -122,7 +126,3 @@ const props = {
 };
 <DrillDownTable {...props} />;
 ```
-
-## WithHeaders
-
-As you know, you absolutely need to define `columns` when working with React Table. DrillDownTable includes another higher order component that we call `WithHeaders` that allows you to optionally define your table without defining any columns. The columns will be derived from the structure of your data. Obviously for maximu control over your table you would want to define columns, but in case you do not do that, then DrillDownTable will still work.
