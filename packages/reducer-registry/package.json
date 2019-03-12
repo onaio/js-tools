@@ -1,0 +1,39 @@
+{
+  "name": "@onaio/redux-reducer-registry",
+  "version": "0.0.0",
+  "description": "Redux registry tool for dynamically loading reducers",
+  "keywords": [
+    "redux"
+  ],
+  "author": "Ona Engineering",
+  "homepage": "https://github.com/onaio/js-tools",
+  "license": "Apache-2.0",
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onaio/js-tools.git"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "dependencies": {
+    "@types/redux": "^3.6.0",
+    "redux": "^4.0.1"
+  }
+}

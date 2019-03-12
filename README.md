@@ -112,10 +112,10 @@ Here's an example sample `package.json` for a `ts`/`tsx` package:
 
 ```js
 {
-  "name": "@onaio/my-new--typescript-package",
+  "name": "@onaio/my-new-typescript-package",
   "version": "0.0.0",
-  "description": "My new my-new--typescript-package",
-  "main": "dist/my-new--typescript-package.js",
+  "description": "My new my-new-typescript-package",
+  "main": "dist/my-new-typescript-package.js",
   "repository": "https://github.com/onaio/js-tools",
   "author": "Ona Engineering",
   "license": "Apache-2.0",
