@@ -2,6 +2,7 @@
 import { combineReducers, createStore, Reducer } from 'redux';
 import reducerRegistry, { Registry } from './index';
 
+/** Declare type for initial state */
 interface State {
   [key: string]: any;
 }
