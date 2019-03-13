@@ -84,7 +84,7 @@ Here's an example sample `package.json` for a `js`/`jsx` package:
   },
   "scripts": {
     "jest": "jest --coverage --verbose --color",
-    "transpile": "babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__'"
+    "transpile": "babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__' --copy-files"
   },
   // the list of files to be included by npm when the package is published
   "files": ["dist"],
@@ -128,7 +128,7 @@ Here's an example sample `package.json` for a `ts`/`tsx` package:
   "scripts": {
     "jest": "jest --coverage --verbose --color",
     "tsc": "tsc",
-    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__' --copy-files"
   },
   // the list of files to be included by npm when the package is published
   "files": ["dist"],
