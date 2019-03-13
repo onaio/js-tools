@@ -117,6 +117,8 @@ Here's an example sample `package.json` for a `ts`/`tsx` package:
   "version": "0.0.0",
   "description": "My new my-new-typescript-package",
   "main": "dist/my-new-typescript-package.js",
+  // you WILL need to edit this next line if you have more type declarations
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/onaio/js-tools",
   "author": "Ona Engineering",
   "license": "Apache-2.0",
@@ -204,6 +206,12 @@ Next clean your `dist` folders locally to remove old files:
 rm -rf packages/**/dist
 ```
 
+Generate type declaration files for packages written in Typescript:
+
+```sh
+lerna run tsc
+```
+
 Transpile the packages - this will create the distribution-ready files for all packages:
 
 ```sh
@@ -230,7 +238,8 @@ The contents of this file should be something like:
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "declarationDir": "dist"
   },
   "include": ["src"]
 }
