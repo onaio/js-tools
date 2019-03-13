@@ -1,6 +1,6 @@
 /** Store module */
 import { combineReducers, createStore, Reducer } from 'redux';
-import reducerRegistry, { Registry } from './index';
+import reducerRegistry, { Registry } from './registry';
 
 /** Declare type for initial state */
 interface State {
