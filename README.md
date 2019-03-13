@@ -190,7 +190,33 @@ Your transpiled package is saved in the `dist` directory within each package. No
 
 ## Publishing
 
-TODO
+Assuming that you have the `js-tools` repo cloned locally, switch to the `master` branch and proceed:
+
+First, tag releases for Github - this will tag releases on Github and create a changelog for all updated packages:
+
+```sh
+lerna version --github-release --conventional-commits
+```
+
+Next clean your `dist` folders locally to remove old files:
+
+```sh
+rm -rf packages/**/dist
+```
+
+Transpile the packages - this will create the distribution-ready files for all packages:
+
+```sh
+lerna run transpile
+```
+
+Finally, publish the packages to the `npm` registry:
+
+```sh
+lerna publish from-git
+```
+
+You may want to checkout documentation for the [`lerna version`](https://github.com/lerna/lerna/tree/master/commands/version) and [`lerna publish`](https://github.com/lerna/lerna/tree/master/commands/publish) commands.
 
 ## Typescript Support
 
