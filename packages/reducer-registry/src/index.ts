@@ -1,5 +1,6 @@
 /** Redux reducer registry module */
 import { Reducer } from 'redux';
+import store, { combine, getStore } from './store';
 
 /** Declare type for function that takes any arguments and returns nothing */
 type EmitChangeFunction = (...args: any[]) => void;
@@ -45,3 +46,5 @@ export class ReducerRegistry {
 
 const reducerRegistry = new ReducerRegistry();
 export default reducerRegistry;
+
+export { store, getStore, combine };
