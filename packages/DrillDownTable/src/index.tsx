@@ -11,7 +11,7 @@ import {
   ROOT_PARENT_ID
 } from './helpers/constants';
 import { FlexObject } from './helpers/utils';
-import { getColumns } from './WithHeaders';
+import WithHeaders, { getColumns } from './WithHeaders';
 
 /** Interface to define props of Drill down table */
 export interface DrillDownProps<T> extends Partial<TableProps<T>> {
@@ -170,3 +170,5 @@ DrillDownTable.defaultProps = {
 };
 
 export default DrillDownTable;
+
+export { WithHeaders, getColumns };
