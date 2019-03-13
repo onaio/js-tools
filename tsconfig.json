@@ -1,22 +1,27 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "sourceMap": true,
+    "sourceMap": false,
     "lib": ["dom", "dom.iterable", "esnext", "es6"],
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "noEmit": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "noEmitOnError": true,
     "jsx": "preserve",
-    "baseUrl": "packages"
+    "baseUrl": "packages",
+    "declaration": true,
+    "declarationMap": false,
+    "listEmittedFiles": true
   },
   "include": ["packages", "stories", "**/*.ts", "**/*.tsx"],
-  "exclude": ["**/node_modules", "**/coverage", "**/dist", "**/*.spec.ts"]
+  "exclude": ["**/node_modules", "**/coverage", "**/tests", "**/dist", "**/*.spec.ts"]
 }

@@ -1,7 +1,6 @@
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
-import ReactTable from 'react-table';
 import WithHeaders from '../WithHeaders';
 import { data } from './fixtures';
 
@@ -11,8 +10,7 @@ describe('DrillDownTable/WithHeaders', () => {
   });
 
   it('renders without crashing', () => {
-    const SomeTable = WithHeaders(ReactTable);
-    shallow(<SomeTable data={data} />);
+    shallow(<WithHeaders data={data} />);
   });
 
   it('renders correctly with custom columns', () => {
@@ -26,15 +24,13 @@ describe('DrillDownTable/WithHeaders', () => {
         accessor: 'spray_coverage'
       }
     ];
-    const SomeTable = WithHeaders(ReactTable);
-    const wrapper = mount(<SomeTable data={data} columns={columns} />);
+    const wrapper = mount(<WithHeaders data={data} columns={columns} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
 
   it('renders correctly with derived columns', () => {
-    const SomeTable = WithHeaders(ReactTable);
-    const wrapper = mount(<SomeTable data={data} />);
+    const wrapper = mount(<WithHeaders data={data} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });

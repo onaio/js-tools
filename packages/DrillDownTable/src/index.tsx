@@ -1,4 +1,4 @@
-import React, { ComponentType } from 'react';
+import React, { useState } from 'react';
 import ReactTable, { Column, FinalState, RowInfo, TableProps } from 'react-table';
 import 'react-table/react-table.css';
 import './DrillDownTable.css';
@@ -11,7 +11,7 @@ import {
   ROOT_PARENT_ID
 } from './helpers/constants';
 import { FlexObject } from './helpers/utils';
-import WithHeaders from './WithHeaders';
+import { getColumns } from './WithHeaders';
 
 /** Interface to define props of Drill down table */
 export interface DrillDownProps<T> extends Partial<TableProps<T>> {
@@ -23,7 +23,7 @@ export interface DrillDownProps<T> extends Partial<TableProps<T>> {
 }
 
 /** Interface for state */
-interface State<T> extends Partial<FinalState<T>> {
+interface State<D> extends Partial<FinalState<D>> {
   currentParentId: any;
   previousParentId: any;
   originalData: FlexObject[];
@@ -34,158 +34,139 @@ interface State<T> extends Partial<FinalState<T>> {
  * hierarchical data in tables that allow you to move from the highest level to
  * the lowest, nad back with maximum flexibility.
  */
-export function WithDrillDown(WrappedTable: ComponentType<any>) {
-  class TableWithDrills<T extends object> extends React.Component<
-    Partial<DrillDownProps<T>>,
-    Partial<State<T>>
-  > {
-    public static defaultProps = {
-      DrillDownIndicator: CARET,
-      identifierField: ID,
-      linkerField: ID,
-      parentIdentifierField: PARENT_ID,
-      rootParentId: ROOT_PARENT_ID
-    };
-    constructor(props: DrillDownProps<T>) {
-      super(props);
-      this.getTrProps.bind(this);
-      const { data, parentIdentifierField } = this.props;
-      this.state = {
-        currentParentId: this.props.rootParentId,
-        originalData: data,
-        parentNodes:
-          data && parentIdentifierField
-            ? data.map((el: FlexObject) => el[parentIdentifierField])
-            : [],
-        previousParentId: null
-      };
+function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
+  const { data, parentIdentifierField } = props;
+  const columns = getColumns(props);
+  // state variables
+  const [currentParentId, setCurrentParentId] = useState(props.rootParentId);
+  const [originalData] = useState(props.data);
+  const [parentNodes] = useState(
+    data && parentIdentifierField ? data.map((el: FlexObject) => el[parentIdentifierField]) : []
+  );
+  const [previousParentId, setPreviousParentId] = useState(null);
+
+  /** callback used to filter data using parent field */
+  function filterForLevel(this: FlexObject, element: FlexObject) {
+    if (
+      this.props.parentIdentifierField &&
+      element.hasOwnProperty(this.props.parentIdentifierField)
+    ) {
+      return element[this.props.parentIdentifierField] === this.state.currentParentId;
     }
-
-    public render() {
-      const { getTrProps } = this;
-      const nextLevelData = this.getLevelData();
-      const newProps: FlexObject = {
-        columns: this.getModifiedColumns(),
-        getTrProps
-      };
-
-      if (nextLevelData && nextLevelData.length > 0) {
-        newProps.data = nextLevelData;
-      }
-
-      return <WrappedTable {...this.props} {...newProps} />;
-    }
-
-    /** callback used to filter data using parent field */
-    private filterForLevel(element: FlexObject) {
-      const { parentIdentifierField } = this.props;
-      const { currentParentId } = this.state;
-      if (parentIdentifierField && element.hasOwnProperty(parentIdentifierField)) {
-        return element[parentIdentifierField] === currentParentId;
-      }
-      return false;
-    }
-
-    /** Method to get data for the current hierarchical level */
-    private getLevelData() {
-      const { data } = this.props;
-      if (data) {
-        return data.filter(this.filterForLevel, this);
-      }
-      return data;
-    }
-
-    /** Callback used to filter columns to get linker columns */
-    private filterLinkerColumns(element: Column) {
-      const { linkerField } = this.props;
-      if (linkerField) {
-        return element.accessor === linkerField;
-      }
-      return false;
-    }
-
-    /** Get linker column */
-    private getLinkerColumn() {
-      const { columns } = this.props;
-      if (columns && columns.length > 0) {
-        const linkerColumns = columns.filter(this.filterLinkerColumns, this);
-        if (linkerColumns.length > 0) {
-          return linkerColumns[0];
-        }
-      }
-      return null;
-    }
-
-    /** Check if a row of data has children */
-    private hasChildren(row: RowInfo) {
-      const { parentNodes } = this.state;
-      const { identifierField } = this.props;
-      if (identifierField && parentNodes && parentNodes.includes(row.original[identifierField])) {
-        return true;
-      }
-      return false;
-    }
-
-    /** Get modified columns
-     * Modify the linker column to include an indicator that you can use to
-     * drill-down
-     */
-    private getModifiedColumns() {
-      const { columns, DrillDownIndicator } = this.props;
-      if (columns && columns.length > 0) {
-        const linkerColumn = this.getLinkerColumn();
-        if (linkerColumn !== null) {
-          const otherColumns = columns.filter((element: Column) => {
-            return element.accessor !== linkerColumn.accessor;
-          });
-
-          const modifiedLinkerColumn: Column = {
-            Cell: row => {
-              const hasChildren: boolean = this.hasChildren(row);
-              return (
-                <div className={hasChildren ? CLICKABLE_CSS_CLASS : LINKER_ITEM_CSS_CLASS}>
-                  <span>
-                    {row.value}
-                    {hasChildren && DrillDownIndicator}
-                  </span>
-                </div>
-              );
-            },
-            Header: linkerColumn.Header,
-            accessor: linkerColumn.accessor
-          };
-
-          otherColumns.unshift(modifiedLinkerColumn);
-          return otherColumns;
-        } else {
-          return columns;
-        }
-      }
-    }
-
-    /** getTrProps hook set up to handle drill-down using click event */
-    private getTrProps = (row: RowInfo, instance: RowInfo) => {
-      return {
-        onClick: () => {
-          const { identifierField, parentIdentifierField } = this.props;
-          if (identifierField && parentIdentifierField) {
-            if (this.hasChildren(instance)) {
-              const newParentId = instance.original[identifierField];
-              const oldParentId = instance.original[parentIdentifierField];
-              this.setState({
-                currentParentId: newParentId,
-                previousParentId: oldParentId
-              });
-            }
-          }
-        },
-        row
-      };
-    };
+    return false;
   }
 
-  return TableWithDrills;
+  /** Method to get data for the current hierarchical level */
+  function getLevelData() {
+    const currentState: Partial<State<T>> = { currentParentId };
+    const customThis: FlexObject = { props, state: currentState };
+    if (data) {
+      return data.filter(filterForLevel, customThis);
+    }
+    return data;
+  }
+
+  /** Check if a row of data has children */
+  function hasChildren(row: RowInfo) {
+    const { identifierField } = props;
+    if (identifierField && parentNodes && parentNodes.includes(row.original[identifierField])) {
+      return true;
+    }
+    return false;
+  }
+
+  /** getTrProps hook set up to handle drill-down using click event */
+  const getTrProps = (row: RowInfo, instance: RowInfo) => {
+    return {
+      onClick: () => {
+        if (props.identifierField && props.parentIdentifierField) {
+          if (hasChildren(instance)) {
+            const newParentId = instance.original[props.identifierField];
+            const oldParentId = instance.original[props.parentIdentifierField];
+            setCurrentParentId(newParentId);
+            setPreviousParentId(oldParentId);
+          }
+        }
+      },
+      row
+    };
+  };
+
+  /** Callback used to filter columns to get linker columns */
+  function filterLinkerColumns(this: FlexObject, element: Column) {
+    const { linkerField } = this.props;
+    if (linkerField) {
+      return element.accessor === linkerField;
+    }
+    return false;
+  }
+
+  /** Get linker column */
+  function getLinkerColumn() {
+    if (columns && columns.length > 0) {
+      const linkerColumns = columns.filter(filterLinkerColumns, { props });
+      if (linkerColumns.length > 0) {
+        return linkerColumns[0];
+      }
+    }
+    return null;
+  }
+
+  /** Get modified columns
+   * Modify the linker column to include an indicator that you can use to
+   * drill-down
+   */
+  function getModifiedColumns() {
+    const { DrillDownIndicator } = props;
+    if (columns && columns.length > 0) {
+      const linkerColumn = getLinkerColumn();
+      if (linkerColumn !== null) {
+        const otherColumns = columns.filter((element: Column) => {
+          return element.accessor !== linkerColumn.accessor;
+        });
+
+        const modifiedLinkerColumn: Column = {
+          Cell: row => {
+            const definitelyHasChildren: boolean = hasChildren(row);
+            return (
+              <div className={definitelyHasChildren ? CLICKABLE_CSS_CLASS : LINKER_ITEM_CSS_CLASS}>
+                <span>
+                  {row.value}
+                  {definitelyHasChildren && DrillDownIndicator}
+                </span>
+              </div>
+            );
+          },
+          Header: linkerColumn.Header,
+          accessor: linkerColumn.accessor
+        };
+
+        otherColumns.unshift(modifiedLinkerColumn);
+        return otherColumns;
+      } else {
+        return columns;
+      }
+    }
+  }
+
+  // finalize
+  const nextLevelData = getLevelData();
+  const newProps: FlexObject = { getTrProps };
+  Object.assign(newProps, props); // copy props to newProps
+  newProps.columns = getModifiedColumns();
+  if (nextLevelData && nextLevelData.length > 0) {
+    newProps.data = nextLevelData;
+  }
+
+  return <ReactTable {...newProps} />;
 }
 
-const DrillDownTable = WithHeaders(WithDrillDown(ReactTable));
+DrillDownTable.defaultProps = {
+  DrillDownIndicator: CARET,
+  identifierField: ID,
+  linkerField: ID,
+  parentIdentifierField: PARENT_ID,
+  rootParentId: ROOT_PARENT_ID
+};
+
 export default DrillDownTable;

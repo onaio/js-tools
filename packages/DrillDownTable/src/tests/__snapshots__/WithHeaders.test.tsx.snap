@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = `
-<TableWithHeaders
+<WithHeaders
   columns={
     Array [
       Object {
@@ -3183,11 +3183,11 @@ exports[`DrillDownTable/WithHeaders renders correctly with custom columns 1`] = 
       </LoadingComponent>
     </div>
   </ReactTable>
-</TableWithHeaders>
+</WithHeaders>
 `;
 
 exports[`DrillDownTable/WithHeaders renders correctly with derived columns 1`] = `
-<TableWithHeaders
+<WithHeaders
   data={
     Array [
       Object {
@@ -8431,5 +8431,5 @@ exports[`DrillDownTable/WithHeaders renders correctly with derived columns 1`] =
       </LoadingComponent>
     </div>
   </ReactTable>
-</TableWithHeaders>
+</WithHeaders>
 `;
