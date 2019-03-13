@@ -1,6 +1,6 @@
 {
   "name": "@onaio/element-map",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Simple component takes a list of elements and returns them wrapped in the provided HTML tag",
   "main": "dist/ElementMap.js",
   "repository": "https://github.com/onaio/js-tools",
@@ -31,9 +31,9 @@
     "prop-types": "^15.6.1"
   },
   "devDependencies": {
-    "react": "^16.8.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.1",
-    "enzyme-to-json": "^3.3.5"
+    "enzyme-to-json": "^3.3.5",
+    "react": "^16.8.1"
   }
 }
