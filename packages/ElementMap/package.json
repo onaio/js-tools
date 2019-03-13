@@ -7,8 +7,11 @@
   "author": "Ona Engineering",
   "license": "Apache-2.0",
   "files": [
-    "dist/ElementMap.js"
+    "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "bugs": {
     "url": "https://github.com/onaio/js-tools/issues"
   },

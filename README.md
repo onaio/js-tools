@@ -87,7 +87,8 @@ Here's an example sample `package.json` for a `js`/`jsx` package:
     "transpile": "babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__'"
   },
   // the list of files to be included by npm when the package is published
-  "files": ["dist/my-new-package.js"],
+  "files": ["dist"],
+  "publishConfig": { "access": "public" },
   // hook up global testing with lerna
   "jest": {
     "setupFiles": ["../../setupTests"]
@@ -128,7 +129,8 @@ Here's an example sample `package.json` for a `ts`/`tsx` package:
     "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
   },
   // the list of files to be included by npm when the package is published
-  "files": ["dist/my-new-typescript-package.js"],
+  "files": ["dist"],
+  "publishConfig": { "access": "public" },
   // hook up global testing with lerna
   "jest": {
     "setupFiles": ["../../setupTests"]
