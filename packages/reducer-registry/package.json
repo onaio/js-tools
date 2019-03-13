@@ -1,6 +1,6 @@
 {
   "name": "@onaio/redux-reducer-registry",
-  "version": "0.0.4",
+  "version": "0.0.3",
   "description": "Redux registry tool for dynamically loading reducers",
   "keywords": [
     "redux"
