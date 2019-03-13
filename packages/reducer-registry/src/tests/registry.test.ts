@@ -1,5 +1,4 @@
-import reducerRegistry from '..';
-import store, { getStore } from '../store';
+import reducerRegistry, { getStore, store } from '..';
 import messages, { sendMessage } from './ducks/messages';
 import users, { addUser, selectAllUsers } from './ducks/users';
 

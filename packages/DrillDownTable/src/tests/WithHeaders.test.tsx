@@ -1,7 +1,7 @@
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
-import WithHeaders from '../WithHeaders';
+import { WithHeaders } from '..';
 import { data } from './fixtures';
 
 describe('DrillDownTable/WithHeaders', () => {
