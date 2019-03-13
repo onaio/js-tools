@@ -19,7 +19,7 @@
   "scripts": {
     "jest": "jest --coverage --verbose --color",
     "tsc": "tsc",
-    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__' --copy-files"
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
   },
   "jest": {
     "setupFiles": [
