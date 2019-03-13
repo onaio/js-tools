@@ -4,6 +4,12 @@ DrillDownTable is a [higher order component](https://reactjs.org/docs/higher-ord
 
 It supports everything that [React Table](https://github.com/tannerlinsley/react-table) supports. In this document, we shall only go over the additional features that are unique to DrillDownTable.
 
+## Installation
+
+```sh
+yarn add @onaio/drill-down-table
+```
+
 ## Displaying Hierarchical Data
 
 DrillDownTable was made to let you easily display hierarchically structured data in nice tables that allow you to drill down through the hierarchical levels of the data.
@@ -92,6 +98,8 @@ This is displayed on the column identified by `linkerField`.
 Simplest example:
 
 ```tsx
+import DrillDownTable from '@onaio/drill-down-table/';
+
 const props = {
   data
 };
@@ -101,6 +109,8 @@ const props = {
 Define `location` as the column where the drill-down caret will be displayed
 
 ```tsx
+import DrillDownTable from '@onaio/drill-down-table/';
+
 const props = {
   data,
   linkerField: 'location'
@@ -111,6 +121,8 @@ const props = {
 Supply columns as a prop.
 
 ```tsx
+import DrillDownTable from '@onaio/drill-down-table/';
+
 const columns = [
   {
     Header: 'Name',

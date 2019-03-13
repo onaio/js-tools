@@ -4,6 +4,12 @@ The reducer registry enables Redux reducers to be added to the store’s reducer
 
 This package was inspired by this blog post: [Redux modules and code splitting](http://nicolasgallagher.com/redux-modules-and-code-splitting/).
 
+## Installation
+
+```sh
+yarn add @onaio/redux-reducer-registry
+```
+
 ## How it works
 
 By maintaining a registry of reducers, we are able to load any reducer dynamically as and when we need it.
@@ -13,14 +19,14 @@ By maintaining a registry of reducers, we are able to load any reducer dynamical
 A sample registry-aware redux store with no initial state is included in this package.
 
 ```ts
-import store from 'redux-reducer-registry/store';
+import store from '@onaio/redux-reducer-registry';
 ```
 
 Alternatively, you can create your own store by doing something like:
 
 ```ts
-import { getStore, combine } from 'redux-reducer-registry/store';
-import reducerRegistry from 'redux-reducer-registry';
+import { getStore, combine } from '@onaio/redux-reducer-registry';
+import reducerRegistry from '@onaio/redux-reducer-registry';
 
 const initialState = {
   things: ['users', 'messages'],
