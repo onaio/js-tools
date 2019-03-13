@@ -9,7 +9,7 @@
   "homepage": "https://github.com/onaio/js-tools",
   "license": "Apache-2.0",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts,dist/store.d.ts",
+  "types": "dist/types/index.d.ts,dist/types/store.d.ts",
   "files": [
     "dist"
   ],

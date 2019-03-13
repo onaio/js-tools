@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Drill-down table",
   "main": "dist/index.js",
+  "types": "dist/types",
   "repository": "https://github.com/onaio/js-tools",
   "author": "Ona Engineering",
   "license": "Apache-2.0",
