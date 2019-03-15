@@ -170,4 +170,4 @@ DrillDownTable.defaultProps = {
 
 export default DrillDownTable;
 
-export { WithHeaders, getColumns };
+export { WithHeaders, getColumns, FlexObject };
