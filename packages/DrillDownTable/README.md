@@ -98,6 +98,7 @@ This is displayed on the column identified by `linkerField`.
 Simplest example:
 
 ```tsx
+import 'react-table/react-table.css';
 import DrillDownTable from '@onaio/drill-down-table/';
 
 const props = {
@@ -109,6 +110,7 @@ const props = {
 Define `location` as the column where the drill-down caret will be displayed
 
 ```tsx
+import 'react-table/react-table.css';
 import DrillDownTable from '@onaio/drill-down-table/';
 
 const props = {
@@ -121,6 +123,7 @@ const props = {
 Supply columns as a prop.
 
 ```tsx
+import 'react-table/react-table.css';
 import DrillDownTable from '@onaio/drill-down-table/';
 
 const columns = [
