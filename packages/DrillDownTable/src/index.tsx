@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactTable, { Column, FinalState, RowInfo, TableProps } from 'react-table';
+import ReactTable, { CellInfo, Column, FinalState, RowInfo, TableProps } from 'react-table';
 import './DrillDownTable.css';
 import {
   CARET,
@@ -91,78 +91,37 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
     };
   };
 
-  /** Callback used to filter columns to get linker columns.  Runs recursively */
-  function filterLinkerColumns(this: FlexObject, element: Column): boolean {
-    if (element.hasOwnProperty('columns')) {
-      // if we get here it means we are dealing with nested columns and
-      // have to resort to recursion
-      if (element.columns && element.columns.length > 0) {
-        // returnVal holds any columns found
-        const returnVal: Column[] = element.columns.filter(filterLinkerColumns, { props });
-        return returnVal.length > 0;
-      }
-      return false;
-    }
-    const { linkerField } = this.props;
-    if (linkerField) {
-      return element.accessor === linkerField;
-    }
-    return false;
-  }
-
-  /** Get linker column */
-  function getLinkerColumn(columnsList: Column[]): Column | null {
-    if (columnsList && columnsList.length > 0) {
-      const linkerColumns: Column[] = columnsList.filter(filterLinkerColumns, { props });
-      if (linkerColumns.length > 0) {
-        return linkerColumns[0];
-      }
-    }
-    return null;
-  }
-
   /** Get modified columns
    * Modify the linker column to include an indicator that you can use to
    * drill-down
    */
-  function getModifiedColumns() {
-    const { DrillDownIndicator } = props;
-    if (columns && columns.length > 0) {
-      const linkerColumn = getLinkerColumn(columns);
-      if (linkerColumn !== null) {
-        const otherColumns: Column[] = columns.filter((element: Column) => {
-          return element.accessor !== linkerColumn.accessor;
-        });
-
-        const modifiedLinkerColumn: Column = {
-          Cell: row => {
-            const definitelyHasChildren: boolean = hasChildren(row);
-            return (
-              <div className={definitelyHasChildren ? CLICKABLE_CSS_CLASS : LINKER_ITEM_CSS_CLASS}>
-                <span>
-                  {row.value}
-                  {definitelyHasChildren && DrillDownIndicator}
-                </span>
-              </div>
-            );
-          },
-          Header: linkerColumn.Header,
-          accessor: linkerColumn.accessor
-        };
-
-        otherColumns.unshift(modifiedLinkerColumn);
-        return otherColumns;
-      } else {
-        return columns;
-      }
+  function mutateColumns(el: Column) {
+    const { DrillDownIndicator, linkerField } = props;
+    if (el.hasOwnProperty('columns') && el.columns && el.columns.length > 0) {
+      const newColumns = el.columns.map(mutateColumns);
+      el.columns = newColumns;
     }
+    if (el.accessor === linkerField) {
+      el.Cell = (cell: CellInfo) => {
+        const definitelyHasChildren: boolean = hasChildren(cell);
+        return (
+          <div className={definitelyHasChildren ? CLICKABLE_CSS_CLASS : LINKER_ITEM_CSS_CLASS}>
+            <span>
+              {cell.value}
+              {definitelyHasChildren && DrillDownIndicator}
+            </span>
+          </div>
+        );
+      };
+    }
+    return el;
   }
 
   // finalize
   const nextLevelData = getLevelData();
   const newProps: FlexObject = { getTrProps };
   Object.assign(newProps, props); // copy props to newProps
-  newProps.columns = getModifiedColumns();
+  newProps.columns = columns.map(mutateColumns);
   if (nextLevelData && nextLevelData.length > 0) {
     newProps.data = nextLevelData;
   }
