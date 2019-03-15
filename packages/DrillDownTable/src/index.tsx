@@ -69,7 +69,11 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
   }
 
   /** getTrProps hook set up to handle drill-down using click event */
-  const getTrProps = (row: RowInfo, instance: RowInfo) => {
+  const customGetTrProps = (row: RowInfo, instance: RowInfo) => {
+    const { getTrProps } = props;
+    if (getTrProps !== undefined) {
+      return getTrProps;
+    }
     return {
       onClick: () => {
         if (props.identifierField && props.parentIdentifierField) {
@@ -112,7 +116,7 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
 
   // finalize
   const nextLevelData = getLevelData();
-  const newProps: FlexObject = { getTrProps };
+  const newProps: FlexObject = { getTrProps: customGetTrProps };
   Object.assign(newProps, props); // copy props to newProps
   newProps.columns = columns.map(mutateColumns);
   if (nextLevelData && nextLevelData.length > 0) {
