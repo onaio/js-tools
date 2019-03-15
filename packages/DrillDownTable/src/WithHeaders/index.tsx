@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactTable, { Column, TableProps } from 'react-table';
-import 'react-table/react-table.css';
 import { columnsFromObject } from '../helpers/utils';
 
 /** Simple function to use provided columns or get them from the data */

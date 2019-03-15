@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ReactTable, { Column, FinalState, RowInfo, TableProps } from 'react-table';
-import 'react-table/react-table.css';
 import './DrillDownTable.css';
 import {
   CARET,
