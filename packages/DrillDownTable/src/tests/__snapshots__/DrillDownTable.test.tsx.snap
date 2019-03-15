@@ -3,13 +3,7 @@
 exports[`DrillDownTable click to drill down works 1`] = `
 <ReactTable
   AggregatedComponent={[Function]}
-  DrillDownIndicator={
-    <span
-      className="dd-caret"
-    >
-       ▼
-    </span>
-  }
+  CellComponent={[Function]}
   ExpanderComponent={[Function]}
   FilterComponent={[Function]}
   LoadingComponent={[Function]}
@@ -466,11 +460,7 @@ exports[`DrillDownTable click to drill down works 1`] = `
                   row={
                     Object {
                       "AggregatedComponent": [Function],
-                      "DrillDownIndicator": <span
-                        className="dd-caret"
-                      >
-                         ▼
-                      </span>,
+                      "CellComponent": [Function],
                       "ExpanderComponent": [Function],
                       "FilterComponent": [Function],
                       "LoadingComponent": [Function],
@@ -1124,11 +1114,7 @@ exports[`DrillDownTable click to drill down works 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -1900,18 +1886,23 @@ exports[`DrillDownTable click to drill down works 1`] = `
                           viewIndex={0}
                           width={100}
                         >
-                          <div
-                            className="dd-linker-item dd-clickable"
+                          <DropDownCell
+                            cellValue={4}
+                            hasChildren={true}
                           >
-                            <span>
-                              4
-                              <span
-                                className="dd-caret"
-                              >
-                                 ▼
+                            <div
+                              className="dd-linker-item dd-clickable"
+                            >
+                              <span>
+                                4
+                                <span
+                                  className="dd-caret"
+                                >
+                                   ▼
+                                </span>
                               </span>
-                            </span>
-                          </div>
+                            </div>
+                          </DropDownCell>
                         </Component>
                       </div>
                     </TdComponent>
@@ -2040,11 +2031,7 @@ exports[`DrillDownTable click to drill down works 1`] = `
                   row={
                     Object {
                       "AggregatedComponent": [Function],
-                      "DrillDownIndicator": <span
-                        className="dd-caret"
-                      >
-                         ▼
-                      </span>,
+                      "CellComponent": [Function],
                       "ExpanderComponent": [Function],
                       "FilterComponent": [Function],
                       "LoadingComponent": [Function],
@@ -2698,11 +2685,7 @@ exports[`DrillDownTable click to drill down works 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -3474,18 +3457,23 @@ exports[`DrillDownTable click to drill down works 1`] = `
                           viewIndex={1}
                           width={100}
                         >
-                          <div
-                            className="dd-linker-item dd-clickable"
+                          <DropDownCell
+                            cellValue={5}
+                            hasChildren={true}
                           >
-                            <span>
-                              5
-                              <span
-                                className="dd-caret"
-                              >
-                                 ▼
+                            <div
+                              className="dd-linker-item dd-clickable"
+                            >
+                              <span>
+                                5
+                                <span
+                                  className="dd-caret"
+                                >
+                                   ▼
+                                </span>
                               </span>
-                            </span>
-                          </div>
+                            </div>
+                          </DropDownCell>
                         </Component>
                       </div>
                     </TdComponent>
@@ -6580,13 +6568,7 @@ exports[`DrillDownTable click to drill down works 1`] = `
     >
       <ReactTablePagination
         AggregatedComponent={[Function]}
-        DrillDownIndicator={
-          <span
-            className="dd-caret"
-          >
-             ▼
-          </span>
-        }
+        CellComponent={[Function]}
         ExpanderComponent={[Function]}
         FilterComponent={[Function]}
         LoadingComponent={[Function]}
@@ -7330,13 +7312,7 @@ exports[`DrillDownTable click to drill down works 1`] = `
 exports[`DrillDownTable click to drill down works 2`] = `
 <ReactTable
   AggregatedComponent={[Function]}
-  DrillDownIndicator={
-    <span
-      className="dd-caret"
-    >
-       ▼
-    </span>
-  }
+  CellComponent={[Function]}
   ExpanderComponent={[Function]}
   FilterComponent={[Function]}
   LoadingComponent={[Function]}
@@ -7800,11 +7776,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
                   row={
                     Object {
                       "AggregatedComponent": [Function],
-                      "DrillDownIndicator": <span
-                        className="dd-caret"
-                      >
-                         ▼
-                      </span>,
+                      "CellComponent": [Function],
                       "ExpanderComponent": [Function],
                       "FilterComponent": [Function],
                       "LoadingComponent": [Function],
@@ -8516,11 +8488,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -9350,13 +9318,18 @@ exports[`DrillDownTable click to drill down works 2`] = `
                           viewIndex={0}
                           width={100}
                         >
-                          <div
-                            className="dd-linker-item"
+                          <DropDownCell
+                            cellValue={9}
+                            hasChildren={false}
                           >
-                            <span>
-                              9
-                            </span>
-                          </div>
+                            <div
+                              className="dd-linker-item"
+                            >
+                              <span>
+                                9
+                              </span>
+                            </div>
+                          </DropDownCell>
                         </Component>
                       </div>
                     </TdComponent>
@@ -9485,11 +9458,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
                   row={
                     Object {
                       "AggregatedComponent": [Function],
-                      "DrillDownIndicator": <span
-                        className="dd-caret"
-                      >
-                         ▼
-                      </span>,
+                      "CellComponent": [Function],
                       "ExpanderComponent": [Function],
                       "FilterComponent": [Function],
                       "LoadingComponent": [Function],
@@ -10201,11 +10170,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -11035,13 +11000,18 @@ exports[`DrillDownTable click to drill down works 2`] = `
                           viewIndex={1}
                           width={100}
                         >
-                          <div
-                            className="dd-linker-item"
+                          <DropDownCell
+                            cellValue={10}
+                            hasChildren={false}
                           >
-                            <span>
-                              10
-                            </span>
-                          </div>
+                            <div
+                              className="dd-linker-item"
+                            >
+                              <span>
+                                10
+                              </span>
+                            </div>
+                          </DropDownCell>
                         </Component>
                       </div>
                     </TdComponent>
@@ -11170,11 +11140,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
                   row={
                     Object {
                       "AggregatedComponent": [Function],
-                      "DrillDownIndicator": <span
-                        className="dd-caret"
-                      >
-                         ▼
-                      </span>,
+                      "CellComponent": [Function],
                       "ExpanderComponent": [Function],
                       "FilterComponent": [Function],
                       "LoadingComponent": [Function],
@@ -11886,11 +11852,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -12720,13 +12682,18 @@ exports[`DrillDownTable click to drill down works 2`] = `
                           viewIndex={2}
                           width={100}
                         >
-                          <div
-                            className="dd-linker-item"
+                          <DropDownCell
+                            cellValue={11}
+                            hasChildren={false}
                           >
-                            <span>
-                              11
-                            </span>
-                          </div>
+                            <div
+                              className="dd-linker-item"
+                            >
+                              <span>
+                                11
+                              </span>
+                            </div>
+                          </DropDownCell>
                         </Component>
                       </div>
                     </TdComponent>
@@ -15656,13 +15623,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
     >
       <ReactTablePagination
         AggregatedComponent={[Function]}
-        DrillDownIndicator={
-          <span
-            className="dd-caret"
-          >
-             ▼
-          </span>
-        }
+        CellComponent={[Function]}
         ExpanderComponent={[Function]}
         FilterComponent={[Function]}
         LoadingComponent={[Function]}
@@ -16446,13 +16407,7 @@ exports[`DrillDownTable click to drill down works 2`] = `
 
 exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
 <DrillDownTable
-  DrillDownIndicator={
-    <span
-      className="dd-caret"
-    >
-       ▼
-    </span>
-  }
+  CellComponent={[Function]}
   columns={
     Array [
       Object {
@@ -16630,13 +16585,7 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
 >
   <ReactTable
     AggregatedComponent={[Function]}
-    DrillDownIndicator={
-      <span
-        className="dd-caret"
-      >
-         ▼
-      </span>
-    }
+    CellComponent={[Function]}
     ExpanderComponent={[Function]}
     FilterComponent={[Function]}
     LoadingComponent={[Function]}
@@ -17143,11 +17092,7 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -18065,11 +18010,7 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -19114,18 +19055,23 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
                             viewIndex={0}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item dd-clickable"
+                            <DropDownCell
+                              cellValue="District A"
+                              hasChildren={true}
                             >
-                              <span>
-                                District A
-                                <span
-                                  className="dd-caret"
-                                >
-                                   ▼
+                              <div
+                                className="dd-linker-item dd-clickable"
+                              >
+                                <span>
+                                  District A
+                                  <span
+                                    className="dd-caret"
+                                  >
+                                     ▼
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -19225,11 +19171,7 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -20147,11 +20089,7 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -21196,18 +21134,23 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
                             viewIndex={1}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item dd-clickable"
+                            <DropDownCell
+                              cellValue="District B"
+                              hasChildren={true}
                             >
-                              <span>
-                                District B
-                                <span
-                                  className="dd-caret"
-                                >
-                                   ▼
+                              <div
+                                className="dd-linker-item dd-clickable"
+                              >
+                                <span>
+                                  District B
+                                  <span
+                                    className="dd-caret"
+                                  >
+                                     ▼
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -21307,11 +21250,7 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -22229,11 +22168,7 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -23278,18 +23213,23 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
                             viewIndex={2}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item dd-clickable"
+                            <DropDownCell
+                              cellValue="District C"
+                              hasChildren={true}
                             >
-                              <span>
-                                District C
-                                <span
-                                  className="dd-caret"
-                                >
-                                   ▼
+                              <div
+                                className="dd-linker-item dd-clickable"
+                              >
+                                <span>
+                                  District C
+                                  <span
+                                    className="dd-caret"
+                                  >
+                                     ▼
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -23389,11 +23329,7 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -24311,11 +24247,7 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -25360,13 +25292,18 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
                             viewIndex={3}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item"
+                            <DropDownCell
+                              cellValue="District D"
+                              hasChildren={false}
                             >
-                              <span>
-                                District D
-                              </span>
-                            </div>
+                              <div
+                                className="dd-linker-item"
+                              >
+                                <span>
+                                  District D
+                                </span>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -27638,13 +27575,7 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
       >
         <ReactTablePagination
           AggregatedComponent={[Function]}
-          DrillDownIndicator={
-            <span
-              className="dd-caret"
-            >
-               ▼
-            </span>
-          }
+          CellComponent={[Function]}
           ExpanderComponent={[Function]}
           FilterComponent={[Function]}
           LoadingComponent={[Function]}
@@ -28624,13 +28555,7 @@ exports[`DrillDownTable gets linkerColumn from nested columns 1`] = `
 
 exports[`DrillDownTable renders correctly even with invalid linkerField 1`] = `
 <DrillDownTable
-  DrillDownIndicator={
-    <span
-      className="dd-caret"
-    >
-       ▼
-    </span>
-  }
+  CellComponent={[Function]}
   data={
     Array [
       Object {
@@ -28782,13 +28707,7 @@ exports[`DrillDownTable renders correctly even with invalid linkerField 1`] = `
 >
   <ReactTable
     AggregatedComponent={[Function]}
-    DrillDownIndicator={
-      <span
-        className="dd-caret"
-      >
-         ▼
-      </span>
-    }
+    CellComponent={[Function]}
     ExpanderComponent={[Function]}
     FilterComponent={[Function]}
     LoadingComponent={[Function]}
@@ -29258,11 +29177,7 @@ exports[`DrillDownTable renders correctly even with invalid linkerField 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -30031,11 +29946,7 @@ exports[`DrillDownTable renders correctly even with invalid linkerField 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -30947,11 +30858,7 @@ exports[`DrillDownTable renders correctly even with invalid linkerField 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -31720,11 +31627,7 @@ exports[`DrillDownTable renders correctly even with invalid linkerField 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -32636,11 +32539,7 @@ exports[`DrillDownTable renders correctly even with invalid linkerField 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -33409,11 +33308,7 @@ exports[`DrillDownTable renders correctly even with invalid linkerField 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -34325,11 +34220,7 @@ exports[`DrillDownTable renders correctly even with invalid linkerField 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -35098,11 +34989,7 @@ exports[`DrillDownTable renders correctly even with invalid linkerField 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -38650,13 +38537,7 @@ exports[`DrillDownTable renders correctly even with invalid linkerField 1`] = `
       >
         <ReactTablePagination
           AggregatedComponent={[Function]}
-          DrillDownIndicator={
-            <span
-              className="dd-caret"
-            >
-               ▼
-            </span>
-          }
+          CellComponent={[Function]}
           ExpanderComponent={[Function]}
           FilterComponent={[Function]}
           LoadingComponent={[Function]}
@@ -39481,13 +39362,7 @@ exports[`DrillDownTable renders correctly even with invalid linkerField 1`] = `
 
 exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
 <DrillDownTable
-  DrillDownIndicator={
-    <span
-      className="dd-caret"
-    >
-       ▼
-    </span>
-  }
+  CellComponent={[Function]}
   data={
     Array [
       Object {
@@ -39520,13 +39395,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
 >
   <ReactTable
     AggregatedComponent={[Function]}
-    DrillDownIndicator={
-      <span
-        className="dd-caret"
-      >
-         ▼
-      </span>
-    }
+    CellComponent={[Function]}
     ExpanderComponent={[Function]}
     FilterComponent={[Function]}
     LoadingComponent={[Function]}
@@ -39990,11 +39859,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -40706,11 +40571,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -41540,13 +41401,18 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                             viewIndex={0}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item"
+                            <DropDownCell
+                              cellValue={9}
+                              hasChildren={false}
                             >
-                              <span>
-                                9
-                              </span>
-                            </div>
+                              <div
+                                className="dd-linker-item"
+                              >
+                                <span>
+                                  9
+                                </span>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -41675,11 +41541,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -42391,11 +42253,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -43225,13 +43083,18 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                             viewIndex={1}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item"
+                            <DropDownCell
+                              cellValue={10}
+                              hasChildren={false}
                             >
-                              <span>
-                                10
-                              </span>
-                            </div>
+                              <div
+                                className="dd-linker-item"
+                              >
+                                <span>
+                                  10
+                                </span>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -43360,11 +43223,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -44076,11 +43935,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -44910,13 +44765,18 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
                             viewIndex={2}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item"
+                            <DropDownCell
+                              cellValue={11}
+                              hasChildren={false}
                             >
-                              <span>
-                                11
-                              </span>
-                            </div>
+                              <div
+                                className="dd-linker-item"
+                              >
+                                <span>
+                                  11
+                                </span>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -47846,13 +47706,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
       >
         <ReactTablePagination
           AggregatedComponent={[Function]}
-          DrillDownIndicator={
-            <span
-              className="dd-caret"
-            >
-               ▼
-            </span>
-          }
+          CellComponent={[Function]}
           ExpanderComponent={[Function]}
           FilterComponent={[Function]}
           LoadingComponent={[Function]}
@@ -48637,13 +48491,7 @@ exports[`DrillDownTable renders correctly lowest level hierarchy 1`] = `
 
 exports[`DrillDownTable renders correctly with custom columns 1`] = `
 <DrillDownTable
-  DrillDownIndicator={
-    <span
-      className="dd-caret"
-    >
-       ▼
-    </span>
-  }
+  CellComponent={[Function]}
   columns={
     Array [
       Object {
@@ -48816,13 +48664,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
 >
   <ReactTable
     AggregatedComponent={[Function]}
-    DrillDownIndicator={
-      <span
-        className="dd-caret"
-      >
-         ▼
-      </span>
-    }
+    CellComponent={[Function]}
     ExpanderComponent={[Function]}
     FilterComponent={[Function]}
     LoadingComponent={[Function]}
@@ -49247,11 +49089,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -49941,11 +49779,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -50779,18 +50613,23 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                             viewIndex={0}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item dd-clickable"
+                            <DropDownCell
+                              cellValue={1}
+                              hasChildren={true}
                             >
-                              <span>
-                                1
-                                <span
-                                  className="dd-caret"
-                                >
-                                   ▼
+                              <div
+                                className="dd-linker-item dd-clickable"
+                              >
+                                <span>
+                                  1
+                                  <span
+                                    className="dd-caret"
+                                  >
+                                     ▼
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -50863,11 +50702,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -51557,11 +51392,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -52395,18 +52226,23 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                             viewIndex={1}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item dd-clickable"
+                            <DropDownCell
+                              cellValue={2}
+                              hasChildren={true}
                             >
-                              <span>
-                                2
-                                <span
-                                  className="dd-caret"
-                                >
-                                   ▼
+                              <div
+                                className="dd-linker-item dd-clickable"
+                              >
+                                <span>
+                                  2
+                                  <span
+                                    className="dd-caret"
+                                  >
+                                     ▼
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -52479,11 +52315,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -53173,11 +53005,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -54011,18 +53839,23 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                             viewIndex={2}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item dd-clickable"
+                            <DropDownCell
+                              cellValue={3}
+                              hasChildren={true}
                             >
-                              <span>
-                                3
-                                <span
-                                  className="dd-caret"
-                                >
-                                   ▼
+                              <div
+                                className="dd-linker-item dd-clickable"
+                              >
+                                <span>
+                                  3
+                                  <span
+                                    className="dd-caret"
+                                  >
+                                     ▼
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -54095,11 +53928,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -54789,11 +54618,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -55627,13 +55452,18 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
                             viewIndex={3}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item"
+                            <DropDownCell
+                              cellValue={18}
+                              hasChildren={false}
                             >
-                              <span>
-                                18
-                              </span>
-                            </div>
+                              <div
+                                className="dd-linker-item"
+                              >
+                                <span>
+                                  18
+                                </span>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -57878,13 +57708,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
       >
         <ReactTablePagination
           AggregatedComponent={[Function]}
-          DrillDownIndicator={
-            <span
-              className="dd-caret"
-            >
-               ▼
-            </span>
-          }
+          CellComponent={[Function]}
           ExpanderComponent={[Function]}
           FilterComponent={[Function]}
           LoadingComponent={[Function]}
@@ -58634,13 +58458,7 @@ exports[`DrillDownTable renders correctly with custom columns 1`] = `
 
 exports[`DrillDownTable renders correctly with custom columns and custom linker column 1`] = `
 <DrillDownTable
-  DrillDownIndicator={
-    <span
-      className="dd-caret"
-    >
-       ▼
-    </span>
-  }
+  CellComponent={[Function]}
   columns={
     Array [
       Object {
@@ -58813,13 +58631,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
 >
   <ReactTable
     AggregatedComponent={[Function]}
-    DrillDownIndicator={
-      <span
-        className="dd-caret"
-      >
-         ▼
-      </span>
-    }
+    CellComponent={[Function]}
     ExpanderComponent={[Function]}
     FilterComponent={[Function]}
     LoadingComponent={[Function]}
@@ -59244,11 +59056,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -59938,11 +59746,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -60749,18 +60553,23 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                             viewIndex={0}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item dd-clickable"
+                            <DropDownCell
+                              cellValue="District A"
+                              hasChildren={true}
                             >
-                              <span>
-                                District A
-                                <span
-                                  className="dd-caret"
-                                >
-                                   ▼
+                              <div
+                                className="dd-linker-item dd-clickable"
+                              >
+                                <span>
+                                  District A
+                                  <span
+                                    className="dd-caret"
+                                  >
+                                     ▼
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -60860,11 +60669,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -61554,11 +61359,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -62365,18 +62166,23 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                             viewIndex={1}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item dd-clickable"
+                            <DropDownCell
+                              cellValue="District B"
+                              hasChildren={true}
                             >
-                              <span>
-                                District B
-                                <span
-                                  className="dd-caret"
-                                >
-                                   ▼
+                              <div
+                                className="dd-linker-item dd-clickable"
+                              >
+                                <span>
+                                  District B
+                                  <span
+                                    className="dd-caret"
+                                  >
+                                     ▼
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -62476,11 +62282,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -63170,11 +62972,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -63981,18 +63779,23 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                             viewIndex={2}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item dd-clickable"
+                            <DropDownCell
+                              cellValue="District C"
+                              hasChildren={true}
                             >
-                              <span>
-                                District C
-                                <span
-                                  className="dd-caret"
-                                >
-                                   ▼
+                              <div
+                                className="dd-linker-item dd-clickable"
+                              >
+                                <span>
+                                  District C
+                                  <span
+                                    className="dd-caret"
+                                  >
+                                     ▼
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -64092,11 +63895,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -64786,11 +64585,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -65597,13 +65392,18 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
                             viewIndex={3}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item"
+                            <DropDownCell
+                              cellValue="District D"
+                              hasChildren={false}
                             >
-                              <span>
-                                District D
-                              </span>
-                            </div>
+                              <div
+                                className="dd-linker-item"
+                              >
+                                <span>
+                                  District D
+                                </span>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -67875,13 +67675,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
       >
         <ReactTablePagination
           AggregatedComponent={[Function]}
-          DrillDownIndicator={
-            <span
-              className="dd-caret"
-            >
-               ▼
-            </span>
-          }
+          CellComponent={[Function]}
           ExpanderComponent={[Function]}
           FilterComponent={[Function]}
           LoadingComponent={[Function]}
@@ -68631,13 +68425,7 @@ exports[`DrillDownTable renders correctly with custom columns and custom linker 
 
 exports[`DrillDownTable renders correctly with derived columns 1`] = `
 <DrillDownTable
-  DrillDownIndicator={
-    <span
-      className="dd-caret"
-    >
-       ▼
-    </span>
-  }
+  CellComponent={[Function]}
   data={
     Array [
       Object {
@@ -68789,13 +68577,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
 >
   <ReactTable
     AggregatedComponent={[Function]}
-    DrillDownIndicator={
-      <span
-        className="dd-caret"
-      >
-         ▼
-      </span>
-    }
+    CellComponent={[Function]}
     ExpanderComponent={[Function]}
     FilterComponent={[Function]}
     LoadingComponent={[Function]}
@@ -69266,11 +69048,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -70040,11 +69818,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -70932,18 +70706,23 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                             viewIndex={0}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item dd-clickable"
+                            <DropDownCell
+                              cellValue={1}
+                              hasChildren={true}
                             >
-                              <span>
-                                1
-                                <span
-                                  className="dd-caret"
-                                >
-                                   ▼
+                              <div
+                                className="dd-linker-item dd-clickable"
+                              >
+                                <span>
+                                  1
+                                  <span
+                                    className="dd-caret"
+                                  >
+                                     ▼
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -71070,11 +70849,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -71844,11 +71619,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -72736,18 +72507,23 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                             viewIndex={1}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item dd-clickable"
+                            <DropDownCell
+                              cellValue={2}
+                              hasChildren={true}
                             >
-                              <span>
-                                2
-                                <span
-                                  className="dd-caret"
-                                >
-                                   ▼
+                              <div
+                                className="dd-linker-item dd-clickable"
+                              >
+                                <span>
+                                  2
+                                  <span
+                                    className="dd-caret"
+                                  >
+                                     ▼
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -72874,11 +72650,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -73648,11 +73420,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -74540,18 +74308,23 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                             viewIndex={2}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item dd-clickable"
+                            <DropDownCell
+                              cellValue={3}
+                              hasChildren={true}
                             >
-                              <span>
-                                3
-                                <span
-                                  className="dd-caret"
-                                >
-                                   ▼
+                              <div
+                                className="dd-linker-item dd-clickable"
+                              >
+                                <span>
+                                  3
+                                  <span
+                                    className="dd-caret"
+                                  >
+                                     ▼
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -74678,11 +74451,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                     row={
                       Object {
                         "AggregatedComponent": [Function],
-                        "DrillDownIndicator": <span
-                          className="dd-caret"
-                        >
-                           ▼
-                        </span>,
+                        "CellComponent": [Function],
                         "ExpanderComponent": [Function],
                         "FilterComponent": [Function],
                         "LoadingComponent": [Function],
@@ -75452,11 +75221,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                       row={
                         Object {
                           "AggregatedComponent": [Function],
-                          "DrillDownIndicator": <span
-                            className="dd-caret"
-                          >
-                             ▼
-                          </span>,
+                          "CellComponent": [Function],
                           "ExpanderComponent": [Function],
                           "FilterComponent": [Function],
                           "LoadingComponent": [Function],
@@ -76344,13 +76109,18 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
                             viewIndex={3}
                             width={100}
                           >
-                            <div
-                              className="dd-linker-item"
+                            <DropDownCell
+                              cellValue={18}
+                              hasChildren={false}
                             >
-                              <span>
-                                18
-                              </span>
-                            </div>
+                              <div
+                                className="dd-linker-item"
+                              >
+                                <span>
+                                  18
+                                </span>
+                              </div>
+                            </DropDownCell>
                           </Component>
                         </div>
                       </TdComponent>
@@ -79113,13 +78883,7 @@ exports[`DrillDownTable renders correctly with derived columns 1`] = `
       >
         <ReactTablePagination
           AggregatedComponent={[Function]}
-          DrillDownIndicator={
-            <span
-              className="dd-caret"
-            >
-               ▼
-            </span>
-          }
+          CellComponent={[Function]}
           ExpanderComponent={[Function]}
           FilterComponent={[Function]}
           LoadingComponent={[Function]}
