@@ -1,24 +1,18 @@
 import React, { useState } from 'react';
 import ReactTable, { CellInfo, Column, FinalState, RowInfo, TableProps } from 'react-table';
 import './DrillDownTable.css';
-import {
-  CARET,
-  CLICKABLE_CSS_CLASS,
-  ID,
-  LINKER_ITEM_CSS_CLASS,
-  PARENT_ID,
-  ROOT_PARENT_ID
-} from './helpers/constants';
+import { ID, PARENT_ID, ROOT_PARENT_ID } from './helpers/constants';
+import DropDownCell, { DropDownCellProps } from './helpers/DropDownCell';
 import { FlexObject } from './helpers/utils';
 import WithHeaders, { getColumns } from './WithHeaders';
 
 /** Interface to define props of Drill down table */
 export interface DrillDownProps<T> extends Partial<TableProps<T>> {
+  CellComponent: React.ElementType<DropDownCellProps>;
   identifierField?: string;
   linkerField?: string;
   parentIdentifierField?: string;
   rootParentId?: any;
-  DrillDownIndicator: Node;
 }
 
 /** Interface for state */
@@ -96,22 +90,21 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
    * drill-down
    */
   function mutateColumns(el: Column) {
-    const { DrillDownIndicator, linkerField } = props;
+    const { linkerField, CellComponent } = props;
     if (el.hasOwnProperty('columns') && el.columns && el.columns.length > 0) {
       const newColumns = el.columns.map(mutateColumns);
       el.columns = newColumns;
     }
     if (el.accessor === linkerField) {
       el.Cell = (cell: CellInfo) => {
-        const definitelyHasChildren: boolean = hasChildren(cell);
-        return (
-          <div className={definitelyHasChildren ? CLICKABLE_CSS_CLASS : LINKER_ITEM_CSS_CLASS}>
-            <span>
-              {cell.value}
-              {definitelyHasChildren && DrillDownIndicator}
-            </span>
-          </div>
-        );
+        if (CellComponent !== undefined) {
+          const cellProps: DropDownCellProps = {
+            cellValue: cell.value,
+            hasChildren: hasChildren(cell)
+          };
+          return <CellComponent {...cellProps} />;
+        }
+        return cell.value;
       };
     }
     return el;
@@ -130,7 +123,7 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
 }
 
 DrillDownTable.defaultProps = {
-  DrillDownIndicator: CARET,
+  CellComponent: DropDownCell,
   identifierField: ID,
   linkerField: ID,
   parentIdentifierField: PARENT_ID,
@@ -139,4 +132,4 @@ DrillDownTable.defaultProps = {
 
 export default DrillDownTable;
 
-export { WithHeaders, getColumns, FlexObject };
+export { WithHeaders, getColumns };
