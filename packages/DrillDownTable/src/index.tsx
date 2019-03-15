@@ -91,8 +91,18 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
     };
   };
 
-  /** Callback used to filter columns to get linker columns */
-  function filterLinkerColumns(this: FlexObject, element: Column) {
+  /** Callback used to filter columns to get linker columns.  Runs recursively */
+  function filterLinkerColumns(this: FlexObject, element: Column): boolean {
+    if (element.hasOwnProperty('columns')) {
+      // if we get here it means we are dealing with nested columns and
+      // have to resort to recursion
+      if (element.columns && element.columns.length > 0) {
+        // returnVal holds any columns found
+        const returnVal: Column[] = element.columns.filter(filterLinkerColumns, { props });
+        return returnVal.length > 0;
+      }
+      return false;
+    }
     const { linkerField } = this.props;
     if (linkerField) {
       return element.accessor === linkerField;
@@ -101,9 +111,9 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
   }
 
   /** Get linker column */
-  function getLinkerColumn() {
-    if (columns && columns.length > 0) {
-      const linkerColumns = columns.filter(filterLinkerColumns, { props });
+  function getLinkerColumn(columnsList: Column[]): Column | null {
+    if (columnsList && columnsList.length > 0) {
+      const linkerColumns: Column[] = columnsList.filter(filterLinkerColumns, { props });
       if (linkerColumns.length > 0) {
         return linkerColumns[0];
       }
@@ -118,9 +128,9 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
   function getModifiedColumns() {
     const { DrillDownIndicator } = props;
     if (columns && columns.length > 0) {
-      const linkerColumn = getLinkerColumn();
+      const linkerColumn = getLinkerColumn(columns);
       if (linkerColumn !== null) {
-        const otherColumns = columns.filter((element: Column) => {
+        const otherColumns: Column[] = columns.filter((element: Column) => {
           return element.accessor !== linkerColumn.accessor;
         });
 
