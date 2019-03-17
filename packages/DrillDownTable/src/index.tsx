@@ -13,6 +13,7 @@ export interface DrillDownProps<T> extends Partial<TableProps<T>> {
   linkerField?: string;
   parentIdentifierField?: string;
   rootParentId?: any;
+  useDrillDownTrProps?: boolean;
 }
 
 /** Interface for state */
@@ -28,7 +29,7 @@ interface State<D> extends Partial<FinalState<D>> {
  * the lowest, nad back with maximum flexibility.
  */
 function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
-  const { data, parentIdentifierField } = props;
+  const { data, parentIdentifierField, useDrillDownTrProps } = props;
   const columns = getColumns(props);
   // state variables
   const [currentParentId, setCurrentParentId] = useState(props.rootParentId);
@@ -69,7 +70,7 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
   }
 
   /** getTrProps hook set up to handle drill-down using click event */
-  const customGetTrProps = (row: RowInfo, instance: RowInfo) => {
+  const drillDownTrProps = (row: RowInfo, instance: RowInfo) => {
     const { getTrProps } = props;
     if (getTrProps !== undefined) {
       return getTrProps;
@@ -116,7 +117,12 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
 
   // finalize
   const nextLevelData = getLevelData();
-  const newProps: FlexObject = { getTrProps: customGetTrProps };
+  const newProps: FlexObject = {};
+
+  if (useDrillDownTrProps === true) {
+    newProps.getTrProps = drillDownTrProps;
+  }
+
   Object.assign(newProps, props); // copy props to newProps
   newProps.columns = columns.map(mutateColumns);
   if (nextLevelData && nextLevelData.length > 0) {
@@ -131,7 +137,8 @@ DrillDownTable.defaultProps = {
   identifierField: ID,
   linkerField: ID,
   parentIdentifierField: PARENT_ID,
-  rootParentId: ROOT_PARENT_ID
+  rootParentId: ROOT_PARENT_ID,
+  useDrillDownTrProps: true
 };
 
 export default DrillDownTable;
