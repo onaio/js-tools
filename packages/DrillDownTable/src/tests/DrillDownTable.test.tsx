@@ -177,4 +177,14 @@ describe('DrillDownTable', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
+
+  it('works fine with useDrillDownTrProps being flase', () => {
+    const props = {
+      data,
+      useDrillDownTrProps: false
+    };
+    const wrapper = mount(<DrillDownTable {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
 });
