@@ -67,7 +67,17 @@ function renderDerivedTable() {
   return <DrillDownTable {...props} />;
 }
 
+function renderNoTrPropsTable() {
+  const props = {
+    data,
+    linkerField: 'location',
+    useDrillDownTrProps: false
+  };
+  return <DrillDownTable {...props} />;
+}
+
 storiesOf('DrillDownTable', module)
   .add('simple', renderTable, { notes })
   .add('get columns from data', renderDerivedTable, { notes })
-  .add('with nested columns', renderNestedColumnTable, { notes });
+  .add('with nested columns', renderNestedColumnTable, { notes })
+  .add('with no getTrProps', renderNoTrPropsTable, { notes });
