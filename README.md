@@ -203,7 +203,7 @@ lerna version --github-release --conventional-commits
 Next clean your `dist` folders locally to remove old files:
 
 ```sh
-rm -rf packages/**/dist
+yarn clean-build
 ```
 
 Generate type declaration files for packages written in Typescript:

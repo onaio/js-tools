@@ -31,6 +31,34 @@ function renderTable() {
   return <DrillDownTable {...props} />;
 }
 
+function renderNestedColumnTable() {
+  const columns = [
+    {
+      Header: 'Header Group',
+      columns: [
+        {
+          Header: 'ID',
+          accessor: 'id'
+        },
+        {
+          Header: 'Name',
+          accessor: 'location'
+        }
+      ]
+    },
+    {
+      Header: 'Spray Coverage',
+      accessor: 'spray_coverage'
+    }
+  ];
+  const props = {
+    columns,
+    data,
+    linkerField: 'location'
+  };
+  return <DrillDownTable {...props} />;
+}
+
 function renderDerivedTable() {
   const props = {
     data,
@@ -39,6 +67,17 @@ function renderDerivedTable() {
   return <DrillDownTable {...props} />;
 }
 
+function renderNoTrPropsTable() {
+  const props = {
+    data,
+    linkerField: 'location',
+    useDrillDownTrProps: false
+  };
+  return <DrillDownTable {...props} />;
+}
+
 storiesOf('DrillDownTable', module)
   .add('simple', renderTable, { notes })
-  .add('get columns from data', renderDerivedTable, { notes });
+  .add('get columns from data', renderDerivedTable, { notes })
+  .add('with nested columns', renderNestedColumnTable, { notes })
+  .add('with no getTrProps', renderNoTrPropsTable, { notes });

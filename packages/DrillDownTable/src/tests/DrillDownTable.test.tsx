@@ -1,6 +1,7 @@
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
+import { RowInfo } from 'react-table';
 import DrillDownTable from '..';
 import { data, dataLowestLevel } from './fixtures';
 
@@ -120,6 +121,67 @@ describe('DrillDownTable', () => {
       columns,
       data,
       linkerField: 'location'
+    };
+    const wrapper = mount(<DrillDownTable {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('gets linkerColumn from nested columns', () => {
+    const columns = [
+      {
+        Header: 'Top Header',
+        columns: [
+          {
+            Header: 'Name',
+            accessor: 'location'
+          }
+        ]
+      },
+      {
+        Header: 'ID',
+        accessor: 'id'
+      },
+      {
+        Header: 'Parent ID',
+        accessor: 'parent_id'
+      },
+      {
+        Header: 'Spray Coverage',
+        accessor: 'spray_coverage'
+      }
+    ];
+    const props = {
+      columns,
+      data,
+      linkerField: 'location'
+    };
+
+    const wrapper = mount(<DrillDownTable {...props} />);
+    expect(wrapper.find('.dd-linker-item.dd-clickable').length).toEqual(3);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('works fine with custom getTrProps', () => {
+    const props = {
+      data,
+      getTrProps: (row: RowInfo) => {
+        return {
+          onClick: () => void 0,
+          row
+        };
+      }
+    };
+    const wrapper = mount(<DrillDownTable {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('works fine with useDrillDownTrProps being flase', () => {
+    const props = {
+      data,
+      useDrillDownTrProps: false
     };
     const wrapper = mount(<DrillDownTable {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();

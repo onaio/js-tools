@@ -83,21 +83,20 @@ This is also optional and defaults to `null`.
 
 When the table is rendered, you can click anywhere on a row to drill down to the next level of the hierarchy. However, you may want to display some kind of indication that it is possible to drill down on a row of data. The `linkerField` prop allows you to define which field should have this indicator. By default this is set to the `id` field.
 
-#### DrillDownIndicator
+#### CellComponent
 
-This is some indication displayed to show that you can drill down on a row of data. This prop is optional but by default it is a caret that looks like this:
+This is a component responsible for rendering the cell in which the `linkerField` (above) is found. By default it just adds a caret to show if you can drill down on a row of data or not. However you can supply your own component that renders whatever else you may want - for example instead of a caret you may want to show a link. Have a look at [`DropDownCell`](src/helpers/DropDownCell.tsx) for an example of how this component might look at.
 
-```html
-<span class="dd-caret">&nbsp;&#9660;</span>
-```
+#### useDrillDownTrProps
 
-This is displayed on the column identified by `linkerField`.
+By default `DrillDownTable` allows you to click on any row to drill-down to the next hierarchical level of data. This is achieved by having a [custom geTrProps](https://github.com/tannerlinsley/react-table/tree/v6#props) built into `DrillDownTable`. You can turn this off by setting `useDrillDownTrProps` to be `false`.
 
 ### Code examples
 
 Simplest example:
 
 ```tsx
+import 'react-table/react-table.css';
 import DrillDownTable from '@onaio/drill-down-table/';
 
 const props = {
@@ -109,6 +108,7 @@ const props = {
 Define `location` as the column where the drill-down caret will be displayed
 
 ```tsx
+import 'react-table/react-table.css';
 import DrillDownTable from '@onaio/drill-down-table/';
 
 const props = {
@@ -121,6 +121,7 @@ const props = {
 Supply columns as a prop.
 
 ```tsx
+import 'react-table/react-table.css';
 import DrillDownTable from '@onaio/drill-down-table/';
 
 const columns = [
@@ -137,6 +138,20 @@ const props = {
   columns,
   data,
   linkerField: 'location'
+};
+<DrillDownTable {...props} />;
+```
+
+Turn off clicking on a row to drill-down i.e. turn off the built-in custom `getTrProps`.
+
+```tsx
+import 'react-table/react-table.css';
+import DrillDownTable from '@onaio/drill-down-table/';
+
+const props = {
+  data,
+  linkerField: 'location',
+  useDrillDownTrProps: false
 };
 <DrillDownTable {...props} />;
 ```

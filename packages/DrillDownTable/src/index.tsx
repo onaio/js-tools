@@ -1,25 +1,19 @@
 import React, { useState } from 'react';
-import ReactTable, { Column, FinalState, RowInfo, TableProps } from 'react-table';
-import 'react-table/react-table.css';
+import ReactTable, { CellInfo, Column, FinalState, RowInfo, TableProps } from 'react-table';
 import './DrillDownTable.css';
-import {
-  CARET,
-  CLICKABLE_CSS_CLASS,
-  ID,
-  LINKER_ITEM_CSS_CLASS,
-  PARENT_ID,
-  ROOT_PARENT_ID
-} from './helpers/constants';
+import { ID, PARENT_ID, ROOT_PARENT_ID } from './helpers/constants';
+import DropDownCell, { DropDownCellProps } from './helpers/DropDownCell';
 import { FlexObject } from './helpers/utils';
 import WithHeaders, { getColumns } from './WithHeaders';
 
 /** Interface to define props of Drill down table */
 export interface DrillDownProps<T> extends Partial<TableProps<T>> {
+  CellComponent: React.ElementType<DropDownCellProps>;
   identifierField?: string;
   linkerField?: string;
   parentIdentifierField?: string;
   rootParentId?: any;
-  DrillDownIndicator: Node;
+  useDrillDownTrProps?: boolean;
 }
 
 /** Interface for state */
@@ -35,7 +29,7 @@ interface State<D> extends Partial<FinalState<D>> {
  * the lowest, nad back with maximum flexibility.
  */
 function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
-  const { data, parentIdentifierField } = props;
+  const { data, parentIdentifierField, useDrillDownTrProps } = props;
   const columns = getColumns(props);
   // state variables
   const [currentParentId, setCurrentParentId] = useState(props.rootParentId);
@@ -76,7 +70,11 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
   }
 
   /** getTrProps hook set up to handle drill-down using click event */
-  const getTrProps = (row: RowInfo, instance: RowInfo) => {
+  const drillDownTrProps = (row: RowInfo, instance: RowInfo) => {
+    const { getTrProps } = props;
+    if (getTrProps !== undefined) {
+      return getTrProps;
+    }
     return {
       onClick: () => {
         if (props.identifierField && props.parentIdentifierField) {
@@ -92,68 +90,41 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
     };
   };
 
-  /** Callback used to filter columns to get linker columns */
-  function filterLinkerColumns(this: FlexObject, element: Column) {
-    const { linkerField } = this.props;
-    if (linkerField) {
-      return element.accessor === linkerField;
-    }
-    return false;
-  }
-
-  /** Get linker column */
-  function getLinkerColumn() {
-    if (columns && columns.length > 0) {
-      const linkerColumns = columns.filter(filterLinkerColumns, { props });
-      if (linkerColumns.length > 0) {
-        return linkerColumns[0];
-      }
-    }
-    return null;
-  }
-
   /** Get modified columns
    * Modify the linker column to include an indicator that you can use to
    * drill-down
    */
-  function getModifiedColumns() {
-    const { DrillDownIndicator } = props;
-    if (columns && columns.length > 0) {
-      const linkerColumn = getLinkerColumn();
-      if (linkerColumn !== null) {
-        const otherColumns = columns.filter((element: Column) => {
-          return element.accessor !== linkerColumn.accessor;
-        });
-
-        const modifiedLinkerColumn: Column = {
-          Cell: row => {
-            const definitelyHasChildren: boolean = hasChildren(row);
-            return (
-              <div className={definitelyHasChildren ? CLICKABLE_CSS_CLASS : LINKER_ITEM_CSS_CLASS}>
-                <span>
-                  {row.value}
-                  {definitelyHasChildren && DrillDownIndicator}
-                </span>
-              </div>
-            );
-          },
-          Header: linkerColumn.Header,
-          accessor: linkerColumn.accessor
-        };
-
-        otherColumns.unshift(modifiedLinkerColumn);
-        return otherColumns;
-      } else {
-        return columns;
-      }
+  function mutateColumns(el: Column) {
+    const { linkerField, CellComponent } = props;
+    if (el.hasOwnProperty('columns') && el.columns && el.columns.length > 0) {
+      const newColumns = el.columns.map(mutateColumns);
+      el.columns = newColumns;
     }
+    if (el.accessor === linkerField) {
+      el.Cell = (cell: CellInfo) => {
+        if (CellComponent !== undefined) {
+          const cellProps: DropDownCellProps = {
+            cellValue: cell.value,
+            hasChildren: hasChildren(cell)
+          };
+          return <CellComponent {...cellProps} />;
+        }
+        return cell.value;
+      };
+    }
+    return el;
   }
 
   // finalize
   const nextLevelData = getLevelData();
-  const newProps: FlexObject = { getTrProps };
+  const newProps: FlexObject = {};
+
+  if (useDrillDownTrProps === true) {
+    newProps.getTrProps = drillDownTrProps;
+  }
+
   Object.assign(newProps, props); // copy props to newProps
-  newProps.columns = getModifiedColumns();
+  newProps.columns = columns.map(mutateColumns);
   if (nextLevelData && nextLevelData.length > 0) {
     newProps.data = nextLevelData;
   }
@@ -162,13 +133,14 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
 }
 
 DrillDownTable.defaultProps = {
-  DrillDownIndicator: CARET,
+  CellComponent: DropDownCell,
   identifierField: ID,
   linkerField: ID,
   parentIdentifierField: PARENT_ID,
-  rootParentId: ROOT_PARENT_ID
+  rootParentId: ROOT_PARENT_ID,
+  useDrillDownTrProps: true
 };
 
 export default DrillDownTable;
 
-export { WithHeaders, getColumns };
+export { WithHeaders, getColumns, DropDownCell };

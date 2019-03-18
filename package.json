@@ -14,7 +14,8 @@
     "lint-js": "eslint '{packages,stories}/**/*.{js,jsx}'",
     "lint-ts": "tslint -c tslint.json '{packages,stories}/**/*.{ts,tsx}'",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "clean-build": "rimraf packages/**/dist"
   },
   "husky": {
     "hooks": {
@@ -54,7 +55,7 @@
     "@types/enzyme-to-json": "^1.5.3",
     "@types/jest": "^24.0.9",
     "@types/node": "^11.10.4",
-    "@types/react": "^16.8.6",
+    "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.2",
     "@types/storybook__addon-actions": "^3.4.2",
     "@types/storybook__addon-links": "^3.3.4",
@@ -85,6 +86,7 @@
     "react": "^16.8.1",
     "react-dom": "^16.8.3",
     "react-test-renderer": "^16.8.1",
+    "rimraf": "^2.6.3",
     "ts-jest": "^24.0.0",
     "tslint": "^5.13.1",
     "tslint-config-prettier": "^1.18.0",
