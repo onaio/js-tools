@@ -143,4 +143,4 @@ DrillDownTable.defaultProps = {
 
 export default DrillDownTable;
 
-export { WithHeaders, getColumns, DropDownCell };
+export { WithHeaders, getColumns, DropDownCell, DropDownCellProps };
