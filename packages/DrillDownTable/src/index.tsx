@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactTable, { CellInfo, Column, FinalState, RowInfo, TableProps } from 'react-table';
 import './DrillDownTable.css';
 import { ID, PARENT_ID, ROOT_PARENT_ID } from './helpers/constants';
@@ -38,6 +38,16 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
     data && parentIdentifierField ? data.map((el: FlexObject) => el[parentIdentifierField]) : []
   );
   const [previousParentId, setPreviousParentId] = useState(null);
+
+  /** This ensures that if the `rootParentId` props changes then the state
+   * is updated to match it
+   */
+  useEffect(() => {
+    if (props.rootParentId !== currentParentId) {
+      setPreviousParentId(currentParentId);
+      setCurrentParentId(props.rootParentId);
+    }
+  });
 
   /** callback used to filter data using parent field */
   function filterForLevel(this: FlexObject, element: FlexObject) {
