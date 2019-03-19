@@ -43,5 +43,11 @@ export class ReducerRegistry {
   }
 }
 
+/**
+ * The reducer registry enables Redux reducers to be added to the store’s
+ * reducer after the store has been created. This allows Redux modules to be
+ * loaded on-demand, without requiring all Redux modules to be bundled in the
+ * main chunk for the store to correctly initialize. *
+ */
 const reducerRegistry = new ReducerRegistry();
 export default reducerRegistry;

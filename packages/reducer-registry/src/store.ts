@@ -20,7 +20,9 @@ export function combine(reducers: Registry, initialState: State = {}) {
   return combineReducers(reducers);
 }
 
-/** Create store */
+/** Function that returns a Redux store given a a list of Redicers and initial
+ * state
+ */
 export function getStore(reducers: Registry, initialState: State = {}) {
   if (Object.keys(reducers).length > 0) {
     return createStore(combine(reducers, initialState));
@@ -28,6 +30,7 @@ export function getStore(reducers: Registry, initialState: State = {}) {
   return createStore(() => initialState);
 }
 
+/** Ready-to-use default store made from an empty Reducer registry */
 const store = getStore(reducerRegistry.getReducers());
 
 /** Add reducer to store when it is registered */
