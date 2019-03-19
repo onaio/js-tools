@@ -12,7 +12,7 @@
   "scripts": {
     "test": "jest",
     "lint-js": "eslint '{packages,stories}/**/*.{js,jsx}'",
-    "lint-ts": "tslint -c tslint.json '{packages,stories}/**/*.{ts,tsx}'",
+    "lint-ts": "tslint -c tslint.json '{packages/**/src,stories}/**/*.{ts,tsx}'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "clean-build": "rimraf packages/**/dist"
