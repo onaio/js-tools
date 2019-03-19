@@ -1,0 +1,249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ElementMap renders tags correctly 1`] = `
+<ElementMap
+  HTMLTag="div"
+  className="element-map"
+  items={
+    Array [
+      "Name",
+      "Age",
+    ]
+  }
+>
+  <div
+    className="element-map"
+    key="0"
+  >
+    Name
+  </div>
+  <div
+    className="element-map"
+    key="1"
+  >
+    Age
+  </div>
+</ElementMap>
+`;
+
+exports[`ElementMap renders tags correctly 2`] = `
+<ElementMap
+  HTMLTag="span"
+  className="fancy"
+  items={
+    Array [
+      "Fruit",
+      "Price",
+    ]
+  }
+>
+  <span
+    className="fancy"
+    key="0"
+  >
+    Fruit
+  </span>
+  <span
+    className="fancy"
+    key="1"
+  >
+    Price
+  </span>
+</ElementMap>
+`;
+
+exports[`ElementMap works with with HTML elements 1`] = `
+<ElementMap
+  HTMLTag="div"
+  className="xkcd"
+  items={
+    Array [
+      <span>
+        Ed
+      </span>,
+      <span>
+        Edd
+      </span>,
+      <span>
+        Eddie
+      </span>,
+    ]
+  }
+>
+  <div
+    className="xkcd"
+    key="0"
+  >
+    <span
+      key="1"
+    >
+      Ed
+    </span>
+  </div>
+  <div
+    className="xkcd"
+    key="1"
+  >
+    <span
+      key="11"
+    >
+      Edd
+    </span>
+  </div>
+  <div
+    className="xkcd"
+    key="2"
+  >
+    <span
+      key="111"
+    >
+      Eddie
+    </span>
+  </div>
+</ElementMap>
+`;
+
+exports[`ElementMap works with with itself 1`] = `
+<ElementMap
+  HTMLTag="div"
+  className="xkcd"
+  items={
+    Array [
+      <ElementMap
+        HTMLTag="span"
+        className="element-map"
+        items={
+          Array [
+            "a",
+            "b",
+            "c",
+          ]
+        }
+      />,
+      <ElementMap
+        HTMLTag="span"
+        className="element-map"
+        items={
+          Array [
+            "bob",
+            "alice",
+          ]
+        }
+      />,
+      <ElementMap
+        HTMLTag="span"
+        className="element-map"
+        items={
+          Array [
+            99,
+            199,
+            299,
+          ]
+        }
+      />,
+    ]
+  }
+>
+  <div
+    className="xkcd"
+    key="0"
+  >
+    <ElementMap
+      HTMLTag="span"
+      className="element-map"
+      items={
+        Array [
+          "a",
+          "b",
+          "c",
+        ]
+      }
+      key="a"
+    >
+      <span
+        className="element-map"
+        key="0"
+      >
+        a
+      </span>
+      <span
+        className="element-map"
+        key="1"
+      >
+        b
+      </span>
+      <span
+        className="element-map"
+        key="2"
+      >
+        c
+      </span>
+    </ElementMap>
+  </div>
+  <div
+    className="xkcd"
+    key="1"
+  >
+    <ElementMap
+      HTMLTag="span"
+      className="element-map"
+      items={
+        Array [
+          "bob",
+          "alice",
+        ]
+      }
+      key="b"
+    >
+      <span
+        className="element-map"
+        key="0"
+      >
+        bob
+      </span>
+      <span
+        className="element-map"
+        key="1"
+      >
+        alice
+      </span>
+    </ElementMap>
+  </div>
+  <div
+    className="xkcd"
+    key="2"
+  >
+    <ElementMap
+      HTMLTag="span"
+      className="element-map"
+      items={
+        Array [
+          99,
+          199,
+          299,
+        ]
+      }
+      key="c"
+    >
+      <span
+        className="element-map"
+        key="0"
+      >
+        99
+      </span>
+      <span
+        className="element-map"
+        key="1"
+      >
+        199
+      </span>
+      <span
+        className="element-map"
+        key="2"
+      >
+        299
+      </span>
+    </ElementMap>
+  </div>
+</ElementMap>
+`;
