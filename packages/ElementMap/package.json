@@ -2,38 +2,35 @@
   "name": "@onaio/element-map",
   "version": "0.0.1",
   "description": "Simple component takes a list of elements and returns them wrapped in the provided HTML tag",
-  "main": "dist/ElementMap.js",
-  "repository": "https://github.com/onaio/js-tools",
+  "keywords": [
+    "render lists"
+  ],
   "author": "Ona Engineering",
+  "homepage": "https://github.com/onaio/js-tools",
   "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "types": "dist/types",
   "files": [
     "dist"
   ],
   "publishConfig": {
     "access": "public"
   },
-  "bugs": {
-    "url": "https://github.com/onaio/js-tools/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onaio/js-tools.git"
   },
   "scripts": {
     "jest": "jest --coverage --verbose --color",
-    "transpile": "babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__'"
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx' --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
   },
   "jest": {
     "setupFiles": [
       "../../setupTests"
     ]
   },
-  "peerDependencies": {
-    "react": "^16.8.1"
-  },
-  "dependencies": {
-    "prop-types": "^15.6.1"
-  },
-  "devDependencies": {
-    "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.9.1",
-    "enzyme-to-json": "^3.3.5",
-    "react": "^16.8.1"
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
   }
 }

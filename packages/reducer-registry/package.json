@@ -34,7 +34,6 @@
     "url": "https://github.com/onaio/js-tools/issues"
   },
   "dependencies": {
-    "@types/redux": "^3.6.0",
     "redux": "^4.0.1"
   }
 }
