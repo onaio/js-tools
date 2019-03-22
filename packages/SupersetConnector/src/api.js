@@ -87,6 +87,8 @@ export class API {
         .then(data => qCallback(null, data))
         .catch(err => qCallback(err, null));
     };
+
+    // todo - add functionality to resolve multiple fetches
   }
 }
 
