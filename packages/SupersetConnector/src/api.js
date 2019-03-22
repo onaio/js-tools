@@ -1,4 +1,14 @@
-import { parseCSV } from './utils';
+import { parse } from 'papaparse';
+
+function parseCSV(text, config) {
+  return parse(
+    text,
+    config || {
+      header: true,
+      skipEmptyLines: true
+    }
+  ).data;
+}
 
 const apiMap = {
   slice: 'superset/slice_json'
@@ -56,21 +66,21 @@ export class API {
         .catch(err => callback(err))
         .then(res => {
           // Define response parse method
-          let parse;
+          let parser;
           switch (config.mimeType) {
             case 'text/csv':
-              parse = 'text';
+              parser = 'text';
               break;
             case 'image/jpeg':
-              parse = 'blob';
+              parser = 'blob';
               break;
             default:
-              parse = 'json';
+              parser = 'json';
           }
 
           // Return parsed Response
           // todo - Change "user" to "body"
-          return res[parse]()
+          return res[parser]()
             .then(parsed => {
               // if parsed text is CSV then return Papaparse via parseCSV
               if (config.mimeType === 'text/csv') return { user: parseCSV(parsed) };
