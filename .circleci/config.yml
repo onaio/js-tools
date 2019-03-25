@@ -23,7 +23,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run linters
-      # - run: yarn lint-js ---> no js files to lint right now
+      - run: yarn lint-js
       - run: yarn lint-ts
       # run tests!
       - run: yarn test --verbose --coverage=true --forceExit --detectOpenHandles
