@@ -7,7 +7,7 @@ This connector module uses an fetch-based API submodule to access slice data via
 Import the Connector into a module and Request resources from Superset:
 
 ```
-import { SUPERSET } from 'gisida';
+import superset from '@onaio/superset-connector';
 
 const fetchConfig = {
   endpoint: 'slice',
@@ -18,11 +18,11 @@ const fetchConfig = {
 const fetchMiddleware = (res) => res;
 
 const fetchCallback = (parsedResponse) => {
-  const sliceData = SUPERSET.processData(parsedResponse);
+  const sliceData = superset.processData(parsedResponse);
   return doSomethingWithData(data);
 }
 
-SUPERSET.API.fetch(fetchConfig, fetchMiddleware).then(fetchCallback);
+superset.api.fetch(fetchConfig, fetchMiddleware).then(fetchCallback);
 ```
 
 ### API Fetch Config
