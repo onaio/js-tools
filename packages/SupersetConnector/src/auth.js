@@ -1,7 +1,8 @@
-/* Authorization Request
- ** config.token - (Required) ONA oAuth2 Access Token as a string
- ** config.base  - (Optional) Overrides Auth URI Basepath, requires trailing '/'
- ** callback     - (Required) Callback function to receive Fetch API res / err object
+/**
+ * Authorization Request
+ * @param {Object<string>=} config - Overrides DeAuth URI Basepath, requires trailing '/'
+ * @param {Function} callback - Callback function to receive Fetch API res / err object
+ * @returns {Promise}
  */
 export const authZ = (config, callback) => {
   const headers = new Headers();
@@ -16,9 +17,11 @@ export const authZ = (config, callback) => {
     .catch(err => callback(err));
 };
 
-/* De-Authorization Request
- ** config.base  - (Optional) Overrides DeAuth URI Basepath, requires trailing '/'
- ** callback     - (Required) Callback function to receive Fetch API res / err object
+/**
+ * De-Authorization Request
+ * @param {Object<string>=} config - Overrides DeAuth URI Basepath, requires trailing '/'
+ * @param {Function} callback - Callback function to receive Fetch API res / err object
+ * @returns {Promise}
  */
 export const deAuthZ = (config, callback) =>
   fetch(`${(config && config.base) || 'http://localhost:8088/'}logout/`, {
