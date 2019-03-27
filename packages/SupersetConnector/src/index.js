@@ -16,11 +16,11 @@ const processData = res => {
  * FE Superset Connector Module
  * @type {Object<Object, Function>}
  */
-const superset = {
+const Superset = {
   api: new API(),
   processData,
   authZ,
   deAuthZ
 };
 
-export default superset;
+export default Superset;
