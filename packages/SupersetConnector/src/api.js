@@ -1,6 +1,11 @@
 import { parse } from 'papaparse';
 
-/** Utility function to parse CSV response to JSON */
+/**
+ * Utility function to parse CSV response to JSON
+ * @param {*} text
+ * @param {*} config
+ * @returns {Array<Object>}
+ */
 function parseCSV(text, config) {
   return parse(
     text,
@@ -11,11 +16,19 @@ function parseCSV(text, config) {
   ).data;
 }
 
+/**
+ * Object defining URL paths for different API calls
+ * @type {Object<string>}
+ */
 const apiMap = {
   slice: 'superset/slice_json'
 };
 
-/** Generate Headers for Fetch API */
+/**
+ * Generate Headers for Fetch API
+ * @param {Object<*>} config
+ * @returns {Headers}
+ */
 const apiHeaders = config => {
   const headers = new Headers();
 
@@ -25,7 +38,12 @@ const apiHeaders = config => {
   return headers;
 };
 
-/** Generate Request for Fetch API */
+/**
+ * Generate Request for Fetch API
+ * @param {Object<*>} config
+ * @param {Headers} headers - The headers object used in the request
+ * @returns {Request} - The actual request obejct fetch will use
+ */
 const apiRequest = (config, headers) => {
   const base = config.base || 'http://localhost:8088/';
   let apiPath = `${base}${apiMap[config.endpoint] || ''}`;
@@ -42,24 +60,25 @@ const apiRequest = (config, headers) => {
   return new Request(apiPath, reqConfig);
 };
 
-/** Generate Fetch API Promise */
+/**
+ * Generate Fetch API Promise
+ * @param {Object<*>} config
+ * @returns {PromiseLike<*>}
+ */
 const fetchAPI = config => fetch(apiRequest(config, apiHeaders(config)));
 
 /** API Module for FE Superset Connector */
+/**
+ *
+ */
 export class API {
   constructor() {
     const self = this;
 
-    /** Resolve Fetch API Promise, convert to JSON, handle with callback/resolve as JSON
-     * config          - (required) Object containing options / credentials
-     * config.token    - (required) Access_Token provided by ONA Authorization
-     * config.endpoint - (required) API Key to determine API Path
-     * config.method   - (optional) Specify HTTP Method (defaults to GET)
-     * config.params   - (optional) Additional parameters to be appeneded to API Path
-     * config.mimeType - (optional) Specify mimeType for Request Headers
-     * config.base     - (optional) Base URL for API Requests, must include trailing '/'
-     * config.credentials(optional) Custom override for Fetch API 'credentials' setting
-     * callback        - (optional) Function to take JSON response, otherwise res is simply returned
+    /**
+     * Resolve Fetch API Promise, convert to JSON, handle with callback/resolve as JSON
+     * @param {Object<*>} config - Object containing options / credentials
+     * @returns {PromiseLike<*>}
      */
     this.fetch = async (config, callback = res => res) =>
       fetchAPI(config)
@@ -89,7 +108,12 @@ export class API {
             .then(user => (callback && callback(user)) || { res, user });
         });
 
-    /** version of this.fetch specifically for d3.queue fetching */
+    /**
+     * Version of this.fetch specifically for d3.queue fetching
+     * @param {Object<*>} config
+     * @param {Function} apiCallback - The callback function used after the fetch Promise resolves
+     * @param {?} qCallback - The callback function which is required and included by de3.queue
+     */
     this.deferedFetch = (config, apiCallback, qCallback) => {
       return self
         .fetch(config, apiCallback)
