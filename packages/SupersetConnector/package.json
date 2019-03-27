@@ -16,6 +16,7 @@
   "files": [
     "dist"
   ],
+  "types": "dist/types",
   "publishConfig": {
     "access": "public"
   },
