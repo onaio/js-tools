@@ -17,11 +17,11 @@ var processData = function processData(res) {
   return res && res.data && res.data.records && Array.isArray(res.data.records) && (0, _toConsumableArray2.default)(res.data.records);
 };
 
-var superset = {
+var Superset = {
   api: new _api.API(),
   processData: processData,
   authZ: _auth.authZ,
   deAuthZ: _auth.deAuthZ
 };
-var _default = superset;
+var _default = Superset;
 exports.default = _default;
