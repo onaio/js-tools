@@ -8,7 +8,8 @@ import WithHeaders, { getColumns } from './WithHeaders';
 
 /** Interface to define props of Drill down table */
 export interface DrillDownProps<T> extends Partial<TableProps<T>> {
-  CellComponent: React.ElementType<DropDownCellProps>;
+  CellComponent: React.ElementType;
+  extraCellProps?: FlexObject;
   identifierField?: string;
   linkerField?: string;
   parentIdentifierField?: string;
@@ -105,7 +106,7 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
    * drill-down
    */
   function mutateColumns(el: Column) {
-    const { linkerField, CellComponent } = props;
+    const { linkerField, CellComponent, extraCellProps } = props;
     if (el.hasOwnProperty('columns') && el.columns && el.columns.length > 0) {
       const newColumns = el.columns.map(mutateColumns);
       el.columns = newColumns;
@@ -117,6 +118,9 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
             cellValue: cell.value,
             hasChildren: hasChildren(cell)
           };
+          if (extraCellProps !== undefined) {
+            Object.assign(cellProps, extraCellProps);
+          }
           return <CellComponent {...cellProps} />;
         }
         return cell.value;
