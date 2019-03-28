@@ -2,10 +2,12 @@ import React from 'react';
 import { TableProps } from 'react-table';
 import './DrillDownTable.css';
 import DropDownCell, { DropDownCellProps } from './helpers/DropDownCell';
+import { FlexObject } from './helpers/utils';
 import WithHeaders, { getColumns } from './WithHeaders';
 /** Interface to define props of Drill down table */
 export interface DrillDownProps<T> extends Partial<TableProps<T>> {
-  CellComponent: React.ElementType<DropDownCellProps>;
+  CellComponent: React.ElementType;
+  extraCellProps?: FlexObject;
   identifierField?: string;
   linkerField?: string;
   parentIdentifierField?: string;
