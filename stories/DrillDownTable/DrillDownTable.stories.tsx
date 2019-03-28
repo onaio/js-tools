@@ -115,4 +115,5 @@ storiesOf('DrillDownTable', module)
   .add('simple', renderTable, { notes })
   .add('get columns from data', renderDerivedTable, { notes })
   .add('with nested columns', renderNestedColumnTable, { notes })
+  .add('with no getTrProps', renderNoTrPropsTable, { notes })
   .add('custom cell component', renderCustomCellTable, { notes });
