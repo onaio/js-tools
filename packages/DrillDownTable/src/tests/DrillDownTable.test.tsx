@@ -2,7 +2,7 @@ import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
 import { RowInfo } from 'react-table';
-import DrillDownTable from '..';
+import DrillDownTable, { DropDownCellProps } from '..';
 import { data, dataLowestLevel } from './fixtures';
 
 describe('DrillDownTable', () => {
@@ -184,6 +184,42 @@ describe('DrillDownTable', () => {
       useDrillDownTrProps: false
     };
     const wrapper = mount(<DrillDownTable {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('works fine with extraCellProps', () => {
+    /** Interface for cell props */
+    interface NewCellProps extends DropDownCellProps {
+      urlPath: string;
+      caret: string;
+    }
+
+    /** Custom cell component for testing.
+     */
+    const NewCell: React.ElementType = (props: NewCellProps) => {
+      const { cellValue, hasChildren, urlPath, caret } = props;
+      return (
+        <div>
+          <span>
+            {hasChildren ? (
+              <a href={urlPath}>
+                {cellValue} {caret}
+              </a>
+            ) : (
+              cellValue
+            )}
+          </span>
+        </div>
+      );
+    };
+
+    const cellProps = {
+      CellComponent: NewCell,
+      data,
+      extraCellProps: { urlPath: 'http://example.com', caret: <span>&#43;</span> }
+    };
+    const wrapper = mount(<DrillDownTable {...cellProps} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });

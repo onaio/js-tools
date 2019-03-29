@@ -5,7 +5,7 @@ import React from 'react';
 /* eslint-enable import/no-extraneous-dependencies */
 import 'react-table/react-table.css';
 import notes from '../../packages/DrillDownTable/README.md';
-import DrillDownTable from '../../packages/DrillDownTable/src';
+import DrillDownTable, { DropDownCellProps } from '../../packages/DrillDownTable/src';
 import { data } from '../../packages/DrillDownTable/src/tests/fixtures';
 
 function renderTable() {
@@ -76,8 +76,44 @@ function renderNoTrPropsTable() {
   return <DrillDownTable {...props} />;
 }
 
+function renderCustomCellTable() {
+  /** Interface for cell props */
+  interface NewCellProps extends DropDownCellProps {
+    urlPath: string;
+    caret: string;
+  }
+
+  /** Custom cell component for testing.
+   */
+  const NewCell: React.ElementType = (props: NewCellProps) => {
+    const { cellValue, hasChildren, urlPath, caret } = props;
+    return (
+      <div>
+        <span>
+          {hasChildren ? (
+            <a href={urlPath}>
+              {cellValue} {caret}
+            </a>
+          ) : (
+            cellValue
+          )}
+        </span>
+      </div>
+    );
+  };
+  const cellProps = {
+    CellComponent: NewCell,
+    data,
+    extraCellProps: { urlPath: 'http://example.com', caret: <span>&#43;</span> },
+    linkerField: 'location',
+    useDrillDownTrProps: false
+  };
+  return <DrillDownTable {...cellProps} />;
+}
+
 storiesOf('DrillDownTable', module)
   .add('simple', renderTable, { notes })
   .add('get columns from data', renderDerivedTable, { notes })
   .add('with nested columns', renderNestedColumnTable, { notes })
-  .add('with no getTrProps', renderNoTrPropsTable, { notes });
+  .add('with no getTrProps', renderNoTrPropsTable, { notes })
+  .add('custom cell component', renderCustomCellTable, { notes });

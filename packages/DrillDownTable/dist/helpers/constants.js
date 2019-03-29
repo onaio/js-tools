@@ -1,13 +1,13 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.CARET = exports.CARET_CSS_CLASS = exports.CLICKABLE_CSS_CLASS = exports.LINKER_ITEM_CSS_CLASS = exports.ROOT_PARENT_ID = exports.PARENT_ID = exports.ID = void 0;
 
 var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ID = 'id';
 exports.ID = ID;
