@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ListView renders correctly with derived columns 1`] = `
+exports[`ListView renders correctly 1`] = `
 <ListView
   data={
     Array [
@@ -106,6 +106,255 @@ exports[`ListView renders correctly with derived columns 1`] = `
             key="0"
           >
             Data 3
+          </td>
+        </ElementMap>
+      </tr>
+    </tbody>
+  </table>
+</ListView>
+`;
+
+exports[`ListView renders correctly with different types of data 1`] = `
+<ListView
+  data={
+    Array [
+      Array [
+        "Data 1",
+      ],
+      Array [
+        999,
+      ],
+      Array [
+        "Data 3",
+      ],
+    ]
+  }
+  headerItems={
+    Array [
+      "Columns",
+    ]
+  }
+>
+  <table>
+    <thead>
+      <tr>
+        <ElementMap
+          HTMLTag="th"
+          className="element-map"
+          items={
+            Array [
+              "Columns",
+            ]
+          }
+        >
+          <th
+            className="element-map"
+            key="0"
+          >
+            Columns
+          </th>
+        </ElementMap>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        key="0"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              Array [
+                "Data 1",
+              ],
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Data 1
+          </td>
+        </ElementMap>
+      </tr>
+      <tr
+        key="1"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              Array [
+                999,
+              ],
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            999
+          </td>
+        </ElementMap>
+      </tr>
+      <tr
+        key="2"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              Array [
+                "Data 3",
+              ],
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Data 3
+          </td>
+        </ElementMap>
+      </tr>
+    </tbody>
+  </table>
+</ListView>
+`;
+
+exports[`ListView renders correctly with rows contining components 1`] = `
+<ListView
+  data={
+    Array [
+      Array [
+        "Data 1",
+      ],
+      Array [
+        <div>
+          Data 2
+        </div>,
+      ],
+      Array [
+        <SomeComponent
+          value="Data 3"
+        />,
+      ],
+    ]
+  }
+  headerItems={
+    Array [
+      "Columns",
+    ]
+  }
+>
+  <table>
+    <thead>
+      <tr>
+        <ElementMap
+          HTMLTag="th"
+          className="element-map"
+          items={
+            Array [
+              "Columns",
+            ]
+          }
+        >
+          <th
+            className="element-map"
+            key="0"
+          >
+            Columns
+          </th>
+        </ElementMap>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        key="0"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              Array [
+                "Data 1",
+              ],
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Data 1
+          </td>
+        </ElementMap>
+      </tr>
+      <tr
+        key="1"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              Array [
+                <div>
+                  Data 2
+                </div>,
+              ],
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            <div
+              key="123"
+            >
+              Data 2
+            </div>
+          </td>
+        </ElementMap>
+      </tr>
+      <tr
+        key="2"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              Array [
+                <SomeComponent
+                  value="Data 3"
+                />,
+              ],
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            <SomeComponent
+              key="456"
+              value="Data 3"
+            >
+              <div>
+                <span>
+                  Data 3
+                </span>
+              </div>
+            </SomeComponent>
           </td>
         </ElementMap>
       </tr>
