@@ -1,17 +1,25 @@
 import ElementMap from '@onaio/element-map';
 import React from 'react';
 
+/**
+ * TODO
+ * 1. custom class names for table, tbody, and thead
+ * 2. entire thead as optional
+ * 3. Future PR: custom renderHeaders and renderRows supplied as props
+ */
+
 /** Docstring goes here */
-interface ListViewProps {
-  data: string[][];
-  headerItems: string[];
+export interface ListViewProps {
+  data: React.ReactNode[][];
+  headerItems: React.ReactNode[];
 }
 
 /** ListView */
 const ListView: React.ElementType = (props: ListViewProps) => {
   const { data, headerItems } = props;
 
-  function renderHeaders(items: string[]) {
+  /** changeme */
+  function renderHeaders(items: React.ReactNode[]) {
     return (
       <tr>
         <ElementMap items={items} HTMLTag="th" />
@@ -19,7 +27,8 @@ const ListView: React.ElementType = (props: ListViewProps) => {
     );
   }
 
-  function renderRows(rowData: string[][]) {
+  /** changeme */
+  function renderRows(rowData: React.ReactNode[][]) {
     const result = rowData.map((item, itemKey) => (
       <tr key={itemKey}>
         <ElementMap items={[item]} HTMLTag="td" />
