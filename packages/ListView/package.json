@@ -1,0 +1,9 @@
+{
+  "name": "@onaio/list-view",
+  "version": "0.0.1",
+  "description": "list-view",
+  "main": "index.js",
+  "repository": "https://github.com/onaio/js-tools",
+  "author": "Ona Engineering",
+  "license": "Apache-2.0"
+}
