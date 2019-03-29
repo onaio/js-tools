@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListView renders correctly with derived columns 1`] = `
+<ListView
+  data={
+    Array [
+      Array [
+        "Data 1",
+      ],
+      Array [
+        "Data 2",
+      ],
+      Array [
+        "Data 3",
+      ],
+    ]
+  }
+  headerItems={
+    Array [
+      "Columns",
+    ]
+  }
+>
+  <table>
+    <thead>
+      <tr>
+        <ElementMap
+          HTMLTag="th"
+          className="element-map"
+          items={
+            Array [
+              "Columns",
+            ]
+          }
+        >
+          <th
+            className="element-map"
+            key="0"
+          >
+            Columns
+          </th>
+        </ElementMap>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        key="0"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              Array [
+                "Data 1",
+              ],
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Data 1
+          </td>
+        </ElementMap>
+      </tr>
+      <tr
+        key="1"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              Array [
+                "Data 2",
+              ],
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Data 2
+          </td>
+        </ElementMap>
+      </tr>
+      <tr
+        key="2"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              Array [
+                "Data 3",
+              ],
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Data 3
+          </td>
+        </ElementMap>
+      </tr>
+    </tbody>
+  </table>
+</ListView>
+`;
