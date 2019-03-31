@@ -11,7 +11,10 @@ describe('ListView', () => {
   it('renders without crashing', () => {
     const props = {
       data: [['Data 1'], ['Data 2'], ['Data 3']],
-      headerItems: ['Columns']
+      headerItems: ['Columns'],
+      tableClass: 'table-striped',
+      tbodyClass: 'table-active',
+      theaderClass: 'thead-dark'
     };
     shallow(<ListView {...props} />);
   });
@@ -19,7 +22,10 @@ describe('ListView', () => {
   it('renders correctly', () => {
     const props = {
       data: [['Data 1'], ['Data 2'], ['Data 3']],
-      headerItems: ['Columns']
+      headerItems: ['Columns'],
+      tableClass: 'table-striped',
+      tbodyClass: 'table-active',
+      theaderClass: 'thead-dark'
     };
     const wrapper = mount(<ListView {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -29,14 +35,17 @@ describe('ListView', () => {
   it('renders correctly with different types of data', () => {
     const props: ListViewProps = {
       data: [['Data 1'], [999], ['Data 3']],
-      headerItems: ['Columns']
+      headerItems: ['Columns'],
+      tableClass: 'table-striped',
+      tbodyClass: 'table-active',
+      theaderClass: 'thead-dark'
     };
     const wrapper = mount(<ListView {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
 
-  it('renders correctly with rows contining components', () => {
+  it('renders correctly with rows containing components', () => {
     const SomeComponent: React.ElementType = props => {
       return (
         <div>
@@ -51,9 +60,25 @@ describe('ListView', () => {
         [<div key="123">Data 2</div>],
         [<SomeComponent key="456" value="Data 3" />]
       ],
-      headerItems: ['Columns']
+      headerItems: ['Columns'],
+      tableClass: 'table-striped',
+      tbodyClass: 'table-active',
+      theaderClass: 'thead-dark'
     };
     const wrapper = mount(<ListView {...tableProps} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('renders correctly without table, thead and tbody classes', () => {
+    const props: ListViewProps = {
+      data: [['Data 1'], [999], ['Data 3']],
+      headerItems: ['Columns'],
+      tableClass: undefined,
+      tbodyClass: undefined,
+      theaderClass: undefined
+    };
+    const wrapper = mount(<ListView {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
