@@ -52,6 +52,7 @@ exports[`ListView renders correctly 1`] = `
     <tbody
       className="table-active"
     >
+       
       <tr
         key="0"
       >
@@ -118,6 +119,7 @@ exports[`ListView renders correctly 1`] = `
           </td>
         </ElementMap>
       </tr>
+       
     </tbody>
   </table>
 </ListView>
@@ -175,6 +177,7 @@ exports[`ListView renders correctly with different types of data 1`] = `
     <tbody
       className="table-active"
     >
+       
       <tr
         key="0"
       >
@@ -241,6 +244,7 @@ exports[`ListView renders correctly with different types of data 1`] = `
           </td>
         </ElementMap>
       </tr>
+       
     </tbody>
   </table>
 </ListView>
@@ -302,6 +306,7 @@ exports[`ListView renders correctly with rows containing components 1`] = `
     <tbody
       className="table-active"
     >
+       
       <tr
         key="0"
       >
@@ -385,12 +390,13 @@ exports[`ListView renders correctly with rows containing components 1`] = `
           </td>
         </ElementMap>
       </tr>
+       
     </tbody>
   </table>
 </ListView>
 `;
 
-exports[`ListView renders correctly without table, thead and tbody classes 1`] = `
+exports[`ListView renders correctly without th, tbclass, tbodyclass and theaderclass 1`] = `
 <ListView
   data={
     Array [
@@ -405,40 +411,17 @@ exports[`ListView renders correctly without table, thead and tbody classes 1`] =
       ],
     ]
   }
-  headerItems={
-    Array [
-      "Columns",
-    ]
-  }
+  tableClass="table"
+  tbodyClass="table-active"
+  theaderClass="thead-dark"
 >
   <table
-    className={null}
+    className="table"
   >
-    <th
-      className={null}
-    >
-      <tr>
-        <ElementMap
-          HTMLTag="th"
-          className="element-map"
-          items={
-            Array [
-              "Columns",
-            ]
-          }
-        >
-          <th
-            className="element-map"
-            key="0"
-          >
-            Columns
-          </th>
-        </ElementMap>
-      </tr>
-    </th>
     <tbody
-      className={null}
+      className="table-active"
     >
+       
       <tr
         key="0"
       >
@@ -505,6 +488,7 @@ exports[`ListView renders correctly without table, thead and tbody classes 1`] =
           </td>
         </ElementMap>
       </tr>
+       
     </tbody>
   </table>
 </ListView>
