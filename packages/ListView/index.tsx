@@ -11,10 +11,10 @@ import React from 'react';
 /** Docstring goes here */
 export interface ListViewProps {
   data: React.ReactNode[][];
-  headerItems: any;
-  tableClass: any;
-  tbodyClass: any;
-  theaderClass: any;
+  headerItems?: React.ReactNode[];
+  tableClass?: string;
+  tbodyClass?: string;
+  theaderClass?: string;
 }
 
 /** ListView */
@@ -22,10 +22,10 @@ const ListView: React.ElementType = (props: ListViewProps) => {
   const { data, headerItems, tableClass, tbodyClass, theaderClass } = props;
 
   /** changeme */
-  function renderHeaders(items: any[], thClass: any) {
+  function renderHeaders(items?: React.ReactNode[], thClass?: string) {
     if (items) {
       return (
-        <th className={thClass ? thClass : null}>
+        <th className={thClass}>
           <tr>
             <ElementMap items={items} HTMLTag="th" />
           </tr>
@@ -37,24 +37,30 @@ const ListView: React.ElementType = (props: ListViewProps) => {
   }
 
   /** changeme */
-  function renderRows(rowData: React.ReactNode[][], tbClass: any) {
+  function renderRows(rowData: React.ReactNode[][], tbClass?: string) {
     const result = rowData.map((item, itemKey) => (
       <tr key={itemKey}>
         <ElementMap items={[item]} HTMLTag="td" />
       </tr>
     ));
-    return <tbody className={tbClass ? tbClass : null}>{result}</tbody>;
+    return <tbody className={tbClass}> {result} </tbody>;
   }
 
   const headers = renderHeaders(headerItems, theaderClass);
   const rows = renderRows(data, tbodyClass);
 
   return (
-    <table className={tableClass ? tableClass : null}>
+    <table className={tableClass}>
       {headers}
       {rows}
     </table>
   );
+};
+
+ListView.defaultProps = {
+  tableClass: 'table',
+  tbodyClass: 'table-active',
+  theaderClass: 'thead-dark'
 };
 
 export default ListView;

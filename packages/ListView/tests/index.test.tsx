@@ -53,7 +53,6 @@ describe('ListView', () => {
         </div>
       );
     };
-
     const tableProps: ListViewProps = {
       data: [
         ['Data 1'],
@@ -69,14 +68,9 @@ describe('ListView', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
-
-  it('renders correctly without table, thead and tbody classes', () => {
+  it('renders correctly without th, tbclass, tbodyclass and theaderclass', () => {
     const props: ListViewProps = {
-      data: [['Data 1'], [999], ['Data 3']],
-      headerItems: ['Columns'],
-      tableClass: undefined,
-      tbodyClass: undefined,
-      theaderClass: undefined
+      data: [['Data 1'], [999], ['Data 3']]
     };
     const wrapper = mount(<ListView {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
