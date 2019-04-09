@@ -3,12 +3,11 @@ import React from 'react';
 
 /**
  * TODO
- * 1. custom class names for table, tbody, and thead
- * 2. entire thead as optional
- * 3. Future PR: custom renderHeaders and renderRows supplied as props
+ * 1. Future PR: custom renderHeaders and renderRows supplied as props
  */
 
-/** Docstring goes here */
+/** Custom Re-uasble Listview Component  */
+
 export interface ListViewProps {
   data: React.ReactNode[][];
   headerItems?: React.ReactNode[];
@@ -17,11 +16,9 @@ export interface ListViewProps {
   theaderClass?: string;
 }
 
-/** ListView */
 const ListView: React.ElementType = (props: ListViewProps) => {
   const { data, headerItems, tableClass, tbodyClass, theaderClass } = props;
 
-  /** changeme */
   function renderHeaders(items?: React.ReactNode[], thClass?: string) {
     if (items) {
       return (
@@ -36,7 +33,6 @@ const ListView: React.ElementType = (props: ListViewProps) => {
     }
   }
 
-  /** changeme */
   function renderRows(rowData: React.ReactNode[][], tbClass?: string) {
     const rows = rowData.map((item, itemKey) => (
       <tr key={itemKey}>
