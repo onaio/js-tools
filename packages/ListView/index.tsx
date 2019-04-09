@@ -25,11 +25,11 @@ const ListView: React.ElementType = (props: ListViewProps) => {
   function renderHeaders(items?: React.ReactNode[], thClass?: string) {
     if (items) {
       return (
-        <th className={thClass}>
+        <thead className={thClass}>
           <tr>
             <ElementMap items={items} HTMLTag="th" />
           </tr>
-        </th>
+        </thead>
       );
     } else {
       return null;
@@ -38,21 +38,21 @@ const ListView: React.ElementType = (props: ListViewProps) => {
 
   /** changeme */
   function renderRows(rowData: React.ReactNode[][], tbClass?: string) {
-    const result = rowData.map((item, itemKey) => (
+    const rows = rowData.map((item, itemKey) => (
       <tr key={itemKey}>
         <ElementMap items={[item]} HTMLTag="td" />
       </tr>
     ));
-    return <tbody className={tbClass}> {result} </tbody>;
+    return <tbody className={tbClass}>{rows}</tbody>;
   }
 
-  const headers = renderHeaders(headerItems, theaderClass);
-  const rows = renderRows(data, tbodyClass);
+  const tableHeaders = renderHeaders(headerItems, theaderClass);
+  const tableRows = renderRows(data, tbodyClass);
 
   return (
     <table className={tableClass}>
-      {headers}
-      {rows}
+      {tableHeaders}
+      {tableRows}
     </table>
   );
 };
