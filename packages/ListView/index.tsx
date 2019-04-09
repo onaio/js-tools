@@ -6,7 +6,7 @@ import React from 'react';
  * 1. Future PR: custom renderHeaders and renderRows supplied as props
  */
 
-/** Custom Re-uasble Listview Component  */
+/** Custom Re-usable Listview Component  */
 
 export interface ListViewProps {
   data: React.ReactNode[][];
