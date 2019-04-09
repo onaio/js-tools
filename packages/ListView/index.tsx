@@ -58,9 +58,9 @@ const ListView: React.ElementType = (props: ListViewProps) => {
 };
 
 ListView.defaultProps = {
-  tableClass: 'table',
-  tbodyClass: 'table-active',
-  theaderClass: 'thead-dark'
+  tableClass: 'listview',
+  tbodyClass: 'listview-tbody',
+  theaderClass: 'listview-thead'
 };
 
 export default ListView;
