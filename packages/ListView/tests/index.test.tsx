@@ -39,7 +39,7 @@ describe('ListView', () => {
       headerItems: ['Columns'],
       tableClass: 'table-striped',
       tbodyClass: 'table-active',
-      theaderClass: 'thead-dark'
+      theadClass: 'thead-dark'
     };
     const wrapper = mount(<ListView {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -63,12 +63,13 @@ describe('ListView', () => {
       headerItems: ['Columns'],
       tableClass: 'table-striped',
       tbodyClass: 'table-active',
-      theaderClass: 'thead-dark'
+      theadClass: 'thead-dark'
     };
     const wrapper = mount(<ListView {...tableProps} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
+
   it('renders correctly without thead, tableClass, tbodyClass', () => {
     const props: ListViewProps = {
       data: [['Data 1'], [999], ['Data 3']]
