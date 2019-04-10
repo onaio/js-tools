@@ -1,7 +1,7 @@
 import ElementMap from '@onaio/element-map';
 import React from 'react';
 
-/** Interface to define props of ListView */
+/** Type definition for renderHeadersFunc */
 export type renderHeadersFuncType = (items?: React.ReactNode[], thClass?: string) => Element | null;
 
 /** Renders table header items using ElementMap to map through data items */
@@ -19,7 +19,7 @@ export function renderHeadersFunc(items?: React.ReactNode[], thClass?: string) {
   }
 }
 
-/** Interface for ListView props */
+/** Interface to define props of ListView */
 export interface ListViewProps {
   data: React.ReactNode[][];
   headerItems?: React.ReactNode[];
