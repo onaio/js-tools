@@ -390,7 +390,7 @@ exports[`ListView renders correctly with rows containing components 1`] = `
 </ListView>
 `;
 
-exports[`ListView renders correctly without th, tbclass, tbodyclass and theaderclass 1`] = `
+exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = `
 <ListView
   data={
     Array [

@@ -6,8 +6,10 @@ import React from 'react';
  * 1. Future PR: custom renderHeaders and renderRows supplied as props
  */
 
-/** Custom Re-usable Listview Component  */
+/** A simple component that takes in data and renders it in a tabular view.
+ */
 
+/** Interface to define props of ListView */
 export interface ListViewProps {
   data: React.ReactNode[][];
   headerItems?: React.ReactNode[];
@@ -17,8 +19,10 @@ export interface ListViewProps {
 }
 
 const ListView: React.ElementType = (props: ListViewProps) => {
+  /** Destructuring respective ListviewProps */
   const { data, headerItems, tableClass, tbodyClass, theaderClass } = props;
 
+  /** Renders table header items using ElementMap to map through data items */
   function renderHeaders(items?: React.ReactNode[], thClass?: string) {
     if (items) {
       return (
@@ -32,7 +36,7 @@ const ListView: React.ElementType = (props: ListViewProps) => {
       return null;
     }
   }
-
+  /** Renders table row items using ElementMap to map through data items */
   function renderRows(rowData: React.ReactNode[][], tbClass?: string) {
     const rows = rowData.map((item, itemKey) => (
       <tr key={itemKey}>
