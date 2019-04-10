@@ -1,14 +1,6 @@
 import ElementMap from '@onaio/element-map';
 import React from 'react';
 
-/**
- * TODO
- * 1. Future PR: custom renderHeaders and renderRows supplied as props
- */
-
-/** A simple component that takes in data and renders it in a tabular view.
- */
-
 /** Interface to define props of ListView */
 export type renderHeadersFuncType = (items?: React.ReactNode[], thClass?: string) => Element | null;
 
@@ -27,7 +19,7 @@ export function renderHeadersFunc(items?: React.ReactNode[], thClass?: string) {
   }
 }
 
-/** Docstring goes here */
+/** Interface for ListView props */
 export interface ListViewProps {
   data: React.ReactNode[][];
   headerItems?: React.ReactNode[];
@@ -37,7 +29,8 @@ export interface ListViewProps {
   renderHeaders?: renderHeadersFuncType;
 }
 
-/** Custom Re-usable Listview Component  */
+/** A simple component that takes in data and renders it in a tabular view.
+ */
 const ListView: React.ElementType = (props: ListViewProps) => {
   const { data, headerItems, renderHeaders, tableClass, tbodyClass, theadClass } = props;
 
