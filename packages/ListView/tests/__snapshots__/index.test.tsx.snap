@@ -182,6 +182,163 @@ exports[`ListView renders correctly 1`] = `
 </ListView>
 `;
 
+exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
+<ListView
+  data={
+    Array [
+      Array [
+        "Ed",
+        6,
+      ],
+      Array [
+        "Edd",
+        12,
+      ],
+      Array [
+        "Eddie",
+        17,
+      ],
+    ]
+  }
+  headerItems={
+    Array [
+      "Name",
+      "Age",
+    ]
+  }
+  renderHeaders={[Function]}
+  tableClass="listview"
+  tbodyClass="listview-tbody"
+  theadClass="listview-thead"
+>
+  <table
+    className="listview"
+  >
+    <thead
+      className="listview-thead"
+    >
+      <tr>
+        <th
+          colSpan={2}
+        >
+          Top Header
+        </th>
+      </tr>
+      <tr>
+        <ElementMap
+          HTMLTag="th"
+          className="element-map"
+          items={
+            Array [
+              "Name",
+              "Age",
+            ]
+          }
+        >
+          <th
+            className="element-map"
+            key="0"
+          >
+            Name
+          </th>
+          <th
+            className="element-map"
+            key="1"
+          >
+            Age
+          </th>
+        </ElementMap>
+      </tr>
+    </thead>
+    <tbody
+      className="listview-tbody"
+    >
+      <tr
+        key="0"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              "Ed",
+              6,
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Ed
+          </td>
+          <td
+            className="element-map"
+            key="1"
+          >
+            6
+          </td>
+        </ElementMap>
+      </tr>
+      <tr
+        key="1"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              "Edd",
+              12,
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Edd
+          </td>
+          <td
+            className="element-map"
+            key="1"
+          >
+            12
+          </td>
+        </ElementMap>
+      </tr>
+      <tr
+        key="2"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              "Eddie",
+              17,
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Eddie
+          </td>
+          <td
+            className="element-map"
+            key="1"
+          >
+            17
+          </td>
+        </ElementMap>
+      </tr>
+    </tbody>
+  </table>
+</ListView>
+`;
+
 exports[`ListView renders correctly with different types of data 1`] = `
 <ListView
   data={
@@ -292,6 +449,124 @@ exports[`ListView renders correctly with different types of data 1`] = `
             key="0"
           >
             Data 3
+          </td>
+        </ElementMap>
+      </tr>
+    </tbody>
+  </table>
+</ListView>
+`;
+
+exports[`ListView renders correctly with no renderHeaders prop 1`] = `
+<ListView
+  data={
+    Array [
+      Array [
+        "Ed",
+      ],
+      Array [
+        "Edd",
+      ],
+      Array [
+        "Eddie",
+      ],
+    ]
+  }
+  headerItems={
+    Array [
+      "Name",
+    ]
+  }
+  renderHeaders={[Function]}
+  tableClass="listview"
+  tbodyClass="listview-tbody"
+  theadClass="listview-thead"
+>
+  <table
+    className="listview"
+  >
+    <thead
+      className="listview-thead"
+    >
+      <tr>
+        <ElementMap
+          HTMLTag="th"
+          className="element-map"
+          items={
+            Array [
+              "Name",
+            ]
+          }
+        >
+          <th
+            className="element-map"
+            key="0"
+          >
+            Name
+          </th>
+        </ElementMap>
+      </tr>
+    </thead>
+    <tbody
+      className="listview-tbody"
+    >
+      <tr
+        key="0"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              "Ed",
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Ed
+          </td>
+        </ElementMap>
+      </tr>
+      <tr
+        key="1"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              "Edd",
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Edd
+          </td>
+        </ElementMap>
+      </tr>
+      <tr
+        key="2"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              "Eddie",
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Eddie
           </td>
         </ElementMap>
       </tr>

@@ -78,4 +78,35 @@ describe('ListView', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
+
+  it('renders correctly with custom renderHeaders prop', () => {
+    const props = {
+      data: [['Ed', 6], ['Edd', 12], ['Eddie', 17]],
+      headerItems: ['Name', 'Age'],
+      renderHeaders: (items, cssClass) => (
+        <thead className={cssClass}>
+          <tr>
+            <th colSpan={2}>Top Header</th>
+          </tr>
+          <tr>
+            <ElementMap items={items} HTMLTag="th" />
+          </tr>
+        </thead>
+      )
+    };
+    const wrapper = mount(<ListView {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('renders correctly with no renderHeaders prop', () => {
+    const props = {
+      data: [['Ed'], ['Edd'], ['Eddie']],
+      headerItems: ['Name'],
+      renderHeaders: undefined
+    };
+    const wrapper = mount(<ListView {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
 });
