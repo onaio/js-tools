@@ -44,7 +44,7 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
    * is updated to match it
    */
   useEffect(() => {
-    if (props.rootParentId !== currentParentId) {
+    if (props.rootParentId != null && props.rootParentId !== currentParentId) {
       setPreviousParentId(currentParentId);
       setCurrentParentId(props.rootParentId);
     }
