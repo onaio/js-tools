@@ -8,18 +8,18 @@ import WithHeaders, { getColumns } from './WithHeaders';
 
 /** Type definition for hasChildrenFunc */
 export type hasChildrenFuncType = (
-  currentRow: RowInfo,
+  currentObject: RowInfo | CellInfo,
   parentIdList: number[] | string[],
   idField: string | number
 ) => boolean;
 
 /** Check if a row of data has children */
 export function hasChildrenFunc(
-  currentRow: RowInfo,
+  currentObject: RowInfo | CellInfo,
   parentIdList: number[] | string[],
   idField: string | number = 'id'
 ) {
-  return parentIdList.includes(currentRow.original[idField]);
+  return parentIdList.includes(currentObject.original[idField]);
 }
 
 /** Interface to define props of Drill down table */
