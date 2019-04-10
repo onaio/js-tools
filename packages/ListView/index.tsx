@@ -6,38 +6,38 @@ import React from 'react';
  * 1. Future PR: custom renderHeaders and renderRows supplied as props
  */
 
-/** changeme */
-export type renderHeadersFuncType = (items?: React.ReactNode[], thClass?: string) => Element | null;
+/** A simple component that takes in data and renders it in a tabular view.
+ */
 
-/** changeme */
-export function renderHeadersFunc(items?: React.ReactNode[], thClass?: string) {
-  if (items) {
-    return (
-      <thead className={thClass}>
-        <tr>
-          <ElementMap items={items} HTMLTag="th" />
-        </tr>
-      </thead>
-    );
-  } else {
-    return null;
-  }
-}
-
-/** Docstring goes here */
+/** Interface to define props of ListView */
 export interface ListViewProps {
   data: React.ReactNode[][];
   headerItems?: React.ReactNode[];
   tableClass?: string;
   tbodyClass?: string;
   theadClass?: string;
-  renderHeaders?: renderHeadersFuncType;
 }
 
 /** Custom Re-usable Listview Component  */
 const ListView: React.ElementType = (props: ListViewProps) => {
-  const { data, headerItems, renderHeaders, tableClass, tbodyClass, theadClass } = props;
+  /** Destructuring respective ListviewProps */
+  const { data, headerItems, tableClass, tbodyClass } = props;
 
+  /** Renders table header items using ElementMap to map through data items */
+  function renderHeaders(items?: React.ReactNode[], thClass?: string) {
+    if (items) {
+      return (
+        <thead className={thClass}>
+          <tr>
+            <ElementMap items={items} HTMLTag="th" />
+          </tr>
+        </thead>
+      );
+    } else {
+      return null;
+    }
+  }
+  /** Renders table row items using ElementMap to map through data items */
   function renderRows(rowData: React.ReactNode[][], tbClass?: string) {
     const rows = rowData.map((items, itemKey) => (
       <tr key={itemKey}>
@@ -51,14 +51,13 @@ const ListView: React.ElementType = (props: ListViewProps) => {
 
   return (
     <table className={tableClass}>
-      {renderHeaders && renderHeaders(headerItems, theadClass)}
+      {renderHeaders && renderHeaders(headerItems)}
       {tableRows}
     </table>
   );
 };
 
 ListView.defaultProps = {
-  renderHeaders: renderHeadersFunc,
   tableClass: 'listview',
   tbodyClass: 'listview-tbody',
   theadClass: 'listview-thead'

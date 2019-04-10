@@ -69,8 +69,7 @@ describe('ListView', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
-
-  it('renders correctly without th, tbclass, tbodyclass and theadClass', () => {
+  it('renders correctly without thead, tableClass, tbodyClass', () => {
     const props: ListViewProps = {
       data: [['Data 1'], [999], ['Data 3']]
     };
