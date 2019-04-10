@@ -224,4 +224,14 @@ describe('DrillDownTable', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
+
+  it('works with custom hasChildren callback', () => {
+    const props = {
+      data: dataLowestLevel,
+      hasChildren: (item, parents, idfield) => item.original[idfield] === 10
+    };
+    const wrapper = mount(<DrillDownTable {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
 });
