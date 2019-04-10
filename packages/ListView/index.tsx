@@ -43,9 +43,9 @@ const ListView: React.ElementType = (props: ListViewProps) => {
 
   /** Renders table row items using ElementMap to map through data items */
   function renderRows(rowData: React.ReactNode[][], tbClass?: string) {
-    const rows = rowData.map((item, itemKey) => (
+    const rows = rowData.map((items, itemKey) => (
       <tr key={itemKey}>
-        <ElementMap items={[item]} HTMLTag="td" />
+        <ElementMap items={items} HTMLTag="td" />
       </tr>
     ));
     return <tbody className={tbClass}>{rows}</tbody>;

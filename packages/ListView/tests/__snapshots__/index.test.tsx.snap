@@ -5,24 +5,33 @@ exports[`ListView renders correctly 1`] = `
   data={
     Array [
       Array [
-        "Data 1",
+        "Ed",
+        6,
+        "Taller",
       ],
       Array [
-        "Data 2",
+        "Edd",
+        12,
+        "Tallest",
       ],
       Array [
-        "Data 3",
+        "Eddie",
+        17,
+        "Tall",
       ],
     ]
   }
   headerItems={
     Array [
-      "Columns",
+      "Name",
+      "Age",
+      "Height",
     ]
   }
+  renderHeaders={[Function]}
   tableClass="table-striped"
   tbodyClass="table-active"
-  theaderClass="thead-dark"
+  theadClass="thead-dark"
 >
   <table
     className="table-striped"
@@ -36,7 +45,9 @@ exports[`ListView renders correctly 1`] = `
           className="element-map"
           items={
             Array [
-              "Columns",
+              "Name",
+              "Age",
+              "Height",
             ]
           }
         >
@@ -44,7 +55,19 @@ exports[`ListView renders correctly 1`] = `
             className="element-map"
             key="0"
           >
-            Columns
+            Name
+          </th>
+          <th
+            className="element-map"
+            key="1"
+          >
+            Age
+          </th>
+          <th
+            className="element-map"
+            key="2"
+          >
+            Height
           </th>
         </ElementMap>
       </tr>
@@ -60,9 +83,9 @@ exports[`ListView renders correctly 1`] = `
           className="element-map"
           items={
             Array [
-              Array [
-                "Data 1",
-              ],
+              "Ed",
+              6,
+              "Taller",
             ]
           }
         >
@@ -70,7 +93,19 @@ exports[`ListView renders correctly 1`] = `
             className="element-map"
             key="0"
           >
-            Data 1
+            Ed
+          </td>
+          <td
+            className="element-map"
+            key="1"
+          >
+            6
+          </td>
+          <td
+            className="element-map"
+            key="2"
+          >
+            Taller
           </td>
         </ElementMap>
       </tr>
@@ -82,9 +117,9 @@ exports[`ListView renders correctly 1`] = `
           className="element-map"
           items={
             Array [
-              Array [
-                "Data 2",
-              ],
+              "Edd",
+              12,
+              "Tallest",
             ]
           }
         >
@@ -92,7 +127,19 @@ exports[`ListView renders correctly 1`] = `
             className="element-map"
             key="0"
           >
-            Data 2
+            Edd
+          </td>
+          <td
+            className="element-map"
+            key="1"
+          >
+            12
+          </td>
+          <td
+            className="element-map"
+            key="2"
+          >
+            Tallest
           </td>
         </ElementMap>
       </tr>
@@ -104,9 +151,9 @@ exports[`ListView renders correctly 1`] = `
           className="element-map"
           items={
             Array [
-              Array [
-                "Data 3",
-              ],
+              "Eddie",
+              17,
+              "Tall",
             ]
           }
         >
@@ -114,7 +161,19 @@ exports[`ListView renders correctly 1`] = `
             className="element-map"
             key="0"
           >
-            Data 3
+            Eddie
+          </td>
+          <td
+            className="element-map"
+            key="1"
+          >
+            17
+          </td>
+          <td
+            className="element-map"
+            key="2"
+          >
+            Tall
           </td>
         </ElementMap>
       </tr>
@@ -143,9 +202,10 @@ exports[`ListView renders correctly with different types of data 1`] = `
       "Columns",
     ]
   }
+  renderHeaders={[Function]}
   tableClass="table-striped"
   tbodyClass="table-active"
-  theaderClass="thead-dark"
+  theadClass="thead-dark"
 >
   <table
     className="table-striped"
@@ -183,9 +243,7 @@ exports[`ListView renders correctly with different types of data 1`] = `
           className="element-map"
           items={
             Array [
-              Array [
-                "Data 1",
-              ],
+              "Data 1",
             ]
           }
         >
@@ -205,9 +263,7 @@ exports[`ListView renders correctly with different types of data 1`] = `
           className="element-map"
           items={
             Array [
-              Array [
-                999,
-              ],
+              999,
             ]
           }
         >
@@ -227,9 +283,7 @@ exports[`ListView renders correctly with different types of data 1`] = `
           className="element-map"
           items={
             Array [
-              Array [
-                "Data 3",
-              ],
+              "Data 3",
             ]
           }
         >
@@ -270,9 +324,10 @@ exports[`ListView renders correctly with rows containing components 1`] = `
       "Columns",
     ]
   }
+  renderHeaders={[Function]}
   tableClass="table-striped"
   tbodyClass="table-active"
-  theaderClass="thead-dark"
+  theadClass="thead-dark"
 >
   <table
     className="table-striped"
@@ -310,9 +365,7 @@ exports[`ListView renders correctly with rows containing components 1`] = `
           className="element-map"
           items={
             Array [
-              Array [
-                "Data 1",
-              ],
+              "Data 1",
             ]
           }
         >
@@ -332,11 +385,9 @@ exports[`ListView renders correctly with rows containing components 1`] = `
           className="element-map"
           items={
             Array [
-              Array [
-                <div>
-                  Data 2
-                </div>,
-              ],
+              <div>
+                Data 2
+              </div>,
             ]
           }
         >
@@ -360,11 +411,9 @@ exports[`ListView renders correctly with rows containing components 1`] = `
           className="element-map"
           items={
             Array [
-              Array [
-                <SomeComponent
-                  value="Data 3"
-                />,
-              ],
+              <SomeComponent
+                value="Data 3"
+              />,
             ]
           }
         >
@@ -405,9 +454,10 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = 
       ],
     ]
   }
+  renderHeaders={[Function]}
   tableClass="listview"
   tbodyClass="listview-tbody"
-  theaderClass="listview-thead"
+  theadClass="listview-thead"
 >
   <table
     className="listview"
@@ -423,9 +473,7 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = 
           className="element-map"
           items={
             Array [
-              Array [
-                "Data 1",
-              ],
+              "Data 1",
             ]
           }
         >
@@ -445,9 +493,7 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = 
           className="element-map"
           items={
             Array [
-              Array [
-                999,
-              ],
+              999,
             ]
           }
         >
@@ -467,9 +513,7 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = 
           className="element-map"
           items={
             Array [
-              Array [
-                "Data 3",
-              ],
+              "Data 3",
             ]
           }
         >
