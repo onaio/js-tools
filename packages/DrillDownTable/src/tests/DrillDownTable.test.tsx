@@ -42,20 +42,21 @@ describe('DrillDownTable', () => {
       data
     };
     const wrapper = mount(<DrillDownTable {...props} />);
+    expect(toJson(wrapper.find('div.ReactTable'))).toMatchSnapshot();
     // drill down first level
     expect(wrapper.find('.dd-linker-item.dd-clickable').length).toEqual(3);
     wrapper
       .find('.dd-linker-item.dd-clickable')
       .first()
       .simulate('click');
-    expect(toJson(wrapper.find('ReactTable'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('div.ReactTable'))).toMatchSnapshot();
     // drill down second level
     expect(wrapper.find('.dd-linker-item.dd-clickable').length).toEqual(2);
     wrapper
       .find('.dd-linker-item.dd-clickable')
       .first()
       .simulate('click');
-    expect(toJson(wrapper.find('ReactTable'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('div.ReactTable'))).toMatchSnapshot();
     // there should now be no more drilling down possible
     expect(wrapper.find('.dd-linker-item.dd-clickable').length).toEqual(0);
     wrapper.unmount();
