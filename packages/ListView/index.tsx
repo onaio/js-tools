@@ -30,13 +30,13 @@ export interface ListViewProps {
   headerItems?: React.ReactNode[];
   tableClass?: string;
   tbodyClass?: string;
-  theaderClass?: string;
+  theadClass?: string;
   renderHeaders?: renderHeadersFuncType;
 }
 
 /** Custom Re-usable Listview Component  */
 const ListView: React.ElementType = (props: ListViewProps) => {
-  const { data, headerItems, renderHeaders, tableClass, tbodyClass, theaderClass } = props;
+  const { data, headerItems, renderHeaders, tableClass, tbodyClass, theadClass } = props;
 
   function renderRows(rowData: React.ReactNode[][], tbClass?: string) {
     const rows = rowData.map((item, itemKey) => (
@@ -51,7 +51,7 @@ const ListView: React.ElementType = (props: ListViewProps) => {
 
   return (
     <table className={tableClass}>
-      {renderHeaders && renderHeaders(headerItems, theaderClass)}
+      {renderHeaders && renderHeaders(headerItems, theadClass)}
       {tableRows}
     </table>
   );
@@ -61,7 +61,7 @@ ListView.defaultProps = {
   renderHeaders: renderHeadersFunc,
   tableClass: 'listview',
   tbodyClass: 'listview-tbody',
-  theaderClass: 'listview-thead'
+  theadClass: 'listview-thead'
 };
 
 export default ListView;
