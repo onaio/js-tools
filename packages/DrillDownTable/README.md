@@ -87,9 +87,29 @@ When the table is rendered, you can click anywhere on a row to drill down to the
 
 This is a component responsible for rendering the cell in which the `linkerField` (above) is found. By default it just adds a caret to show if you can drill down on a row of data or not. However you can supply your own component that renders whatever else you may want - for example instead of a caret you may want to show a link. Have a look at [`DropDownCell`](src/helpers/DropDownCell.tsx) for an example of how this component might look at.
 
+#### extraCellProps
+
+This is an object that represents extra props to be given to the `CellComponent` (above).
+
 #### useDrillDownTrProps
 
 By default `DrillDownTable` allows you to click on any row to drill-down to the next hierarchical level of data. This is achieved by having a [custom geTrProps](https://github.com/tannerlinsley/react-table/tree/v6#props) built into `DrillDownTable`. You can turn this off by setting `useDrillDownTrProps` to be `false`.
+
+#### hasChildren
+
+This is a function that returns a `boolean` indicating whether or not a row of data has children i.e. should you be able to drill down using the given row?
+
+A sample `hasChildren` function looks like so:
+
+```ts
+export function hasChildrenFunc(
+  currentObject: RowInfo | CellInfo,
+  parentIdList: number[] | string[],
+  idField: string | number = 'id'
+) {
+  return parentIdList.includes(currentObject.original[idField]);
+}
+```
 
 ### Code examples
 
@@ -152,6 +172,52 @@ const props = {
   data,
   linkerField: 'location',
   useDrillDownTrProps: false
+};
+<DrillDownTable {...props} />;
+```
+
+Use a custom `CellComponent` and `extraCellProps`.
+
+```tsx
+interface NewCellComponentProps extends DropDownCellProps {
+  urlPath: string;
+  caret: string;
+}
+
+const NewCellComponent: React.ElementType = (props: NewCellComponentProps) => {
+  const { cellValue, hasChildren, urlPath, caret } = props;
+  return (
+    <div>
+      <span>
+        {hasChildren ? (
+          <a href={urlPath}>
+            {cellValue} {caret}
+          </a>
+        ) : (
+          cellValue
+        )}
+      </span>
+    </div>
+  );
+};
+
+const props = {
+  CellComponent: NewCellComponent,
+  data,
+  extraCellProps: { urlPath: 'http://example.com', caret: <span>&#43;</span> }
+};
+<DrillDownTable {...props} />;
+```
+
+Use custom `hasChildren`
+
+```tsx
+import 'react-table/react-table.css';
+import DrillDownTable from '@onaio/drill-down-table/';
+
+const props = {
+  data: data,
+  hasChildren: (item, parents, idfield) => item.original[idfield] === 10
 };
 <DrillDownTable {...props} />;
 ```

@@ -4,6 +4,25 @@
 
 This is the home of shared javascript components and utilities for Ona.
 
+## Typescript Support
+
+It is actually recommended to create all new packages using `Typescript`. The instructions above on how to add a new package are all that you need to get started.
+
+In addition to the above instructions, you need to create a `tsconfig.json` file next to the package.json file inside your new package's directory.
+
+The contents of this file should be something like:
+
+```json
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declarationDir": "dist/types"
+  },
+  "include": ["src"]
+}
+```
+
 ## Contribution
 
 Contribution is highly encouraged. If you have something - a tool, a component, a useful utility function, etc. - that would be useful to others then by all means please add it to this repository.
@@ -84,7 +103,7 @@ Here's an example sample `package.json` for a `js`/`jsx` package:
   },
   "scripts": {
     "jest": "jest --coverage --verbose --color",
-    "transpile": "babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__' --copy-files"
+    "transpile": "babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__'"
   },
   // the list of files to be included by npm when the package is published
   "files": ["dist"],
@@ -128,7 +147,7 @@ Here's an example sample `package.json` for a `ts`/`tsx` package:
   "scripts": {
     "jest": "jest --coverage --verbose --color",
     "tsc": "tsc",
-    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__' --copy-files"
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
   },
   // the list of files to be included by npm when the package is published
   "files": ["dist"],
@@ -192,55 +211,68 @@ Your transpiled package is saved in the `dist` directory within each package. No
 
 ## Publishing
 
+### Prepare for publishing
+
+Before we publish our packages, we need to prepare them. Currently, this means we need to do two things: generating Typescript type delcaration files, and transpiling the code.
+
+You will need to switch to the package that you want to publish by running
+
+```sh
+cd packages/SomePackage
+```
+
+Transpile the package - this will create the distribution-ready files:
+
+The command to do this depends on whether the package uses javascript or Typescript.
+
+```sh
+# javascript package
+babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__'
+
+# typescript package
+yarn babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'
+```
+
+> Note that you may need to compy non-js/non-typescript files to the `dist` directory manually e.g. css files
+
+Once this is done, commit any changes to the `dist` folder.
+
+Next, generate type declaration files for packages written in Typescript:
+
+```sh
+yarn tsc
+```
+
+Once this is done, commit changes to the `types` folder. You may have to ignore some stubborn linter warnings.
+
+---
+
+Once you have done the above, you would then push your changes, have your code reviewed and eventually merged to master before you proceed.
+
+### Actually publish
+
 Assuming that you have the `js-tools` repo cloned locally, switch to the `master` branch and proceed:
 
-First, tag releases for Github - this will tag releases on Github and create a changelog for all updated packages:
+1. To authenticate with Github, you need to define the following environment variable:
+
+> _GH_TOKEN_ (required) - Your GitHub authentication token (under Settings > Developer settings > Personal access tokens)
+
+2. Next, tag releases on Github and create a changelog for all updated packages:
 
 ```sh
 lerna version --github-release --conventional-commits
 ```
 
-Next clean your `dist` folders locally to remove old files:
+3. At this point, we are ready to publish to `npm`. You would, of course, need to log in to npm first:
 
 ```sh
-yarn clean-build
+npm login
 ```
 
-Generate type declaration files for packages written in Typescript:
-
-```sh
-lerna run tsc
-```
-
-Transpile the packages - this will create the distribution-ready files for all packages:
-
-```sh
-lerna run transpile
-```
-
-Finally, publish the packages to the `npm` registry:
+4. Finally, publish the packages to the `npm` registry:
 
 ```sh
 lerna publish from-git
 ```
 
 You may want to checkout documentation for the [`lerna version`](https://github.com/lerna/lerna/tree/master/commands/version) and [`lerna publish`](https://github.com/lerna/lerna/tree/master/commands/publish) commands.
-
-## Typescript Support
-
-It is actually recommended to create all new packages using `Typescript`. The instructions above on how to add a new package are all that you need to get started.
-
-In addition to the above instructions, you need to create a `tsconfig.json` file next to the package.json file inside your new package's directory.
-
-The contents of this file should be something like:
-
-```json
-{
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "declarationDir": "dist/types"
-  },
-  "include": ["src"]
-}
-```

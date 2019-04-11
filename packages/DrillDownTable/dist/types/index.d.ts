@@ -1,13 +1,26 @@
 import React from 'react';
-import { TableProps } from 'react-table';
+import { CellInfo, RowInfo, TableProps } from 'react-table';
 import './DrillDownTable.css';
 import DropDownCell, { DropDownCellProps } from './helpers/DropDownCell';
 import { FlexObject } from './helpers/utils';
 import WithHeaders, { getColumns } from './WithHeaders';
+/** Type definition for hasChildrenFunc */
+export declare type hasChildrenFuncType = (
+  currentObject: RowInfo | CellInfo,
+  parentIdList: number[] | string[],
+  idField: string | number
+) => boolean;
+/** Check if a row of data has children */
+export declare function hasChildrenFunc(
+  currentObject: RowInfo | CellInfo,
+  parentIdList: number[] | string[],
+  idField?: string | number
+): boolean;
 /** Interface to define props of Drill down table */
 export interface DrillDownProps<T> extends Partial<TableProps<T>> {
   CellComponent: React.ElementType;
   extraCellProps?: FlexObject;
+  hasChildren?: hasChildrenFuncType;
   identifierField?: string;
   linkerField?: string;
   parentIdentifierField?: string;
@@ -22,6 +35,7 @@ declare function DrillDownTable<T>(props: Partial<DrillDownProps<T>>): JSX.Eleme
 declare namespace DrillDownTable {
   var defaultProps: {
     CellComponent: React.ElementType<any>;
+    hasChildren: typeof hasChildrenFunc;
     identifierField: string;
     linkerField: string;
     parentIdentifierField: string;

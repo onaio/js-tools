@@ -6,10 +6,27 @@ import DropDownCell, { DropDownCellProps } from './helpers/DropDownCell';
 import { FlexObject } from './helpers/utils';
 import WithHeaders, { getColumns } from './WithHeaders';
 
+/** Type definition for hasChildrenFunc */
+export type hasChildrenFuncType = (
+  currentObject: RowInfo | CellInfo,
+  parentIdList: number[] | string[],
+  idField: string | number
+) => boolean;
+
+/** Check if a row of data has children */
+export function hasChildrenFunc(
+  currentObject: RowInfo | CellInfo,
+  parentIdList: number[] | string[],
+  idField: string | number = 'id'
+) {
+  return parentIdList.includes(currentObject.original[idField]);
+}
+
 /** Interface to define props of Drill down table */
 export interface DrillDownProps<T> extends Partial<TableProps<T>> {
   CellComponent: React.ElementType;
   extraCellProps?: FlexObject;
+  hasChildren?: hasChildrenFuncType;
   identifierField?: string;
   linkerField?: string;
   parentIdentifierField?: string;
@@ -30,7 +47,7 @@ interface State<D> extends Partial<FinalState<D>> {
  * the lowest, nad back with maximum flexibility.
  */
 function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
-  const { data, parentIdentifierField, useDrillDownTrProps } = props;
+  const { data, hasChildren, parentIdentifierField, useDrillDownTrProps } = props;
   const columns = getColumns(props);
   // state variables
   const [currentParentId, setCurrentParentId] = useState(props.rootParentId);
@@ -44,7 +61,7 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
    * is updated to match it
    */
   useEffect(() => {
-    if (props.rootParentId !== currentParentId) {
+    if (props.rootParentId != null && props.rootParentId !== currentParentId) {
       setPreviousParentId(currentParentId);
       setCurrentParentId(props.rootParentId);
     }
@@ -71,15 +88,6 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
     return data;
   }
 
-  /** Check if a row of data has children */
-  function hasChildren(row: RowInfo) {
-    const { identifierField } = props;
-    if (identifierField && parentNodes && parentNodes.includes(row.original[identifierField])) {
-      return true;
-    }
-    return false;
-  }
-
   /** getTrProps hook set up to handle drill-down using click event */
   const drillDownTrProps = (row: RowInfo, instance: RowInfo) => {
     const { getTrProps } = props;
@@ -89,7 +97,7 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
     return {
       onClick: () => {
         if (props.identifierField && props.parentIdentifierField) {
-          if (hasChildren(instance)) {
+          if (hasChildren && hasChildren(instance, parentNodes, props.identifierField) === true) {
             const newParentId = instance.original[props.identifierField];
             const oldParentId = instance.original[props.parentIdentifierField];
             setCurrentParentId(newParentId);
@@ -114,10 +122,18 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
     if (el.accessor === linkerField) {
       el.Cell = (cell: CellInfo) => {
         if (CellComponent !== undefined) {
+          const { identifierField } = props;
+
+          let thisCellHasChildren = false;
+          if (hasChildren && identifierField && hasChildren(cell, parentNodes, identifierField)) {
+            thisCellHasChildren = true;
+          }
+
           const cellProps: DropDownCellProps = {
             cellValue: cell.value,
-            hasChildren: hasChildren(cell)
+            hasChildren: thisCellHasChildren
           };
+
           if (extraCellProps !== undefined) {
             Object.assign(cellProps, extraCellProps);
           }
@@ -148,6 +164,7 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
 
 DrillDownTable.defaultProps = {
   CellComponent: DropDownCell,
+  hasChildren: hasChildrenFunc,
   identifierField: ID,
   linkerField: ID,
   parentIdentifierField: PARENT_ID,

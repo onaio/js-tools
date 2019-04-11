@@ -7,6 +7,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.hasChildrenFunc = hasChildrenFunc;
 Object.defineProperty(exports, "DropDownCell", {
   enumerable: true,
   get: function get() {
@@ -47,8 +48,14 @@ var _DropDownCell = _interopRequireWildcard(require("./helpers/DropDownCell"));
 
 var _WithHeaders = _interopRequireWildcard(require("./WithHeaders"));
 
+function hasChildrenFunc(currentObject, parentIdList) {
+  var idField = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'id';
+  return parentIdList.includes(currentObject.original[idField]);
+}
+
 function DrillDownTable(props) {
   var data = props.data,
+      hasChildren = props.hasChildren,
       parentIdentifierField = props.parentIdentifierField,
       useDrillDownTrProps = props.useDrillDownTrProps;
   var columns = (0, _WithHeaders.getColumns)(props);
@@ -74,7 +81,7 @@ function DrillDownTable(props) {
       setPreviousParentId = _useState8[1];
 
   (0, _react.useEffect)(function () {
-    if (props.rootParentId !== currentParentId) {
+    if (props.rootParentId != null && props.rootParentId !== currentParentId) {
       setPreviousParentId(currentParentId);
       setCurrentParentId(props.rootParentId);
     }
@@ -104,16 +111,6 @@ function DrillDownTable(props) {
     return data;
   }
 
-  function hasChildren(row) {
-    var identifierField = props.identifierField;
-
-    if (identifierField && parentNodes && parentNodes.includes(row.original[identifierField])) {
-      return true;
-    }
-
-    return false;
-  }
-
   var drillDownTrProps = function drillDownTrProps(row, instance) {
     var getTrProps = props.getTrProps;
 
@@ -124,7 +121,7 @@ function DrillDownTable(props) {
     return {
       onClick: function onClick() {
         if (props.identifierField && props.parentIdentifierField) {
-          if (hasChildren(instance)) {
+          if (hasChildren && hasChildren(instance, parentNodes, props.identifierField) === true) {
             var newParentId = instance.original[props.identifierField];
             var oldParentId = instance.original[props.parentIdentifierField];
             setCurrentParentId(newParentId);
@@ -149,9 +146,16 @@ function DrillDownTable(props) {
     if (el.accessor === linkerField) {
       el.Cell = function (cell) {
         if (CellComponent !== undefined) {
+          var _identifierField = props.identifierField;
+          var thisCellHasChildren = false;
+
+          if (hasChildren && _identifierField && hasChildren(cell, parentNodes, _identifierField)) {
+            thisCellHasChildren = true;
+          }
+
           var cellProps = {
             cellValue: cell.value,
-            hasChildren: hasChildren(cell)
+            hasChildren: thisCellHasChildren
           };
 
           if (extraCellProps !== undefined) {
@@ -187,6 +191,7 @@ function DrillDownTable(props) {
 
 DrillDownTable.defaultProps = {
   CellComponent: _DropDownCell.default,
+  hasChildren: hasChildrenFunc,
   identifierField: _constants.ID,
   linkerField: _constants.ID,
   parentIdentifierField: _constants.PARENT_ID,
