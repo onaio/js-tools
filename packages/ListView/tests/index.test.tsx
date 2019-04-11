@@ -110,31 +110,18 @@ describe('ListView', () => {
     wrapper.unmount();
   });
 
-  it('renders correctly with custom renderHeaders prop', () => {
+  it('renders correctly with custom renderRows prop', () => {
     const props = {
       data: [['Ed', 6], ['Edd', 12], ['Eddie', 17]],
       headerItems: ['Name', 'Age'],
-      renderHeaders: (items, cssClass) => (
-        <thead className={cssClass}>
-          <tr>
-            <th colSpan={2}>Top Header</th>
+      renderRows: (rowData, cssClass) => {
+        const rows = rowData.map((items, itemKey) => (
+          <tr key={itemKey}>
+            <ElementMap items={items} HTMLTag="td" />
           </tr>
-          <tr>
-            <ElementMap items={items} HTMLTag="th" />
-          </tr>
-        </thead>
-      )
-    };
-    const wrapper = mount(<ListView {...props} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
-    wrapper.unmount();
-  });
-
-  it('renders correctly with no renderHeaders prop', () => {
-    const props = {
-      data: [['Ed'], ['Edd'], ['Eddie']],
-      headerItems: ['Name'],
-      renderHeaders: undefined
+        ));
+        return <tbody className={cssClass}>{rows}</tbody>;
+      }
     };
     const wrapper = mount(<ListView {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();

@@ -1,10 +1,12 @@
 import ElementMap from '@onaio/element-map';
 import React from 'react';
 
-/** Type definition for renderHeadersFunc */
+/** Type definition for renderHeaderFunc */
 export type renderHeadersFuncType = (items?: React.ReactNode[], thClass?: string) => Element | null;
+/** Type definition for renderRowsFunc */
+export type renderRowsFuncType = (rowData: React.ReactNode[][], tbClass?: string) => Element;
 
-/** Renders table header items using ElementMap to map through data items */
+/** Renders header section of a table */
 export function renderHeadersFunc(items?: React.ReactNode[], thClass?: string) {
   if (items) {
     return (
@@ -19,7 +21,17 @@ export function renderHeadersFunc(items?: React.ReactNode[], thClass?: string) {
   }
 }
 
-/** Interface to define props of ListView */
+/** Renders table body section of the table */
+export function renderRowsFunc(rowData: React.ReactNode[][], tbClass?: string) {
+  const rows = rowData.map((items, itemKey) => (
+    <tr key={itemKey}>
+      <ElementMap items={items} HTMLTag="td" />
+    </tr>
+  ));
+  return <tbody className={tbClass}>{rows}</tbody>;
+}
+
+/** Interface to define props for ListView */
 export interface ListViewProps {
   data: React.ReactNode[][];
   headerItems?: React.ReactNode[];
@@ -27,35 +39,32 @@ export interface ListViewProps {
   tbodyClass?: string;
   theadClass?: string;
   renderHeaders?: renderHeadersFuncType;
+  renderRows?: renderRowsFuncType;
 }
 
-/** A simple component that takes in data and renders it in a tabular view.
- */
+/** A simple component that takes in data and renders it in a tabular view  */
 const ListView: React.ElementType = (props: ListViewProps) => {
-  const { data, headerItems, renderHeaders, tableClass, tbodyClass, theadClass } = props;
-
-  /** Renders table row items using ElementMap to map through data items */
-  function renderRows(rowData: React.ReactNode[][], tbClass?: string) {
-    const rows = rowData.map((items, itemKey) => (
-      <tr key={itemKey}>
-        <ElementMap items={items} HTMLTag="td" />
-      </tr>
-    ));
-    return <tbody className={tbClass}>{rows}</tbody>;
-  }
-
-  const tableRows = renderRows(data, tbodyClass);
+  const {
+    data,
+    headerItems,
+    renderHeaders,
+    renderRows,
+    tableClass,
+    tbodyClass,
+    theadClass
+  } = props;
 
   return (
     <table className={tableClass}>
       {renderHeaders && renderHeaders(headerItems, theadClass)}
-      {tableRows}
+      {renderRows && renderRows(data, tbodyClass)}
     </table>
   );
 };
 
 ListView.defaultProps = {
   renderHeaders: renderHeadersFunc,
+  renderRows: renderRowsFunc,
   tableClass: 'listview',
   tbodyClass: 'listview-tbody',
   theadClass: 'listview-thead'
