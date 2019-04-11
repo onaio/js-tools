@@ -21,7 +21,7 @@ export function renderHeadersFunc(items?: React.ReactNode[], thClass?: string) {
   }
 }
 
-/** Renders table body section of the table */
+/** Renders body section of the table */
 export function renderRowsFunc(rowData: React.ReactNode[][], tbClass?: string) {
   const rows = rowData.map((items, itemKey) => (
     <tr key={itemKey}>
