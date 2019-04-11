@@ -109,4 +109,22 @@ describe('ListView', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
+
+  it('renders correctly with custom renderRows prop', () => {
+    const props = {
+      data: [['Ed', 6], ['Edd', 12], ['Eddie', 17]],
+      headerItems: ['Name', 'Age'],
+      renderRows: (rowData, cssClass) => {
+        const rows = rowData.map((items, itemKey) => (
+          <tr key={itemKey}>
+            <ElementMap items={items} HTMLTag="td" />
+          </tr>
+        ));
+        return <tbody className={cssClass}>{rows}</tbody>;
+      }
+    };
+    const wrapper = mount(<ListView {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
 });

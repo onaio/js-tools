@@ -29,6 +29,7 @@ exports[`ListView renders correctly 1`] = `
     ]
   }
   renderHeaders={[Function]}
+  renderRows={[Function]}
   tableClass="table-striped"
   tbodyClass="table-active"
   theadClass="thead-dark"
@@ -207,6 +208,7 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
     ]
   }
   renderHeaders={[Function]}
+  renderRows={[Function]}
   tableClass="listview"
   tbodyClass="listview-tbody"
   theadClass="listview-thead"
@@ -224,6 +226,157 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
           Top Header
         </th>
       </tr>
+      <tr>
+        <ElementMap
+          HTMLTag="th"
+          className="element-map"
+          items={
+            Array [
+              "Name",
+              "Age",
+            ]
+          }
+        >
+          <th
+            className="element-map"
+            key="0"
+          >
+            Name
+          </th>
+          <th
+            className="element-map"
+            key="1"
+          >
+            Age
+          </th>
+        </ElementMap>
+      </tr>
+    </thead>
+    <tbody
+      className="listview-tbody"
+    >
+      <tr
+        key="0"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              "Ed",
+              6,
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Ed
+          </td>
+          <td
+            className="element-map"
+            key="1"
+          >
+            6
+          </td>
+        </ElementMap>
+      </tr>
+      <tr
+        key="1"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              "Edd",
+              12,
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Edd
+          </td>
+          <td
+            className="element-map"
+            key="1"
+          >
+            12
+          </td>
+        </ElementMap>
+      </tr>
+      <tr
+        key="2"
+      >
+        <ElementMap
+          HTMLTag="td"
+          className="element-map"
+          items={
+            Array [
+              "Eddie",
+              17,
+            ]
+          }
+        >
+          <td
+            className="element-map"
+            key="0"
+          >
+            Eddie
+          </td>
+          <td
+            className="element-map"
+            key="1"
+          >
+            17
+          </td>
+        </ElementMap>
+      </tr>
+    </tbody>
+  </table>
+</ListView>
+`;
+
+exports[`ListView renders correctly with custom renderRows prop 1`] = `
+<ListView
+  data={
+    Array [
+      Array [
+        "Ed",
+        6,
+      ],
+      Array [
+        "Edd",
+        12,
+      ],
+      Array [
+        "Eddie",
+        17,
+      ],
+    ]
+  }
+  headerItems={
+    Array [
+      "Name",
+      "Age",
+    ]
+  }
+  renderHeaders={[Function]}
+  renderRows={[Function]}
+  tableClass="listview"
+  tbodyClass="listview-tbody"
+  theadClass="listview-thead"
+>
+  <table
+    className="listview"
+  >
+    <thead
+      className="listview-thead"
+    >
       <tr>
         <ElementMap
           HTMLTag="th"
@@ -360,6 +513,7 @@ exports[`ListView renders correctly with different types of data 1`] = `
     ]
   }
   renderHeaders={[Function]}
+  renderRows={[Function]}
   tableClass="table-striped"
   tbodyClass="table-active"
   theadClass="thead-dark"
@@ -478,6 +632,7 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
     ]
   }
   renderHeaders={[Function]}
+  renderRows={[Function]}
   tableClass="listview"
   tbodyClass="listview-tbody"
   theadClass="listview-thead"
@@ -600,6 +755,7 @@ exports[`ListView renders correctly with rows containing components 1`] = `
     ]
   }
   renderHeaders={[Function]}
+  renderRows={[Function]}
   tableClass="table-striped"
   tbodyClass="table-active"
   theadClass="thead-dark"
@@ -730,6 +886,7 @@ exports[`ListView renders correctly without th, tbclass, tbodyclass and theadCla
     ]
   }
   renderHeaders={[Function]}
+  renderRows={[Function]}
   tableClass="listview"
   tbodyClass="listview-tbody"
   theadClass="listview-thead"
