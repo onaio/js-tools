@@ -32,7 +32,10 @@ exports[`ListView renders correctly 1`] = `
   renderRows={[Function]}
   tableClass="table-striped"
   tbodyClass="table-active"
+  tdClass="table-primary"
+  thClass="table-info"
   theadClass="thead-dark"
+  trClass="table-success"
 >
   <table
     className="table-striped"
@@ -40,10 +43,12 @@ exports[`ListView renders correctly 1`] = `
     <thead
       className="thead-dark"
     >
-      <tr>
+      <tr
+        className="table-success"
+      >
         <ElementMap
           HTMLTag="th"
-          className="element-map"
+          className="table-primary"
           items={
             Array [
               "Name",
@@ -53,19 +58,19 @@ exports[`ListView renders correctly 1`] = `
           }
         >
           <th
-            className="element-map"
+            className="table-primary"
             key="0"
           >
             Name
           </th>
           <th
-            className="element-map"
+            className="table-primary"
             key="1"
           >
             Age
           </th>
           <th
-            className="element-map"
+            className="table-primary"
             key="2"
           >
             Height
@@ -77,11 +82,12 @@ exports[`ListView renders correctly 1`] = `
       className="table-active"
     >
       <tr
+        className="table-info"
         key="0"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="table-success"
           items={
             Array [
               "Ed",
@@ -91,19 +97,19 @@ exports[`ListView renders correctly 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="table-success"
             key="0"
           >
             Ed
           </td>
           <td
-            className="element-map"
+            className="table-success"
             key="1"
           >
             6
           </td>
           <td
-            className="element-map"
+            className="table-success"
             key="2"
           >
             Taller
@@ -111,11 +117,12 @@ exports[`ListView renders correctly 1`] = `
         </ElementMap>
       </tr>
       <tr
+        className="table-info"
         key="1"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="table-success"
           items={
             Array [
               "Edd",
@@ -125,19 +132,19 @@ exports[`ListView renders correctly 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="table-success"
             key="0"
           >
             Edd
           </td>
           <td
-            className="element-map"
+            className="table-success"
             key="1"
           >
             12
           </td>
           <td
-            className="element-map"
+            className="table-success"
             key="2"
           >
             Tallest
@@ -145,11 +152,12 @@ exports[`ListView renders correctly 1`] = `
         </ElementMap>
       </tr>
       <tr
+        className="table-info"
         key="2"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="table-success"
           items={
             Array [
               "Eddie",
@@ -159,19 +167,19 @@ exports[`ListView renders correctly 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="table-success"
             key="0"
           >
             Eddie
           </td>
           <td
-            className="element-map"
+            className="table-success"
             key="1"
           >
             17
           </td>
           <td
-            className="element-map"
+            className="table-success"
             key="2"
           >
             Tall
@@ -211,7 +219,10 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
   renderRows={[Function]}
   tableClass="listview"
   tbodyClass="listview-tbody"
+  tdClass="listview-td"
+  thClass="listview-th"
   theadClass="listview-thead"
+  trClass="listview-primary"
 >
   <table
     className="listview"
@@ -219,7 +230,9 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
     <thead
       className="listview-thead"
     >
-      <tr>
+      <tr
+        className="listview-primary"
+      >
         <th
           colSpan={2}
         >
@@ -229,7 +242,7 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
       <tr>
         <ElementMap
           HTMLTag="th"
-          className="element-map"
+          className="listview-td"
           items={
             Array [
               "Name",
@@ -238,13 +251,13 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
           }
         >
           <th
-            className="element-map"
+            className="listview-td"
             key="0"
           >
             Name
           </th>
           <th
-            className="element-map"
+            className="listview-td"
             key="1"
           >
             Age
@@ -256,11 +269,12 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
       className="listview-tbody"
     >
       <tr
+        className="listview-th"
         key="0"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="listview-primary"
           items={
             Array [
               "Ed",
@@ -269,13 +283,13 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="listview-primary"
             key="0"
           >
             Ed
           </td>
           <td
-            className="element-map"
+            className="listview-primary"
             key="1"
           >
             6
@@ -283,11 +297,12 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
         </ElementMap>
       </tr>
       <tr
+        className="listview-th"
         key="1"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="listview-primary"
           items={
             Array [
               "Edd",
@@ -296,13 +311,13 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="listview-primary"
             key="0"
           >
             Edd
           </td>
           <td
-            className="element-map"
+            className="listview-primary"
             key="1"
           >
             12
@@ -310,11 +325,12 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
         </ElementMap>
       </tr>
       <tr
+        className="listview-th"
         key="2"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="listview-primary"
           items={
             Array [
               "Eddie",
@@ -323,13 +339,13 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="listview-primary"
             key="0"
           >
             Eddie
           </td>
           <td
-            className="element-map"
+            className="listview-primary"
             key="1"
           >
             17
@@ -369,7 +385,10 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
   renderRows={[Function]}
   tableClass="listview"
   tbodyClass="listview-tbody"
+  tdClass="listview-td"
+  thClass="listview-th"
   theadClass="listview-thead"
+  trClass="listview-primary"
 >
   <table
     className="listview"
@@ -377,10 +396,12 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
     <thead
       className="listview-thead"
     >
-      <tr>
+      <tr
+        className="listview-primary"
+      >
         <ElementMap
           HTMLTag="th"
-          className="element-map"
+          className="listview-td"
           items={
             Array [
               "Name",
@@ -389,13 +410,13 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
           }
         >
           <th
-            className="element-map"
+            className="listview-td"
             key="0"
           >
             Name
           </th>
           <th
-            className="element-map"
+            className="listview-td"
             key="1"
           >
             Age
@@ -407,11 +428,12 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
       className="listview-tbody"
     >
       <tr
+        className="listview-primary"
         key="0"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="listview-th"
           items={
             Array [
               "Ed",
@@ -420,13 +442,13 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="listview-th"
             key="0"
           >
             Ed
           </td>
           <td
-            className="element-map"
+            className="listview-th"
             key="1"
           >
             6
@@ -434,11 +456,12 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
         </ElementMap>
       </tr>
       <tr
+        className="listview-primary"
         key="1"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="listview-th"
           items={
             Array [
               "Edd",
@@ -447,13 +470,13 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="listview-th"
             key="0"
           >
             Edd
           </td>
           <td
-            className="element-map"
+            className="listview-th"
             key="1"
           >
             12
@@ -461,11 +484,12 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
         </ElementMap>
       </tr>
       <tr
+        className="listview-primary"
         key="2"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="listview-th"
           items={
             Array [
               "Eddie",
@@ -474,13 +498,13 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="listview-th"
             key="0"
           >
             Eddie
           </td>
           <td
-            className="element-map"
+            className="listview-th"
             key="1"
           >
             17
@@ -516,7 +540,10 @@ exports[`ListView renders correctly with different types of data 1`] = `
   renderRows={[Function]}
   tableClass="table-striped"
   tbodyClass="table-active"
+  tdClass="table-primary"
+  thClass="table-info"
   theadClass="thead-dark"
+  trClass="table-success"
 >
   <table
     className="table-striped"
@@ -524,10 +551,12 @@ exports[`ListView renders correctly with different types of data 1`] = `
     <thead
       className="thead-dark"
     >
-      <tr>
+      <tr
+        className="table-success"
+      >
         <ElementMap
           HTMLTag="th"
-          className="element-map"
+          className="table-primary"
           items={
             Array [
               "Columns",
@@ -535,7 +564,7 @@ exports[`ListView renders correctly with different types of data 1`] = `
           }
         >
           <th
-            className="element-map"
+            className="table-primary"
             key="0"
           >
             Columns
@@ -547,11 +576,12 @@ exports[`ListView renders correctly with different types of data 1`] = `
       className="table-active"
     >
       <tr
+        className="table-info"
         key="0"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="table-success"
           items={
             Array [
               "Data 1",
@@ -559,7 +589,7 @@ exports[`ListView renders correctly with different types of data 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="table-success"
             key="0"
           >
             Data 1
@@ -567,11 +597,12 @@ exports[`ListView renders correctly with different types of data 1`] = `
         </ElementMap>
       </tr>
       <tr
+        className="table-info"
         key="1"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="table-success"
           items={
             Array [
               999,
@@ -579,7 +610,7 @@ exports[`ListView renders correctly with different types of data 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="table-success"
             key="0"
           >
             999
@@ -587,11 +618,12 @@ exports[`ListView renders correctly with different types of data 1`] = `
         </ElementMap>
       </tr>
       <tr
+        className="table-info"
         key="2"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="table-success"
           items={
             Array [
               "Data 3",
@@ -599,7 +631,7 @@ exports[`ListView renders correctly with different types of data 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="table-success"
             key="0"
           >
             Data 3
@@ -635,7 +667,10 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
   renderRows={[Function]}
   tableClass="listview"
   tbodyClass="listview-tbody"
+  tdClass="listview-td"
+  thClass="listview-th"
   theadClass="listview-thead"
+  trClass="listview-primary"
 >
   <table
     className="listview"
@@ -643,10 +678,12 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
     <thead
       className="listview-thead"
     >
-      <tr>
+      <tr
+        className="listview-primary"
+      >
         <ElementMap
           HTMLTag="th"
-          className="element-map"
+          className="listview-td"
           items={
             Array [
               "Name",
@@ -654,7 +691,7 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
           }
         >
           <th
-            className="element-map"
+            className="listview-td"
             key="0"
           >
             Name
@@ -666,11 +703,12 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
       className="listview-tbody"
     >
       <tr
+        className="listview-th"
         key="0"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="listview-primary"
           items={
             Array [
               "Ed",
@@ -678,7 +716,7 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="listview-primary"
             key="0"
           >
             Ed
@@ -686,11 +724,12 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
         </ElementMap>
       </tr>
       <tr
+        className="listview-th"
         key="1"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="listview-primary"
           items={
             Array [
               "Edd",
@@ -698,7 +737,7 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="listview-primary"
             key="0"
           >
             Edd
@@ -706,11 +745,12 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
         </ElementMap>
       </tr>
       <tr
+        className="listview-th"
         key="2"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="listview-primary"
           items={
             Array [
               "Eddie",
@@ -718,7 +758,7 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="listview-primary"
             key="0"
           >
             Eddie
@@ -876,7 +916,10 @@ exports[`ListView renders correctly with rows containing components 1`] = `
   renderRows={[Function]}
   tableClass="table-striped"
   tbodyClass="table-active"
+  tdClass="table-primary"
+  thClass="table-info"
   theadClass="thead-dark"
+  trClass="table-success"
 >
   <table
     className="table-striped"
@@ -884,10 +927,12 @@ exports[`ListView renders correctly with rows containing components 1`] = `
     <thead
       className="thead-dark"
     >
-      <tr>
+      <tr
+        className="table-success"
+      >
         <ElementMap
           HTMLTag="th"
-          className="element-map"
+          className="table-primary"
           items={
             Array [
               "Columns",
@@ -895,7 +940,7 @@ exports[`ListView renders correctly with rows containing components 1`] = `
           }
         >
           <th
-            className="element-map"
+            className="table-primary"
             key="0"
           >
             Columns
@@ -907,11 +952,12 @@ exports[`ListView renders correctly with rows containing components 1`] = `
       className="table-active"
     >
       <tr
+        className="table-info"
         key="0"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="table-success"
           items={
             Array [
               "Data 1",
@@ -919,7 +965,7 @@ exports[`ListView renders correctly with rows containing components 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="table-success"
             key="0"
           >
             Data 1
@@ -927,11 +973,12 @@ exports[`ListView renders correctly with rows containing components 1`] = `
         </ElementMap>
       </tr>
       <tr
+        className="table-info"
         key="1"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="table-success"
           items={
             Array [
               <div>
@@ -941,7 +988,7 @@ exports[`ListView renders correctly with rows containing components 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="table-success"
             key="0"
           >
             <div
@@ -953,11 +1000,12 @@ exports[`ListView renders correctly with rows containing components 1`] = `
         </ElementMap>
       </tr>
       <tr
+        className="table-info"
         key="2"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="table-success"
           items={
             Array [
               <SomeComponent
@@ -967,7 +1015,7 @@ exports[`ListView renders correctly with rows containing components 1`] = `
           }
         >
           <td
-            className="element-map"
+            className="table-success"
             key="0"
           >
             <SomeComponent
@@ -988,7 +1036,7 @@ exports[`ListView renders correctly with rows containing components 1`] = `
 </ListView>
 `;
 
-exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = `
+exports[`ListView renders correctly without thead, tableClass, tbodyClass, tdClass, trClass, thClass 1`] = `
 <ListView
   data={
     Array [
@@ -1007,7 +1055,10 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = 
   renderRows={[Function]}
   tableClass="listview"
   tbodyClass="listview-tbody"
+  tdClass="listview-td"
+  thClass="listview-th"
   theadClass="listview-thead"
+  trClass="listview-primary"
 >
   <table
     className="listview"
@@ -1016,11 +1067,12 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = 
       className="listview-tbody"
     >
       <tr
+        className="listview-th"
         key="0"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="listview-primary"
           items={
             Array [
               "Data 1",
@@ -1028,7 +1080,7 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = 
           }
         >
           <td
-            className="element-map"
+            className="listview-primary"
             key="0"
           >
             Data 1
@@ -1036,11 +1088,12 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = 
         </ElementMap>
       </tr>
       <tr
+        className="listview-th"
         key="1"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="listview-primary"
           items={
             Array [
               999,
@@ -1048,7 +1101,7 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = 
           }
         >
           <td
-            className="element-map"
+            className="listview-primary"
             key="0"
           >
             999
@@ -1056,11 +1109,12 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = 
         </ElementMap>
       </tr>
       <tr
+        className="listview-th"
         key="2"
       >
         <ElementMap
           HTMLTag="td"
-          className="element-map"
+          className="listview-primary"
           items={
             Array [
               "Data 3",
@@ -1068,7 +1122,7 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass 1`] = 
           }
         >
           <td
-            className="element-map"
+            className="listview-primary"
             key="0"
           >
             Data 3

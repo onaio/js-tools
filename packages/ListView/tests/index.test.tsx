@@ -15,7 +15,10 @@ describe('ListView', () => {
       headerItems: ['Columns'],
       tableClass: 'table-striped',
       tbodyClass: 'table-active',
-      theadClass: 'thead-dark'
+      tdClass: 'table-primary',
+      thClass: 'table-info',
+      theadClass: 'thead-dark',
+      trClass: 'table-success'
     };
     shallow(<ListView {...props} />);
   });
@@ -26,7 +29,10 @@ describe('ListView', () => {
       headerItems: ['Name', 'Age', 'Height'],
       tableClass: 'table-striped',
       tbodyClass: 'table-active',
-      theadClass: 'thead-dark'
+      tdClass: 'table-primary',
+      thClass: 'table-info',
+      theadClass: 'thead-dark',
+      trClass: 'table-success'
     };
     const wrapper = mount(<ListView {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -39,7 +45,10 @@ describe('ListView', () => {
       headerItems: ['Columns'],
       tableClass: 'table-striped',
       tbodyClass: 'table-active',
-      theadClass: 'thead-dark'
+      tdClass: 'table-primary',
+      thClass: 'table-info',
+      theadClass: 'thead-dark',
+      trClass: 'table-success'
     };
     const wrapper = mount(<ListView {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -63,14 +72,17 @@ describe('ListView', () => {
       headerItems: ['Columns'],
       tableClass: 'table-striped',
       tbodyClass: 'table-active',
-      theadClass: 'thead-dark'
+      tdClass: 'table-primary',
+      thClass: 'table-info',
+      theadClass: 'thead-dark',
+      trClass: 'table-success'
     };
     const wrapper = mount(<ListView {...tableProps} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
 
-  it('renders correctly without thead, tableClass, tbodyClass', () => {
+  it('renders correctly without thead, tableClass, tbodyClass, tdClass, trClass, thClass', () => {
     const props: ListViewProps = {
       data: [['Data 1'], [999], ['Data 3']]
     };
@@ -83,13 +95,13 @@ describe('ListView', () => {
     const props = {
       data: [['Ed', 6], ['Edd', 12], ['Eddie', 17]],
       headerItems: ['Name', 'Age'],
-      renderHeaders: (items, cssClass) => (
-        <thead className={cssClass}>
-          <tr>
+      renderHeaders: (items, theadClass, thClass, trClass) => (
+        <thead className={theadClass}>
+          <tr className={trClass}>
             <th colSpan={2}>Top Header</th>
           </tr>
           <tr>
-            <ElementMap items={items} HTMLTag="th" />
+            <ElementMap items={items} HTMLTag="th" className={thClass} />
           </tr>
         </thead>
       )
@@ -114,13 +126,13 @@ describe('ListView', () => {
     const props = {
       data: [['Ed', 6], ['Edd', 12], ['Eddie', 17]],
       headerItems: ['Name', 'Age'],
-      renderRows: (rowData, cssClass) => {
+      renderRows: (rowData, tbodyClass, tdClass, trClass) => {
         const rows = rowData.map((items, itemKey) => (
-          <tr key={itemKey}>
-            <ElementMap items={items} HTMLTag="td" />
+          <tr key={itemKey} className={trClass}>
+            <ElementMap items={items} HTMLTag="td" className={tdClass} />
           </tr>
         ));
-        return <tbody className={cssClass}>{rows}</tbody>;
+        return <tbody className={tbodyClass}>{rows}</tbody>;
       }
     };
     const wrapper = mount(<ListView {...props} />);
