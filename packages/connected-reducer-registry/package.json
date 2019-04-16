@@ -30,7 +30,7 @@
   "author": "Ona Engineering",
   "license": "Apache-2.0",
   "dependencies": {
-    "@onaio/redux-reducer-registry": "^0.0.7"
+    "@onaio/redux-reducer-registry": "^0.0.8"
   },
   "peerDependencies": {
     "@types/history": "^4.7.2",
