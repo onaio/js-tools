@@ -23,7 +23,7 @@ By default, the store that is provided includes only a router reducer.
 
 ```ts
 import { combine } from '@onaio/redux-reducer-registry';
-import { getConnectedStore, connectReducer } from '@onaio/connected-reducer-registry';
+import { connectReducer, getConnectedStore } from '@onaio/connected-reducer-registry';
 import someReducer from 'somewhere'; // obviously change this!
 
 /** create default reducers */
