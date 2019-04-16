@@ -167,6 +167,19 @@ Here's an example sample `package.json` for a `ts`/`tsx` package:
 }
 ```
 
+Additionally, a new Typescript package must have a `tsconfig.json` file that looks like so:
+
+```json
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declarationDir": "dist/types"
+  },
+  "include": ["src"]
+}
+```
+
 ### Add a story
 
 Don't forget to [add a story](https://storybook.js.org/docs/basics/writing-stories/) for the new package, if possible. This allows easy discovery and documentation for other developers or users of `js-tools`.
