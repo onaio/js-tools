@@ -18,6 +18,18 @@ describe('store', () => {
     expect(typeof store.replaceReducer).toEqual('function');
   });
 
+  it('should include connectReducer by default', () => {
+    expect(store.getState().router).toEqual({
+      action: 'POP',
+      location: {
+        hash: '',
+        pathname: '/',
+        search: '',
+        state: undefined
+      }
+    });
+  });
+
   it('should register a reducer', () => {
     reducerRegistry.register('messages', messages);
     expect(store.getState().messages).toEqual({ messages: [] });
