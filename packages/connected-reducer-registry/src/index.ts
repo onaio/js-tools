@@ -1,4 +1,4 @@
-import reducerRegistry, { combine } from '@onaio/redux-reducer-registry';
+import reducerRegistry, { combine, Registry } from '@onaio/redux-reducer-registry';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import { applyMiddleware, compose, createStore, Reducer } from 'redux';
@@ -13,11 +13,6 @@ declare global {
 
 /** Create the browser history object */
 export const history = createBrowserHistory();
-
-/** Declare type for reducer Registry */
-export interface Registry {
-  [key: string]: Reducer;
-}
 
 /** Function to create the connected Redux Registry store
  * @param {Registry} reducers - The default reducers to include in the store.
