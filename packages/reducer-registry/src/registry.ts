@@ -2,7 +2,7 @@
 import { Reducer } from 'redux';
 
 /** Declare type for function that takes any arguments and returns nothing */
-type EmitChangeFunction = (...args: any[]) => void;
+type EmitChangeFunction = (reducers: Registry) => void;
 
 /** Declare type for reducer Registry */
 export interface Registry {
@@ -22,15 +22,21 @@ export class ReducerRegistry {
   private emitChange: EmitChangeFunction | null;
   private reducers: Registry;
 
+  /** Constructor */
   constructor() {
     this.emitChange = null;
     this.reducers = {};
   }
 
+  /** Get all registered reducers */
   public getReducers() {
     return { ...this.reducers };
   }
 
+  /** Method to register a new reducer with the Reducer Registry
+   * @param {string} name - the name of the reducer
+   * @param {Reducer} reducer - the reducer object
+   */
   public register(name: string, reducer: Reducer) {
     this.reducers = { ...this.reducers, [name]: reducer };
     if (this.emitChange !== null) {
@@ -38,6 +44,10 @@ export class ReducerRegistry {
     }
   }
 
+  /** Method to set the change listener
+   * @param {EmitChangeFunction} listener - the callback function to be called
+   * after a reducer has been registered
+   */
   public setChangeListener(listener: EmitChangeFunction) {
     this.emitChange = listener;
   }

@@ -227,7 +227,7 @@ The command to do this depends on whether the package uses javascript or Typescr
 
 ```sh
 # javascript package
-babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__'
+yarn babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__'
 
 # typescript package
 yarn babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'
