@@ -1,7 +1,7 @@
 import reducerRegistry, { combine, Registry } from '@onaio/redux-reducer-registry';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
-import { applyMiddleware, compose, createStore, Reducer } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
 /** Add redux dev tools to Window */
