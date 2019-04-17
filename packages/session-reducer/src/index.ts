@@ -71,7 +71,11 @@ export const AUTHENTICATE = '@onaio/redux-user-session/reducer/AUTHENTICATE';
 export const LOGOUT = '@onaio/redux-user-session/reducer/LOGOUT';
 
 // action creators
-/** authenticate user action creator */
+/** authenticate user action creator
+ * @param {boolean} authenticated - whether the user is authenticated or not
+ * @param {User} user - the user object
+ * @param {{ [key: string]: any }} extraData - an object containing any extra information
+ */
 export const authenticateUser: ActionCreator<AuthenticateAction> = (
   authenticated: boolean,
   user: User,
