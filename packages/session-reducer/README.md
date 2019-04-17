@@ -48,3 +48,13 @@ authenticateUser(true, sessionUser, onadataUser); // example usage
 /** logOutUser takes no params */
 logOutUser(); // example usage
 ```
+
+## Usage
+
+Using this reducer is quite simple and can be done in one of two ways:
+
+1. Use [combineReducers](https://redux.js.org/api/combinereducers) to ensure that the session reducer is loaded into your Redux store
+
+OR
+
+2. Register the session reducer so that it is added to your Redux store dynamically. You would do this in the case that you are using the [Reducer Registry](https://github.com/onaio/js-tools/tree/master/packages/reducer-registry).
