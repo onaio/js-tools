@@ -17,7 +17,6 @@ export interface LogOutAction extends AnyAction {
 /** Interface for user object in session store */
 export interface User {
   email?: string;
-  extraData?: { [key: string]: any };
   gravatar?: string;
   name: string;
   username: string;
@@ -25,7 +24,7 @@ export interface User {
 
 /** interface to describe session state */
 export interface SessionState {
-  apiToken: string;
+  extraData?: { [key: string]: any };
   authenticated: boolean;
   user: User;
 }
@@ -35,8 +34,8 @@ export type ImmutableSessionState = SessionState & SeamlessImmutable.ImmutableOb
 
 /** Initial state for session */
 export const initialState: ImmutableSessionState = SeamlessImmutable({
-  apiToken: '',
   authenticated: false,
+  extraData: {},
   user: {
     email: '',
     gravatar: '',
@@ -53,8 +52,8 @@ export default function reducer(state = initialState, action: AnyAction): Immuta
   switch (action.type) {
     case AUTHENTICATE:
       return state.merge({
-        apiToken: action.apiToken,
         authenticated: action.authenticated,
+        extraData: { ...action.extraData },
         user: { ...action.user }
       });
     case LOGOUT:
@@ -74,12 +73,12 @@ export const LOGOUT = '@onaio/redux-user-session/reducer/LOGOUT';
 // action creators
 /** authenticate user action creator */
 export const authenticateUser: ActionCreator<AuthenticateAction> = (
-  apiToken: string,
   authenticated: boolean,
-  user: User
+  user: User,
+  extraData: { [key: string]: any } = {}
 ) => ({
-  apiToken,
   authenticated,
+  extraData,
   type: AUTHENTICATE,
   user
 });
@@ -95,11 +94,11 @@ export function isAuthenticated(state: Partial<Store>) {
   return (state as any)[reducerName].authenticated;
 }
 
-/** get apiToken
+/** get extraData
  * @param {Partial<Store>} state - the redux store
  */
-export function getAPIToken(state: Partial<Store>) {
-  return (state as any)[reducerName].apiToken;
+export function getExtraData(state: Partial<Store>) {
+  return (state as any)[reducerName].extraData;
 }
 
 /** get user
