@@ -23,7 +23,7 @@ export interface SessionState {
 }
 ```
 
-## Actions Creators
+## Action Creators
 
 Right now, the following action creators are provided:
 
@@ -35,13 +35,14 @@ Right now, the following action creators are provided:
 ```ts
 import { authenticateUser, logOutUser } from '@onaio/session-reducer';
 
+let sessionUser; // you would need to provide a real user object
+let onadataUser; // you would need to provide a real object or leave it out
+
 /** authenticate user action creator expects the following params
  * @param {boolean} authenticated - whether the user is authenticated or not
  * @param {User} user - the user object
  * @param {{ [key: string]: any }} extraData - an object containing any extra information
  */
-let sessionUser; // you would need to provide a real user object
-let onadataUser; // you would need to provide a real object or leave it out
 authenticateUser(true, sessionUser, onadataUser); // example usage
 
 /** logOutUser takes no params */
