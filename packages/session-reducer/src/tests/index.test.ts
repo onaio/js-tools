@@ -2,7 +2,7 @@ import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { FlushThunks } from 'redux-testkit';
 import thunk from 'redux-thunk';
 import session, { authenticateUser, getAPIToken, getUser, isAuthenticated, logOutUser } from '..';
-import { sessionUser } from './fixtures';
+import { onadataUser, sessionUser } from './fixtures';
 
 describe('reducers/session', () => {
   let flushThunks;
@@ -51,6 +51,7 @@ describe('reducers/session', () => {
     // valid user object
     expect(getUser(store.getState())).toEqual({
       email: 'mosh@example.com',
+      extraData: onadataUser,
       gravatar:
         'https://secure.gravatar.com/avatar/ae22ab897231db07205bd5d00e64cbbf?d=https%3A%2F%2Fona.io%2Fstatic%2Fimages%2Fdefault_avatar.png&s=60',
       name: 'mosh',

@@ -20,6 +20,7 @@ export const onadataUser = {
 /** Generic user object compatible with the session store */
 export const sessionUser = {
   email: onadataUser.email,
+  extraData: onadataUser,
   gravatar: onadataUser.gravatar,
   name: onadataUser.name,
   username: onadataUser.username

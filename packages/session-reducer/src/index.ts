@@ -17,6 +17,7 @@ export interface LogOutAction extends AnyAction {
 /** Interface for user object in session store */
 export interface User {
   email?: string;
+  extraData?: { [key: string]: any };
   gravatar?: string;
   name: string;
   username: string;
