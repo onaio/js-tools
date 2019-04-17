@@ -1,0 +1,42 @@
+{
+  "name": "@onaio/session-reducer",
+  "version": "0.0.0",
+  "description": "A simple configurable session reducer",
+  "main": "dist/index.js",
+  "types": "dist/types",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onaio/js-tools.git"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx' --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "author": "Ona Engineering",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@types/seamless-immutable": "^7.1.8",
+    "seamless-immutable": "^7.1.4",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/redux-testkit": "^1.0.3",
+    "redux-testkit": "^1.0.6"
+  }
+}
