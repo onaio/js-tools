@@ -65,10 +65,10 @@ export default function reducer(state = initialState, action: AnyAction): Immuta
 
 // actions
 /** authenticate user action type */
-export const AUTHENTICATE = '@onaio/redux-user-session/reducer/AUTHENTICATE';
+export const AUTHENTICATE = '@onaio/session-reducer/reducer/AUTHENTICATE';
 
 /** logout user action type */
-export const LOGOUT = '@onaio/redux-user-session/reducer/LOGOUT';
+export const LOGOUT = '@onaio/session-reducer/reducer/LOGOUT';
 
 // action creators
 /** authenticate user action creator

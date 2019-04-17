@@ -39,9 +39,9 @@ export default function reducer(
   action: AnyAction
 ): ImmutableSessionState;
 /** authenticate user action type */
-export declare const AUTHENTICATE = '@onaio/redux-user-session/reducer/AUTHENTICATE';
+export declare const AUTHENTICATE = '@onaio/session-reducer/reducer/AUTHENTICATE';
 /** logout user action type */
-export declare const LOGOUT = '@onaio/redux-user-session/reducer/LOGOUT';
+export declare const LOGOUT = '@onaio/session-reducer/reducer/LOGOUT';
 /** authenticate user action creator
  * @param {boolean} authenticated - whether the user is authenticated or not
  * @param {User} user - the user object
