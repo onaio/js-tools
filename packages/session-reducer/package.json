@@ -1,6 +1,6 @@
 {
   "name": "@onaio/session-reducer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A simple configurable session reducer",
   "main": "dist/index.js",
   "types": "dist/types",
@@ -31,9 +31,9 @@
   "license": "Apache-2.0",
   "peerDependencies": {
     "@types/seamless-immutable": "^7.1.8",
-    "seamless-immutable": "^7.1.4",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "seamless-immutable": "^7.1.4"
   },
   "devDependencies": {
     "@types/redux-testkit": "^1.0.3",
