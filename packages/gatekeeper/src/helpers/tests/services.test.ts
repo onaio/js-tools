@@ -1,5 +1,6 @@
 import * as sessionReducer from '@onaio/session-reducer';
 import fetchMock from 'fetch-mock';
+import { getOnadataUserInfo } from '../oauth';
 import { fetchUser, oauth2Callback } from '../services';
 import * as fixtures from './fixtures';
 
@@ -18,9 +19,9 @@ describe('gatekeeper/services', () => {
 
     fetchMock.getOnce(url, JSON.stringify(data));
 
-    const response = await oauth2Callback(hash, url, provider);
+    const response = await oauth2Callback(hash, url, provider, getOnadataUserInfo);
 
-    const expectedResponse = fixtures.onadataUser;
+    const expectedResponse = fixtures.onadataSession;
 
     expect(response).toEqual(expectedResponse);
   });
@@ -49,5 +50,35 @@ describe('gatekeeper/services', () => {
       },
       data
     );
+  });
+
+  it('fetchUser should handle http errors', async () => {
+    const provider = fixtures.onadataAuth;
+    const url = 'https://stage-api.ona.io/api/v1/user.json';
+    const hash =
+      '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
+    fetchMock.getOnce('https://stage-api.ona.io/api/v1/user.json', 500);
+    let error;
+    try {
+      await fetchUser(hash, url, jest.fn(), provider);
+    } catch (e) {
+      error = e;
+    }
+    expect(error).toEqual(new Error('oAuth service oauth2Callback failed, HTTP status 500'));
+  });
+
+  it('fetchUser should handle API errors', async () => {
+    const provider = fixtures.onadataAuth;
+    const url = 'https://stage-api.ona.io/api/v1/user.json';
+    const hash =
+      '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
+    fetchMock.getOnce('https://stage-api.ona.io/api/v1/user.json', {});
+    let error;
+    try {
+      await fetchUser(hash, url, jest.fn(), provider);
+    } catch (e) {
+      error = e;
+    }
+    expect(error).toEqual(new Error('oAuth service oauth2Callback failed, data not returned'));
   });
 });

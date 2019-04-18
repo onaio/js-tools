@@ -2,14 +2,21 @@ import { AuthenticateAction, authenticateUser } from '@onaio/session-reducer';
 import ClientOAuth2 from 'client-oauth2';
 import { Dispatch } from 'react';
 import { ActionCreator } from 'redux';
+import { getOnadataUserInfo, UserInfoFnType } from './oauth';
 import { ErrorCallback, errorCallback } from './utils';
 
 /** Calls the oAuth provider to get user details
  * @param {string} locationHash - the location hash value that we receive from the oAuth provider
  * @param {string} url - the URL that returns the user information for the provider
  * @param {ClientOAuth2} provider - the Oauth client object for the provider
+ * @param {UserInfoFnType} userInfoCallback - function the gets user info from API response
  */
-export async function oauth2Callback(locationHash: string, url: string, provider: ClientOAuth2) {
+export async function oauth2Callback(
+  locationHash: string,
+  url: string,
+  provider: ClientOAuth2,
+  userInfoCallback: UserInfoFnType
+) {
   return provider.token.getToken(locationHash).then(async (oAuthObject: any) => {
     const response = await fetch(
       url,
@@ -25,11 +32,7 @@ export async function oauth2Callback(locationHash: string, url: string, provider
 
     const data = await response.json();
 
-    if (!data) {
-      throw new Error('oAuth service oauth2Callback failed, data not returned');
-    }
-
-    return data;
+    return userInfoCallback(data);
   });
 }
 
@@ -39,6 +42,7 @@ export async function oauth2Callback(locationHash: string, url: string, provider
  * @param {string} url - the URL that returns the user information for the provider
  * @param {any} dispatch - the dispatch function that calls the session reducer action creator
  * @param {ClientOAuth2} provider - the Oauth client object for the provider
+ * @param {UserInfoFnType} userInfoCallback - function the gets user info from API response
  * @param {ErrorCallback} errorCallbackFn - a function that handles error messages
  */
 export async function fetchUser(
@@ -47,19 +51,18 @@ export async function fetchUser(
   dispatch: Dispatch<any>,
   provider: ClientOAuth2,
   authenticateActionCreator: ActionCreator<AuthenticateAction> = authenticateUser,
+  userInfoCallback: UserInfoFnType = getOnadataUserInfo,
   errorCallbackFn: ErrorCallback = errorCallback
 ) {
   try {
-    const apiResponse = await oauth2Callback(locationHash, url, provider);
-    const { username, name, email, gravatar } = apiResponse as any;
-    const theUser = {
-      email,
-      gravatar,
-      name,
-      username
-    };
-    dispatch(authenticateActionCreator(true, theUser, apiResponse));
+    const userInfo = await oauth2Callback(locationHash, url, provider, userInfoCallback);
+    if (userInfo) {
+      const { authenticated, user, extraData } = userInfo;
+      dispatch(authenticateActionCreator(authenticated, user, extraData));
+    } else {
+      errorCallbackFn('Something went wrong');
+    }
   } catch (error) {
-    errorCallbackFn(error);
+    errorCallbackFn(error.message);
   }
 }
