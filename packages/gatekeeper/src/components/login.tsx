@@ -3,8 +3,8 @@ import { getProviderFromOptions, Providers } from '../helpers/oauth';
 
 /** interface for OauthLogin props */
 export interface OauthLoginProps {
-  providers: Providers;
   ProviderLinksComponent?: React.ElementType;
+  providers: Providers;
 }
 
 /** interface for ProviderLinks props */
@@ -43,17 +43,13 @@ export const ProviderLinks = (props: ProviderLinksProps) => {
  */
 const OauthLogin = (props: OauthLoginProps) => {
   const { providers, ProviderLinksComponent } = props;
-  let result = (
+  return ProviderLinksComponent ? (
+    <ProviderLinksComponent {...{ providers }} />
+  ) : (
     <div className="gatekeeper-login">
       <p className="gatekeeper-p">No providers</p>
     </div>
   );
-  if (ProviderLinksComponent) {
-    const linkComponentProps = { providers };
-    result = <ProviderLinksComponent {...linkComponentProps} />;
-  }
-
-  return { result };
 };
 
 OauthLogin.defaultProps = {

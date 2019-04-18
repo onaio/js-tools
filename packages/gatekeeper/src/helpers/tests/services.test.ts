@@ -3,7 +3,7 @@ import fetchMock from 'fetch-mock';
 import { fetchUser, oauth2Callback } from '../services';
 import * as fixtures from './fixtures';
 
-describe('services', () => {
+describe('gatekeeper/services', () => {
   beforeEach(() => {
     jest.resetAllMocks();
     fetchMock.restore();

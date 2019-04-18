@@ -1,7 +1,7 @@
 import { getProviderFromOptions, Providers } from '../oauth';
 import * as fixtures from './fixtures';
 
-describe('oAuth', () => {
+describe('gatekeeper/oAuth', () => {
   beforeEach(() => {
     jest.resetAllMocks();
   });
