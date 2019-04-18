@@ -1,6 +1,6 @@
 import session, { initialState } from '@onaio/session-reducer';
 import React, { useEffect, useReducer } from 'react';
-import { fetchUser } from '../helpers/service';
+import { fetchUser } from '../helpers/services';
 
 /** something goes here */
 const OauthCallback = (props: any) => {
