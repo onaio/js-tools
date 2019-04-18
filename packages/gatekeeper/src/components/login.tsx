@@ -1,16 +1,63 @@
 import React from 'react';
-import { onadataAuth } from '../helpers/oauth';
+import { getProviderFromOptions, Providers } from '../helpers/oauth';
 
-/** Component that will be rendered in drop-down table cells showing a link
- * that moves you to the next hierarchical level.
+/** interface for OauthLogin props */
+export interface OauthLoginProps {
+  providers: Providers;
+  ProviderLinksComponent?: React.ElementType;
+}
+
+/** interface for ProviderLinks props */
+export interface ProviderLinksProps {
+  providers: Providers;
+}
+
+/** This component takes providers as a prop and renders a list of links to
+ * log in with those providers
  */
-const OauthLogin = (props: any) => {
-  const uri = onadataAuth.token.getUri();
+export const ProviderLinks = (props: ProviderLinksProps) => {
+  const { providers } = props;
   return (
-    <p>
-      <a href={uri}>Login</a>
-    </p>
+    <div className="gatekeeper-login">
+      <p className="gatekeeper-p">Please log in with one of the following providers</p>
+      {/** loop through the providers */
+      Object.entries(providers).map(item => {
+        const thisProvider = getProviderFromOptions(
+          item[1]
+        ); /** get the ClientOAuth2 object for each provider */
+        return (
+          /** render a link for each provider */
+          <p className="gatekeeper-p item" key={item[0]}>
+            <a className="gatekeeper-btn" href={thisProvider.token.getUri()}>
+              {item[0]}
+            </a>
+          </p>
+        );
+      })}
+    </div>
   );
+};
+
+/** This component provides the Oauth login page - it simply presents a list of
+ * links of oAuth providers.
+ */
+const OauthLogin = (props: OauthLoginProps) => {
+  const { providers, ProviderLinksComponent } = props;
+  let result = (
+    <div className="gatekeeper-login">
+      <p className="gatekeeper-p">No providers</p>
+    </div>
+  );
+  if (ProviderLinksComponent) {
+    const linkComponentProps = { providers };
+    result = <ProviderLinksComponent {...linkComponentProps} />;
+  }
+
+  return { result };
+};
+
+OauthLogin.defaultProps = {
+  ProviderLinksComponent: ProviderLinks /** use the ProviderLinks component as the default */
 };
 
 export default OauthLogin;
