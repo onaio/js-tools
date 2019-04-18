@@ -1,5 +1,5 @@
 import { authenticateUser } from '@onaio/session-reducer';
-import { onadataAuth } from './oauth';
+import { onadataAuth } from './tests/fixtures';
 
 /** Calls the oAuth provider to get user details */
 export async function oauth2Callback(uri: string) {
