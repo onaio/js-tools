@@ -35,7 +35,11 @@
     "client-oauth2": "^4.2.3"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.9.0",
+    "@types/enzyme-to-json": "^1.5.3",
     "@types/fetch-mock": "^7.2.3",
+    "enzyme": "^3.8.0",
+    "enzyme-to-json": "^3.3.5",
     "fetch-mock": "^7.3.1"
   }
 }
