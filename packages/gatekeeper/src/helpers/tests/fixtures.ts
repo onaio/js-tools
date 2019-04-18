@@ -28,3 +28,14 @@ export const onadataAuth = new ClientOAuth2({
   scopes: ['read', 'write'],
   state: 'abc'
 });
+
+export const onadataSession = {
+  authenticated: true,
+  extraData: onadataUser,
+  user: {
+    email: onadataUser.email,
+    gravatar: onadataUser.gravatar,
+    name: onadataUser.name,
+    username: onadataUser.username
+  }
+};

@@ -1,4 +1,4 @@
-import { getProviderFromOptions, Providers } from '../oauth';
+import { getOnadataUserInfo, getProviderFromOptions, Providers } from '../oauth';
 import * as fixtures from './fixtures';
 
 describe('gatekeeper/oAuth', () => {
@@ -20,5 +20,9 @@ describe('gatekeeper/oAuth', () => {
       }
     };
     expect(getProviderFromOptions(providersObj.onadata)).toEqual(expected);
+  });
+
+  it('getOnadataUserInfo should work', async () => {
+    expect(getOnadataUserInfo(fixtures.onadataUser)).toEqual(fixtures.onadataSession);
   });
 });
