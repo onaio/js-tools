@@ -27,9 +27,9 @@ export function renderHeadersFunc(
 ) {
   if (items) {
     return (
-      <thead className={theadClass}>
-        <tr className={trClass}>
-          <ElementMap items={items} HTMLTag="th" className={thClass} />
+      <thead className={theadClass ? theadClass : ''}>
+        <tr className={trClass ? trClass : ''}>
+          <ElementMap items={items} HTMLTag="th" className={thClass ? thClass : ''} />
         </tr>
       </thead>
     );
@@ -42,15 +42,15 @@ export function renderHeadersFunc(
 export function renderRowsFunc(
   rowData: React.ReactNode[][],
   tbClass?: string,
-  trClass?: string,
-  tdClass?: string
+  tdClass?: string,
+  trClass?: string
 ) {
   const rows = rowData.map((items, itemKey) => (
-    <tr key={itemKey} className={trClass}>
-      <ElementMap items={items} HTMLTag="td" className={tdClass} />
+    <tr key={itemKey} className={trClass ? trClass : ''}>
+      <ElementMap items={items} HTMLTag="td" className={tdClass ? tdClass : ''} />
     </tr>
   ));
-  return <tbody className={tbClass}>{rows}</tbody>;
+  return <tbody className={tbClass ? tbClass : ''}>{rows}</tbody>;
 }
 
 /** Interface to define props for ListView */
