@@ -2,7 +2,7 @@ import { AuthenticateAction, User } from '@onaio/session-reducer';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { ActionCreator } from 'redux';
-import { Providers } from '../helpers/oauth';
+import { getOnadataUserInfo, Providers, UserInfoFnType } from '../helpers/oauth';
 /** Route params interface */
 export interface RouteParams {
   id: string;
@@ -15,6 +15,7 @@ export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
   UnSuccessfulLoginComponent?: React.ElementType;
   authenticateActionCreator?: ActionCreator<AuthenticateAction>;
   authenticated?: boolean;
+  oAuthUserInfoGetter: UserInfoFnType;
   providers: Providers;
   sessionData?: {
     [key: string]: any;
@@ -50,6 +51,7 @@ declare const OauthCallback: {
     HTTP404Component: () => JSX.Element;
     SuccessfulLoginComponent: (props: SuccessfulLoginProps) => JSX.Element;
     UnSuccessfulLoginComponent: () => JSX.Element;
+    oAuthUserInfoGetter: typeof getOnadataUserInfo;
   };
 };
 export { OauthCallback };
@@ -62,6 +64,7 @@ declare const ConnectedOauthCallback: import('react-redux').ConnectedComponentCl
       HTTP404Component: () => JSX.Element;
       SuccessfulLoginComponent: (props: SuccessfulLoginProps) => JSX.Element;
       UnSuccessfulLoginComponent: () => JSX.Element;
+      oAuthUserInfoGetter: typeof getOnadataUserInfo;
     };
   },
   Pick<
@@ -72,6 +75,7 @@ declare const ConnectedOauthCallback: import('react-redux').ConnectedComponentCl
     | 'HTTP404Component'
     | 'SuccessfulLoginComponent'
     | 'UnSuccessfulLoginComponent'
+    | 'oAuthUserInfoGetter'
     | 'history'
     | 'location'
     | 'staticContext'

@@ -7,6 +7,7 @@ import fetchMock from 'fetch-mock';
 import { createBrowserHistory } from 'history';
 import React from 'react';
 import { Provider } from 'react-redux';
+import { getOnadataUserInfo } from '../../helpers/oauth';
 import * as serviceHelpers from '../../helpers/services';
 import * as helperFixtures from '../../helpers/tests/fixtures';
 import * as callback from '../callback';
@@ -100,7 +101,7 @@ describe('gatekeeper/OauthLogin', () => {
     const hash =
       '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
 
-    expect(mock).toHaveBeenCalledWith(hash, url, onadataAuth, authenticateUser);
+    expect(mock).toHaveBeenCalledWith(hash, url, onadataAuth, authenticateUser, getOnadataUserInfo);
 
     expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
     wrapper.unmount();

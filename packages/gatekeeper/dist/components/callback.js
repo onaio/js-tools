@@ -63,6 +63,8 @@ var OauthCallback = function OauthCallback(props) {
       UnSuccessfulLoginComponent = _props$UnSuccessfulLo === void 0 ? RenderErrorComponent : _props$UnSuccessfulLo,
       authenticateActionCreator = props.authenticateActionCreator,
       authenticated = props.authenticated,
+      _props$oAuthUserInfoG = props.oAuthUserInfoGetter,
+      oAuthUserInfoGetter = _props$oAuthUserInfoG === void 0 ? _oauth.getOnadataUserInfo : _props$oAuthUserInfoG,
       providers = props.providers,
       sessionData = props.sessionData,
       sessionUser = props.sessionUser;
@@ -86,7 +88,7 @@ var OauthCallback = function OauthCallback(props) {
   var provider = (0, _oauth.getProviderFromOptions)(providerOptions);
   (0, _react.useEffect)(function () {
     if (authenticated === false) {
-      (0, _services.fetchUser)(locationHash, userUri, provider, authenticateActionCreator);
+      (0, _services.fetchUser)(locationHash, userUri, provider, authenticateActionCreator, oAuthUserInfoGetter);
     }
   }, []);
   var successProps = {
@@ -106,7 +108,8 @@ var defaultProps = {
   ErrorComponent: RenderErrorComponent,
   HTTP404Component: Component404,
   SuccessfulLoginComponent: SuccessfulLogin,
-  UnSuccessfulLoginComponent: RenderErrorComponent
+  UnSuccessfulLoginComponent: RenderErrorComponent,
+  oAuthUserInfoGetter: _oauth.getOnadataUserInfo
 };
 OauthCallback.defaultProps = defaultProps;
 

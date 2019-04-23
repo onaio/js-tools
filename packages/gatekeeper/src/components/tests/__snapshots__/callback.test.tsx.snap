@@ -46,6 +46,7 @@ exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
       "url": "https://example.com/oauth/callback/onadata/",
     }
   }
+  oAuthUserInfoGetter={[Function]}
   providers={
     Object {
       "onadata": Object {
@@ -178,6 +179,7 @@ exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
       "url": "https://example.com/oauth/callback/onadata/",
     }
   }
+  oAuthUserInfoGetter={[Function]}
   providers={
     Object {
       "onadata": Object {
@@ -264,6 +266,7 @@ exports[`gatekeeper/OauthLogin renders correctly when oAuth error occurred 1`] =
       "url": "https://example.com/oauth/callback/onadata/",
     }
   }
+  oAuthUserInfoGetter={[Function]}
   providers={
     Object {
       "onadata": Object {
@@ -350,6 +353,7 @@ exports[`gatekeeper/OauthLogin renders correctly when provider is not known 1`] 
       "url": "https://example.com/oauth/callback/unknown/",
     }
   }
+  oAuthUserInfoGetter={[Function]}
   providers={
     Object {
       "onadata": Object {
@@ -436,6 +440,7 @@ exports[`gatekeeper/OauthLogin renders correctly when uri cant be processed 1`] 
       "url": "https://example.com/oauth/callback/onadata/",
     }
   }
+  oAuthUserInfoGetter={[Function]}
   providers={
     Object {
       "onadata": Object {

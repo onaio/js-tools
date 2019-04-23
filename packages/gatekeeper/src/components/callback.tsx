@@ -11,7 +11,12 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { ActionCreator, Store } from 'redux';
-import { getProviderFromOptions, Providers } from '../helpers/oauth';
+import {
+  getOnadataUserInfo,
+  getProviderFromOptions,
+  Providers,
+  UserInfoFnType
+} from '../helpers/oauth';
 import { fetchUser } from '../helpers/services';
 
 /** Route params interface */
@@ -27,6 +32,7 @@ export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
   UnSuccessfulLoginComponent?: React.ElementType;
   authenticateActionCreator?: ActionCreator<AuthenticateAction>;
   authenticated?: boolean;
+  oAuthUserInfoGetter: UserInfoFnType;
   providers: Providers;
   sessionData?: { [key: string]: any };
   sessionUser?: User;
@@ -83,6 +89,7 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
     UnSuccessfulLoginComponent = RenderErrorComponent,
     authenticateActionCreator,
     authenticated,
+    oAuthUserInfoGetter = getOnadataUserInfo,
     providers,
     sessionData,
     sessionUser
@@ -106,7 +113,7 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
 
   useEffect(() => {
     if (authenticated === false) {
-      fetchUser(locationHash, userUri, provider, authenticateActionCreator);
+      fetchUser(locationHash, userUri, provider, authenticateActionCreator, oAuthUserInfoGetter);
     }
   }, []); // The empty array causes this effect to only run on mount
 
@@ -123,7 +130,8 @@ const defaultProps = {
   ErrorComponent: RenderErrorComponent,
   HTTP404Component: Component404,
   SuccessfulLoginComponent: SuccessfulLogin,
-  UnSuccessfulLoginComponent: RenderErrorComponent
+  UnSuccessfulLoginComponent: RenderErrorComponent,
+  oAuthUserInfoGetter: getOnadataUserInfo
 };
 
 OauthCallback.defaultProps = defaultProps;
