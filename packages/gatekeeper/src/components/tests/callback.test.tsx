@@ -205,4 +205,36 @@ describe('gatekeeper/OauthLogin', () => {
     expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
     wrapper.unmount();
   });
+
+  it('renders correctly when provider is not known', () => {
+    const props = {
+      authenticateActionCreator: authenticateUser,
+      authenticated: false,
+      history,
+      location: {
+        hash: '',
+        pathname: '/oauth/callback/unknown/',
+        search: '',
+        state: undefined
+      },
+      match: {
+        isExact: true,
+        params: { id: 'unknown' },
+        path: 'https://example.com/oauth/callback/:id',
+        url: 'https://example.com/oauth/callback/unknown/'
+      },
+      providers: fixtures.providers,
+      sessionData: {},
+      sessionUser: {
+        email: '',
+        gravatar: '',
+        name: '',
+        username: ''
+      }
+    };
+
+    const wrapper = mount(<OauthCallback {...props} />);
+    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    wrapper.unmount();
+  });
 });

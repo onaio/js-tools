@@ -304,6 +304,92 @@ exports[`gatekeeper/OauthLogin renders correctly when oAuth error occurred 1`] =
 </OauthCallback>
 `;
 
+exports[`gatekeeper/OauthLogin renders correctly when provider is not known 1`] = `
+<OauthCallback
+  ErrorComponent={[Function]}
+  HTTP404Component={[Function]}
+  SuccessfulLoginComponent={[Function]}
+  UnSuccessfulLoginComponent={[Function]}
+  authenticateActionCreator={[Function]}
+  authenticated={false}
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "hash": "",
+      "pathname": "/oauth/callback/unknown/",
+      "search": "",
+      "state": undefined,
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {
+        "id": "unknown",
+      },
+      "path": "https://example.com/oauth/callback/:id",
+      "url": "https://example.com/oauth/callback/unknown/",
+    }
+  }
+  providers={
+    Object {
+      "onadata": Object {
+        "accessTokenUri": "https://stage-api.ona.io/o/token/",
+        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
+        "clientId": "hunter2",
+        "redirectUri": "https://example.com/oauth/callback/onadata/",
+        "scopes": Array [
+          "read",
+          "write",
+        ],
+        "state": "abc",
+        "userUri": "https://stage-api.ona.io/api/v1/user.json",
+      },
+    }
+  }
+  sessionData={Object {}}
+  sessionUser={
+    Object {
+      "email": "",
+      "gravatar": "",
+      "name": "",
+      "username": "",
+    }
+  }
+>
+  <Component404>
+    <div
+      className="gatekeeper-cb"
+    >
+      <p
+        className="gatekeeper-p"
+      >
+        Nothing here!
+      </p>
+    </div>
+  </Component404>
+</OauthCallback>
+`;
+
 exports[`gatekeeper/OauthLogin renders correctly when uri cant be processed 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
