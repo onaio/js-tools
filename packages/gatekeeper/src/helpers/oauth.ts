@@ -1,5 +1,6 @@
 import { SessionState } from '@onaio/session-reducer';
 import ClientOAuth2, { Options } from 'client-oauth2';
+import { OAUTH2_CALLBACK_ERROR } from './constants';
 
 /** interface for oAuth options */
 export interface OauthOptions extends Options {
@@ -34,7 +35,7 @@ export type UserInfoFnType = (obj: { [key: string]: any }) => SessionState | voi
  */
 export function getOnadataUserInfo(apiResponse: { [key: string]: any }): SessionState | void {
   if (!apiResponse.username || !apiResponse.api_token) {
-    throw new Error('oAuth service oauth2Callback failed, data not returned');
+    throw new Error(OAUTH2_CALLBACK_ERROR);
   }
   const { username } = apiResponse;
   const user = {
