@@ -1,5 +1,13 @@
-import session, { initialState, User } from '@onaio/session-reducer';
-import React, { useEffect, useReducer } from 'react';
+import {
+  authenticateUser,
+  getExtraData,
+  getUser,
+  initialState,
+  isAuthenticated,
+  User
+} from '@onaio/session-reducer';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { getProviderFromOptions, Providers } from '../helpers/oauth';
 import { fetchUser } from '../helpers/services';
@@ -59,11 +67,15 @@ const SuccessfulLogin = (props: SuccessfulLoginProps) => {
  * on a page that matches this pattern "https://example.com/callback/onadata"
  * Once successfully processed, the user is stored in the session Reducer.
  */
-const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
-  /** useReducer helps us to get both the session state and the dispatch */
-  const [sessionState, sessionDispatch] = useReducer(session, initialState);
-
-  const { HTTP404Component, SuccessfulLoginComponent, providers } = props;
+const OauthCallback = (props: any) => {
+  const {
+    HTTP404Component,
+    SuccessfulLoginComponent,
+    authenticated,
+    providers,
+    sessionData,
+    sessionUser
+  } = props;
   const locationHash = props.location.hash;
   const id = props.match.params.id;
 
@@ -76,14 +88,18 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
   const provider = getProviderFromOptions(providerOptions);
 
   useEffect(() => {
-    if (sessionState.authenticated === false) {
-      fetchUser(locationHash, userUri, sessionDispatch, provider);
+    if (authenticated === false) {
+      fetchUser(locationHash, userUri, provider, props.authenticateUser);
     }
-  });
+  }, []); // The empty array causes this effect to only run on mount
 
-  const successProps = { user: sessionState.user };
+  const successProps = { user: sessionUser };
 
-  return SuccessfulLoginComponent && <SuccessfulLoginComponent {...successProps} />;
+  if (authenticated && SuccessfulLoginComponent) {
+    return SuccessfulLoginComponent && <SuccessfulLoginComponent {...successProps} />;
+  }
+
+  return <div>no dice!</div>;
 };
 
 OauthCallback.defaultProps = {
@@ -92,4 +108,21 @@ OauthCallback.defaultProps = {
   SuccessfulLoginComponent: SuccessfulLogin
 };
 
-export default OauthCallback;
+export { OauthCallback }; // export the un-connected component
+
+/** Connect the component to the store */
+
+const mapStateToProps = (state: any) => {
+  return {
+    authenticated: isAuthenticated(state),
+    sessionData: getExtraData(state),
+    sessionUser: getUser(state)
+  };
+};
+
+const mapDispatchToProps = { authenticateUser };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(OauthCallback);
