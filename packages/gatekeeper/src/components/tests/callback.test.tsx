@@ -141,4 +141,68 @@ describe('gatekeeper/OauthLogin', () => {
     expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
     wrapper.unmount();
   });
+
+  it('renders correctly when oAuth error occurred', () => {
+    const props = {
+      authenticateActionCreator: authenticateUser,
+      authenticated: false,
+      history,
+      location: {
+        hash: '',
+        pathname: '/oauth/callback/onadata/',
+        search: '?error=unauthorized_client&state=abc',
+        state: undefined
+      },
+      match: {
+        isExact: true,
+        params: { id: 'onadata' },
+        path: 'https://example.com/oauth/callback/:id',
+        url: 'https://example.com/oauth/callback/onadata/'
+      },
+      providers: fixtures.providers,
+      sessionData: {},
+      sessionUser: {
+        email: '',
+        gravatar: '',
+        name: '',
+        username: ''
+      }
+    };
+
+    const wrapper = mount(<OauthCallback {...props} />);
+    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('renders correctly when uri cant be processed', () => {
+    const props = {
+      authenticateActionCreator: authenticateUser,
+      authenticated: false,
+      history,
+      location: {
+        hash: '',
+        pathname: '/oauth/callback/onadata/',
+        search: '',
+        state: undefined
+      },
+      match: {
+        isExact: true,
+        params: { id: 'onadata' },
+        path: 'https://example.com/oauth/callback/:id',
+        url: 'https://example.com/oauth/callback/onadata/'
+      },
+      providers: fixtures.providers,
+      sessionData: {},
+      sessionUser: {
+        email: '',
+        gravatar: '',
+        name: '',
+        username: ''
+      }
+    };
+
+    const wrapper = mount(<OauthCallback {...props} />);
+    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    wrapper.unmount();
+  });
 });
