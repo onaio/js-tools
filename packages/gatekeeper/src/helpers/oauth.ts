@@ -30,7 +30,7 @@ export function getProviderFromOptions(options: OauthOptions) {
 /** Type definition for userInfo functions  */
 export type UserInfoFnType = (obj: { [key: string]: any }) => SessionState | void;
 
-/** Function to get onadata user info from api reponse object
+/** Function to get onadata user info from api response object
  * @param {{[key: string]: any }} apiResponse - the API response object
  */
 export function getOnadataUserInfo(apiResponse: { [key: string]: any }): SessionState | void {
