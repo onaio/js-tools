@@ -1,0 +1,46 @@
+{
+  "name": "@onaio/gatekeeper",
+  "version": "0.0.0",
+  "description": "Reusable tools for adding authentication to your React app",
+  "main": "dist/index.js",
+  "types": "dist/types",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onaio/js-tools.git"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx' --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "author": "Ona Engineering",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@onaio/session-reducer": "^0.0.1",
+    "client-oauth2": "^4.2.3",
+    "query-string": "^6.4.2"
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.9.0",
+    "@types/enzyme-to-json": "^1.5.3",
+    "@types/fetch-mock": "^7.2.3",
+    "enzyme": "^3.8.0",
+    "enzyme-to-json": "^3.3.5",
+    "fetch-mock": "^7.3.1"
+  }
+}

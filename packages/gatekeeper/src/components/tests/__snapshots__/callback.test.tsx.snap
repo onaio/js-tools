@@ -1,0 +1,482 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
+<OauthCallback
+  ErrorComponent={[Function]}
+  HTTP404Component={[Function]}
+  SuccessfulLoginComponent={[Function]}
+  UnSuccessfulLoginComponent={[Function]}
+  authenticateActionCreator={[Function]}
+  authenticated={true}
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "hash": "#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc",
+      "pathname": "/oauth/callback/onadata/",
+      "search": "",
+      "state": undefined,
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {
+        "id": "onadata",
+      },
+      "path": "https://example.com/oauth/callback/:id",
+      "url": "https://example.com/oauth/callback/onadata/",
+    }
+  }
+  oAuthUserInfoGetter={[Function]}
+  providers={
+    Object {
+      "onadata": Object {
+        "accessTokenUri": "https://stage-api.ona.io/o/token/",
+        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
+        "clientId": "hunter2",
+        "redirectUri": "https://example.com/oauth/callback/onadata/",
+        "scopes": Array [
+          "read",
+          "write",
+        ],
+        "state": "abc",
+        "userUri": "https://stage-api.ona.io/api/v1/user.json",
+      },
+    }
+  }
+  sessionData={
+    Object {
+      "api_token": "the api token",
+      "city": "",
+      "country": "",
+      "email": "mosh@example.com",
+      "gravatar": "https://secure.gravatar.com/avatar/ae22ab897231db07205bd5d00e64cbbf?d=https%3A%2F%2Fona.io%2Fstatic%2Fimages%2Fdefault_avatar.png&s=60",
+      "name": "mosh",
+      "organization": "",
+      "require_auth": true,
+      "temp_token": "the temp token",
+      "twitter": "",
+      "url": "https://stage-api.ona.io/api/v1/profiles/moshthepitt",
+      "user": "https://stage-api.ona.io/api/v1/users/moshthepitt",
+      "username": "moshthepitt",
+      "website": "",
+    }
+  }
+  sessionUser={
+    Object {
+      "email": "mosh@example.com",
+      "gravatar": "https://secure.gravatar.com/avatar/ae22ab897231db07205bd5d00e64cbbf?d=https%3A%2F%2Fona.io%2Fstatic%2Fimages%2Fdefault_avatar.png&s=60",
+      "name": "mosh",
+      "username": "moshthepitt",
+    }
+  }
+>
+  <SuccessfulLogin
+    extraData={
+      Object {
+        "api_token": "the api token",
+        "city": "",
+        "country": "",
+        "email": "mosh@example.com",
+        "gravatar": "https://secure.gravatar.com/avatar/ae22ab897231db07205bd5d00e64cbbf?d=https%3A%2F%2Fona.io%2Fstatic%2Fimages%2Fdefault_avatar.png&s=60",
+        "name": "mosh",
+        "organization": "",
+        "require_auth": true,
+        "temp_token": "the temp token",
+        "twitter": "",
+        "url": "https://stage-api.ona.io/api/v1/profiles/moshthepitt",
+        "user": "https://stage-api.ona.io/api/v1/users/moshthepitt",
+        "username": "moshthepitt",
+        "website": "",
+      }
+    }
+    user={
+      Object {
+        "email": "mosh@example.com",
+        "gravatar": "https://secure.gravatar.com/avatar/ae22ab897231db07205bd5d00e64cbbf?d=https%3A%2F%2Fona.io%2Fstatic%2Fimages%2Fdefault_avatar.png&s=60",
+        "name": "mosh",
+        "username": "moshthepitt",
+      }
+    }
+  >
+    <div
+      className="gatekeeper-cb"
+    >
+      <p
+        className="gatekeeper-p"
+      >
+        Welcome back, 
+        moshthepitt
+        !
+      </p>
+    </div>
+  </SuccessfulLogin>
+</OauthCallback>
+`;
+
+exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
+<OauthCallback
+  ErrorComponent={[Function]}
+  HTTP404Component={[Function]}
+  SuccessfulLoginComponent={[Function]}
+  UnSuccessfulLoginComponent={[Function]}
+  authenticateActionCreator={[Function]}
+  authenticated={false}
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "hash": "#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc",
+      "pathname": "/oauth/callback/onadata/",
+      "search": "",
+      "state": undefined,
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {
+        "id": "onadata",
+      },
+      "path": "https://example.com/oauth/callback/:id",
+      "url": "https://example.com/oauth/callback/onadata/",
+    }
+  }
+  oAuthUserInfoGetter={[Function]}
+  providers={
+    Object {
+      "onadata": Object {
+        "accessTokenUri": "https://stage-api.ona.io/o/token/",
+        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
+        "clientId": "hunter2",
+        "redirectUri": "https://example.com/oauth/callback/onadata/",
+        "scopes": Array [
+          "read",
+          "write",
+        ],
+        "state": "abc",
+        "userUri": "https://stage-api.ona.io/api/v1/user.json",
+      },
+    }
+  }
+  sessionData={Object {}}
+  sessionUser={
+    Object {
+      "email": "",
+      "gravatar": "",
+      "name": "",
+      "username": "",
+    }
+  }
+>
+  <RenderErrorComponent>
+    <div
+      className="gatekeeper-cb"
+    >
+      <p
+        className="gatekeeper-p"
+      >
+        An error occurred!
+      </p>
+    </div>
+  </RenderErrorComponent>
+</OauthCallback>
+`;
+
+exports[`gatekeeper/OauthLogin renders correctly when oAuth error occurred 1`] = `
+<OauthCallback
+  ErrorComponent={[Function]}
+  HTTP404Component={[Function]}
+  SuccessfulLoginComponent={[Function]}
+  UnSuccessfulLoginComponent={[Function]}
+  authenticateActionCreator={[Function]}
+  authenticated={false}
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "hash": "",
+      "pathname": "/oauth/callback/onadata/",
+      "search": "?error=unauthorized_client&state=abc",
+      "state": undefined,
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {
+        "id": "onadata",
+      },
+      "path": "https://example.com/oauth/callback/:id",
+      "url": "https://example.com/oauth/callback/onadata/",
+    }
+  }
+  oAuthUserInfoGetter={[Function]}
+  providers={
+    Object {
+      "onadata": Object {
+        "accessTokenUri": "https://stage-api.ona.io/o/token/",
+        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
+        "clientId": "hunter2",
+        "redirectUri": "https://example.com/oauth/callback/onadata/",
+        "scopes": Array [
+          "read",
+          "write",
+        ],
+        "state": "abc",
+        "userUri": "https://stage-api.ona.io/api/v1/user.json",
+      },
+    }
+  }
+  sessionData={Object {}}
+  sessionUser={
+    Object {
+      "email": "",
+      "gravatar": "",
+      "name": "",
+      "username": "",
+    }
+  }
+>
+  <RenderErrorComponent>
+    <div
+      className="gatekeeper-cb"
+    >
+      <p
+        className="gatekeeper-p"
+      >
+        An error occurred!
+      </p>
+    </div>
+  </RenderErrorComponent>
+</OauthCallback>
+`;
+
+exports[`gatekeeper/OauthLogin renders correctly when provider is not known 1`] = `
+<OauthCallback
+  ErrorComponent={[Function]}
+  HTTP404Component={[Function]}
+  SuccessfulLoginComponent={[Function]}
+  UnSuccessfulLoginComponent={[Function]}
+  authenticateActionCreator={[Function]}
+  authenticated={false}
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "hash": "",
+      "pathname": "/oauth/callback/unknown/",
+      "search": "",
+      "state": undefined,
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {
+        "id": "unknown",
+      },
+      "path": "https://example.com/oauth/callback/:id",
+      "url": "https://example.com/oauth/callback/unknown/",
+    }
+  }
+  oAuthUserInfoGetter={[Function]}
+  providers={
+    Object {
+      "onadata": Object {
+        "accessTokenUri": "https://stage-api.ona.io/o/token/",
+        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
+        "clientId": "hunter2",
+        "redirectUri": "https://example.com/oauth/callback/onadata/",
+        "scopes": Array [
+          "read",
+          "write",
+        ],
+        "state": "abc",
+        "userUri": "https://stage-api.ona.io/api/v1/user.json",
+      },
+    }
+  }
+  sessionData={Object {}}
+  sessionUser={
+    Object {
+      "email": "",
+      "gravatar": "",
+      "name": "",
+      "username": "",
+    }
+  }
+>
+  <Component404>
+    <div
+      className="gatekeeper-cb"
+    >
+      <p
+        className="gatekeeper-p"
+      >
+        Nothing here!
+      </p>
+    </div>
+  </Component404>
+</OauthCallback>
+`;
+
+exports[`gatekeeper/OauthLogin renders correctly when uri cant be processed 1`] = `
+<OauthCallback
+  ErrorComponent={[Function]}
+  HTTP404Component={[Function]}
+  SuccessfulLoginComponent={[Function]}
+  UnSuccessfulLoginComponent={[Function]}
+  authenticateActionCreator={[Function]}
+  authenticated={false}
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "hash": "",
+      "pathname": "/oauth/callback/onadata/",
+      "search": "",
+      "state": undefined,
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {
+        "id": "onadata",
+      },
+      "path": "https://example.com/oauth/callback/:id",
+      "url": "https://example.com/oauth/callback/onadata/",
+    }
+  }
+  oAuthUserInfoGetter={[Function]}
+  providers={
+    Object {
+      "onadata": Object {
+        "accessTokenUri": "https://stage-api.ona.io/o/token/",
+        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
+        "clientId": "hunter2",
+        "redirectUri": "https://example.com/oauth/callback/onadata/",
+        "scopes": Array [
+          "read",
+          "write",
+        ],
+        "state": "abc",
+        "userUri": "https://stage-api.ona.io/api/v1/user.json",
+      },
+    }
+  }
+  sessionData={Object {}}
+  sessionUser={
+    Object {
+      "email": "",
+      "gravatar": "",
+      "name": "",
+      "username": "",
+    }
+  }
+>
+  <RenderErrorComponent>
+    <div
+      className="gatekeeper-cb"
+    >
+      <p
+        className="gatekeeper-p"
+      >
+        An error occurred!
+      </p>
+    </div>
+  </RenderErrorComponent>
+</OauthCallback>
+`;
