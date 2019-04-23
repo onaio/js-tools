@@ -37,7 +37,7 @@ describe('gatekeeper/services', () => {
     // mock fetchUser
     const mock = jest.spyOn(sessionReducer, 'authenticateUser');
 
-    await fetchUser(hash, url, jest.fn(), provider);
+    await fetchUser(hash, url, provider, jest.fn());
 
     expect(mock).toHaveBeenCalledWith(
       true,
@@ -60,7 +60,7 @@ describe('gatekeeper/services', () => {
     fetchMock.getOnce('https://stage-api.ona.io/api/v1/user.json', 500);
     let error;
     try {
-      await fetchUser(hash, url, jest.fn(), provider);
+      await fetchUser(hash, url, provider, jest.fn());
     } catch (e) {
       error = e;
     }
@@ -75,7 +75,7 @@ describe('gatekeeper/services', () => {
     fetchMock.getOnce('https://stage-api.ona.io/api/v1/user.json', {});
     let error;
     try {
-      await fetchUser(hash, url, jest.fn(), provider);
+      await fetchUser(hash, url, provider, jest.fn());
     } catch (e) {
       error = e;
     }
