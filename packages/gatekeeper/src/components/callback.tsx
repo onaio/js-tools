@@ -6,6 +6,7 @@ import {
   isAuthenticated,
   User
 } from '@onaio/session-reducer';
+import qs from 'query-string';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
@@ -88,8 +89,14 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
   } = props;
   const locationHash = props.location.hash;
   const id = props.match.params.id;
+  const parsedParams = qs.parse(location.search);
+  const { error } = parsedParams;
 
-  if (!Object.keys(providers).includes(id) && HTTP404Component) {
+  if (error) {
+    return <ErrorComponent />;
+  }
+
+  if (!Object.keys(providers).includes(id)) {
     return <HTTP404Component />;
   }
 
@@ -105,11 +112,11 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
 
   const successProps = { extraData: sessionData, user: sessionUser };
 
-  if (authenticated && SuccessfulLoginComponent) {
-    return SuccessfulLoginComponent && <SuccessfulLoginComponent {...successProps} />;
+  if (authenticated === true && SuccessfulLoginComponent) {
+    return <SuccessfulLoginComponent {...successProps} />;
   }
 
-  return UnSuccessfulLoginComponent && <UnSuccessfulLoginComponent />;
+  return <UnSuccessfulLoginComponent />;
 };
 
 const defaultProps = {
