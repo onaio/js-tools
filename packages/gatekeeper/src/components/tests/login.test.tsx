@@ -42,4 +42,23 @@ describe('gatekeeper/OauthLogin', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
+
+  it('renders correctly with no providers', () => {
+    const props = {
+      providers: undefined
+    };
+    const wrapper = mount(<OauthLogin {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('renders correctly with no ProviderLinksComponent', () => {
+    const props = {
+      ProviderLinksComponent: undefined,
+      providers: fixtures.providers
+    };
+    const wrapper = mount(<OauthLogin {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
 });

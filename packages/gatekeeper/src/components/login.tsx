@@ -43,7 +43,7 @@ export const ProviderLinks = (props: ProviderLinksProps) => {
  */
 const OauthLogin = (props: OauthLoginProps) => {
   const { providers, ProviderLinksComponent } = props;
-  return ProviderLinksComponent ? (
+  return ProviderLinksComponent && providers ? (
     <ProviderLinksComponent {...{ providers }} />
   ) : (
     <div className="gatekeeper-login">
