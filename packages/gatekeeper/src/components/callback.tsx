@@ -2,7 +2,6 @@ import {
   authenticateUser,
   getExtraData,
   getUser,
-  initialState,
   isAuthenticated,
   User
 } from '@onaio/session-reducer';
@@ -19,9 +18,10 @@ export interface RouteParams {
 
 /** interface for OauthCallbackProps props */
 export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
-  ErrorPageComponent?: React.ElementType;
+  ErrorComponentComponent?: React.ElementType;
   HTTP404Component?: React.ElementType;
   SuccessfulLoginComponent?: React.ElementType;
+  UnSuccessfulLoginComponent?: React.ElementType;
   providers: Providers;
 }
 
@@ -35,7 +35,7 @@ const Component404 = () => {
 };
 
 /** error page component */
-const ErrorPage = () => {
+const ErrorComponent = () => {
   return (
     <div className="gatekeeper-cb">
       <p className="gatekeeper-p">An error occurred!</p>
@@ -45,6 +45,7 @@ const ErrorPage = () => {
 
 /** interface for SuccessfulLogin props */
 interface SuccessfulLoginProps {
+  extraData?: { [key: string]: any } /** can be an object with any properties */;
   user: User;
 }
 
@@ -71,6 +72,7 @@ const OauthCallback = (props: any) => {
   const {
     HTTP404Component,
     SuccessfulLoginComponent,
+    UnSuccessfulLoginComponent,
     authenticated,
     providers,
     sessionData,
@@ -93,19 +95,20 @@ const OauthCallback = (props: any) => {
     }
   }, []); // The empty array causes this effect to only run on mount
 
-  const successProps = { user: sessionUser };
+  const successProps = { extraData: sessionData, user: sessionUser };
 
   if (authenticated && SuccessfulLoginComponent) {
     return SuccessfulLoginComponent && <SuccessfulLoginComponent {...successProps} />;
   }
 
-  return <div>no dice!</div>;
+  return UnSuccessfulLoginComponent && <UnSuccessfulLoginComponent />;
 };
 
 OauthCallback.defaultProps = {
-  ErrorPageComponent: ErrorPage,
+  ErrorComponentComponent: ErrorComponent,
   HTTP404Component: Component404,
-  SuccessfulLoginComponent: SuccessfulLogin
+  SuccessfulLoginComponent: SuccessfulLogin,
+  UnSuccessfulLoginComponent: ErrorComponent
 };
 
 export { OauthCallback }; // export the un-connected component

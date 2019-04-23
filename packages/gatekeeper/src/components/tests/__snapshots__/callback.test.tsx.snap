@@ -2,9 +2,10 @@
 
 exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
 <OauthCallback
-  ErrorPageComponent={[Function]}
+  ErrorComponentComponent={[Function]}
   HTTP404Component={[Function]}
   SuccessfulLoginComponent={[Function]}
+  UnSuccessfulLoginComponent={[Function]}
   authenticateUser={[Function]}
   authenticated={true}
   history={
@@ -89,6 +90,24 @@ exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
   }
 >
   <SuccessfulLogin
+    extraData={
+      Object {
+        "api_token": "the api token",
+        "city": "",
+        "country": "",
+        "email": "mosh@example.com",
+        "gravatar": "https://secure.gravatar.com/avatar/ae22ab897231db07205bd5d00e64cbbf?d=https%3A%2F%2Fona.io%2Fstatic%2Fimages%2Fdefault_avatar.png&s=60",
+        "name": "mosh",
+        "organization": "",
+        "require_auth": true,
+        "temp_token": "the temp token",
+        "twitter": "",
+        "url": "https://stage-api.ona.io/api/v1/profiles/moshthepitt",
+        "user": "https://stage-api.ona.io/api/v1/users/moshthepitt",
+        "username": "moshthepitt",
+        "website": "",
+      }
+    }
     user={
       Object {
         "email": "mosh@example.com",
@@ -115,9 +134,10 @@ exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
 
 exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
 <OauthCallback
-  ErrorPageComponent={[Function]}
+  ErrorComponentComponent={[Function]}
   HTTP404Component={[Function]}
   SuccessfulLoginComponent={[Function]}
+  UnSuccessfulLoginComponent={[Function]}
   authenticateUser={[Function]}
   authenticated={false}
   history={
@@ -184,8 +204,16 @@ exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
     }
   }
 >
-  <div>
-    no dice!
-  </div>
+  <ErrorComponent>
+    <div
+      className="gatekeeper-cb"
+    >
+      <p
+        className="gatekeeper-p"
+      >
+        An error occurred!
+      </p>
+    </div>
+  </ErrorComponent>
 </OauthCallback>
 `;
