@@ -9,7 +9,7 @@ import {
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { ActionCreator } from 'redux';
+import { ActionCreator, Store } from 'redux';
 import { getProviderFromOptions, Providers } from '../helpers/oauth';
 import { fetchUser } from '../helpers/services';
 
@@ -20,15 +20,15 @@ export interface RouteParams {
 
 /** interface for OauthCallbackProps props */
 export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
-  ErrorComponentComponent?: React.ElementType;
+  ErrorComponent?: React.ElementType;
   HTTP404Component?: React.ElementType;
   SuccessfulLoginComponent?: React.ElementType;
   UnSuccessfulLoginComponent?: React.ElementType;
-  authenticateActionCreator: ActionCreator<AuthenticateAction>;
-  authenticated: boolean;
+  authenticateActionCreator?: ActionCreator<AuthenticateAction>;
+  authenticated?: boolean;
   providers: Providers;
-  sessionData: { [key: string]: any };
-  sessionUser: User;
+  sessionData?: { [key: string]: any };
+  sessionUser?: User;
 }
 
 /** default 404 page component */
@@ -41,7 +41,7 @@ const Component404 = () => {
 };
 
 /** error page component */
-const ErrorComponent = () => {
+const RenderErrorComponent = () => {
   return (
     <div className="gatekeeper-cb">
       <p className="gatekeeper-p">An error occurred!</p>
@@ -74,11 +74,12 @@ const SuccessfulLogin = (props: SuccessfulLoginProps) => {
  * on a page that matches this pattern "https://example.com/callback/onadata"
  * Once successfully processed, the user is stored in the session Reducer.
  */
-const OauthCallback = (props: any) => {
+const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
   const {
-    HTTP404Component,
-    SuccessfulLoginComponent,
-    UnSuccessfulLoginComponent,
+    ErrorComponent = RenderErrorComponent,
+    HTTP404Component = Component404,
+    SuccessfulLoginComponent = SuccessfulLogin,
+    UnSuccessfulLoginComponent = RenderErrorComponent,
     authenticateActionCreator,
     authenticated,
     providers,
@@ -112,10 +113,10 @@ const OauthCallback = (props: any) => {
 };
 
 const defaultProps = {
-  ErrorComponentComponent: ErrorComponent,
+  ErrorComponent: RenderErrorComponent,
   HTTP404Component: Component404,
   SuccessfulLoginComponent: SuccessfulLogin,
-  UnSuccessfulLoginComponent: ErrorComponent
+  UnSuccessfulLoginComponent: RenderErrorComponent
 };
 
 OauthCallback.defaultProps = defaultProps;
@@ -125,12 +126,18 @@ export { OauthCallback }; // export the un-connected component
 /** Connect the component to the store */
 
 /** map state to props */
-const mapStateToProps = (state: any) => {
-  return {
+const mapStateToProps = (
+  state: Partial<Store>,
+  ownProps: Partial<OauthCallbackProps<RouteParams>>
+) => {
+  const result = {
     authenticated: isAuthenticated(state),
     sessionData: getExtraData(state),
     sessionUser: getUser(state)
   };
+  Object.assign(result, ownProps);
+
+  return result;
 };
 
 /** map dispatch to props */

@@ -2,7 +2,7 @@
 
 exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
 <OauthCallback
-  ErrorComponentComponent={[Function]}
+  ErrorComponent={[Function]}
   HTTP404Component={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
@@ -134,7 +134,7 @@ exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
 
 exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
 <OauthCallback
-  ErrorComponentComponent={[Function]}
+  ErrorComponent={[Function]}
   HTTP404Component={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
@@ -204,7 +204,7 @@ exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
     }
   }
 >
-  <ErrorComponent>
+  <RenderErrorComponent>
     <div
       className="gatekeeper-cb"
     >
@@ -214,6 +214,6 @@ exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
         An error occurred!
       </p>
     </div>
-  </ErrorComponent>
+  </RenderErrorComponent>
 </OauthCallback>
 `;
