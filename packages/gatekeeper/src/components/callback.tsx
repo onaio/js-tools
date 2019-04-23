@@ -33,7 +33,7 @@ export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
 }
 
 /** default 404 page component */
-const Component404 = () => {
+export const Component404 = () => {
   return (
     <div className="gatekeeper-cb">
       <p className="gatekeeper-p">Nothing here!</p>
@@ -42,7 +42,7 @@ const Component404 = () => {
 };
 
 /** error page component */
-const RenderErrorComponent = () => {
+export const RenderErrorComponent = () => {
   return (
     <div className="gatekeeper-cb">
       <p className="gatekeeper-p">An error occurred!</p>
@@ -51,13 +51,13 @@ const RenderErrorComponent = () => {
 };
 
 /** interface for SuccessfulLogin props */
-interface SuccessfulLoginProps {
+export interface SuccessfulLoginProps {
   extraData?: { [key: string]: any } /** can be an object with any properties */;
   user: User;
 }
 
 /** successful login page component */
-const SuccessfulLogin = (props: SuccessfulLoginProps) => {
+export const SuccessfulLogin = (props: SuccessfulLoginProps) => {
   const { user } = props;
   return (
     <div className="gatekeeper-cb">
