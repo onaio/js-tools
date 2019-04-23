@@ -68,7 +68,7 @@ const providers = {
   }
 };
 
-/** now you can use the component like this <OauthLogin {...props} /> */
+/** now you can use the component like this <ConnectedOauthCallback {...props} /> */
 /** For example using react router and App */
 import { Route, Switch } from 'react-router';
 import { ConnectedOauthCallback } from `@onaio/gatekeeper`;
