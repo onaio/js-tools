@@ -12,7 +12,7 @@ describe('gatekeeper/oAuth', () => {
       onadata: {
         accessTokenUri: 'https://stage-api.ona.io/o/token/',
         authorizationUri: 'https://stage-api.ona.io/o/authorize/',
-        clientId: 'iDWxqlTdUNUtGd3MIjxsI8HcICSjsRwHfy1LKvzF',
+        clientId: 'hunter2',
         redirectUri: 'https://example.com/oauth/callback/onadata/',
         scopes: ['read', 'write'],
         state: 'abc',

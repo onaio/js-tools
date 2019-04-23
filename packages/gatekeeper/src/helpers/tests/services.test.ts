@@ -1,4 +1,3 @@
-import * as sessionReducer from '@onaio/session-reducer';
 import fetchMock from 'fetch-mock';
 import { getOnadataUserInfo } from '../oauth';
 import { fetchUser, oauth2Callback } from '../services';
@@ -34,12 +33,12 @@ describe('gatekeeper/services', () => {
       '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
     fetchMock.getOnce('https://stage-api.ona.io/api/v1/user.json', JSON.stringify(data));
 
-    // mock fetchUser
-    const mock = jest.spyOn(sessionReducer, 'authenticateUser');
+    // mock authenticateActionCreator
+    const authenticateActionCreatorMock = jest.fn();
 
-    await fetchUser(hash, url, provider, jest.fn());
+    await fetchUser(hash, url, provider, authenticateActionCreatorMock);
 
-    expect(mock).toHaveBeenCalledWith(
+    expect(authenticateActionCreatorMock).toHaveBeenCalledWith(
       true,
       {
         email: 'mosh@example.com',
