@@ -30,7 +30,7 @@ describe('gatekeeper/OauthLogin', () => {
       JSON.stringify(helperFixtures.onadataUser)
     );
     const props = {
-      authenticateUser,
+      authenticateActionCreator: authenticateUser,
       authenticated: false,
       history,
       location: {
@@ -64,7 +64,7 @@ describe('gatekeeper/OauthLogin', () => {
       JSON.stringify(helperFixtures.onadataUser)
     );
     const props = {
-      authenticateUser,
+      authenticateActionCreator: authenticateUser,
       authenticated: false,
       history,
       location: {

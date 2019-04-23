@@ -6,7 +6,7 @@ exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
   HTTP404Component={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
-  authenticateUser={[Function]}
+  authenticateActionCreator={[Function]}
   authenticated={true}
   history={
     Object {
@@ -138,7 +138,7 @@ exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
   HTTP404Component={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
-  authenticateUser={[Function]}
+  authenticateActionCreator={[Function]}
   authenticated={false}
   history={
     Object {

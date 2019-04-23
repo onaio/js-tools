@@ -1,4 +1,5 @@
 import {
+  AuthenticateAction,
   authenticateUser,
   getExtraData,
   getUser,
@@ -8,6 +9,7 @@ import {
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
+import { ActionCreator } from 'redux';
 import { getProviderFromOptions, Providers } from '../helpers/oauth';
 import { fetchUser } from '../helpers/services';
 
@@ -22,7 +24,11 @@ export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
   HTTP404Component?: React.ElementType;
   SuccessfulLoginComponent?: React.ElementType;
   UnSuccessfulLoginComponent?: React.ElementType;
+  authenticateActionCreator: ActionCreator<AuthenticateAction>;
+  authenticated: boolean;
   providers: Providers;
+  sessionData: { [key: string]: any };
+  sessionUser: User;
 }
 
 /** default 404 page component */
@@ -73,6 +79,7 @@ const OauthCallback = (props: any) => {
     HTTP404Component,
     SuccessfulLoginComponent,
     UnSuccessfulLoginComponent,
+    authenticateActionCreator,
     authenticated,
     providers,
     sessionData,
@@ -91,7 +98,7 @@ const OauthCallback = (props: any) => {
 
   useEffect(() => {
     if (authenticated === false) {
-      fetchUser(locationHash, userUri, provider, props.authenticateUser);
+      fetchUser(locationHash, userUri, provider, authenticateActionCreator);
     }
   }, []); // The empty array causes this effect to only run on mount
 
@@ -104,17 +111,20 @@ const OauthCallback = (props: any) => {
   return UnSuccessfulLoginComponent && <UnSuccessfulLoginComponent />;
 };
 
-OauthCallback.defaultProps = {
+const defaultProps = {
   ErrorComponentComponent: ErrorComponent,
   HTTP404Component: Component404,
   SuccessfulLoginComponent: SuccessfulLogin,
   UnSuccessfulLoginComponent: ErrorComponent
 };
 
+OauthCallback.defaultProps = defaultProps;
+
 export { OauthCallback }; // export the un-connected component
 
 /** Connect the component to the store */
 
+/** map state to props */
 const mapStateToProps = (state: any) => {
   return {
     authenticated: isAuthenticated(state),
@@ -123,9 +133,13 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-const mapDispatchToProps = { authenticateUser };
+/** map dispatch to props */
+const mapDispatchToProps = { authenticateActionCreator: authenticateUser };
 
-export default connect(
+/** created connected component */
+const ConnectedOauthCallback = connect(
   mapStateToProps,
   mapDispatchToProps
 )(OauthCallback);
+
+export default ConnectedOauthCallback;
