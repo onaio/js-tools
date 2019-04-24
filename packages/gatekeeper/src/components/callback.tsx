@@ -7,7 +7,7 @@ import {
   User
 } from '@onaio/session-reducer';
 import qs from 'query-string';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { ActionCreator, Store } from 'redux';
@@ -28,6 +28,7 @@ export interface RouteParams {
 export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
   ErrorComponent: React.ElementType;
   HTTP404Component: React.ElementType;
+  LoadingComponent: React.ElementType;
   SuccessfulLoginComponent: React.ElementType;
   UnSuccessfulLoginComponent: React.ElementType;
   authenticateActionCreator: ActionCreator<AuthenticateAction>;
@@ -56,6 +57,15 @@ export const RenderErrorComponent = () => {
   );
 };
 
+/** loading component */
+export const RenderLoadingComponent = () => {
+  return (
+    <div className="gatekeeper-cb">
+      <p className="gatekeeper-p">Please wait...</p>
+    </div>
+  );
+};
+
 /** interface for SuccessfulLogin props */
 export interface SuccessfulLoginProps {
   extraData?: { [key: string]: any } /** can be an object with any properties */;
@@ -76,6 +86,7 @@ export const SuccessfulLogin = (props: SuccessfulLoginProps) => {
 export const defaultOauthCallbackProps: Partial<OauthCallbackProps<RouteParams>> = {
   ErrorComponent: RenderErrorComponent,
   HTTP404Component: Component404,
+  LoadingComponent: RenderLoadingComponent,
   SuccessfulLoginComponent: SuccessfulLogin,
   UnSuccessfulLoginComponent: RenderErrorComponent,
   authenticateActionCreator: authenticateUser,
@@ -90,6 +101,11 @@ export const defaultOauthCallbackProps: Partial<OauthCallbackProps<RouteParams>>
   }
 };
 
+/** interface to describe state variables for OauthCallback */
+export interface OauthCallbackState {
+  loading: boolean;
+}
+
 /** The oAuth callback component
  * This component should be on the page that receives the callback from the
  * oAuth provider.
@@ -103,6 +119,7 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
   const {
     ErrorComponent,
     HTTP404Component,
+    LoadingComponent,
     SuccessfulLoginComponent,
     UnSuccessfulLoginComponent,
     authenticateActionCreator,
@@ -116,6 +133,15 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
   const id = props.match.params.id;
   const parsedParams = qs.parse(location.search);
   const { error } = parsedParams;
+  const [loading, setLoading] = useState<OauthCallbackState>({ loading: false });
+
+  function renderComponent(isLoading: any, theComponent: any) {
+    /** TODO: put in the correct types */
+    if (isLoading) {
+      return <LoadingComponent />;
+    }
+    return theComponent;
+  }
 
   if (error) {
     return <ErrorComponent />;
@@ -131,17 +157,24 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
 
   useEffect(() => {
     if (authenticated === false) {
-      fetchUser(locationHash, userUri, provider, authenticateActionCreator, oAuthUserInfoGetter);
+      setLoading({ loading: true });
+      fetchUser(
+        locationHash,
+        userUri,
+        provider,
+        authenticateActionCreator,
+        oAuthUserInfoGetter
+      ).finally(() => setLoading({ loading: false }));
     }
   }, []); // The empty array causes this effect to only run on mount
 
   const successProps = { extraData: sessionData, user: sessionUser };
 
   if (authenticated === true && SuccessfulLoginComponent) {
-    return <SuccessfulLoginComponent {...successProps} />;
+    return renderComponent(loading, <SuccessfulLoginComponent {...successProps} />);
   }
 
-  return <UnSuccessfulLoginComponent />;
+  return renderComponent(loading, <UnSuccessfulLoginComponent />);
 };
 
 OauthCallback.defaultProps = defaultOauthCallbackProps;
