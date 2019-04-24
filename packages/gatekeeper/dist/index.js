@@ -41,6 +41,12 @@ Object.defineProperty(exports, "Component404", {
     return _callback.Component404;
   }
 });
+Object.defineProperty(exports, "defaultOauthCallbackProps", {
+  enumerable: true,
+  get: function get() {
+    return _callback.defaultOauthCallbackProps;
+  }
+});
 Object.defineProperty(exports, "OauthCallback", {
   enumerable: true,
   get: function get() {
