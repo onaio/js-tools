@@ -2,25 +2,25 @@ import { AuthenticateAction, User } from '@onaio/session-reducer';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { ActionCreator } from 'redux';
-import { getOnadataUserInfo, Providers, UserInfoFnType } from '../helpers/oauth';
+import { Providers, UserInfoFnType } from '../helpers/oauth';
 /** Route params interface */
 export interface RouteParams {
   id: string;
 }
 /** interface for OauthCallbackProps props */
 export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
-  ErrorComponent?: React.ElementType;
-  HTTP404Component?: React.ElementType;
-  SuccessfulLoginComponent?: React.ElementType;
-  UnSuccessfulLoginComponent?: React.ElementType;
-  authenticateActionCreator?: ActionCreator<AuthenticateAction>;
-  authenticated?: boolean;
+  ErrorComponent: React.ElementType;
+  HTTP404Component: React.ElementType;
+  SuccessfulLoginComponent: React.ElementType;
+  UnSuccessfulLoginComponent: React.ElementType;
+  authenticateActionCreator: ActionCreator<AuthenticateAction>;
+  authenticated: boolean;
   oAuthUserInfoGetter: UserInfoFnType;
   providers: Providers;
-  sessionData?: {
+  sessionData: {
     [key: string]: any;
   };
-  sessionUser?: User;
+  sessionUser: User;
 }
 /** default 404 page component */
 export declare const Component404: () => JSX.Element;
@@ -35,6 +35,8 @@ export interface SuccessfulLoginProps {
 }
 /** successful login page component */
 export declare const SuccessfulLogin: (props: SuccessfulLoginProps) => JSX.Element;
+/** default props for OauthCallback */
+export declare const defaultOauthCallbackProps: Partial<OauthCallbackProps<RouteParams>>;
 /** The oAuth callback component
  * This component should be on the page that receives the callback from the
  * oAuth provider.
@@ -46,26 +48,14 @@ export declare const SuccessfulLogin: (props: SuccessfulLoginProps) => JSX.Eleme
  */
 declare const OauthCallback: {
   (props: OauthCallbackProps<RouteParams>): JSX.Element;
-  defaultProps: {
-    ErrorComponent: () => JSX.Element;
-    HTTP404Component: () => JSX.Element;
-    SuccessfulLoginComponent: (props: SuccessfulLoginProps) => JSX.Element;
-    UnSuccessfulLoginComponent: () => JSX.Element;
-    oAuthUserInfoGetter: typeof getOnadataUserInfo;
-  };
+  defaultProps: Partial<OauthCallbackProps<RouteParams>>;
 };
 export { OauthCallback };
 /** created connected component */
 declare const ConnectedOauthCallback: import('react-redux').ConnectedComponentClass<
   {
     (props: OauthCallbackProps<RouteParams>): JSX.Element;
-    defaultProps: {
-      ErrorComponent: () => JSX.Element;
-      HTTP404Component: () => JSX.Element;
-      SuccessfulLoginComponent: (props: SuccessfulLoginProps) => JSX.Element;
-      UnSuccessfulLoginComponent: () => JSX.Element;
-      oAuthUserInfoGetter: typeof getOnadataUserInfo;
-    };
+    defaultProps: Partial<OauthCallbackProps<RouteParams>>;
   },
   Pick<
     OauthCallbackProps<RouteParams>,
