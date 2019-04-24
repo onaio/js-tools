@@ -38,7 +38,11 @@ class App extends Component {
     return (
       <div>
         <Switch>
-          <Route exact={true} path="/login" component={OauthLogin} providers={providers} />
+          <Route
+            exact={true}
+            path="/login"
+            render={routeProps => <OauthLogin providers={providers} {...routeProps} />}
+          />
         </Switch>
       </div>
     );
@@ -80,9 +84,8 @@ class App extends Component {
         <Switch>
           <Route
             exact={true}
-            path="/callback/:id"
-            component={ConnectedOauthCallback}
-            providers={providers}
+            path="/oauth/callback/:id"
+            render={routeProps => <ConnectedOauthCallback providers={providers} {...routeProps} />}
           />
         </Switch>
       </div>

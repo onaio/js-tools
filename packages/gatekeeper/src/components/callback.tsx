@@ -26,16 +26,16 @@ export interface RouteParams {
 
 /** interface for OauthCallbackProps props */
 export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
-  ErrorComponent?: React.ElementType;
-  HTTP404Component?: React.ElementType;
-  SuccessfulLoginComponent?: React.ElementType;
-  UnSuccessfulLoginComponent?: React.ElementType;
-  authenticateActionCreator?: ActionCreator<AuthenticateAction>;
-  authenticated?: boolean;
+  ErrorComponent: React.ElementType;
+  HTTP404Component: React.ElementType;
+  SuccessfulLoginComponent: React.ElementType;
+  UnSuccessfulLoginComponent: React.ElementType;
+  authenticateActionCreator: ActionCreator<AuthenticateAction>;
+  authenticated: boolean;
   oAuthUserInfoGetter: UserInfoFnType;
   providers: Providers;
-  sessionData?: { [key: string]: any };
-  sessionUser?: User;
+  sessionData: { [key: string]: any };
+  sessionUser: User;
 }
 
 /** default 404 page component */
@@ -72,6 +72,24 @@ export const SuccessfulLogin = (props: SuccessfulLoginProps) => {
   );
 };
 
+/** default props for OauthCallback */
+export const defaultOauthCallbackProps: Partial<OauthCallbackProps<RouteParams>> = {
+  ErrorComponent: RenderErrorComponent,
+  HTTP404Component: Component404,
+  SuccessfulLoginComponent: SuccessfulLogin,
+  UnSuccessfulLoginComponent: RenderErrorComponent,
+  authenticateActionCreator: authenticateUser,
+  authenticated: false,
+  oAuthUserInfoGetter: getOnadataUserInfo,
+  sessionData: {},
+  sessionUser: {
+    email: '',
+    gravatar: '',
+    name: '',
+    username: ''
+  }
+};
+
 /** The oAuth callback component
  * This component should be on the page that receives the callback from the
  * oAuth provider.
@@ -83,13 +101,13 @@ export const SuccessfulLogin = (props: SuccessfulLoginProps) => {
  */
 const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
   const {
-    ErrorComponent = RenderErrorComponent,
-    HTTP404Component = Component404,
-    SuccessfulLoginComponent = SuccessfulLogin,
-    UnSuccessfulLoginComponent = RenderErrorComponent,
+    ErrorComponent,
+    HTTP404Component,
+    SuccessfulLoginComponent,
+    UnSuccessfulLoginComponent,
     authenticateActionCreator,
     authenticated,
-    oAuthUserInfoGetter = getOnadataUserInfo,
+    oAuthUserInfoGetter,
     providers,
     sessionData,
     sessionUser
@@ -126,15 +144,7 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
   return <UnSuccessfulLoginComponent />;
 };
 
-const defaultProps = {
-  ErrorComponent: RenderErrorComponent,
-  HTTP404Component: Component404,
-  SuccessfulLoginComponent: SuccessfulLogin,
-  UnSuccessfulLoginComponent: RenderErrorComponent,
-  oAuthUserInfoGetter: getOnadataUserInfo
-};
-
-OauthCallback.defaultProps = defaultProps;
+OauthCallback.defaultProps = defaultOauthCallbackProps;
 
 export { OauthCallback }; // export the un-connected component
 

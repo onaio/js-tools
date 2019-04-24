@@ -246,7 +246,7 @@ yarn babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,*
 yarn babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'
 ```
 
-> Note that you may need to compy non-js/non-typescript files to the `dist` directory manually e.g. css files
+> Note that you may need to copy non-js/non-typescript files to the `dist` directory manually e.g. css files
 
 Once this is done, commit any changes to the `dist` folder.
 

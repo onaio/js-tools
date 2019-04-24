@@ -2,6 +2,7 @@ import OauthLogin, { OauthLoginProps, ProviderLinks, ProviderLinksProps } from '
 
 import ConnectedOauthCallback, {
   Component404,
+  defaultOauthCallbackProps,
   OauthCallback,
   OauthCallbackProps,
   RenderErrorComponent,
@@ -23,6 +24,7 @@ import { fetchUser, oauth2Callback } from './helpers/services';
 import { errorCallback, ErrorCallback } from './helpers/utils';
 
 export {
+  defaultOauthCallbackProps,
   errorCallback,
   fetchUser,
   getOnadataUserInfo,

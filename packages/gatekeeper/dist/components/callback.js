@@ -7,7 +7,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.OauthCallback = exports.SuccessfulLogin = exports.RenderErrorComponent = exports.Component404 = void 0;
+exports.default = exports.OauthCallback = exports.defaultOauthCallbackProps = exports.SuccessfulLogin = exports.RenderErrorComponent = exports.Component404 = void 0;
 
 var _sessionReducer = require("@onaio/session-reducer");
 
@@ -51,20 +51,32 @@ var SuccessfulLogin = function SuccessfulLogin(props) {
 };
 
 exports.SuccessfulLogin = SuccessfulLogin;
+var defaultOauthCallbackProps = {
+  ErrorComponent: RenderErrorComponent,
+  HTTP404Component: Component404,
+  SuccessfulLoginComponent: SuccessfulLogin,
+  UnSuccessfulLoginComponent: RenderErrorComponent,
+  authenticateActionCreator: _sessionReducer.authenticateUser,
+  authenticated: false,
+  oAuthUserInfoGetter: _oauth.getOnadataUserInfo,
+  sessionData: {},
+  sessionUser: {
+    email: '',
+    gravatar: '',
+    name: '',
+    username: ''
+  }
+};
+exports.defaultOauthCallbackProps = defaultOauthCallbackProps;
 
 var OauthCallback = function OauthCallback(props) {
-  var _props$ErrorComponent = props.ErrorComponent,
-      ErrorComponent = _props$ErrorComponent === void 0 ? RenderErrorComponent : _props$ErrorComponent,
-      _props$HTTP404Compone = props.HTTP404Component,
-      HTTP404Component = _props$HTTP404Compone === void 0 ? Component404 : _props$HTTP404Compone,
-      _props$SuccessfulLogi = props.SuccessfulLoginComponent,
-      SuccessfulLoginComponent = _props$SuccessfulLogi === void 0 ? SuccessfulLogin : _props$SuccessfulLogi,
-      _props$UnSuccessfulLo = props.UnSuccessfulLoginComponent,
-      UnSuccessfulLoginComponent = _props$UnSuccessfulLo === void 0 ? RenderErrorComponent : _props$UnSuccessfulLo,
+  var ErrorComponent = props.ErrorComponent,
+      HTTP404Component = props.HTTP404Component,
+      SuccessfulLoginComponent = props.SuccessfulLoginComponent,
+      UnSuccessfulLoginComponent = props.UnSuccessfulLoginComponent,
       authenticateActionCreator = props.authenticateActionCreator,
       authenticated = props.authenticated,
-      _props$oAuthUserInfoG = props.oAuthUserInfoGetter,
-      oAuthUserInfoGetter = _props$oAuthUserInfoG === void 0 ? _oauth.getOnadataUserInfo : _props$oAuthUserInfoG,
+      oAuthUserInfoGetter = props.oAuthUserInfoGetter,
       providers = props.providers,
       sessionData = props.sessionData,
       sessionUser = props.sessionUser;
@@ -104,14 +116,7 @@ var OauthCallback = function OauthCallback(props) {
 };
 
 exports.OauthCallback = OauthCallback;
-var defaultProps = {
-  ErrorComponent: RenderErrorComponent,
-  HTTP404Component: Component404,
-  SuccessfulLoginComponent: SuccessfulLogin,
-  UnSuccessfulLoginComponent: RenderErrorComponent,
-  oAuthUserInfoGetter: _oauth.getOnadataUserInfo
-};
-OauthCallback.defaultProps = defaultProps;
+OauthCallback.defaultProps = defaultOauthCallbackProps;
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var result = {
