@@ -177,7 +177,9 @@ Currently the GateKeeper store looks like this:
 /** interface to describe GateKeeper state */
 export interface GateKeeperState {
   result: { [key: string]: any } /** stores the result of the auth attempt */;
-  success: boolean | null /** was it successful or not */;
+  success:
+    | boolean
+    | null /** was it successful or not. null means authentication has not been attempted. */;
 }
 ```
 
@@ -195,7 +197,7 @@ import { recordResult } from '@onaio/gatekeeper';
 let data; // you would need to provide a real object or leave it out
 
 /** record the result of the authentication attempt
- * @param {boolean} success - whether it was successful or not
+ * @param {boolean | null} success - whether it was successful or not. null means authentication has not been attempted.
  * @param {{ [key: string]: any }} result - an object containing result information
  */
 recordResult(true, data); // example usage
