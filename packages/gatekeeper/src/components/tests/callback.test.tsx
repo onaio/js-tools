@@ -104,6 +104,7 @@ describe('gatekeeper/OauthLogin', () => {
     expect(mock).toHaveBeenCalledWith(hash, url, onadataAuth, authenticateUser, getOnadataUserInfo);
 
     expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    mock.mockRestore();
     wrapper.unmount();
   });
 
