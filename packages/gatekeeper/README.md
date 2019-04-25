@@ -106,6 +106,7 @@ The oAuth2 Callback Component takes a number of props that have defaults which y
 
 - **ErrorComponent**: a React component that renders a generic error message
 - **HTTP404Component**: a React component that renders a 404 error message; used when a provider is not found in the configuration
+- **LoadingComponent**: a React component that renders a loading message
 - **SuccessfulLoginComponent**: a React component that renders a page for successful logins
 - **UnSuccessfulLoginComponent**: a React component that renders a page for unsuccessful logins
 - **authenticateActionCreator**: a [Redux action creator](https://redux.js.org/basics/actions#action-creators) to authenticate the user. The default that is used here is the `authenticateUser` action creator from the [session reducer package](https://github.com/onaio/js-tools/tree/master/packages/session-reducer).
