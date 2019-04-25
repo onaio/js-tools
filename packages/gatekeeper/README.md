@@ -235,7 +235,7 @@ OR
 import gateKeeperReducer, { gateKeeperReducerName } from '@onaio/gatekeeper';
 import reducerRegistry from '@onaio/redux-reducer-registry';
 
-reducerRegistry.register('gateKeeperReducerName', gateKeeperReducer);
+reducerRegistry.register(gateKeeperReducerName, gateKeeperReducer);
 ```
 
 ### The Session Store
