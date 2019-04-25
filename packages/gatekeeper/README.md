@@ -109,6 +109,7 @@ The oAuth2 Callback Component takes a number of props that have defaults which y
 - **SuccessfulLoginComponent**: a React component that renders a page for successful logins
 - **UnSuccessfulLoginComponent**: a React component that renders a page for unsuccessful logins
 - **authenticateActionCreator**: a [Redux action creator](https://redux.js.org/basics/actions#action-creators) to authenticate the user. The default that is used here is the `authenticateUser` action creator from the [session reducer package](https://github.com/onaio/js-tools/tree/master/packages/session-reducer).
+- **recordResultActionCreator**: a [Redux action creator](https://redux.js.org/basics/actions#action-creators) to record the results of the authentication attempt. THe default that is used is from the GateKeeper reducer (see below).
 - **oAuthUserInfoGetter**: a function used to extract user information from the provider server HTTP response. The default set for this is `getOnadataUserInfo`.
 
 ### Configuring oAuth2 providers
@@ -161,7 +162,83 @@ Under the hood, the components above rely on some oAuth2 helper functions to wor
 
 These functions have been made to be very, very extensible. It would be trivial to use them to create your own Login and/or Callback components instead of the ones we provide by default.
 
-### The Redux store
+## The Redux store
+
+### The GateKeeper store
+
+This is a simple [reducer module](https://github.com/erikras/ducks-modular-redux) that provides a way to store the results of authentication attempts information in the redux store.
+
+#### The store
+
+Currently the GateKeeper store looks like this:
+
+```ts
+/** interface to describe GateKeeper state */
+export interface GateKeeperState {
+  result: { [key: string]: any } /** stores the result of the auth attempt */;
+  success: boolean | null /** was it successful or not */;
+}
+```
+
+#### Action Creators
+
+Right now, the following action creators are provided:
+
+- `recordResult`: store the authentication attempts
+
+##### Sample code to use these actions
+
+```ts
+import { recordResult } from '@onaio/gatekeeper';
+
+let data; // you would need to provide a real object or leave it out
+
+/** record the result of the authentication attempt
+ * @param {boolean} success - whether it was successful or not
+ * @param {{ [key: string]: any }} result - an object containing result information
+ */
+recordResult(true, data); // example usage
+```
+
+#### Selectors
+
+Right now, the following selectors are provided:
+
+- `getResult`: get the result object
+- `getSuccess`: returns a boolean if the authentication attempt was successful or not. Is null by default - which means authentication has not been attempted.
+
+##### Sample code to use these selectors
+
+```ts
+import { getResult, getSuccess } from '@onaio/gatekeeper';
+
+// we assume you have a state object defined somewhere
+let state;
+
+const authSuccess = getSuccess(state);
+const authData = getResult(state);
+```
+
+#### Usage
+
+Using this reducer is quite simple and can be done in one of two ways:
+
+1. Use [combineReducers](https://redux.js.org/api/combinereducers) to ensure that the session reducer is loaded into your Redux store
+
+OR
+
+2. Register the GateKeeper reducer so that it is added to your Redux store dynamically. You would do this in the case that you are using the [Reducer Registry](https://github.com/onaio/js-tools/tree/master/packages/reducer-registry).
+
+##### sample code to register the reducer
+
+```ts
+import gateKeeperReducer, { gateKeeperReducerName } from '@onaio/gatekeeper';
+import reducerRegistry from '@onaio/redux-reducer-registry';
+
+reducerRegistry.register('gateKeeperReducerName', gateKeeperReducer);
+```
+
+### The Session Store
 
 GateKeeper currently works with the `session` reducer from the [session reducer package](https://github.com/onaio/js-tools/tree/master/packages/session-reducer).
 
