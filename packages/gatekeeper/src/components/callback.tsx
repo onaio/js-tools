@@ -162,7 +162,9 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
         authenticateActionCreator,
         recordResultActionCreator,
         oAuthUserInfoGetter
-      );
+      ).catch(e => {
+        /** do nothing - is this wise?? */
+      });
     }
   }, []); // The empty array causes this effect to only run on mount
 
