@@ -9,6 +9,17 @@ import ConnectedOauthCallback, {
   SuccessfulLoginProps
 } from './components/callback';
 import OauthLogin, { OauthLoginProps, ProviderLinks, ProviderLinksProps } from './components/login';
+import gateKeeperReducer, {
+  GateKeeperState,
+  getResult,
+  getSuccess,
+  ImmutableGateKeeperState,
+  initialState as initialGateKeeperState,
+  RECORD,
+  RecordAction,
+  recordResult,
+  reducerName as gateKeeperReducerName
+} from './ducks/gatekeeper';
 import {
   getOnadataUserInfo,
   getProviderFromOptions,
@@ -22,12 +33,20 @@ export {
   defaultOauthCallbackProps,
   errorCallback,
   fetchUser,
+  gateKeeperReducer,
+  gateKeeperReducerName,
   getOnadataUserInfo,
   getProviderFromOptions,
+  getResult,
+  getSuccess,
+  initialGateKeeperState,
   oauth2Callback,
+  recordResult,
   Component404,
   ConnectedOauthCallback,
   ErrorCallback,
+  GateKeeperState,
+  ImmutableGateKeeperState,
   OauthCallback,
   OauthCallbackProps,
   OauthLogin,
@@ -38,7 +57,9 @@ export {
   ProviderLinksProps,
   SuccessfulLogin,
   SuccessfulLoginProps,
+  RecordAction,
   RenderErrorComponent,
   RouteParams,
-  UserInfoFnType
+  UserInfoFnType,
+  RECORD
 };

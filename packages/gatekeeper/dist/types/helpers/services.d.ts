@@ -1,6 +1,7 @@
 import { AuthenticateAction } from '@onaio/session-reducer';
 import ClientOAuth2 from 'client-oauth2';
 import { ActionCreator } from 'redux';
+import { RecordAction } from '../ducks/gatekeeper';
 import { UserInfoFnType } from './oauth';
 import { ErrorCallback } from './utils';
 /** allowed http methods */
@@ -25,6 +26,7 @@ export declare function oauth2Callback(
  * @param {string} url - the URL that returns the user information for the provider
  * @param {ClientOAuth2} provider - the Oauth client object for the provider
  * @param {ActionCreator<AuthenticateAction>} authenticateActionCreator - the authenticate action creator function
+ * @param {ActionCreator<RecordAction>} recordResultActionCreator - the recordResult action creator function
  * @param {UserInfoFnType} userInfoCallback - function the gets user info from API response
  * @param {ErrorCallback} errorCallbackFn - a function that handles error messages
  * @param {string} method - the HTTP method to use
@@ -34,6 +36,7 @@ export declare function fetchUser(
   url: string,
   provider: ClientOAuth2,
   authenticateActionCreator?: ActionCreator<AuthenticateAction>,
+  recordResultActionCreator?: ActionCreator<RecordAction>,
   userInfoCallback?: UserInfoFnType,
   errorCallbackFn?: ErrorCallback,
   method?: HTTPMethod
