@@ -7,10 +7,11 @@ import {
   User
 } from '@onaio/session-reducer';
 import qs from 'query-string';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { ActionCreator, Store } from 'redux';
+import { getSuccess, RecordAction, recordResult } from '../ducks/gatekeeper';
 import {
   getOnadataUserInfo,
   getProviderFromOptions,
@@ -31,10 +32,12 @@ export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
   LoadingComponent: React.ElementType;
   SuccessfulLoginComponent: React.ElementType;
   UnSuccessfulLoginComponent: React.ElementType;
+  authSuccess: boolean | null;
   authenticateActionCreator: ActionCreator<AuthenticateAction>;
   authenticated: boolean;
   oAuthUserInfoGetter: UserInfoFnType;
   providers: Providers;
+  recordResultActionCreator: ActionCreator<RecordAction>;
   sessionData: { [key: string]: any };
   sessionUser: User;
 }
@@ -89,9 +92,11 @@ export const defaultOauthCallbackProps: Partial<OauthCallbackProps<RouteParams>>
   LoadingComponent: RenderLoadingComponent,
   SuccessfulLoginComponent: SuccessfulLogin,
   UnSuccessfulLoginComponent: RenderErrorComponent,
+  authSuccess: null,
   authenticateActionCreator: authenticateUser,
   authenticated: false,
   oAuthUserInfoGetter: getOnadataUserInfo,
+  recordResultActionCreator: recordResult,
   sessionData: {},
   sessionUser: {
     email: '',
@@ -115,80 +120,64 @@ export interface OauthCallbackState {
  * on a page that matches this pattern "https://example.com/callback/onadata"
  * Once successfully processed, the user is stored in the session Reducer.
  */
-class OauthCallback extends React.Component<OauthCallbackProps<RouteParams>, OauthCallbackState> {
-  public static defaultProps = defaultOauthCallbackProps;
-  private isMounted: boolean;
+const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
+  const {
+    ErrorComponent,
+    HTTP404Component,
+    LoadingComponent,
+    SuccessfulLoginComponent,
+    UnSuccessfulLoginComponent,
+    authSuccess,
+    authenticateActionCreator,
+    authenticated,
+    oAuthUserInfoGetter,
+    providers,
+    recordResultActionCreator,
+    sessionData,
+    sessionUser
+  } = props;
+  const locationHash = props.location.hash;
+  const id = props.match.params.id;
+  const parsedParams = qs.parse(location.search);
+  const { error } = parsedParams;
 
-  constructor(props: OauthCallbackProps<RouteParams>) {
-    super(props);
-    this.isMounted = false;
-    this.state = {
-      loading: false
-    };
+  if (error) {
+    return <ErrorComponent />;
   }
 
-  public componentDidMount() {
-    this.isMounted = true;
-    const { authenticateActionCreator, oAuthUserInfoGetter, providers } = this.props;
-    const locationHash = this.props.location.hash;
-    const id = this.props.match.params.id;
-    if (Object.keys(providers).includes(id)) {
-      const providerOptions = providers[id];
-      const { userUri } = providerOptions;
-      const provider = getProviderFromOptions(providerOptions);
-      this.setState({ loading: true });
-      fetchUser(locationHash, userUri, provider, authenticateActionCreator, oAuthUserInfoGetter)
-        .catch(e => {
-          /** do nothing - is this wise? */
-        })
-        .finally(() => {
-          if (this.isMounted === true) {
-            this.setState({ loading: false });
-          }
-        });
+  if (!Object.keys(providers).includes(id)) {
+    return <HTTP404Component />;
+  }
+
+  const providerOptions = providers[id];
+  const { userUri } = providerOptions;
+  const provider = getProviderFromOptions(providerOptions);
+
+  useEffect(() => {
+    if (authSuccess === null || authenticated === false) {
+      fetchUser(
+        locationHash,
+        userUri,
+        provider,
+        authenticateActionCreator,
+        recordResultActionCreator,
+        oAuthUserInfoGetter
+      );
     }
-  }
+  }, []); // The empty array causes this effect to only run on mount
 
-  public componentWillUnmount() {
-    this.isMounted = false;
-  }
+  const successProps = { extraData: sessionData, user: sessionUser };
 
-  public render() {
-    const {
-      ErrorComponent,
-      HTTP404Component,
-      LoadingComponent,
-      SuccessfulLoginComponent,
-      UnSuccessfulLoginComponent,
-      authenticated,
-      providers,
-      sessionData,
-      sessionUser
-    } = this.props;
-    const id = this.props.match.params.id;
-    const parsedParams = qs.parse(this.props.location.search);
-    const { error } = parsedParams;
-    const successProps = { extraData: sessionData, user: sessionUser };
+  return authSuccess === null ? (
+    <LoadingComponent />
+  ) : authenticated === true ? (
+    <SuccessfulLoginComponent {...successProps} />
+  ) : (
+    <UnSuccessfulLoginComponent />
+  );
+};
 
-    if (error) {
-      return <ErrorComponent />;
-    }
-
-    if (!Object.keys(providers).includes(id)) {
-      return <HTTP404Component />;
-    }
-
-    // if (this.state.loading === true) {
-    //   return <LoadingComponent />
-    // }
-
-    return authenticated ? (
-      <SuccessfulLoginComponent {...successProps} />
-    ) : (
-      <UnSuccessfulLoginComponent />
-    );
-  }
-}
+OauthCallback.defaultProps = defaultOauthCallbackProps;
 
 export { OauthCallback }; // export the un-connected component
 
@@ -200,6 +189,7 @@ const mapStateToProps = (
   ownProps: Partial<OauthCallbackProps<RouteParams>>
 ) => {
   const result = {
+    authSuccess: getSuccess(state),
     authenticated: isAuthenticated(state),
     sessionData: getExtraData(state),
     sessionUser: getUser(state)
@@ -210,7 +200,10 @@ const mapStateToProps = (
 };
 
 /** map dispatch to props */
-const mapDispatchToProps = { authenticateActionCreator: authenticateUser };
+const mapDispatchToProps = {
+  authenticateActionCreator: authenticateUser,
+  recordResultActionCreator: recordResult
+};
 
 /** created connected component */
 const ConnectedOauthCallback = connect(
