@@ -118,7 +118,7 @@ var OauthCallback = function OauthCallback(props) {
   var provider = (0, _oauth.getProviderFromOptions)(providerOptions);
   (0, _react.useEffect)(function () {
     if (authSuccess === null || authenticated === false) {
-      (0, _services.fetchUser)(locationHash, userUri, provider, authenticateActionCreator, recordResultActionCreator, oAuthUserInfoGetter);
+      (0, _services.fetchUser)(locationHash, userUri, provider, authenticateActionCreator, recordResultActionCreator, oAuthUserInfoGetter).catch(function (e) {});
     }
   }, []);
   var successProps = {
