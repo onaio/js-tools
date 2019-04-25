@@ -115,69 +115,80 @@ export interface OauthCallbackState {
  * on a page that matches this pattern "https://example.com/callback/onadata"
  * Once successfully processed, the user is stored in the session Reducer.
  */
-const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
-  const {
-    ErrorComponent,
-    HTTP404Component,
-    LoadingComponent,
-    SuccessfulLoginComponent,
-    UnSuccessfulLoginComponent,
-    authenticateActionCreator,
-    authenticated,
-    oAuthUserInfoGetter,
-    providers,
-    sessionData,
-    sessionUser
-  } = props;
-  const locationHash = props.location.hash;
-  const id = props.match.params.id;
-  const parsedParams = qs.parse(location.search);
-  const { error } = parsedParams;
-  const [loading, setLoading] = useState<OauthCallbackState>({ loading: false });
+class OauthCallback extends React.Component<OauthCallbackProps<RouteParams>, OauthCallbackState> {
+  public static defaultProps = defaultOauthCallbackProps;
+  private isMounted: boolean;
 
-  function renderComponent(isLoading: any, theComponent: any) {
-    /** TODO: put in the correct types */
-    if (isLoading) {
-      return <LoadingComponent />;
+  constructor(props: OauthCallbackProps<RouteParams>) {
+    super(props);
+    this.isMounted = false;
+    this.state = {
+      loading: false
+    };
+  }
+
+  public componentDidMount() {
+    this.isMounted = true;
+    const { authenticateActionCreator, oAuthUserInfoGetter, providers } = this.props;
+    const locationHash = this.props.location.hash;
+    const id = this.props.match.params.id;
+    if (Object.keys(providers).includes(id)) {
+      const providerOptions = providers[id];
+      const { userUri } = providerOptions;
+      const provider = getProviderFromOptions(providerOptions);
+      this.setState({ loading: true });
+      fetchUser(locationHash, userUri, provider, authenticateActionCreator, oAuthUserInfoGetter)
+        .catch(e => {
+          /** do nothing - is this wise? */
+        })
+        .finally(() => {
+          if (this.isMounted === true) {
+            this.setState({ loading: false });
+          }
+        });
     }
-    return theComponent;
   }
 
-  if (error) {
-    return <ErrorComponent />;
+  public componentWillUnmount() {
+    this.isMounted = false;
   }
 
-  if (!Object.keys(providers).includes(id)) {
-    return <HTTP404Component />;
-  }
+  public render() {
+    const {
+      ErrorComponent,
+      HTTP404Component,
+      LoadingComponent,
+      SuccessfulLoginComponent,
+      UnSuccessfulLoginComponent,
+      authenticated,
+      providers,
+      sessionData,
+      sessionUser
+    } = this.props;
+    const id = this.props.match.params.id;
+    const parsedParams = qs.parse(this.props.location.search);
+    const { error } = parsedParams;
+    const successProps = { extraData: sessionData, user: sessionUser };
 
-  const providerOptions = providers[id];
-  const { userUri } = providerOptions;
-  const provider = getProviderFromOptions(providerOptions);
-
-  useEffect(() => {
-    if (authenticated === false) {
-      setLoading({ loading: true });
-      fetchUser(
-        locationHash,
-        userUri,
-        provider,
-        authenticateActionCreator,
-        oAuthUserInfoGetter
-      ).finally(() => setLoading({ loading: false }));
+    if (error) {
+      return <ErrorComponent />;
     }
-  }, []); // The empty array causes this effect to only run on mount
 
-  const successProps = { extraData: sessionData, user: sessionUser };
+    if (!Object.keys(providers).includes(id)) {
+      return <HTTP404Component />;
+    }
 
-  if (authenticated === true && SuccessfulLoginComponent) {
-    return renderComponent(loading, <SuccessfulLoginComponent {...successProps} />);
+    // if (this.state.loading === true) {
+    //   return <LoadingComponent />
+    // }
+
+    return authenticated ? (
+      <SuccessfulLoginComponent {...successProps} />
+    ) : (
+      <UnSuccessfulLoginComponent />
+    );
   }
-
-  return renderComponent(loading, <UnSuccessfulLoginComponent />);
-};
-
-OauthCallback.defaultProps = defaultOauthCallbackProps;
+}
 
 export { OauthCallback }; // export the un-connected component
 
