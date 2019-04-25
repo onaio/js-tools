@@ -4,6 +4,10 @@ GateKeeper provides re-usable tools that help you add authentication to your Rea
 
 GateKeeper currently supports authentication with oAuth2 using the [implicit grant type](https://oauth.net/2/grant-types/implicit/).
 
+## Setting Up
+
+For best results, we recommend that after you install this package, you set up the included GateKeeper reducer in your redux store. Please see below for additional information on this reducer.
+
 ## Working with oAuth2
 
 ### oAuth2 Login Component
