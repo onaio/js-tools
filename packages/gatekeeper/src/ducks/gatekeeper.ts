@@ -49,8 +49,8 @@ export const RECORD = '@onaio/gatekeeper/reducer/RECORD';
 
 // action creators
 /** record the result of the authentication attempt
- * @param {{ [key: string]: any }} result - an object containing result information
  * @param {boolean} success - whether it was successful or not
+ * @param {{ [key: string]: any }} result - an object containing result information
  */
 export const recordResult: ActionCreator<RecordAction> = (
   success: boolean,
