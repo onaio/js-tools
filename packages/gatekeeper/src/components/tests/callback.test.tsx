@@ -1,12 +1,17 @@
 import store from '@onaio/connected-reducer-registry';
 import reducerRegistry from '@onaio/redux-reducer-registry';
-import session, { authenticateUser, logOutUser } from '@onaio/session-reducer';
+import session, {
+  authenticateUser,
+  logOutUser,
+  reducerName as sessionReducer
+} from '@onaio/session-reducer';
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import fetchMock from 'fetch-mock';
 import { createBrowserHistory } from 'history';
 import React from 'react';
 import { Provider } from 'react-redux';
+import gatekeeper, { recordResult, reducerName as gateKeeperReducer } from '../../ducks/gatekeeper';
 import { getOnadataUserInfo } from '../../helpers/oauth';
 import * as serviceHelpers from '../../helpers/services';
 import * as helperFixtures from '../../helpers/tests/fixtures';
@@ -17,7 +22,8 @@ const ConnectedOauthCallback = callback.default;
 const OauthCallback = callback.OauthCallback;
 
 const history = createBrowserHistory();
-reducerRegistry.register('session', session);
+reducerRegistry.register(sessionReducer, session);
+reducerRegistry.register(gateKeeperReducer, gatekeeper);
 
 describe('gatekeeper/OauthLogin', () => {
   beforeEach(() => {
@@ -31,6 +37,7 @@ describe('gatekeeper/OauthLogin', () => {
       JSON.stringify(helperFixtures.onadataUser)
     );
     const props = {
+      authSuccess: true,
       authenticateActionCreator: authenticateUser,
       authenticated: false,
       history,
@@ -59,12 +66,52 @@ describe('gatekeeper/OauthLogin', () => {
     shallow(<OauthCallback {...props} />);
   });
 
+  it('renders correctly when not loading', () => {
+    fetchMock.getOnce(
+      fixtures.providers.onadata.userUri,
+      JSON.stringify(helperFixtures.onadataUser)
+    );
+    const props = {
+      authSuccess: null,
+      authenticateActionCreator: authenticateUser,
+      authenticated: false,
+      history,
+      location: {
+        hash:
+          '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc',
+        pathname: '/oauth/callback/onadata/',
+        search: '',
+        state: undefined
+      },
+      match: {
+        isExact: true,
+        params: { id: 'onadata' },
+        path: 'https://example.com/oauth/callback/:id',
+        url: 'https://example.com/oauth/callback/onadata/'
+      },
+      providers: fixtures.providers,
+      sessionData: {},
+      sessionUser: {
+        email: '',
+        gravatar: '',
+        name: '',
+        username: ''
+      }
+    };
+
+    store.dispatch(logOutUser());
+    const wrapper = mount(<OauthCallback {...props} />);
+    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
   it('renders correctly when not logged in', () => {
     fetchMock.getOnce(
       fixtures.providers.onadata.userUri,
       JSON.stringify(helperFixtures.onadataUser)
     );
     const props = {
+      authSuccess: true,
       authenticateActionCreator: authenticateUser,
       authenticated: false,
       history,
@@ -101,7 +148,14 @@ describe('gatekeeper/OauthLogin', () => {
     const hash =
       '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
 
-    expect(mock).toHaveBeenCalledWith(hash, url, onadataAuth, authenticateUser, getOnadataUserInfo);
+    expect(mock).toHaveBeenCalledWith(
+      hash,
+      url,
+      onadataAuth,
+      authenticateUser,
+      recordResult,
+      getOnadataUserInfo
+    );
 
     expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
     mock.mockRestore();
@@ -133,6 +187,7 @@ describe('gatekeeper/OauthLogin', () => {
 
     const { authenticated, user, extraData } = helperFixtures.onadataSession;
     store.dispatch(authenticateUser(authenticated, user, extraData));
+    store.dispatch(recordResult(true, extraData));
 
     const wrapper = mount(
       <Provider store={store}>
@@ -146,6 +201,7 @@ describe('gatekeeper/OauthLogin', () => {
 
   it('renders correctly when oAuth error occurred', () => {
     const props = {
+      authSuccess: false,
       authenticateActionCreator: authenticateUser,
       authenticated: false,
       history,
@@ -178,6 +234,7 @@ describe('gatekeeper/OauthLogin', () => {
 
   it('renders correctly when uri cant be processed', () => {
     const props = {
+      authSuccess: false,
       authenticateActionCreator: authenticateUser,
       authenticated: false,
       history,

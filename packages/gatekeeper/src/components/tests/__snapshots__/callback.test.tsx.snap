@@ -7,6 +7,7 @@ exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
   LoadingComponent={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
+  authSuccess={true}
   authenticateActionCreator={[Function]}
   authenticated={true}
   history={
@@ -64,6 +65,7 @@ exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
       },
     }
   }
+  recordResultActionCreator={[Function]}
   sessionData={
     Object {
       "api_token": "the api token",
@@ -134,13 +136,14 @@ exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
 </OauthCallback>
 `;
 
-exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
+exports[`gatekeeper/OauthLogin renders correctly when not loading 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
   LoadingComponent={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
+  authSuccess={null}
   authenticateActionCreator={[Function]}
   authenticated={false}
   history={
@@ -198,6 +201,97 @@ exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
       },
     }
   }
+  recordResultActionCreator={[Function]}
+  sessionData={Object {}}
+  sessionUser={
+    Object {
+      "email": "",
+      "gravatar": "",
+      "name": "",
+      "username": "",
+    }
+  }
+>
+  <RenderLoadingComponent>
+    <div
+      className="gatekeeper-cb"
+    >
+      <p
+        className="gatekeeper-p"
+      >
+        Please wait...
+      </p>
+    </div>
+  </RenderLoadingComponent>
+</OauthCallback>
+`;
+
+exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
+<OauthCallback
+  ErrorComponent={[Function]}
+  HTTP404Component={[Function]}
+  LoadingComponent={[Function]}
+  SuccessfulLoginComponent={[Function]}
+  UnSuccessfulLoginComponent={[Function]}
+  authSuccess={true}
+  authenticateActionCreator={[Function]}
+  authenticated={false}
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "hash": "#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc",
+      "pathname": "/oauth/callback/onadata/",
+      "search": "",
+      "state": undefined,
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {
+        "id": "onadata",
+      },
+      "path": "https://example.com/oauth/callback/:id",
+      "url": "https://example.com/oauth/callback/onadata/",
+    }
+  }
+  oAuthUserInfoGetter={[Function]}
+  providers={
+    Object {
+      "onadata": Object {
+        "accessTokenUri": "https://stage-api.ona.io/o/token/",
+        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
+        "clientId": "hunter2",
+        "redirectUri": "https://example.com/oauth/callback/onadata/",
+        "scopes": Array [
+          "read",
+          "write",
+        ],
+        "state": "abc",
+        "userUri": "https://stage-api.ona.io/api/v1/user.json",
+      },
+    }
+  }
+  recordResultActionCreator={[Function]}
   sessionData={Object {}}
   sessionUser={
     Object {
@@ -229,6 +323,7 @@ exports[`gatekeeper/OauthLogin renders correctly when oAuth error occurred 1`] =
   LoadingComponent={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
+  authSuccess={false}
   authenticateActionCreator={[Function]}
   authenticated={false}
   history={
@@ -286,6 +381,7 @@ exports[`gatekeeper/OauthLogin renders correctly when oAuth error occurred 1`] =
       },
     }
   }
+  recordResultActionCreator={[Function]}
   sessionData={Object {}}
   sessionUser={
     Object {
@@ -317,6 +413,7 @@ exports[`gatekeeper/OauthLogin renders correctly when provider is not known 1`] 
   LoadingComponent={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
+  authSuccess={null}
   authenticateActionCreator={[Function]}
   authenticated={false}
   history={
@@ -374,6 +471,7 @@ exports[`gatekeeper/OauthLogin renders correctly when provider is not known 1`] 
       },
     }
   }
+  recordResultActionCreator={[Function]}
   sessionData={Object {}}
   sessionUser={
     Object {
@@ -405,6 +503,7 @@ exports[`gatekeeper/OauthLogin renders correctly when uri cant be processed 1`] 
   LoadingComponent={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
+  authSuccess={false}
   authenticateActionCreator={[Function]}
   authenticated={false}
   history={
@@ -462,6 +561,7 @@ exports[`gatekeeper/OauthLogin renders correctly when uri cant be processed 1`] 
       },
     }
   }
+  recordResultActionCreator={[Function]}
   sessionData={Object {}}
   sessionUser={
     Object {
