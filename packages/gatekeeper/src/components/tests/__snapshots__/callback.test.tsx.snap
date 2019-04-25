@@ -4,6 +4,7 @@ exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
+  LoadingComponent={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
   authenticateActionCreator={[Function]}
@@ -137,6 +138,7 @@ exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
+  LoadingComponent={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
   authenticateActionCreator={[Function]}
@@ -224,6 +226,7 @@ exports[`gatekeeper/OauthLogin renders correctly when oAuth error occurred 1`] =
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
+  LoadingComponent={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
   authenticateActionCreator={[Function]}
@@ -311,6 +314,7 @@ exports[`gatekeeper/OauthLogin renders correctly when provider is not known 1`] 
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
+  LoadingComponent={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
   authenticateActionCreator={[Function]}
@@ -398,6 +402,7 @@ exports[`gatekeeper/OauthLogin renders correctly when uri cant be processed 1`] 
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
+  LoadingComponent={[Function]}
   SuccessfulLoginComponent={[Function]}
   UnSuccessfulLoginComponent={[Function]}
   authenticateActionCreator={[Function]}
