@@ -14,6 +14,8 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _sessionReducer = require("@onaio/session-reducer");
 
+var _gatekeeper = require("../ducks/gatekeeper");
+
 var _constants = require("./constants");
 
 var _oauth = require("./oauth");
@@ -94,6 +96,7 @@ function fetchUser(_x5, _x6, _x7) {
 function _fetchUser() {
   _fetchUser = (0, _asyncToGenerator2.default)(_regenerator.default.mark(function _callee3(locationHash, url, provider) {
     var authenticateActionCreator,
+        recordResultActionCreator,
         userInfoCallback,
         errorCallbackFn,
         method,
@@ -107,37 +110,45 @@ function _fetchUser() {
         switch (_context3.prev = _context3.next) {
           case 0:
             authenticateActionCreator = _args3.length > 3 && _args3[3] !== undefined ? _args3[3] : _sessionReducer.authenticateUser;
-            userInfoCallback = _args3.length > 4 && _args3[4] !== undefined ? _args3[4] : _oauth.getOnadataUserInfo;
-            errorCallbackFn = _args3.length > 5 && _args3[5] !== undefined ? _args3[5] : _utils.errorCallback;
-            method = _args3.length > 6 && _args3[6] !== undefined ? _args3[6] : 'GET';
-            _context3.prev = 4;
-            _context3.next = 7;
+            recordResultActionCreator = _args3.length > 4 && _args3[4] !== undefined ? _args3[4] : _gatekeeper.recordResult;
+            userInfoCallback = _args3.length > 5 && _args3[5] !== undefined ? _args3[5] : _oauth.getOnadataUserInfo;
+            errorCallbackFn = _args3.length > 6 && _args3[6] !== undefined ? _args3[6] : _utils.errorCallback;
+            method = _args3.length > 7 && _args3[7] !== undefined ? _args3[7] : 'GET';
+            _context3.prev = 5;
+            _context3.next = 8;
             return oauth2Callback(locationHash, url, provider, userInfoCallback, method);
 
-          case 7:
+          case 8:
             userInfo = _context3.sent;
 
             if (userInfo) {
               authenticated = userInfo.authenticated, user = userInfo.user, extraData = userInfo.extraData;
               authenticateActionCreator(authenticated, user, extraData);
+              recordResultActionCreator(true, extraData);
             } else {
+              recordResultActionCreator(false, {
+                error: _constants.GENERIC_ERROR
+              });
               errorCallbackFn(_constants.GENERIC_ERROR);
             }
 
-            _context3.next = 14;
+            _context3.next = 16;
             break;
 
-          case 11:
-            _context3.prev = 11;
-            _context3.t0 = _context3["catch"](4);
+          case 12:
+            _context3.prev = 12;
+            _context3.t0 = _context3["catch"](5);
+            recordResultActionCreator(false, {
+              error: _context3.t0
+            });
             errorCallbackFn(_context3.t0.message);
 
-          case 14:
+          case 16:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[4, 11]]);
+    }, _callee3, null, [[5, 12]]);
   }));
   return _fetchUser.apply(this, arguments);
 }

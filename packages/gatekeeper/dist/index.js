@@ -83,6 +83,66 @@ Object.defineProperty(exports, "SuccessfulLoginProps", {
     return _callback.SuccessfulLoginProps;
   }
 });
+Object.defineProperty(exports, "gateKeeperReducer", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper.default;
+  }
+});
+Object.defineProperty(exports, "GateKeeperState", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper.GateKeeperState;
+  }
+});
+Object.defineProperty(exports, "getResult", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper.getResult;
+  }
+});
+Object.defineProperty(exports, "getSuccess", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper.getSuccess;
+  }
+});
+Object.defineProperty(exports, "ImmutableGateKeeperState", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper.ImmutableGateKeeperState;
+  }
+});
+Object.defineProperty(exports, "initialGateKeeperState", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper.initialState;
+  }
+});
+Object.defineProperty(exports, "RECORD", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper.RECORD;
+  }
+});
+Object.defineProperty(exports, "RecordAction", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper.RecordAction;
+  }
+});
+Object.defineProperty(exports, "recordResult", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper.recordResult;
+  }
+});
+Object.defineProperty(exports, "gateKeeperReducerName", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper.reducerName;
+  }
+});
 Object.defineProperty(exports, "getOnadataUserInfo", {
   enumerable: true,
   get: function get() {
@@ -141,6 +201,8 @@ Object.defineProperty(exports, "ErrorCallback", {
 var _login = _interopRequireWildcard(require("./components/login"));
 
 var _callback = _interopRequireWildcard(require("./components/callback"));
+
+var _gatekeeper = _interopRequireWildcard(require("./ducks/gatekeeper"));
 
 var _oauth = require("./helpers/oauth");
 

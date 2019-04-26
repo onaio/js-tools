@@ -2,6 +2,7 @@ import { AuthenticateAction, User } from '@onaio/session-reducer';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { ActionCreator } from 'redux';
+import { RecordAction } from '../ducks/gatekeeper';
 import { Providers, UserInfoFnType } from '../helpers/oauth';
 /** Route params interface */
 export interface RouteParams {
@@ -11,12 +12,15 @@ export interface RouteParams {
 export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
   ErrorComponent: React.ElementType;
   HTTP404Component: React.ElementType;
+  LoadingComponent: React.ElementType;
   SuccessfulLoginComponent: React.ElementType;
   UnSuccessfulLoginComponent: React.ElementType;
+  authSuccess: boolean | null;
   authenticateActionCreator: ActionCreator<AuthenticateAction>;
   authenticated: boolean;
   oAuthUserInfoGetter: UserInfoFnType;
   providers: Providers;
+  recordResultActionCreator: ActionCreator<RecordAction>;
   sessionData: {
     [key: string]: any;
   };
@@ -26,6 +30,8 @@ export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
 export declare const Component404: () => JSX.Element;
 /** error page component */
 export declare const RenderErrorComponent: () => JSX.Element;
+/** loading component */
+export declare const RenderLoadingComponent: () => JSX.Element;
 /** interface for SuccessfulLogin props */
 export interface SuccessfulLoginProps {
   extraData?: {
@@ -37,6 +43,10 @@ export interface SuccessfulLoginProps {
 export declare const SuccessfulLogin: (props: SuccessfulLoginProps) => JSX.Element;
 /** default props for OauthCallback */
 export declare const defaultOauthCallbackProps: Partial<OauthCallbackProps<RouteParams>>;
+/** interface to describe state variables for OauthCallback */
+export interface OauthCallbackState {
+  loading: boolean;
+}
 /** The oAuth callback component
  * This component should be on the page that receives the callback from the
  * oAuth provider.
@@ -63,6 +73,7 @@ declare const ConnectedOauthCallback: import('react-redux').ConnectedComponentCl
     | 'match'
     | 'ErrorComponent'
     | 'HTTP404Component'
+    | 'LoadingComponent'
     | 'SuccessfulLoginComponent'
     | 'UnSuccessfulLoginComponent'
     | 'oAuthUserInfoGetter'

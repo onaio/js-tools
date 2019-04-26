@@ -49,6 +49,27 @@ authenticateUser(true, sessionUser, onadataUser); // example usage
 logOutUser(); // example usage
 ```
 
+## Selectors
+
+Right now, the following selectors are provided:
+
+- `isAuthenticated`: check if the current user is logged in
+- `getUser`: get the logged in user
+- `getExtraData`: get the extra data object
+
+### Sample code to use these selectors
+
+```ts
+import { getExtraData, getUser, isAuthenticated } from '@onaio/session-reducer';
+
+// we assume you have a state object defined somewhere
+let state;
+
+const authenticated = isAuthenticated(state);
+const user = getUser(state);
+const extraData = getExtraData(state);
+```
+
 ## Usage
 
 Using this reducer is quite simple and can be done in one of two ways:
@@ -58,3 +79,12 @@ Using this reducer is quite simple and can be done in one of two ways:
 OR
 
 2. Register the session reducer so that it is added to your Redux store dynamically. You would do this in the case that you are using the [Reducer Registry](https://github.com/onaio/js-tools/tree/master/packages/reducer-registry).
+
+### sample code to register the reducer
+
+```ts
+import session, { reducerName as sessionReducer } from '@onaio/session-reducer';
+import reducerRegistry from '@onaio/redux-reducer-registry';
+
+reducerRegistry.register(sessionReducer, session);
+```

@@ -35,8 +35,9 @@ describe('gatekeeper/services', () => {
 
     // mock authenticateActionCreator
     const authenticateActionCreatorMock = jest.fn();
+    const recordResultActionCreator = jest.fn();
 
-    await fetchUser(hash, url, provider, authenticateActionCreatorMock);
+    await fetchUser(hash, url, provider, authenticateActionCreatorMock, recordResultActionCreator);
 
     expect(authenticateActionCreatorMock).toHaveBeenCalledWith(
       true,
@@ -49,6 +50,8 @@ describe('gatekeeper/services', () => {
       },
       data
     );
+
+    expect(recordResultActionCreator).toHaveBeenCalledWith(true, data);
   });
 
   it('fetchUser should handle http errors', async () => {
@@ -58,12 +61,14 @@ describe('gatekeeper/services', () => {
       '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
     fetchMock.getOnce('https://stage-api.ona.io/api/v1/user.json', 500);
     let error;
+    const recordResultActionCreator = jest.fn();
     try {
-      await fetchUser(hash, url, provider, jest.fn());
+      await fetchUser(hash, url, provider, jest.fn(), recordResultActionCreator);
     } catch (e) {
       error = e;
     }
     expect(error).toEqual(new Error('oAuth service oauth2Callback failed, HTTP status 500'));
+    expect(recordResultActionCreator).toHaveBeenCalledWith(false, { error });
   });
 
   it('fetchUser should handle API errors', async () => {
@@ -72,12 +77,14 @@ describe('gatekeeper/services', () => {
     const hash =
       '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
     fetchMock.getOnce('https://stage-api.ona.io/api/v1/user.json', {});
+    const recordResultActionCreator = jest.fn();
     let error;
     try {
-      await fetchUser(hash, url, provider, jest.fn());
+      await fetchUser(hash, url, provider, jest.fn(), recordResultActionCreator);
     } catch (e) {
       error = e;
     }
     expect(error).toEqual(new Error('oAuth service oauth2Callback failed, data not returned'));
+    expect(recordResultActionCreator).toHaveBeenCalledWith(false, { error });
   });
 });

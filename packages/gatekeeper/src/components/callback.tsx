@@ -11,6 +11,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { ActionCreator, Store } from 'redux';
+import { getSuccess, RecordAction, recordResult } from '../ducks/gatekeeper';
 import {
   getOnadataUserInfo,
   getProviderFromOptions,
@@ -28,12 +29,15 @@ export interface RouteParams {
 export interface OauthCallbackProps<G> extends RouteComponentProps<G> {
   ErrorComponent: React.ElementType;
   HTTP404Component: React.ElementType;
+  LoadingComponent: React.ElementType;
   SuccessfulLoginComponent: React.ElementType;
   UnSuccessfulLoginComponent: React.ElementType;
+  authSuccess: boolean | null;
   authenticateActionCreator: ActionCreator<AuthenticateAction>;
   authenticated: boolean;
   oAuthUserInfoGetter: UserInfoFnType;
   providers: Providers;
+  recordResultActionCreator: ActionCreator<RecordAction>;
   sessionData: { [key: string]: any };
   sessionUser: User;
 }
@@ -52,6 +56,15 @@ export const RenderErrorComponent = () => {
   return (
     <div className="gatekeeper-cb">
       <p className="gatekeeper-p">An error occurred!</p>
+    </div>
+  );
+};
+
+/** loading component */
+export const RenderLoadingComponent = () => {
+  return (
+    <div className="gatekeeper-cb">
+      <p className="gatekeeper-p">Please wait...</p>
     </div>
   );
 };
@@ -76,11 +89,14 @@ export const SuccessfulLogin = (props: SuccessfulLoginProps) => {
 export const defaultOauthCallbackProps: Partial<OauthCallbackProps<RouteParams>> = {
   ErrorComponent: RenderErrorComponent,
   HTTP404Component: Component404,
+  LoadingComponent: RenderLoadingComponent,
   SuccessfulLoginComponent: SuccessfulLogin,
   UnSuccessfulLoginComponent: RenderErrorComponent,
+  authSuccess: null,
   authenticateActionCreator: authenticateUser,
   authenticated: false,
   oAuthUserInfoGetter: getOnadataUserInfo,
+  recordResultActionCreator: recordResult,
   sessionData: {},
   sessionUser: {
     email: '',
@@ -89,6 +105,11 @@ export const defaultOauthCallbackProps: Partial<OauthCallbackProps<RouteParams>>
     username: ''
   }
 };
+
+/** interface to describe state variables for OauthCallback */
+export interface OauthCallbackState {
+  loading: boolean;
+}
 
 /** The oAuth callback component
  * This component should be on the page that receives the callback from the
@@ -103,12 +124,15 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
   const {
     ErrorComponent,
     HTTP404Component,
+    LoadingComponent,
     SuccessfulLoginComponent,
     UnSuccessfulLoginComponent,
+    authSuccess,
     authenticateActionCreator,
     authenticated,
     oAuthUserInfoGetter,
     providers,
+    recordResultActionCreator,
     sessionData,
     sessionUser
   } = props;
@@ -130,18 +154,29 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
   const provider = getProviderFromOptions(providerOptions);
 
   useEffect(() => {
-    if (authenticated === false) {
-      fetchUser(locationHash, userUri, provider, authenticateActionCreator, oAuthUserInfoGetter);
+    if (authSuccess === null || authenticated === false) {
+      fetchUser(
+        locationHash,
+        userUri,
+        provider,
+        authenticateActionCreator,
+        recordResultActionCreator,
+        oAuthUserInfoGetter
+      ).catch(e => {
+        /** do nothing - is this wise?? */
+      });
     }
   }, []); // The empty array causes this effect to only run on mount
 
   const successProps = { extraData: sessionData, user: sessionUser };
 
-  if (authenticated === true && SuccessfulLoginComponent) {
-    return <SuccessfulLoginComponent {...successProps} />;
-  }
-
-  return <UnSuccessfulLoginComponent />;
+  return authSuccess === null ? (
+    <LoadingComponent />
+  ) : authenticated === true ? (
+    <SuccessfulLoginComponent {...successProps} />
+  ) : (
+    <UnSuccessfulLoginComponent />
+  );
 };
 
 OauthCallback.defaultProps = defaultOauthCallbackProps;
@@ -156,6 +191,7 @@ const mapStateToProps = (
   ownProps: Partial<OauthCallbackProps<RouteParams>>
 ) => {
   const result = {
+    authSuccess: getSuccess(state),
     authenticated: isAuthenticated(state),
     sessionData: getExtraData(state),
     sessionUser: getUser(state)
@@ -166,7 +202,10 @@ const mapStateToProps = (
 };
 
 /** map dispatch to props */
-const mapDispatchToProps = { authenticateActionCreator: authenticateUser };
+const mapDispatchToProps = {
+  authenticateActionCreator: authenticateUser,
+  recordResultActionCreator: recordResult
+};
 
 /** created connected component */
 const ConnectedOauthCallback = connect(
