@@ -1,6 +1,6 @@
 {
   "name": "@onaio/session-reducer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple configurable session reducer",
   "main": "dist/index.js",
   "types": "dist/types",
@@ -38,5 +38,6 @@
   "devDependencies": {
     "@types/redux-testkit": "^1.0.3",
     "redux-testkit": "^1.0.6"
-  }
+  },
+  "gitHead": "27f4630eb8ce35033f23ccb0e3e7ef898da4a289"
 }
