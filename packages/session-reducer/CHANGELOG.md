@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2](https://github.com/onaio/js-tools/compare/@onaio/session-reducer@0.0.1...@onaio/session-reducer@0.0.2) (2019-04-26)
+
+**Note:** Version bump only for package @onaio/session-reducer
+
 ## 0.0.1 (2019-04-18)
 
 **Note:** Version bump only for package @onaio/session-reducer
