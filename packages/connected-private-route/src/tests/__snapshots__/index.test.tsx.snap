@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConnectedPrivateRoute renders without crashing when authenticated 1`] = `
+<span>
+  I love Oov
+</span>
+`;
+
+exports[`ConnectedPrivateRoute renders without crashing when authenticated 2`] = `
+Object {
+  "history": Any<Object>,
+  "location": Any<Object>,
+  "match": Any<Object>,
+  "someProp": "I love Oov",
+  "someProp2": "hidden",
+  "staticContext": undefined,
+}
+`;
+
+exports[`ConnectedPrivateRoute renders without crashing when disableLoginProtection is true 1`] = `
+<span>
+  treasure island
+</span>
+`;
+
+exports[`ConnectedPrivateRoute renders without crashing when not authenticated 1`] = `
+<PrivateRoute
+  authenticated={false}
+  component={[Function]}
+  disableLoginProtection={false}
+  redirectPath="/login"
+>
+  <Route
+    render={[Function]}
+  >
+    <Redirect
+      push={false}
+      to="/login"
+    />
+  </Route>
+</PrivateRoute>
+`;
+
+exports[`ConnectedPrivateRoute renders without crashing when not authenticated 2`] = `
+<Redirect
+  push={false}
+  to="/login"
+/>
+`;
+
+exports[`ConnectedPrivateRoute works when connected to the redux store 1`] = `
+<PrivateRoute
+  authenticated={false}
+  disableLoginProtection={true}
+  dispatch={[Function]}
+  redirectPath="/login"
+>
+  <Route
+    dispatch={[Function]}
+    render={[Function]}
+  >
+    <Redirect
+      push={false}
+      to="/login"
+    />
+  </Route>
+</PrivateRoute>
+`;
+
+exports[`ConnectedPrivateRoute works when connected to the redux store 2`] = `
+Object {
+  "authenticated": false,
+  "disableLoginProtection": true,
+  "dispatch": Any<Function>,
+  "redirectPath": "/login",
+}
+`;
+
+exports[`ConnectedPrivateRoute works when connected to the redux store 3`] = `
+<Redirect
+  push={false}
+  to="/login"
+/>
+`;
