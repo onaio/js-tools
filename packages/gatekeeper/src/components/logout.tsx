@@ -5,13 +5,13 @@ import { Redirect } from 'react-router-dom';
 import { LOGIN_URL } from '../helpers/constants';
 
 /** interface to describe props for Logout component */
-interface LogoutProps {
+export interface LogoutProps {
   logoutActionCreator: typeof logOutUser;
   redirectPath: string;
 }
 
 /** default props for Logout component */
-const defaultLogoutProps: LogoutProps = {
+export const defaultLogoutProps: LogoutProps = {
   logoutActionCreator: logOutUser,
   redirectPath: LOGIN_URL
 };
