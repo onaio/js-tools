@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gatekeeper/ConnectedLogout renders the ConnectedLogout component when logged out 1`] = `
+Object {
+  "action": "REPLACE",
+  "block": [Function],
+  "canGo": [Function],
+  "createHref": [Function],
+  "entries": Any<Array>,
+  "go": [Function],
+  "goBack": [Function],
+  "goForward": [Function],
+  "index": 0,
+  "length": 1,
+  "listen": [Function],
+  "location": ObjectContaining {
+    "hash": "",
+    "key": Any<String>,
+    "pathname": "/login",
+    "search": "",
+    "state": undefined,
+  },
+  "push": [Function],
+  "replace": [Function],
+}
+`;
+
+exports[`gatekeeper/ConnectedLogout renders the ConnectedLogout component when logged out 2`] = `
+<ProviderLinks
+  providers={
+    Object {
+      "onadata": Object {
+        "accessTokenUri": "https://stage-api.ona.io/o/token/",
+        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
+        "clientId": "hunter2",
+        "redirectUri": "https://example.com/oauth/callback/onadata/",
+        "scopes": Array [
+          "read",
+          "write",
+        ],
+        "state": "abc",
+        "userUri": "https://stage-api.ona.io/api/v1/user.json",
+      },
+    }
+  }
+>
+  <div
+    className="gatekeeper-login"
+  >
+    <p
+      className="gatekeeper-p"
+    >
+      Please log in with one of the following providers
+    </p>
+    <p
+      className="gatekeeper-p item"
+      key="onadata"
+    >
+      <a
+        className="gatekeeper-btn"
+        href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&scope=read%20write&response_type=token&state=abc"
+      >
+        onadata
+      </a>
+    </p>
+  </div>
+</ProviderLinks>
+`;
+
+exports[`gatekeeper/ConnectedLogout renders the ConnectedLogout when logged in 1`] = `
+Object {
+  "action": "REPLACE",
+  "block": [Function],
+  "canGo": [Function],
+  "createHref": [Function],
+  "entries": Any<Array>,
+  "go": [Function],
+  "goBack": [Function],
+  "goForward": [Function],
+  "index": 0,
+  "length": 1,
+  "listen": [Function],
+  "location": ObjectContaining {
+    "hash": "",
+    "key": Any<String>,
+    "pathname": "/login",
+    "search": "",
+    "state": undefined,
+  },
+  "push": [Function],
+  "replace": [Function],
+}
+`;
+
+exports[`gatekeeper/ConnectedLogout renders the ConnectedLogout when logged in 2`] = `
+<ProviderLinks
+  providers={
+    Object {
+      "onadata": Object {
+        "accessTokenUri": "https://stage-api.ona.io/o/token/",
+        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
+        "clientId": "hunter2",
+        "redirectUri": "https://example.com/oauth/callback/onadata/",
+        "scopes": Array [
+          "read",
+          "write",
+        ],
+        "state": "abc",
+        "userUri": "https://stage-api.ona.io/api/v1/user.json",
+      },
+    }
+  }
+>
+  <div
+    className="gatekeeper-login"
+  >
+    <p
+      className="gatekeeper-p"
+    >
+      Please log in with one of the following providers
+    </p>
+    <p
+      className="gatekeeper-p item"
+      key="onadata"
+    >
+      <a
+        className="gatekeeper-btn"
+        href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&scope=read%20write&response_type=token&state=abc"
+      >
+        onadata
+      </a>
+    </p>
+  </div>
+</ProviderLinks>
+`;
