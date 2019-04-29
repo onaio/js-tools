@@ -28,7 +28,9 @@ const props = {
 
 // output should now look like:
 
-```html snippet
+**html snippet**
+
+```
 <table class="table-striped">
   <thead class="thead-dark">
     <tr class="tr-warning">
@@ -105,19 +107,6 @@ The ListView component takes these props:
 **trClass** - prop that holds table header element class e.g. `tr-warning`
 
 **renderHeaders** - This prop is a method that takes header data items and classes to render the header section of our table. The method can be passed as a prop into the component to overide the existing method. The current implementation uses `ElementMap` component to loop through the data items adding them inside th elements.
-e.g.
-
-```renderHeaders: (items, cssClass) => (
-      <thead className={cssClass}>
-        <tr>
-          <th colSpan={2}>Top Header</th>
-        </tr>
-        <tr>
-          <ElementMap items={items} HTMLTag="th" />
-        </tr>
-      </thead>
-    )
-```
 
 **renderRows** - Very simmillar to renderHeaders prop this is a method that renders the table body. The method takes row data items and css classes as parameters, `ElementMap` component is also used in this method to loop through the data items adding them inside td elements.
 
