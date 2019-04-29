@@ -23,62 +23,104 @@ exports[`ConnectedPrivateRoute renders without crashing when disableLoginProtect
 </span>
 `;
 
+exports[`ConnectedPrivateRoute renders without crashing when disableLoginProtection is true 2`] = `
+Object {
+  "history": Any<Object>,
+  "location": Any<Object>,
+  "match": Any<Object>,
+  "someProp": "treasure island",
+  "someProp2": "treasure",
+  "staticContext": undefined,
+}
+`;
+
 exports[`ConnectedPrivateRoute renders without crashing when not authenticated 1`] = `
 <PrivateRoute
   authenticated={false}
   component={[Function]}
   disableLoginProtection={false}
-  redirectPath="/login"
+  path="/dashboard"
+  redirectPath="/denied"
 >
   <Route
+    path="/dashboard"
     render={[Function]}
-  >
-    <Redirect
-      push={false}
-      to="/login"
-    />
-  </Route>
+  />
 </PrivateRoute>
 `;
 
 exports[`ConnectedPrivateRoute renders without crashing when not authenticated 2`] = `
-<Redirect
-  push={false}
-  to="/login"
-/>
+Object {
+  "action": "REPLACE",
+  "block": [Function],
+  "canGo": [Function],
+  "createHref": [Function],
+  "entries": Any<Array>,
+  "go": [Function],
+  "goBack": [Function],
+  "goForward": [Function],
+  "index": 0,
+  "length": 1,
+  "listen": [Function],
+  "location": ObjectContaining {
+    "hash": "",
+    "key": Any<String>,
+    "pathname": "/denied",
+    "search": "",
+    "state": undefined,
+  },
+  "push": [Function],
+  "replace": [Function],
+}
 `;
 
 exports[`ConnectedPrivateRoute works when connected to the redux store 1`] = `
 <PrivateRoute
   authenticated={false}
-  disableLoginProtection={true}
+  disableLoginProtection={false}
   dispatch={[Function]}
+  path="/dashboard"
   redirectPath="/login"
 >
   <Route
     dispatch={[Function]}
+    path="/dashboard"
     render={[Function]}
-  >
-    <Redirect
-      push={false}
-      to="/login"
-    />
-  </Route>
+  />
 </PrivateRoute>
 `;
 
 exports[`ConnectedPrivateRoute works when connected to the redux store 2`] = `
 Object {
   "authenticated": false,
-  "disableLoginProtection": true,
+  "disableLoginProtection": false,
   "dispatch": Any<Function>,
+  "path": "/dashboard",
   "redirectPath": "/login",
 }
 `;
 
 exports[`ConnectedPrivateRoute works when connected to the redux store 3`] = `
-<Redirect
-  push={false}
-  to="/login"
-/>
+Object {
+  "action": "REPLACE",
+  "block": [Function],
+  "canGo": [Function],
+  "createHref": [Function],
+  "entries": Any<Array>,
+  "go": [Function],
+  "goBack": [Function],
+  "goForward": [Function],
+  "index": 0,
+  "length": 1,
+  "listen": [Function],
+  "location": ObjectContaining {
+    "hash": "",
+    "key": Any<String>,
+    "pathname": "/login",
+    "search": "",
+    "state": undefined,
+  },
+  "push": [Function],
+  "replace": [Function],
+}
 `;
