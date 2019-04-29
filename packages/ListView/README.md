@@ -24,72 +24,65 @@ const props = {
   trClass: 'tr-warning'
 };
 <ListView {...props} />;
+```
 
-//output should now look like:
+// output should now look like:
 
+```html snippet
 <table class="table-striped">
   <thead class="thead-dark">
     <tr class="tr-warning">
-      <th className="th-primary" key="0">
-        {' '}
-        Name{' '}
-      </th>
-      <th className="th-primary" key="1">
-        {' '}
-        Age{' '}
-      </th>
-      <th className="th-primary" key="2">
-        {' '}
-        Height{' '}
-      </th>
+      <th className="th-primary" key="0">Name</th>
+      <th className="th-primary" key="1">Age</th>
+      <th className="th-primary" key="2">Height</th>
     </tr>
   </thead>
   <tbody className="table-active">
     <tr class="tr-warning" key="0">
-      <td className="td-primary" key="0">
-        {' '}
-        Ed{' '}
-      </td>
-      <td className="td-primary" key="1">
-        {' '}
-        6{' '}
-      </td>
-      <td className="td-primary" key="2">
-        {' '}
-        Taller{' '}
-      </td>
+      <td className="td-primary" key="0">Ed</td>
+      <td className="td-primary" key="1">6</td>
+      <td className="td-primary" key="2">Taller</td>
     </tr>
     <tr class="tr-warning" key="1">
-      <td className="td-primary" key="0">
-        {' '}
-        Edd{' '}
-      </td>
-      <td className="td-primary" key="1">
-        {' '}
-        12{' '}
-      </td>
-      <td className="td-primary" key="2">
-        {' '}
-        Tallest{' '}
-      </td>
+      <td className="td-primary" key="0">Edd</td>
+      <td className="td-primary" key="1">12</td>
+      <td className="td-primary" key="2">Tallest</td>
     </tr>
     <tr class="tr-warning" key="2">
-      <td className="td-primary" key="0">
-        {' '}
-        Eddie{' '}
-      </td>
-      <td className="td-primary" key="1">
-        {' '}
-        17{' '}
-      </td>
-      <td className="td-primary" key="2">
-        {' '}
-        Tall{' '}
-      </td>
+      <td className="td-primary" key="0">Eddie</td>
+      <td className="td-primary" key="1">17</td>
+      <td className="td-primary" key="2">Tall</td>
     </tr>
   </tbody>
-</table>;
+</table>
 ```
+
+ <table class="table-striped">
+      <thead class="thead-dark">
+        <tr class="tr-warning">
+          <th className="th-primary" key="0"> Name </th>
+          <th className="th-primary" key="1"> Age </th>
+          <th className="th-primary" key="2"> Height </th>
+        </tr>
+      </thead>
+      <tbody className="table-active">
+        <tr class="tr-warning" key="0">
+          <td className="td-primary" key="0"> Ed </td>
+          <td className="td-primary" key="1"> 6 </td>
+          <td className="td-primary" key="2"> Taller </td>
+        </tr>
+        <tr class="tr-warning" key="1">
+          <td className="td-primary" key="0"> Edd </td>
+          <td className="td-primary" key="1"> 12 </td>
+          <td className="td-primary" key="2"> Tallest </td>
+        </tr>
+        <tr class="tr-warning" key="2">
+          <td className="td-primary" key="0"> Eddie </td>
+          <td className="td-primary" key="1"> 17 </td>
+          <td className="td-primary" key="2"> Tall </td>
+        </tr>
+      </tbody>
+  </table>
 
 ## Props
 
