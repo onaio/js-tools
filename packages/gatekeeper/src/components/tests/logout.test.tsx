@@ -1,13 +1,34 @@
-import session, { authenticateUser } from '@onaio/session-reducer';
+import session, { authenticateUser, logOutUser } from '@onaio/session-reducer';
 import { mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter, Route, Switch } from 'react-router';
 import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { FlushThunks } from 'redux-testkit';
 import thunk from 'redux-thunk';
+import OauthLogin from '../login';
 import ConnectedLogout from '../logout';
+import * as fixtures from './fixtures';
+
+/** the test Home component */
+const HomeComponent = () => {
+  return <div>Home</div>;
+};
+
+const App = () => (
+  <Switch>
+    <Route exact={true} path="/" component={HomeComponent} />
+    {/* tslint:disable jsx-no-lambda */}
+    <Route
+      exact={true}
+      path="/login"
+      render={routeProps => <OauthLogin providers={fixtures.providers} {...routeProps} />}
+    />
+    {/* tslint:enable jsx-no-lambda */}
+    <Route exact={true} path="/logout" component={ConnectedLogout} />
+  </Switch>
+);
 
 describe('gatekeeper/ConnectedLogout', () => {
   let flushThunks;
@@ -19,15 +40,27 @@ describe('gatekeeper/ConnectedLogout', () => {
     jest.resetAllMocks();
   });
 
-  it('renders the ConnectedLogout component', () => {
+  it('renders the ConnectedLogout component when logged out', () => {
+    store.dispatch(logOutUser());
     const wrapper = mount(
       <Provider store={store}>
-        <MemoryRouter>
-          <ConnectedLogout />
+        <MemoryRouter initialEntries={['/logout']} initialIndex={0}>
+          <App />
         </MemoryRouter>
       </Provider>
     );
-    expect(toJson(wrapper.find('Connect(Logout)'))).toMatchSnapshot();
+    /** check that a redirect happened */
+    expect(wrapper.find('Router').prop('history')).toMatchSnapshot({
+      entries: expect.any(Array),
+      location: expect.objectContaining({
+        hash: '',
+        key: expect.any(String),
+        pathname: '/login',
+        search: '',
+        state: undefined
+      })
+    });
+    expect(toJson(wrapper.find('ProviderLinks'))).toMatchSnapshot();
     wrapper.unmount();
   });
 
@@ -41,12 +74,23 @@ describe('gatekeeper/ConnectedLogout', () => {
     );
     const wrapper = mount(
       <Provider store={store}>
-        <MemoryRouter>
-          <ConnectedLogout />
+        <MemoryRouter initialEntries={['/logout']} initialIndex={0}>
+          <App />
         </MemoryRouter>
       </Provider>
     );
-    expect(toJson(wrapper.find('Connect(Logout)'))).toMatchSnapshot();
+    /** check that a redirect happened */
+    expect(wrapper.find('Router').prop('history')).toMatchSnapshot({
+      entries: expect.any(Array),
+      location: expect.objectContaining({
+        hash: '',
+        key: expect.any(String),
+        pathname: '/login',
+        search: '',
+        state: undefined
+      })
+    });
+    expect(toJson(wrapper.find('ProviderLinks'))).toMatchSnapshot();
     wrapper.unmount();
   });
 });
