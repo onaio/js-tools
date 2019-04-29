@@ -137,7 +137,7 @@ Here's an example sample `package.json` for a `ts`/`tsx` package:
   "description": "My new my-new-typescript-package",
   "main": "dist/my-new-typescript-package.js",
   // you WILL need to edit this next line if you have more type declarations
-  "types": "dist/types/index.d.ts",
+  "types": "dist/types",
   "repository": "https://github.com/onaio/js-tools",
   "author": "Ona Engineering",
   "license": "Apache-2.0",
