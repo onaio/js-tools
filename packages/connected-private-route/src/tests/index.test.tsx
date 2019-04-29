@@ -33,7 +33,7 @@ describe('ConnectedPrivateRoute', () => {
       someProp: 'I love Oov' /** we want to test that this prop is passed onwards */,
       someProp2: 'hidden' /** we want to test that this prop is passed onwards */
     };
-    // Date.now = jest.fn(() => 1482363367071);
+
     shallow(
       <MemoryRouter>
         <PrivateRoute {...props} />
@@ -67,7 +67,7 @@ describe('ConnectedPrivateRoute', () => {
       someProp: 'treasure island' /** we want to test that this prop is passed onwards */,
       someProp2: 'treasure' /** we want to test that this prop is passed onwards */
     };
-    // Date.now = jest.fn(() => 1482363367071);
+
     shallow(
       <MemoryRouter>
         <PrivateRoute {...props} />
@@ -84,6 +84,11 @@ describe('ConnectedPrivateRoute', () => {
      * keys in the spanshot test
      */
     expect(toJson(wrapper.find('TestComponent span'))).toMatchSnapshot();
+    expect(wrapper.find('TestComponent').props() as { [key: string]: any }).toMatchSnapshot({
+      history: expect.any(Object),
+      location: expect.any(Object),
+      match: expect.any(Object)
+    });
     wrapper.unmount();
   });
 
@@ -92,7 +97,8 @@ describe('ConnectedPrivateRoute', () => {
       authenticated: false,
       component: TestComponent,
       disableLoginProtection: false,
-      redirectPath: '/login'
+      path: '/dashboard',
+      redirectPath: '/denied'
     };
     shallow(
       <MemoryRouter>
@@ -101,7 +107,7 @@ describe('ConnectedPrivateRoute', () => {
     );
 
     const wrapper = mount(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={['/dashboard']} initialIndex={0}>
         <PrivateRoute {...props} />
       </MemoryRouter>
     );
@@ -110,7 +116,17 @@ describe('ConnectedPrivateRoute', () => {
     expect(wrapper.find('PrivateRoute').length).toEqual(1);
     expect(toJson(wrapper.find('PrivateRoute'))).toMatchSnapshot();
     expect(wrapper.find('PrivateRoute').props()).toEqual(props);
-    expect(toJson(wrapper.find('Redirect'))).toMatchSnapshot();
+    /** check that a redirect happened */
+    expect(wrapper.find('Router').prop('history')).toMatchSnapshot({
+      entries: expect.any(Array),
+      location: expect.objectContaining({
+        hash: '',
+        key: expect.any(String),
+        pathname: '/denied',
+        search: '',
+        state: undefined
+      })
+    });
     wrapper.unmount();
   });
 
@@ -125,8 +141,8 @@ describe('ConnectedPrivateRoute', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <MemoryRouter>
-          <ConnectedPrivateRoute />
+        <MemoryRouter initialEntries={['/dashboard']} initialIndex={0}>
+          <ConnectedPrivateRoute path="/dashboard" />
         </MemoryRouter>
       </Provider>
     );
@@ -137,7 +153,17 @@ describe('ConnectedPrivateRoute', () => {
     expect(wrapper.find('PrivateRoute').props() as any).toMatchSnapshot({
       dispatch: expect.any(Function)
     });
-    expect(toJson(wrapper.find('Redirect'))).toMatchSnapshot();
+    /** check that a redirect happened */
+    expect(wrapper.find('Router').prop('history')).toMatchSnapshot({
+      entries: expect.any(Array),
+      location: expect.objectContaining({
+        hash: '',
+        key: expect.any(String),
+        pathname: '/login',
+        search: '',
+        state: undefined
+      })
+    });
     wrapper.unmount();
   });
 });
