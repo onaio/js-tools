@@ -10,7 +10,7 @@ This component works by taking in data items, optional table classes as props an
 
 ### Examples
 
-```tsx
+````tsx
 import ListView from '@onaio/listview';
 
 const props = {
@@ -21,13 +21,13 @@ const props = {
   tdClass: 'td-primary',
   theadClass: 'thead-dark',
   thClass: 'th-primary',
-  trClass: 'tr-warning',
-
-
+  trClass: 'tr-warning'
 };
 <ListView {...props} />;
+
 //output should now look like:
-/** <table class="table-striped">
+
+``` <table class="table-striped">
       <thead class="thead-dark">
         <tr class="tr-warning">
           <th className="th-primary" key="0"> Name </th>
@@ -52,8 +52,8 @@ const props = {
           <td className="td-primary" key="2"> Tall </td>
         </tr>
       </tbody>
-  </table> *\
-```
+  </table> ```;
+````
 
 ## Props
 
@@ -75,7 +75,7 @@ The ListView component takes these props:
 
 **trClass** - prop that holds table header element class e.g. `tr-warning`
 
-renderHeaders - This prop is a method that takes header data items and classes to render the header section of our table. The method can be passed as a prop into the component to overide the existing method. The current implementation uses `ElementMap` component to loop through the data items adding them inside th elements.
+**renderHeaders** - This prop is a method that takes header data items and classes to render the header section of our table. The method can be passed as a prop into the component to overide the existing method. The current implementation uses `ElementMap` component to loop through the data items adding them inside th elements.
 e.g.
 
 ```renderHeaders: (items, cssClass) => (
@@ -90,7 +90,7 @@ e.g.
     )
 ```
 
-renderRows - Very simmillar to renderHeaders prop this is a method that renders the table body. The method takes row data items and css classes as parameters, `ElementMap` component is also used in this method to loop through the data items adding them inside td elements.
+**renderRows** - Very simmillar to renderHeaders prop this is a method that renders the table body. The method takes row data items and css classes as parameters, `ElementMap` component is also used in this method to loop through the data items adding them inside td elements.
 
 ## props with sample values
 
