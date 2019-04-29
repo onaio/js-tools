@@ -10,7 +10,7 @@ This component works by taking in data items, optional table classes as props an
 
 ### Examples
 
-````tsx
+```tsx
 import ListView from '@onaio/listview';
 
 const props = {
@@ -27,33 +27,69 @@ const props = {
 
 //output should now look like:
 
-``` <table class="table-striped">
-      <thead class="thead-dark">
-        <tr class="tr-warning">
-          <th className="th-primary" key="0"> Name </th>
-          <th className="th-primary" key="1"> Age </th>
-          <th className="th-primary" key="2"> Height </th>
-        </tr>
-      </thead>
-      <tbody className="table-active">
-        <tr class="tr-warning" key="0">
-          <td className="td-primary" key="0"> Ed </td>
-          <td className="td-primary" key="1"> 6 </td>
-          <td className="td-primary" key="2"> Taller </td>
-        </tr>
-        <tr class="tr-warning" key="1">
-          <td className="td-primary" key="0"> Edd </td>
-          <td className="td-primary" key="1"> 12 </td>
-          <td className="td-primary" key="2"> Tallest </td>
-        </tr>
-        <tr class="tr-warning" key="2">
-          <td className="td-primary" key="0"> Eddie </td>
-          <td className="td-primary" key="1"> 17 </td>
-          <td className="td-primary" key="2"> Tall </td>
-        </tr>
-      </tbody>
-  </table> ```;
-````
+<table class="table-striped">
+  <thead class="thead-dark">
+    <tr class="tr-warning">
+      <th className="th-primary" key="0">
+        {' '}
+        Name{' '}
+      </th>
+      <th className="th-primary" key="1">
+        {' '}
+        Age{' '}
+      </th>
+      <th className="th-primary" key="2">
+        {' '}
+        Height{' '}
+      </th>
+    </tr>
+  </thead>
+  <tbody className="table-active">
+    <tr class="tr-warning" key="0">
+      <td className="td-primary" key="0">
+        {' '}
+        Ed{' '}
+      </td>
+      <td className="td-primary" key="1">
+        {' '}
+        6{' '}
+      </td>
+      <td className="td-primary" key="2">
+        {' '}
+        Taller{' '}
+      </td>
+    </tr>
+    <tr class="tr-warning" key="1">
+      <td className="td-primary" key="0">
+        {' '}
+        Edd{' '}
+      </td>
+      <td className="td-primary" key="1">
+        {' '}
+        12{' '}
+      </td>
+      <td className="td-primary" key="2">
+        {' '}
+        Tallest{' '}
+      </td>
+    </tr>
+    <tr class="tr-warning" key="2">
+      <td className="td-primary" key="0">
+        {' '}
+        Eddie{' '}
+      </td>
+      <td className="td-primary" key="1">
+        {' '}
+        17{' '}
+      </td>
+      <td className="td-primary" key="2">
+        {' '}
+        Tall{' '}
+      </td>
+    </tr>
+  </tbody>
+</table>;
+```
 
 ## Props
 
@@ -105,13 +141,14 @@ const props = {
   thClass: 'th-primary',
   trClass: 'tr-warning',
 
-  renderHeaders: (items, theadClass, thClass, trClass) => (
-    <thead className={theadClass}>
+  renderHeaders: (items, theadClass, thClass, trClass) => {
+   return (
+     <thead className={theadClass}>
       <tr className={trClass}>
         <ElementMap items={items} HTMLTag="th" className={thClass} />
       </tr>
-    </thead>
-  ),
+    </thead>);
+  }
   renderRows: (rowData, tbodyClass, tdClass, trClass) => {
     const rows = rowData.map((items, itemKey) => (
       <tr key={itemKey} className={trClass}>
