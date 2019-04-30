@@ -166,4 +166,47 @@ describe('ConnectedPrivateRoute', () => {
     });
     wrapper.unmount();
   });
+
+  it('passes props forward connected to the redux store', () => {
+    const wrapper = mount(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/dashboard']} initialIndex={0}>
+          <ConnectedPrivateRoute
+            message="what is dead may never die"
+            path="/dashboard"
+            disableLoginProtection={false}
+            redirectPath="/denied"
+          />
+        </MemoryRouter>
+      </Provider>
+    );
+
+    expect(wrapper.find('PrivateRoute').props() as any).toMatchSnapshot({
+      dispatch: expect.any(Function)
+    });
+    wrapper.unmount();
+  });
+
+  it('disableLoginProtection works with ConnectedPrivateRoute', () => {
+    const props = {
+      authenticated: false,
+      component: TestComponent,
+      disableLoginProtection: true,
+      redirectPath: '/login'
+    };
+
+    const wrapper = mount(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/dashboard']} initialIndex={0}>
+          <ConnectedPrivateRoute {...props} />
+        </MemoryRouter>
+      </Provider>
+    );
+    expect(wrapper.find('TestComponent').length).toEqual(1);
+    /** We are matching only the span so that we dont deal with random generated
+     * keys in the spanshot test
+     */
+    expect(toJson(wrapper.find('TestComponent span'))).toMatchSnapshot();
+    wrapper.unmount();
+  });
 });
