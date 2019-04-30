@@ -150,7 +150,7 @@ The oAuth2 Callback Component takes a number of props that have defaults which y
 - **SuccessfulLoginComponent**: a React component that renders a page for successful logins
 - **UnSuccessfulLoginComponent**: a React component that renders a page for unsuccessful logins
 - **authenticateActionCreator**: a [Redux action creator](https://redux.js.org/basics/actions#action-creators) to authenticate the user. The default that is used here is the `authenticateUser` action creator from the [session reducer package](https://github.com/onaio/js-tools/tree/master/packages/session-reducer).
-- **recordResultActionCreator**: a [Redux action creator](https://redux.js.org/basics/actions#action-creators) to record the results of the authentication attempt. THe default that is used is from the GateKeeper reducer (see below).
+- **recordResultActionCreator**: a [Redux action creator](https://redux.js.org/basics/actions#action-creators) to record the results of the authentication attempt. The default that is used is from the GateKeeper reducer (see below).
 - **oAuthUserInfoGetter**: a function used to extract user information from the provider server HTTP response. The default set for this is `getOnadataUserInfo`.
 
 ### Configuring oAuth2 providers
