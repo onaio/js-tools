@@ -94,20 +94,20 @@ export const logOutUser: ActionCreator<LogOutAction> = () => ({ type: LOGOUT });
 /** check if authenticated
  * @param {Partial<Store>} state - the redux store
  */
-export function isAuthenticated(state: Partial<Store>) {
+export function isAuthenticated(state: Partial<Store>): boolean {
   return (state as any)[reducerName].authenticated;
 }
 
 /** get extraData
  * @param {Partial<Store>} state - the redux store
  */
-export function getExtraData(state: Partial<Store>) {
+export function getExtraData(state: Partial<Store>): { [key: string]: any } {
   return (state as any)[reducerName].extraData;
 }
 
 /** get user
  * @param {Partial<Store>} state - the redux store
  */
-export function getUser(state: Partial<Store>) {
+export function getUser(state: Partial<Store>): User {
   return (state as any)[reducerName].user;
 }
