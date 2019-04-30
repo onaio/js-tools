@@ -8,6 +8,42 @@ GateKeeper currently supports authentication with oAuth2 using the [implicit gra
 
 For best results, we recommend that after you install this package, you set up the included GateKeeper reducer in your redux store. Please see below for additional information on this reducer.
 
+## General purpose components
+
+GateKeeper provides a simple logout component to sign out an authenticated user.
+
+You can use it in this way:
+
+```tsx
+import { ConnectedLogout } from `@onaio/gatekeeper`;
+
+class App extends Component {
+  render() {
+    return (
+     ...
+        <Router>
+          <div className={'main-container'}>
+            <Switch>
+              <Route path="/login" component={Login} />
+              <Route path="/logout" component={ConnectedLogout} />
+            </Switch>
+          </div>
+        </Router>
+     ...
+    )
+  }
+}
+
+export default App
+```
+
+### Extending the logout component
+
+The logout component takes these props that are useful in extending it:
+
+- **logoutActionCreator**: a [Redux action creator](https://redux.js.org/basics/actions#action-creators) to log out the user. The default that is used here is the `logoutUser` action creator from the [session reducer package](https://github.com/onaio/js-tools/tree/master/packages/session-reducer).
+- **redirectPath**: the path that the user will be redirected to if they are not logged in. Default is "/login".
+
 ## Working with oAuth2
 
 ### oAuth2 Login Component

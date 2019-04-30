@@ -29,6 +29,30 @@ Object.defineProperty(exports, "ProviderLinksProps", {
     return _login.ProviderLinksProps;
   }
 });
+Object.defineProperty(exports, "ConnectedLogout", {
+  enumerable: true,
+  get: function get() {
+    return _logout.default;
+  }
+});
+Object.defineProperty(exports, "defaultLogoutProps", {
+  enumerable: true,
+  get: function get() {
+    return _logout.defaultLogoutProps;
+  }
+});
+Object.defineProperty(exports, "Logout", {
+  enumerable: true,
+  get: function get() {
+    return _logout.Logout;
+  }
+});
+Object.defineProperty(exports, "LogoutProps", {
+  enumerable: true,
+  get: function get() {
+    return _logout.LogoutProps;
+  }
+});
 Object.defineProperty(exports, "ConnectedOauthCallback", {
   enumerable: true,
   get: function get() {
@@ -199,6 +223,8 @@ Object.defineProperty(exports, "ErrorCallback", {
 });
 
 var _login = _interopRequireWildcard(require("./components/login"));
+
+var _logout = _interopRequireWildcard(require("./components/logout"));
 
 var _callback = _interopRequireWildcard(require("./components/callback"));
 

@@ -1,7 +1,7 @@
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
-import OauthLogin, { ProviderLinks } from '../login';
+import OauthLogin from '../login';
 import * as fixtures from './fixtures';
 
 describe('gatekeeper/OauthLogin', () => {

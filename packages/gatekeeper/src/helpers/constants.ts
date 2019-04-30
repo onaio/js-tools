@@ -6,3 +6,6 @@ export type OAUTH2_HTTP_ERROR = typeof OAUTH2_HTTP_ERROR;
 
 export const GENERIC_ERROR = 'Something went wrong';
 export type GENERIC_ERROR = typeof GENERIC_ERROR;
+
+export const LOGIN_URL = '/login';
+export type LOGIN_URL = typeof LOGIN_URL;
