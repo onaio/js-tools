@@ -192,7 +192,8 @@ describe('ConnectedPrivateRoute', () => {
       authenticated: false,
       component: TestComponent,
       disableLoginProtection: true,
-      redirectPath: '/login'
+      redirectPath: '/login',
+      someProp: 'we do not sow'
     };
 
     const wrapper = mount(

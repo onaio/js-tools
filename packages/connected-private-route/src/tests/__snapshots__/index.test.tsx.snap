@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ConnectedPrivateRoute disableLoginProtection works with ConnectedPrivateRoute 1`] = `<span />`;
+exports[`ConnectedPrivateRoute disableLoginProtection works with ConnectedPrivateRoute 1`] = `
+<span>
+  we do not sow
+</span>
+`;
 
 exports[`ConnectedPrivateRoute passes props forward connected to the redux store 1`] = `
 Object {
