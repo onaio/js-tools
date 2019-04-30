@@ -8,12 +8,19 @@ import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { FlushThunks } from 'redux-testkit';
 import thunk from 'redux-thunk';
 import OauthLogin from '../login';
-import ConnectedLogout from '../logout';
+import ConnectedLogout, { Logout } from '../logout';
 import * as fixtures from './fixtures';
 
 /** the test Home component */
 const HomeComponent = () => {
   return <div>Home</div>;
+};
+
+// mock logoutActionCreator
+const logoutActionCreatorMock = jest.fn();
+const logoutProps = {
+  logoutActionCreator: logoutActionCreatorMock,
+  redirectPath: '/'
 };
 
 const App = () => (
@@ -24,6 +31,12 @@ const App = () => (
       exact={true}
       path="/login"
       render={routeProps => <OauthLogin providers={fixtures.providers} {...routeProps} />}
+    />
+    {/** this is for testing the un-connected Logout component */}
+    <Route
+      exact={true}
+      path="/signout"
+      render={routeProps => <Logout {...routeProps} {...logoutProps} />}
     />
     {/* tslint:enable jsx-no-lambda */}
     <Route exact={true} path="/logout" component={ConnectedLogout} />
@@ -38,6 +51,30 @@ describe('gatekeeper/ConnectedLogout', () => {
     flushThunks = FlushThunks.createMiddleware();
     store = createStore(combineReducers({ session }), applyMiddleware(flushThunks, thunk));
     jest.resetAllMocks();
+  });
+
+  it('works with its props as expected', () => {
+    store.dispatch(logOutUser());
+    const wrapper = mount(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/signout']} initialIndex={0}>
+          <App />
+        </MemoryRouter>
+      </Provider>
+    );
+    /** check that a redirect happened */
+    expect(wrapper.find('Router').prop('history')).toMatchSnapshot({
+      entries: expect.any(Array),
+      location: expect.objectContaining({
+        hash: '',
+        key: expect.any(String),
+        pathname: '/',
+        search: '',
+        state: undefined
+      })
+    });
+    expect(toJson(wrapper.find('HomeComponent div'))).toMatchSnapshot();
+    expect(logoutActionCreatorMock).toHaveBeenCalled();
   });
 
   it('renders the ConnectedLogout component when logged out', () => {
