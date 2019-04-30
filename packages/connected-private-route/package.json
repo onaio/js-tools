@@ -26,8 +26,10 @@
       "../../setupTests"
     ]
   },
+  "dependencies": {
+    "@onaio/session-reducer": "^0.0.4"
+  },
   "peerDependencies": {
-    "@onaio/session-reducer": "^0.0.4",
     "@types/react-redux": "^7.0.8",
     "@types/react-router": "^4.4.5",
     "@types/react-router-dom": "^4.3.2",
