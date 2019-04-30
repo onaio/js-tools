@@ -39,8 +39,12 @@ export declare const recordResult: ActionCreator<RecordAction>;
 /** get result
  * @param {Partial<Store>} state - the redux store
  */
-export declare function getResult(state: Partial<Store>): any;
+export declare function getResult(
+  state: Partial<Store>
+): {
+  [key: string]: any;
+};
 /** get success
  * @param {Partial<Store>} state - the redux store
  */
-export declare function getSuccess(state: Partial<Store>): any;
+export declare function getSuccess(state: Partial<Store>): boolean;
