@@ -5,3 +5,5 @@ export declare const OAUTH2_HTTP_ERROR = 'oAuth service oauth2Callback failed, H
 export declare type OAUTH2_HTTP_ERROR = typeof OAUTH2_HTTP_ERROR;
 export declare const GENERIC_ERROR = 'Something went wrong';
 export declare type GENERIC_ERROR = typeof GENERIC_ERROR;
+export declare const LOGIN_URL = '/login';
+export declare type LOGIN_URL = typeof LOGIN_URL;
