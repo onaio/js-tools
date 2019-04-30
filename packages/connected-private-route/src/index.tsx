@@ -8,7 +8,7 @@ import { Store } from 'redux';
 interface PrivateRouteProps extends RouteProps {
   authenticated: boolean /** is the current user authenticated */;
   disableLoginProtection: boolean /** should we disable login protection */;
-  redirectPath: string /** redurect to this path is use if not authenticated */;
+  redirectPath: string /** redirect to this path is use if not authenticated */;
 }
 
 /** declare default props for PrivateRoute */
@@ -57,13 +57,20 @@ export { PrivateRoute }; // export the un-connected component
 
 /** Connect the component to the store */
 
+/** interface to describe props from mapStateToProps */
+interface DispatchedStateProps extends RouteProps {
+  authenticated: boolean;
+}
+
 /** map state to props */
-const mapStateToProps = (state: Partial<Store>, ownProps: Partial<PrivateRouteProps>) => {
+const mapStateToProps = (
+  state: Partial<Store>,
+  ownProps: Partial<PrivateRouteProps>
+): DispatchedStateProps => {
   const result = {
     authenticated: isAuthenticated(state)
   };
   Object.assign(result, ownProps);
-
   return result;
 };
 
@@ -78,7 +85,7 @@ const mapStateToProps = (state: Partial<Store>, ownProps: Partial<PrivateRoutePr
  * If authenticated === true then render the component supplied
  * Otherwise redirect to the redirectPath
  */
-const ConnectedPrivateRoute = connect(
+const ConnectedPrivateRoute = connect<DispatchedStateProps, null, any>(
   mapStateToProps,
   null
 )(PrivateRoute);
