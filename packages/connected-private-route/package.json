@@ -1,6 +1,6 @@
 {
   "name": "@onaio/connected-private-route",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Declarative private routing for React and Redux",
   "main": "dist/index.js",
   "types": "dist/types",
