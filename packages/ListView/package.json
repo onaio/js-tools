@@ -27,6 +27,6 @@
     ]
   },
   "dependencies": {
-    "@onaio/element-map": "^0.0.2"
+    "@onaio/element-map": "^0.0.5"
   }
 }
