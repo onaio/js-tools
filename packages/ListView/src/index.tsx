@@ -7,16 +7,15 @@ export type renderHeadersFuncType = (
   theadClass?: string,
   thClass?: string,
   trClass?: string
-) => Element | null;
+) => JSX.Element | null;
 
 /** Type definition for renderRowsFunc */
-
 export type renderRowsFuncType = (
   rowData: React.ReactNode[][],
   tbClass?: string,
   tdClass?: string,
   trClass?: string
-) => Element;
+) => JSX.Element;
 
 /** Renders header section of a table */
 export function renderHeadersFunc(
