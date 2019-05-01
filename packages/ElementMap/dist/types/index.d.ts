@@ -3,21 +3,19 @@ import React from 'react';
 export interface ElementMapProps {
   items: any[];
   HTMLTag: string;
-  className?: string;
+  className: string;
 }
 /** A simple component that takes a list of elements and a HTML tag and outputs
  * the same list of elements wrapped in the same HTML tag provided.
  */
 declare class ElementMap extends React.Component<ElementMapProps, {}> {
-  public static defaultProps: {
-    className: string;
-  };
+  public static defaultProps: Partial<ElementMapProps>;
   constructor(props: ElementMapProps);
   public render(): Array<
     React.ReactElement<
       {
         key: number;
-        className: string | undefined;
+        className: string;
       },
       | string
       | ((
