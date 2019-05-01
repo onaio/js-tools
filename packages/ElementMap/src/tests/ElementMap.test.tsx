@@ -29,6 +29,18 @@ describe('ElementMap', () => {
     ];
     const wrapper = mount(<ElementMap items={items} HTMLTag="div" className="xkcd" />);
     expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper.html()).toEqual(
+      '<div class="xkcd"><span>Ed</span></div><div class="xkcd"><span>Edd</span></div><div class="xkcd"><span>Eddie</span></div>'
+    );
+    wrapper.unmount();
+  });
+
+  it('renders valid HTML', () => {
+    const items = [1, 2, 3];
+    const wrapper = mount(<ElementMap items={items} HTMLTag="span" className="ltt" />);
+    expect(wrapper.html()).toEqual(
+      '<span class="ltt">1</span><span class="ltt">2</span><span class="ltt">3</span>'
+    );
     wrapper.unmount();
   });
 
@@ -37,6 +49,23 @@ describe('ElementMap', () => {
       <ElementMap key="a" items={['a', 'b', 'c']} HTMLTag="span" />,
       <ElementMap key="b" items={['bob', 'alice']} HTMLTag="span" />,
       <ElementMap key="c" items={[99, 199, 299]} HTMLTag="span" />
+    ];
+    const wrapper = mount(<ElementMap items={items} HTMLTag="div" className="xkcd" />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('works with with custom components', () => {
+    const Component1 = () => <span>I love oov</span>;
+    const Component2 = () => <p>I love cheese</p>;
+    const Component3 = () => <strong>I love cake</strong>;
+    const Component4 = () => <div>I love you</div>;
+
+    const items = [
+      <Component1 key="a" />,
+      <Component2 key="b" />,
+      <Component3 key="c" />,
+      <Component4 key="d" />
     ];
     const wrapper = mount(<ElementMap items={items} HTMLTag="div" className="xkcd" />);
     expect(toJson(wrapper)).toMatchSnapshot();
