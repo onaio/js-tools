@@ -2,7 +2,7 @@ import ElementMap from '@onaio/element-map';
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
-import ListView, { ListViewProps } from '../';
+import ListView from '../';
 
 describe('ListView', () => {
   beforeEach(() => {
@@ -40,7 +40,7 @@ describe('ListView', () => {
   });
 
   it('renders correctly with different types of data', () => {
-    const props: ListViewProps = {
+    const props = {
       data: [['Data 1'], [999], ['Data 3']],
       headerItems: ['Columns'],
       tableClass: 'table-striped',
@@ -63,7 +63,7 @@ describe('ListView', () => {
         </div>
       );
     };
-    const tableProps: ListViewProps = {
+    const tableProps = {
       data: [
         ['Data 1'],
         [<div key="123">Data 2</div>],
@@ -83,7 +83,7 @@ describe('ListView', () => {
   });
 
   it('renders correctly without thead, tableClass, tbodyClass, tdClass, trClass, thClass', () => {
-    const props: ListViewProps = {
+    const props = {
       data: [['Data 1'], [999], ['Data 3']]
     };
     const wrapper = mount(<ListView {...props} />);
