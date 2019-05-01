@@ -1,6 +1,6 @@
 {
   "name": "@onaio/element-map",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple component takes a list of elements and returns them wrapped in the provided HTML tag",
   "keywords": [
     "render lists"
