@@ -56,19 +56,31 @@ export function renderRowsFunc(
 /** Interface to define props for ListView */
 export interface ListViewProps {
   data: React.ReactNode[][];
-  headerItems?: React.ReactNode[];
-  tableClass?: string;
-  tbodyClass?: string;
-  tdClass?: string;
-  theadClass?: string;
-  thClass?: string;
-  trClass?: string;
-  renderHeaders?: renderHeadersFuncType;
-  renderRows?: renderRowsFuncType;
+  headerItems: React.ReactNode[];
+  tableClass: string;
+  tbodyClass: string;
+  tdClass: string;
+  theadClass: string;
+  thClass: string;
+  trClass: string;
+  renderHeaders: renderHeadersFuncType;
+  renderRows: renderRowsFuncType;
 }
 
+/** default props for ListView */
+const defaultListViewProps: Partial<ListViewProps> = {
+  renderHeaders: renderHeadersFunc,
+  renderRows: renderRowsFunc,
+  tableClass: 'listview',
+  tbodyClass: 'listview-tbody',
+  tdClass: 'listview-td',
+  thClass: 'listview-th',
+  theadClass: 'listview-thead',
+  trClass: 'listview-tr'
+};
+
 /** A simple component that takes in data and renders it in a tabular view  */
-const ListView: React.ElementType = (props: ListViewProps) => {
+const ListView = (props: ListViewProps) => {
   const {
     data,
     headerItems,
@@ -90,15 +102,6 @@ const ListView: React.ElementType = (props: ListViewProps) => {
   );
 };
 
-ListView.defaultProps = {
-  renderHeaders: renderHeadersFunc,
-  renderRows: renderRowsFunc,
-  tableClass: 'listview',
-  tbodyClass: 'listview-tbody',
-  tdClass: 'listview-td',
-  thClass: 'listview-th',
-  theadClass: 'listview-thead',
-  trClass: 'listview-primary'
-};
+ListView.defaultProps = defaultListViewProps;
 
 export default ListView;
