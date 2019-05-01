@@ -222,7 +222,7 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
   tdClass="listview-td"
   thClass="listview-th"
   theadClass="listview-thead"
-  trClass="listview-primary"
+  trClass="listview-tr"
 >
   <table
     className="listview"
@@ -231,7 +231,7 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
       className="listview-thead"
     >
       <tr
-        className="listview-primary"
+        className="listview-tr"
       >
         <th
           colSpan={2}
@@ -269,7 +269,7 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
       className="listview-tbody"
     >
       <tr
-        className="listview-primary"
+        className="listview-tr"
         key="0"
       >
         <ElementMap
@@ -297,7 +297,7 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
         </ElementMap>
       </tr>
       <tr
-        className="listview-primary"
+        className="listview-tr"
         key="1"
       >
         <ElementMap
@@ -325,7 +325,7 @@ exports[`ListView renders correctly with custom renderHeaders prop 1`] = `
         </ElementMap>
       </tr>
       <tr
-        className="listview-primary"
+        className="listview-tr"
         key="2"
       >
         <ElementMap
@@ -388,7 +388,7 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
   tdClass="listview-td"
   thClass="listview-th"
   theadClass="listview-thead"
-  trClass="listview-primary"
+  trClass="listview-tr"
 >
   <table
     className="listview"
@@ -397,7 +397,7 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
       className="listview-thead"
     >
       <tr
-        className="listview-primary"
+        className="listview-tr"
       >
         <ElementMap
           HTMLTag="th"
@@ -428,7 +428,7 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
       className="listview-tbody"
     >
       <tr
-        className="listview-primary"
+        className="listview-tr"
         key="0"
       >
         <ElementMap
@@ -456,7 +456,7 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
         </ElementMap>
       </tr>
       <tr
-        className="listview-primary"
+        className="listview-tr"
         key="1"
       >
         <ElementMap
@@ -484,7 +484,7 @@ exports[`ListView renders correctly with custom renderRows prop 1`] = `
         </ElementMap>
       </tr>
       <tr
-        className="listview-primary"
+        className="listview-tr"
         key="2"
       >
         <ElementMap
@@ -670,7 +670,7 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
   tdClass="listview-td"
   thClass="listview-th"
   theadClass="listview-thead"
-  trClass="listview-primary"
+  trClass="listview-tr"
 >
   <table
     className="listview"
@@ -679,7 +679,7 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
       className="listview-thead"
     >
       <tr
-        className="listview-primary"
+        className="listview-tr"
       >
         <ElementMap
           HTMLTag="th"
@@ -703,7 +703,7 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
       className="listview-tbody"
     >
       <tr
-        className="listview-primary"
+        className="listview-tr"
         key="0"
       >
         <ElementMap
@@ -724,7 +724,7 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
         </ElementMap>
       </tr>
       <tr
-        className="listview-primary"
+        className="listview-tr"
         key="1"
       >
         <ElementMap
@@ -745,7 +745,7 @@ exports[`ListView renders correctly with no renderHeaders prop 1`] = `
         </ElementMap>
       </tr>
       <tr
-        className="listview-primary"
+        className="listview-tr"
         key="2"
       >
         <ElementMap
@@ -940,7 +940,7 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass, tdCla
   tdClass="listview-td"
   thClass="listview-th"
   theadClass="listview-thead"
-  trClass="listview-primary"
+  trClass="listview-tr"
 >
   <table
     className="listview"
@@ -949,7 +949,7 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass, tdCla
       className="listview-tbody"
     >
       <tr
-        className="listview-primary"
+        className="listview-tr"
         key="0"
       >
         <ElementMap
@@ -970,7 +970,7 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass, tdCla
         </ElementMap>
       </tr>
       <tr
-        className="listview-primary"
+        className="listview-tr"
         key="1"
       >
         <ElementMap
@@ -991,7 +991,7 @@ exports[`ListView renders correctly without thead, tableClass, tbodyClass, tdCla
         </ElementMap>
       </tr>
       <tr
-        className="listview-primary"
+        className="listview-tr"
         key="2"
       >
         <ElementMap
