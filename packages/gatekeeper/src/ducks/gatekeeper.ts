@@ -16,7 +16,7 @@ export interface GateKeeperState {
   success: boolean | null /** was it successful or not */;
 }
 
-/** Create type for session reducer actions */
+/** Create type for GateKeeper reducer actions */
 export type GateKeeperActionTypes = RecordAction | AnyAction;
 
 /** immutable GateKeeper state */
