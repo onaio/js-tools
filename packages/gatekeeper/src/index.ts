@@ -14,6 +14,7 @@ import ConnectedOauthCallback, {
 } from './components/callback';
 
 import gateKeeperReducer, {
+  GateKeeperActionTypes,
   GateKeeperState,
   getResult,
   getSuccess,
@@ -55,6 +56,7 @@ export {
   ConnectedLogout,
   ConnectedOauthCallback,
   ErrorCallback,
+  GateKeeperActionTypes,
   GateKeeperState,
   ImmutableGateKeeperState,
   Logout,
