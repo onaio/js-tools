@@ -1,4 +1,4 @@
-import { ActionCreator, AnyAction, Store } from 'redux';
+import { AnyAction, Store } from 'redux';
 import SeamlessImmutable from 'seamless-immutable';
 
 export const reducerName = 'session';
@@ -13,6 +13,9 @@ export interface AuthenticateAction extends AnyAction {
 export interface LogOutAction extends AnyAction {
   type: typeof LOGOUT;
 }
+
+/** Create type for session reducer actions */
+export type SessionActionTypes = AuthenticateAction | LogOutAction | AnyAction;
 
 /** Interface for user object in session store */
 export interface User {
@@ -46,9 +49,12 @@ export const initialState: ImmutableSessionState = SeamlessImmutable({
 
 /** session reducer function
  * @param {initialState} state - the initial state
- * @param {AnyAction} action - the action
+ * @param {SessionActionTypes} action - the action
  */
-export default function reducer(state = initialState, action: AnyAction): ImmutableSessionState {
+export default function reducer(
+  state = initialState,
+  action: SessionActionTypes
+): ImmutableSessionState {
   switch (action.type) {
     case AUTHENTICATE:
       return state.merge({
@@ -76,11 +82,11 @@ export const LOGOUT = '@onaio/session-reducer/reducer/LOGOUT';
  * @param {User} user - the user object
  * @param {{ [key: string]: any }} extraData - an object containing any extra information
  */
-export const authenticateUser: ActionCreator<AuthenticateAction> = (
+export const authenticateUser = (
   authenticated: boolean,
   user: User,
   extraData: { [key: string]: any } = {}
-) => ({
+): AuthenticateAction => ({
   authenticated,
   extraData,
   type: AUTHENTICATE,
@@ -88,7 +94,9 @@ export const authenticateUser: ActionCreator<AuthenticateAction> = (
 });
 
 /** logout user action creator */
-export const logOutUser: ActionCreator<LogOutAction> = () => ({ type: LOGOUT });
+export const logOutUser = (): LogOutAction => ({
+  type: LOGOUT
+});
 
 // selectors
 /** check if authenticated
