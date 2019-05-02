@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.8](https://github.com/onaio/js-tools/compare/@onaio/superset-connector@0.0.7...@onaio/superset-connector@0.0.8) (2019-05-02)
+
+**Note:** Version bump only for package @onaio/superset-connector
+
 ## [0.0.7](https://github.com/onaio/js-tools/compare/@onaio/superset-connector@0.0.6...@onaio/superset-connector@0.0.7) (2019-04-11)
 
 **Note:** Version bump only for package @onaio/superset-connector
