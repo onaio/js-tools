@@ -38,6 +38,9 @@ export async function oauth2Callback(
 
     const data = await response.json();
 
+    /** Add Oauth2 stuff */
+    data.oAuth2Data = oAuthObject.data;
+
     return userInfoCallback(data);
   });
 }
