@@ -20,14 +20,14 @@ describe('gatekeeper/services', () => {
 
     const response = await oauth2Callback(hash, url, provider, getOnadataUserInfo);
 
-    const expectedResponse = fixtures.onadataSession;
+    const expectedResponse = fixtures.onadataSessionWithOauthData;
 
     expect(response).toEqual(expectedResponse);
   });
 
   it('fetchUser should work', async () => {
     const provider = fixtures.onadataAuth;
-    const data = fixtures.onadataUser;
+    const data = fixtures.finalExtraData;
     const url = 'https://stage-api.ona.io/api/v1/user.json';
     const hash =
       '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';

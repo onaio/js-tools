@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
+exports[`gatekeeper/OauthCallback renders correctly when logged in 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
@@ -74,6 +74,13 @@ exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
       "email": "mosh@example.com",
       "gravatar": "https://secure.gravatar.com/avatar/ae22ab897231db07205bd5d00e64cbbf?d=https%3A%2F%2Fona.io%2Fstatic%2Fimages%2Fdefault_avatar.png&s=60",
       "name": "mosh",
+      "oAuth2Data": Object {
+        "access_token": "iLoveOov",
+        "expires_in": "36000",
+        "scope": "read write",
+        "state": "abc",
+        "token_type": "Bearer",
+      },
       "organization": "",
       "require_auth": true,
       "temp_token": "the temp token",
@@ -102,6 +109,13 @@ exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
         "email": "mosh@example.com",
         "gravatar": "https://secure.gravatar.com/avatar/ae22ab897231db07205bd5d00e64cbbf?d=https%3A%2F%2Fona.io%2Fstatic%2Fimages%2Fdefault_avatar.png&s=60",
         "name": "mosh",
+        "oAuth2Data": Object {
+          "access_token": "iLoveOov",
+          "expires_in": "36000",
+          "scope": "read write",
+          "state": "abc",
+          "token_type": "Bearer",
+        },
         "organization": "",
         "require_auth": true,
         "temp_token": "the temp token",
@@ -136,7 +150,7 @@ exports[`gatekeeper/OauthLogin renders correctly when logged in 1`] = `
 </OauthCallback>
 `;
 
-exports[`gatekeeper/OauthLogin renders correctly when not loading 1`] = `
+exports[`gatekeeper/OauthCallback renders correctly when not loading 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
@@ -226,7 +240,7 @@ exports[`gatekeeper/OauthLogin renders correctly when not loading 1`] = `
 </OauthCallback>
 `;
 
-exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
+exports[`gatekeeper/OauthCallback renders correctly when not logged in 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
@@ -316,7 +330,7 @@ exports[`gatekeeper/OauthLogin renders correctly when not logged in 1`] = `
 </OauthCallback>
 `;
 
-exports[`gatekeeper/OauthLogin renders correctly when oAuth error occurred 1`] = `
+exports[`gatekeeper/OauthCallback renders correctly when oAuth error occurred 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
@@ -406,7 +420,7 @@ exports[`gatekeeper/OauthLogin renders correctly when oAuth error occurred 1`] =
 </OauthCallback>
 `;
 
-exports[`gatekeeper/OauthLogin renders correctly when provider is not known 1`] = `
+exports[`gatekeeper/OauthCallback renders correctly when provider is not known 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
@@ -496,7 +510,7 @@ exports[`gatekeeper/OauthLogin renders correctly when provider is not known 1`] 
 </OauthCallback>
 `;
 
-exports[`gatekeeper/OauthLogin renders correctly when uri cant be processed 1`] = `
+exports[`gatekeeper/OauthCallback renders correctly when uri cant be processed 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}

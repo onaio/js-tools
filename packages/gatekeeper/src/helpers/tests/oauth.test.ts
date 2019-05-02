@@ -23,6 +23,8 @@ describe('gatekeeper/oAuth', () => {
   });
 
   it('getOnadataUserInfo should work', async () => {
-    expect(getOnadataUserInfo(fixtures.onadataUser)).toEqual(fixtures.onadataSession);
+    expect(getOnadataUserInfo(fixtures.finalExtraData)).toEqual(
+      fixtures.onadataSessionWithOauthData
+    );
   });
 });
