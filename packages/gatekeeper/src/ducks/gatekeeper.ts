@@ -1,4 +1,4 @@
-import { ActionCreator, AnyAction, Store } from 'redux';
+import { AnyAction, Store } from 'redux';
 import SeamlessImmutable from 'seamless-immutable';
 
 export const reducerName = 'gatekeeper';
@@ -16,6 +16,9 @@ export interface GateKeeperState {
   success: boolean | null /** was it successful or not */;
 }
 
+/** Create type for session reducer actions */
+export type GateKeeperActionTypes = RecordAction | AnyAction;
+
 /** immutable GateKeeper state */
 export type ImmutableGateKeeperState = GateKeeperState &
   SeamlessImmutable.ImmutableObject<GateKeeperState>;
@@ -28,9 +31,12 @@ export const initialState: ImmutableGateKeeperState = SeamlessImmutable({
 
 /** GateKeeper reducer function
  * @param {initialState} state - the initial state
- * @param {AnyAction} action - the action
+ * @param {GateKeeperActionTypes} action - the action
  */
-export default function reducer(state = initialState, action: AnyAction): ImmutableGateKeeperState {
+export default function reducer(
+  state = initialState,
+  action: GateKeeperActionTypes
+): ImmutableGateKeeperState {
   switch (action.type) {
     case RECORD:
       return state.merge({
@@ -52,10 +58,10 @@ export const RECORD = '@onaio/gatekeeper/reducer/RECORD';
  * @param {boolean} success - whether it was successful or not
  * @param {{ [key: string]: any }} result - an object containing result information
  */
-export const recordResult: ActionCreator<RecordAction> = (
+export const recordResult = (
   success: boolean,
   result: { [key: string]: any } = {}
-) => ({
+): RecordAction => ({
   result,
   success,
   type: RECORD
