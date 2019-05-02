@@ -61,7 +61,7 @@ export class API {
      * config.credentials(optional) Custom override for Fetch API 'credentials' setting
      * callback        - (optional) Function to take JSON response, otherwise res is simply returned
      */
-    this.fetch = async (config, callback = res => res) =>
+    this.doFetch = async (config, callback = res => res) =>
       fetchAPI(config)
         .catch(err => callback(err))
         .then(res => {
@@ -92,7 +92,7 @@ export class API {
     /** version of this.fetch specifically for d3.queue fetching */
     this.deferedFetch = (config, apiCallback, qCallback) => {
       return self
-        .fetch(config, apiCallback)
+        .doFetch(config, apiCallback)
         .then(data => qCallback(null, data))
         .catch(err => qCallback(err, null));
     };

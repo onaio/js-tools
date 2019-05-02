@@ -28,7 +28,7 @@ describe('superset-connector', () => {
 
   it('should fetch from the Slice API without a callback', async () => {
     fetch.mockResponseOnce(JSON.stringify(sliceResponse));
-    const res = await superset.api.fetch({
+    const res = await superset.api.doFetch({
       endpoint: 'slice',
       extraPath: '892'
     });
@@ -37,7 +37,7 @@ describe('superset-connector', () => {
 
   it('should fetch from the Slice API with a callback', async () => {
     fetch.mockResponseOnce(JSON.stringify(sliceResponse));
-    const data = await superset.api.fetch(
+    const data = await superset.api.doFetch(
       {
         endpoint: 'slice',
         extraPath: '892'
