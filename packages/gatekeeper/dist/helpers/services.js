@@ -64,9 +64,10 @@ function _oauth2Callback() {
 
                       case 7:
                         data = _context.sent;
+                        data.oAuth2Data = oAuthObject.data;
                         return _context.abrupt("return", userInfoCallback(data));
 
-                      case 9:
+                      case 10:
                       case "end":
                         return _context.stop();
                     }
