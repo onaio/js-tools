@@ -25,7 +25,7 @@ const history = createBrowserHistory();
 reducerRegistry.register(sessionReducer, session);
 reducerRegistry.register(gateKeeperReducer, gatekeeper);
 
-describe('gatekeeper/OauthLogin', () => {
+describe('gatekeeper/OauthCallback', () => {
   beforeEach(() => {
     jest.resetAllMocks();
     fetchMock.restore();
@@ -185,7 +185,7 @@ describe('gatekeeper/OauthLogin', () => {
       providers: fixtures.providers
     };
 
-    const { authenticated, user, extraData } = helperFixtures.onadataSession;
+    const { authenticated, user, extraData } = helperFixtures.onadataSessionWithOauthData;
     store.dispatch(authenticateUser(authenticated, user, extraData));
     store.dispatch(recordResult(true, extraData));
 
