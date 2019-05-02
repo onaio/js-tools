@@ -54,7 +54,7 @@ var API = function API() {
   (0, _classCallCheck2.default)(this, API);
   var self = this;
 
-  this.fetch = function () {
+  this.doFetch = function () {
     var _ref = (0, _asyncToGenerator2.default)(_regenerator.default.mark(function _callee(config) {
       var callback,
           _args = arguments;
@@ -115,7 +115,7 @@ var API = function API() {
   }();
 
   this.deferedFetch = function (config, apiCallback, qCallback) {
-    return self.fetch(config, apiCallback).then(function (data) {
+    return self.doFetch(config, apiCallback).then(function (data) {
       return qCallback(null, data);
     }).catch(function (err) {
       return qCallback(err, null);
