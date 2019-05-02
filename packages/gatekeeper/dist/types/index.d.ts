@@ -11,6 +11,7 @@ import ConnectedOauthCallback, {
 import OauthLogin, { OauthLoginProps, ProviderLinks, ProviderLinksProps } from './components/login';
 import ConnectedLogout, { defaultLogoutProps, Logout, LogoutProps } from './components/logout';
 import gateKeeperReducer, {
+  GateKeeperActionTypes,
   GateKeeperState,
   getResult,
   getSuccess,
@@ -48,6 +49,7 @@ export {
   ConnectedLogout,
   ConnectedOauthCallback,
   ErrorCallback,
+  GateKeeperActionTypes,
   GateKeeperState,
   ImmutableGateKeeperState,
   Logout,
