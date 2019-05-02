@@ -2,11 +2,11 @@
 
 This connector module uses an fetch-based API submodule to access slice data via Superset's new slice API endpoint. The API connector module uses simple configurations to construct and execute an AJAX request via [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
-### Usage
+## Usage
 
 Import the Connector into a module and Request resources from Superset:
 
-```
+```js
 import superset from '@onaio/superset-connector';
 
 const fetchConfig = {
@@ -15,21 +15,21 @@ const fetchConfig = {
   base: 'http://localhost:8088/'
 };
 
-const fetchMiddleware = (res) => res;
+const fetchMiddleware = res => res;
 
-const fetchCallback = (parsedResponse) => {
+const fetchCallback = parsedResponse => {
   const sliceData = superset.processData(parsedResponse);
   return doSomethingWithData(data);
-}
+};
 
-superset.api.fetch(fetchConfig, fetchMiddleware).then(fetchCallback);
+superset.api.doFetch(fetchConfig, fetchMiddleware).then(fetchCallback);
 ```
 
 ### API Fetch Config
 
 (required) Object contaning options / credentials
 
-```
+```js
 // config.endpoint - (required) API Key value to determine API Path
 // config.extraPath- (required) ID number of the resource being requested
 // config.method   - (optional) Specify HTTP Method (defaults to GET)
@@ -50,7 +50,7 @@ superset.api.fetch(fetchConfig, fetchMiddleware).then(fetchCallback);
 
 For use within the context of a Gisida client, add the following to Gisida's `site-config.APP` settings:
 
-```
+```js
 APP: {
   ...,
 
