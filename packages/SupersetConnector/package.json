@@ -1,6 +1,6 @@
 {
   "name": "@onaio/superset-connector",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A module for securely connecting to the Superset API",
   "main": "dist/index.js",
   "author": "Ona Engineering",
@@ -28,6 +28,8 @@
     "jest-fetch-mock": "^2.1.1",
     "papaparse": "^4.6.3"
   },
-  "keywords": ["Superset"],
+  "keywords": [
+    "Superset"
+  ],
   "gitHead": "d3446811e21ca28c5c553b3bf66201563c9bcec5"
 }
