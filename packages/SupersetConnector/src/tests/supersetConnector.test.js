@@ -4,6 +4,10 @@ import { sliceResponse, parsedSliceResponse } from './fixtures';
 global.fetch = require('jest-fetch-mock');
 
 describe('superset-connector', () => {
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
+
   it('should authorize a user using an Ona token', async () => {
     fetch.mockResponseOnce(JSON.stringify({}));
     const authZstatus = await superset.authZ(
@@ -13,6 +17,21 @@ describe('superset-connector', () => {
       res => res.status
     );
     expect(authZstatus).toEqual(200);
+    expect(fetch.mock.calls[0][0]).toEqual('http://localhost:8088/oauth-authorized/onadata');
+  });
+
+  it('should work with dynamic provider', async () => {
+    fetch.mockResponseOnce(JSON.stringify({}));
+    const authZstatus = await superset.authZ(
+      {
+        base: 'https://opensrp.example.com/',
+        provider: 'opensrp',
+        token: 'justMOSH'
+      },
+      res => res.status
+    );
+    expect(authZstatus).toEqual(200);
+    expect(fetch.mock.calls[0][0]).toEqual('https://opensrp.example.com/oauth-authorized/opensrp');
   });
 
   it('should not authorize a user using an expired Ona token', async () => {
