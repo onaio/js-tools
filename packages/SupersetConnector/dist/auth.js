@@ -8,7 +8,7 @@ exports.default = exports.deAuthZ = exports.authZ = void 0;
 var authZ = function authZ(config, callback) {
   var headers = new Headers();
   headers.append('Custom-Api-Token', config.token);
-  return fetch("".concat(config.base || 'http://localhost:8088/', "oauth-authorized/onadata"), {
+  return fetch("".concat(config.base || 'http://localhost:8088/', "oauth-authorized/").concat(config.provider || 'onadata'), {
     headers: headers,
     method: 'GET',
     credentials: 'include'
