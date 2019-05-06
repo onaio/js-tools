@@ -1,17 +1,21 @@
 /* Authorization Request
- ** config.token - (Required) ONA oAuth2 Access Token as a string
- ** config.base  - (Optional) Overrides Auth URI Basepath, requires trailing '/'
- ** callback     - (Required) Callback function to receive Fetch API res / err object
+ ** config.token    - (Required) oAuth2 Access Token as a string
+ ** config.provider - (Optional) oAuth2 Provider name as a string
+ ** config.base     - (Optional) Overrides Auth URI Basepath, requires trailing '/'
+ ** callback        - (Required) Callback function to receive Fetch API res / err object
  */
 export const authZ = (config, callback) => {
   const headers = new Headers();
   headers.append('Custom-Api-Token', config.token);
 
-  return fetch(`${config.base || 'http://localhost:8088/'}oauth-authorized/onadata`, {
-    headers,
-    method: 'GET',
-    credentials: 'include'
-  })
+  return fetch(
+    `${config.base || 'http://localhost:8088/'}oauth-authorized/${config.provider || 'onadata'}`,
+    {
+      headers,
+      method: 'GET',
+      credentials: 'include'
+    }
+  )
     .then(res => callback(res))
     .catch(err => callback(err));
 };
