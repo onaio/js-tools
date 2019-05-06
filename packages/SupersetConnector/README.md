@@ -30,12 +30,14 @@ superset.api.doFetch(fetchConfig, fetchMiddleware).then(fetchCallback);
 (required) Object contaning options / credentials
 
 ```js
-// config.endpoint - (required) API Key value to determine API Path
-// config.extraPath- (required) ID number of the resource being requested
-// config.method   - (optional) Specify HTTP Method (defaults to GET)
-// config.mimeType - (optional) Specify mimeType for Request Headers
-// config.base     - (optional) Base URL for API Requests, must include trailing '/'
-// config.credentials(optional) Custom override for Fetch API 'credentials' setting
+// config.provider    - (optional) Name of the oAuth2 provider e.g. `onadata`
+// config.token       - (required) Access_Token provided by oAuth2 provider
+// config.base        - (optional) Base URL for API Requests, must include trailing '/'
+// config.endpoint    - (required) The endpoint to hit on the Superset API e.g. `slice`
+// config.extraPath   - (required) ID number of the resource being requested
+// config.method      - (optional) Specify HTTP Method (defaults to GET)
+// config.mimeType    - (optional) Specify mimeType for Request Headers
+// config.credentials - (optional) Custom override for Fetch API 'credentials' setting
 ```
 
 ### API Fetch Middleware
