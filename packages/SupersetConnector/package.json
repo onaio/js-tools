@@ -28,5 +28,6 @@
     "jest-fetch-mock": "^2.1.1",
     "papaparse": "^4.6.3"
   },
+  "keywords": ["Superset"],
   "gitHead": "d3446811e21ca28c5c553b3bf66201563c9bcec5"
 }
