@@ -111,7 +111,9 @@ export const authenticateUser = (
   user
 });
 
-/** update extraData action creator */
+/** update extraData action creator
+ * @param { { [key: string]: any } } data - an object containing any extra information
+ */
 export const updateExtraData = (data: { [key: string]: any }): UpdateExtraDataAction => ({
   data,
   type: UPDATE_DATA

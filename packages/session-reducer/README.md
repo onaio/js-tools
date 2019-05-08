@@ -49,6 +49,9 @@ authenticateUser(true, sessionUser, onadataUser); // example usage
 /** logOutUser takes no params */
 logOutUser(); // example usage
 
+/** updateExtraData action creator expects the following param
+ * @param {{ [key: string]: any }} extraData - an object containing any extra information
+ */
 updateExtraData(extraData); // example usage
 ```
 
