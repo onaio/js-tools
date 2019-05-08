@@ -27,7 +27,7 @@
     ]
   },
   "dependencies": {
-    "@onaio/session-reducer": "^0.0.7"
+    "@onaio/session-reducer": "^0.0.9"
   },
   "peerDependencies": {
     "@types/react-redux": "^7.0.8",
