@@ -125,4 +125,50 @@ describe('reducers/session', () => {
     // should update extra data
     expect(getExtraData(store.getState())).toEqual(finalUpdateExtraData);
   });
+
+  it('should update nested extraData', () => {
+    expect(getExtraData(store.getState())).toEqual({});
+    const data = {
+      a: {
+        b: {
+          c: 'Ona'
+        }
+      },
+      d: 'Data'
+    };
+
+    // add this data to the store
+    store.dispatch(updateExtraData(data));
+    expect(getExtraData(store.getState())).toEqual(data);
+
+    // update d only
+    store.dispatch(updateExtraData({ d: 'Ona' }));
+    expect(getExtraData(store.getState())).toEqual({
+      a: {
+        b: {
+          c: 'Ona'
+        }
+      },
+      d: 'Ona'
+    });
+
+    // update a only
+    store.dispatch(
+      updateExtraData({
+        a: {
+          b: {
+            c: 'Data'
+          }
+        }
+      })
+    );
+    expect(getExtraData(store.getState())).toEqual({
+      a: {
+        b: {
+          c: 'Data'
+        }
+      },
+      d: 'Ona'
+    });
+  });
 });
