@@ -1,8 +1,24 @@
 import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { FlushThunks } from 'redux-testkit';
 import thunk from 'redux-thunk';
-import session, { authenticateUser, getExtraData, getUser, isAuthenticated, logOutUser } from '..';
-import { onadataUser, sessionUser } from './fixtures';
+import session, {
+  authenticateUser,
+  getExtraData,
+  getUser,
+  isAuthenticated,
+  logOutUser,
+  updateExtraData
+} from '..';
+import {
+  adminUserRole,
+  finalUpdateExtraData,
+  firstUpdateExtraData,
+  onadataUser,
+  Permissions,
+  publicUserRole,
+  secondUpdateExtraData,
+  sessionUser
+} from './fixtures';
 
 describe('reducers/session', () => {
   let flushThunks;
@@ -70,6 +86,89 @@ describe('reducers/session', () => {
       gravatar: '',
       name: '',
       username: ''
+    });
+  });
+
+  it('should be able to update extraData', () => {
+    // initially logged out
+    expect(isAuthenticated(store.getState())).toBe(false);
+    // initially no extra data
+    expect(getExtraData(store.getState())).toEqual({});
+    // initially empty user object
+    expect(getUser(store.getState())).toEqual({
+      email: '',
+      gravatar: '',
+      name: '',
+      username: ''
+    });
+
+    // call action to log in
+    store.dispatch(authenticateUser(true, sessionUser, onadataUser));
+
+    // now logged in
+    expect(isAuthenticated(store.getState())).toBe(true);
+    // should have extra data
+    expect(getExtraData(store.getState())).toEqual(onadataUser);
+
+    // call action to update extraData with public user role object
+    store.dispatch(updateExtraData(publicUserRole));
+    // should update extra data
+    expect(getExtraData(store.getState())).toEqual(firstUpdateExtraData);
+
+    // call action to update extraData with admin user role object
+    store.dispatch(updateExtraData(adminUserRole));
+    // should update extra data
+    expect(getExtraData(store.getState())).toEqual(secondUpdateExtraData);
+
+    // call action to update permissions object in extraData
+    store.dispatch(updateExtraData(Permissions));
+    // should update extra data
+    expect(getExtraData(store.getState())).toEqual(finalUpdateExtraData);
+  });
+
+  it('should update nested extraData', () => {
+    expect(getExtraData(store.getState())).toEqual({});
+    const data = {
+      a: {
+        b: {
+          c: 'Ona'
+        }
+      },
+      d: 'Data'
+    };
+
+    // add this data to the store
+    store.dispatch(updateExtraData(data));
+    expect(getExtraData(store.getState())).toEqual(data);
+
+    // update d only
+    store.dispatch(updateExtraData({ d: 'Ona' }));
+    expect(getExtraData(store.getState())).toEqual({
+      a: {
+        b: {
+          c: 'Ona'
+        }
+      },
+      d: 'Ona'
+    });
+
+    // update a only
+    store.dispatch(
+      updateExtraData({
+        a: {
+          b: {
+            c: 'Data'
+          }
+        }
+      })
+    );
+    expect(getExtraData(store.getState())).toEqual({
+      a: {
+        b: {
+          c: 'Data'
+        }
+      },
+      d: 'Ona'
     });
   });
 });

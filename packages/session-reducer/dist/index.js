@@ -9,7 +9,7 @@ exports.default = reducer;
 exports.isAuthenticated = isAuthenticated;
 exports.getExtraData = getExtraData;
 exports.getUser = getUser;
-exports.logOutUser = exports.authenticateUser = exports.LOGOUT = exports.AUTHENTICATE = exports.initialState = exports.reducerName = void 0;
+exports.logOutUser = exports.updateExtraData = exports.authenticateUser = exports.LOGOUT = exports.UPDATE_DATA = exports.AUTHENTICATE = exports.initialState = exports.reducerName = void 0;
 
 var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
 
@@ -41,6 +41,11 @@ function reducer() {
         user: (0, _objectSpread2.default)({}, action.user)
       });
 
+    case UPDATE_DATA:
+      return state.merge((0, _objectSpread2.default)({}, state, {
+        extraData: (0, _objectSpread2.default)({}, state.extraData, action.data)
+      }));
+
     case LOGOUT:
       return initialState;
 
@@ -51,6 +56,8 @@ function reducer() {
 
 var AUTHENTICATE = '@onaio/session-reducer/reducer/AUTHENTICATE';
 exports.AUTHENTICATE = AUTHENTICATE;
+var UPDATE_DATA = '@onaio/session-reducer/reducer/UPDATE_DATA';
+exports.UPDATE_DATA = UPDATE_DATA;
 var LOGOUT = '@onaio/session-reducer/reducer/LOGOUT';
 exports.LOGOUT = LOGOUT;
 
@@ -65,6 +72,15 @@ var authenticateUser = function authenticateUser(authenticated, user) {
 };
 
 exports.authenticateUser = authenticateUser;
+
+var updateExtraData = function updateExtraData(data) {
+  return {
+    data: data,
+    type: UPDATE_DATA
+  };
+};
+
+exports.updateExtraData = updateExtraData;
 
 var logOutUser = function logOutUser() {
   return {

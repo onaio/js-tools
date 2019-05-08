@@ -17,6 +17,37 @@ export const onadataUser = {
   website: ''
 };
 
+/** updated extraData object with admin user role details */
+export const adminUserRole = {
+  role: {
+    permissions: {
+      name: 'Admin'
+    },
+    role_id: 1,
+    role_name: 'Administrator'
+  }
+};
+
+/** updated extraData object with public user role details */
+export const publicUserRole = {
+  role: {
+    permissions: {
+      name: 'Public'
+    },
+    role_id: 2,
+    role_name: 'Public'
+  }
+};
+
+/** updated pemissions object in extraData object */
+export const Permissions = {
+  role: {
+    permissions: {
+      name: 'Mel'
+    }
+  }
+};
+
 /** Generic user object compatible with the session store */
 export const sessionUser = {
   email: onadataUser.email,
@@ -24,3 +55,7 @@ export const sessionUser = {
   name: onadataUser.name,
   username: onadataUser.username
 };
+
+export const firstUpdateExtraData = Object.assign({}, onadataUser, publicUserRole);
+export const secondUpdateExtraData = Object.assign({}, firstUpdateExtraData, adminUserRole);
+export const finalUpdateExtraData = Object.assign({}, secondUpdateExtraData, Permissions);

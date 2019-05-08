@@ -29,11 +29,12 @@ Right now, the following action creators are provided:
 
 - `authenticateUser`: for logging in a new user
 - `logOutUser`: for logging out a logged in user
+- `updateExtraData`: for updating extraData object
 
 ### Sample code to use these actions
 
 ```ts
-import { authenticateUser, logOutUser } from '@onaio/session-reducer';
+import { authenticateUser, logOutUser, updateExtraData } from '@onaio/session-reducer';
 
 let sessionUser; // you would need to provide a real user object
 let onadataUser; // you would need to provide a real object or leave it out
@@ -47,6 +48,11 @@ authenticateUser(true, sessionUser, onadataUser); // example usage
 
 /** logOutUser takes no params */
 logOutUser(); // example usage
+
+/** updateExtraData action creator expects the following param
+ * @param {{ [key: string]: any }} extraData - an object containing any extra information
+ */
+updateExtraData(extraData); // example usage
 ```
 
 ## Selectors
