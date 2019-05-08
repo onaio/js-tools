@@ -6,12 +6,23 @@ export interface AuthenticateAction extends AnyAction {
   authenticated: boolean;
   type: typeof AUTHENTICATE;
 }
+/** Interface for update extra data action */
+export interface UpdateExtraDataAction extends AnyAction {
+  data: {
+    [key: string]: any;
+  };
+  type: typeof UPDATE_DATA;
+}
 /** Interface for logout action */
 export interface LogOutAction extends AnyAction {
   type: typeof LOGOUT;
 }
 /** Create type for session reducer actions */
-export declare type SessionActionTypes = AuthenticateAction | LogOutAction | AnyAction;
+export declare type SessionActionTypes =
+  | AuthenticateAction
+  | LogOutAction
+  | UpdateExtraDataAction
+  | AnyAction;
 /** Interface for user object in session store */
 export interface User {
   email?: string;
@@ -42,6 +53,8 @@ export default function reducer(
 ): ImmutableSessionState;
 /** authenticate user action type */
 export declare const AUTHENTICATE = '@onaio/session-reducer/reducer/AUTHENTICATE';
+/** authenticate user action type */
+export declare const UPDATE_DATA = '@onaio/session-reducer/reducer/UPDATE_DATA';
 /** logout user action type */
 export declare const LOGOUT = '@onaio/session-reducer/reducer/LOGOUT';
 /** authenticate user action creator
@@ -56,6 +69,10 @@ export declare const authenticateUser: (
     [key: string]: any;
   }
 ) => AuthenticateAction;
+/** update extraData action creator
+ * @param { { [key: string]: any } } data - an object containing any extra information
+ */
+export declare const updateExtraData: (data: { [key: string]: any }) => UpdateExtraDataAction;
 /** logout user action creator */
 export declare const logOutUser: () => LogOutAction;
 /** check if authenticated
