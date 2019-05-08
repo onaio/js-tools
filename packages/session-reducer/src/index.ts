@@ -9,13 +9,23 @@ export interface AuthenticateAction extends AnyAction {
   type: typeof AUTHENTICATE;
 }
 
+/** Interface for update extra data action */
+export interface UpdateExtraDataAction extends AnyAction {
+  data: { [key: string]: any };
+  type: typeof UPDATE_DATA;
+}
+
 /** Interface for logout action */
 export interface LogOutAction extends AnyAction {
   type: typeof LOGOUT;
 }
 
 /** Create type for session reducer actions */
-export type SessionActionTypes = AuthenticateAction | LogOutAction | AnyAction;
+export type SessionActionTypes =
+  | AuthenticateAction
+  | LogOutAction
+  | UpdateExtraDataAction
+  | AnyAction;
 
 /** Interface for user object in session store */
 export interface User {
@@ -62,6 +72,11 @@ export default function reducer(
         extraData: { ...action.extraData },
         user: { ...action.user }
       });
+    case UPDATE_DATA:
+      return state.merge({
+        ...state,
+        extraData: { ...state.extraData, ...action.data }
+      });
     case LOGOUT:
       return initialState;
     default:
@@ -72,6 +87,9 @@ export default function reducer(
 // actions
 /** authenticate user action type */
 export const AUTHENTICATE = '@onaio/session-reducer/reducer/AUTHENTICATE';
+
+/** authenticate user action type */
+export const UPDATE_DATA = '@onaio/session-reducer/reducer/UPDATE_DATA';
 
 /** logout user action type */
 export const LOGOUT = '@onaio/session-reducer/reducer/LOGOUT';
@@ -91,6 +109,12 @@ export const authenticateUser = (
   extraData,
   type: AUTHENTICATE,
   user
+});
+
+/** update extraData action creator */
+export const updateExtraData = (data: { [key: string]: any }): UpdateExtraDataAction => ({
+  data,
+  type: UPDATE_DATA
 });
 
 /** logout user action creator */
