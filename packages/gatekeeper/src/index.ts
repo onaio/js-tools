@@ -28,6 +28,7 @@ import gateKeeperReducer, {
 
 import {
   getOnadataUserInfo,
+  getOpenSRPUserInfo,
   getProviderFromOptions,
   OauthOptions,
   Providers,
@@ -46,6 +47,7 @@ export {
   gateKeeperReducer,
   gateKeeperReducerName,
   getOnadataUserInfo,
+  getOpenSRPUserInfo,
   getProviderFromOptions,
   getResult,
   getSuccess,
