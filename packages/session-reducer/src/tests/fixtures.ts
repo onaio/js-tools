@@ -19,26 +19,32 @@ export const onadataUser = {
 
 /** updated extraData object with admin user role details */
 export const adminUserRole = {
-  permissions: {
-    name: 'Admin'
-  },
-  role_id: 1,
-  role_name: 'Administrator'
+  role: {
+    permissions: {
+      name: 'Admin'
+    },
+    role_id: 1,
+    role_name: 'Administrator'
+  }
 };
 
 /** updated extraData object with public user role details */
 export const publicUserRole = {
-  permissions: {
-    name: 'Public'
-  },
-  role_id: 2,
-  role_name: 'Public'
+  role: {
+    permissions: {
+      name: 'Public'
+    },
+    role_id: 2,
+    role_name: 'Public'
+  }
 };
 
 /** updated pemissions object in extraData object */
 export const Permissions = {
-  permissions: {
-    name: 'Mel'
+  role: {
+    permissions: {
+      name: 'Mel'
+    }
   }
 };
 
