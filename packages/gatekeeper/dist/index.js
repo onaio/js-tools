@@ -179,6 +179,12 @@ Object.defineProperty(exports, "getOnadataUserInfo", {
     return _oauth.getOnadataUserInfo;
   }
 });
+Object.defineProperty(exports, "getOpenSRPUserInfo", {
+  enumerable: true,
+  get: function get() {
+    return _oauth.getOpenSRPUserInfo;
+  }
+});
 Object.defineProperty(exports, "getProviderFromOptions", {
   enumerable: true,
   get: function get() {
