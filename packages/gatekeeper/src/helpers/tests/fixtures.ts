@@ -19,6 +19,14 @@ export const onadataUser = {
   website: ''
 };
 
+export const oAuth2Data = {
+  access_token: 'iLoveOov',
+  expires_in: '36000',
+  scope: 'read write',
+  state: 'abc',
+  token_type: 'Bearer'
+};
+
 export const finalExtraData = {
   api_token: 'the api token',
   city: '',
@@ -27,13 +35,7 @@ export const finalExtraData = {
   gravatar:
     'https://secure.gravatar.com/avatar/ae22ab897231db07205bd5d00e64cbbf?d=https%3A%2F%2Fona.io%2Fstatic%2Fimages%2Fdefault_avatar.png&s=60',
   name: 'mosh',
-  oAuth2Data: {
-    access_token: 'iLoveOov',
-    expires_in: '36000',
-    scope: 'read write',
-    state: 'abc',
-    token_type: 'Bearer'
-  },
+  oAuth2Data,
   organization: '',
   require_auth: true,
   temp_token: 'the temp token',
@@ -73,5 +75,27 @@ export const onadataSessionWithOauthData = {
     gravatar: onadataUser.gravatar,
     name: onadataUser.name,
     username: onadataUser.username
+  }
+};
+
+export const openSRPResponse = {
+  preferredName: 'mosh',
+  roles: ['Privilege Level: Full'],
+  userName: 'moshthepitt'
+};
+
+export const openSRPFinalData = {
+  ...openSRPResponse,
+  oAuth2Data
+};
+
+export const openSRPSession = {
+  authenticated: true,
+  extraData: openSRPFinalData,
+  user: {
+    email: '',
+    gravatar: '',
+    name: '',
+    username: openSRPResponse.userName
   }
 };

@@ -101,7 +101,7 @@ function _fetchUser() {
         userInfoCallback,
         errorCallbackFn,
         method,
-        userInfo,
+        responseInfo,
         authenticated,
         user,
         extraData,
@@ -120,10 +120,10 @@ function _fetchUser() {
             return oauth2Callback(locationHash, url, provider, userInfoCallback, method);
 
           case 8:
-            userInfo = _context3.sent;
+            responseInfo = _context3.sent;
 
-            if (userInfo) {
-              authenticated = userInfo.authenticated, user = userInfo.user, extraData = userInfo.extraData;
+            if (responseInfo) {
+              authenticated = responseInfo.authenticated, user = responseInfo.user, extraData = responseInfo.extraData;
               authenticateActionCreator(authenticated, user, extraData);
               recordResultActionCreator(true, extraData);
             } else {

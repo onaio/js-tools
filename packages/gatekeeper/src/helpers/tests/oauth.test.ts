@@ -1,4 +1,9 @@
-import { getOnadataUserInfo, getProviderFromOptions, Providers } from '../oauth';
+import {
+  getOnadataUserInfo,
+  getOpenSRPUserInfo,
+  getProviderFromOptions,
+  Providers
+} from '../oauth';
 import * as fixtures from './fixtures';
 
 describe('gatekeeper/oAuth', () => {
@@ -26,5 +31,9 @@ describe('gatekeeper/oAuth', () => {
     expect(getOnadataUserInfo(fixtures.finalExtraData)).toEqual(
       fixtures.onadataSessionWithOauthData
     );
+  });
+
+  it('getOpenSRPUserInfo should work', async () => {
+    expect(getOpenSRPUserInfo(fixtures.openSRPFinalData)).toEqual(fixtures.openSRPSession);
   });
 });

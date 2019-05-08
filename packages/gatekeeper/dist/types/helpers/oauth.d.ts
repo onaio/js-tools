@@ -20,3 +20,7 @@ export declare type UserInfoFnType = (obj: { [key: string]: any }) => SessionSta
 export declare function getOnadataUserInfo(apiResponse: {
   [key: string]: any;
 }): SessionState | void;
+/** Function to get OpenSRP user info from api response object
+ * @param {{[key: string]: any }} apiResponse - the API response object
+ */
+export declare function getOpenSRPUserInfo(apiResponse: { [key: string]: any }): SessionState;

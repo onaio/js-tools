@@ -67,9 +67,15 @@ export async function fetchUser(
   method: HTTPMethod = 'GET'
 ) {
   try {
-    const userInfo = await oauth2Callback(locationHash, url, provider, userInfoCallback, method);
-    if (userInfo) {
-      const { authenticated, user, extraData } = userInfo;
+    const responseInfo = await oauth2Callback(
+      locationHash,
+      url,
+      provider,
+      userInfoCallback,
+      method
+    );
+    if (responseInfo) {
+      const { authenticated, user, extraData } = responseInfo;
       authenticateActionCreator(authenticated, user, extraData);
       recordResultActionCreator(true, extraData);
     } else {

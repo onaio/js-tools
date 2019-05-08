@@ -7,6 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getProviderFromOptions = getProviderFromOptions;
 exports.getOnadataUserInfo = getOnadataUserInfo;
+exports.getOpenSRPUserInfo = getOpenSRPUserInfo;
 
 var _clientOauth = _interopRequireDefault(require("client-oauth2"));
 
@@ -34,17 +35,31 @@ function getOnadataUserInfo(apiResponse) {
     throw new Error(_constants.OAUTH2_CALLBACK_ERROR);
   }
 
-  var username = apiResponse.username;
-  var user = {
-    email: apiResponse.email || '',
-    gravatar: apiResponse.gravatar || '',
-    name: apiResponse.name || '',
-    username: username
-  };
-  var extraData = apiResponse;
   return {
     authenticated: true,
-    extraData: extraData,
-    user: user
+    extraData: apiResponse,
+    user: {
+      email: apiResponse.email || '',
+      gravatar: apiResponse.gravatar || '',
+      name: apiResponse.name || '',
+      username: apiResponse.username
+    }
+  };
+}
+
+function getOpenSRPUserInfo(apiResponse) {
+  if (!apiResponse.userName) {
+    throw new Error(_constants.OAUTH2_CALLBACK_ERROR);
+  }
+
+  return {
+    authenticated: true,
+    extraData: apiResponse,
+    user: {
+      email: '',
+      gravatar: '',
+      name: '',
+      username: apiResponse.userName
+    }
   };
 }
