@@ -51,3 +51,24 @@ export function getOnadataUserInfo(apiResponse: { [key: string]: any }): Session
     user
   };
 }
+
+/** Function to get OpenSRP user info from api response object
+ * @param {{[key: string]: any }} apiResponse - the API response object
+ */
+export function getOpenSRPUserInfo(apiResponse: { [key: string]: any }): SessionState {
+  if (!apiResponse.userName) {
+    throw new Error(OAUTH2_CALLBACK_ERROR);
+  }
+  const user = {
+    email: '',
+    gravatar: '',
+    name: '',
+    username: apiResponse.userName
+  };
+  const extraData = apiResponse;
+  return {
+    authenticated: true,
+    extraData,
+    user
+  };
+}
