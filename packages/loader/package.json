@@ -1,5 +1,5 @@
 {
-  "name": "@onaio/ripple-loader",
+  "name": "@onaio/loader",
   "version": "0.0.0",
   "types": " dist/types",
   "description": "loading component with ripple effect",
