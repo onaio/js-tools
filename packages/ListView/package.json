@@ -1,0 +1,32 @@
+{
+  "name": "@onaio/list-view",
+  "version": "0.0.0",
+  "description": "Simple component for listing items in a table",
+  "main": "dist/index.js",
+  "types": "dist/types",
+  "repository": "https://github.com/onaio/js-tools",
+  "author": "Ona Engineering",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__' --copy-files"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "dependencies": {
+    "@onaio/element-map": "^0.0.5"
+  }
+}
