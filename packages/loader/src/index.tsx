@@ -11,6 +11,7 @@ export interface RippleProps {
   width: string;
 }
 
+/** default props values */
 export const defaultProps: Partial<RippleProps> = {
   borderColor: '#ff5d00',
   borderStyle: 'solid',
