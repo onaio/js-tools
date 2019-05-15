@@ -26,20 +26,16 @@ The customization object interface is as defined below.
 Relative to the default setting:
 
 - sets ripple effect color to purple-ish
-- sets borderstyle from solid to dashed
-- scales display size by 1.5
+- changes the border style
 
 ```javascript
 import Loader from '@onaio/loader'
 
-const LoaderStyles = {
+const loaderStyle = {
   borderColor: '#FF22EF',
-  borderStyle: 'dashed',
+  borderStyle: 'dotted',
   borderWidth: '4px',
-  height: '96px',
-  minHeight: '80vh',
-  width: '96px'
 }
 
-<Loader {...props} />
+<Loader {...loaderStyle} />
 ```
