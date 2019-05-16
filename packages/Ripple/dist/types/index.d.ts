@@ -9,6 +9,7 @@ export interface RippleProps {
   minHeight: string;
   width: string;
 }
+/** default props values */
 export declare const defaultProps: Partial<RippleProps>;
 /** Loading component that displays a nice ripple */
 declare const Ripple: {
