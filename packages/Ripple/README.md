@@ -1,12 +1,20 @@
-# loader
+# Ripple
+
+---
 
 purely makes use of css to provide a ripple effect.
 
+The ripple loader component when used enhances interactivity when lazyloading static objects like videos, or other components. it is especially useful when loading components that may take a while to fully or correctly display.
+
 ### Installation
 
-> yarn add @onaio/loader
+```node
+yarn add @onaio/ripple
+```
 
-### customization(props)
+---
+
+## Usage[customization]
 
 The customization object interface is as defined below.
 
@@ -21,7 +29,7 @@ The customization object interface is as defined below.
 }
 ```
 
-#### Code example
+### Code example
 
 Relative to the default setting:
 
@@ -29,13 +37,13 @@ Relative to the default setting:
 - changes the border style
 
 ```javascript
-import Loader from '@onaio/loader'
+import Loader from '@onaio/ripple'
 
-const loaderStyle = {
+const props = {
   borderColor: '#FF22EF',
   borderStyle: 'dotted',
   borderWidth: '4px',
 }
 
-<Loader {...loaderStyle} />
+<Loader {...props} />
 ```
