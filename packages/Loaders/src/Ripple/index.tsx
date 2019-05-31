@@ -12,7 +12,7 @@ export interface RippleProps {
 }
 
 /** default props values */
-export const defaultProps: Partial<RippleProps> = {
+export const defaultRippleProps: Partial<RippleProps> = {
   borderColor: '#ff5d00',
   borderStyle: 'solid',
   borderWidth: '4px',
@@ -40,6 +40,6 @@ const Ripple = (props: RippleProps) => {
   );
 };
 
-Ripple.defaultProps = defaultProps;
+Ripple.defaultProps = defaultRippleProps;
 
 export { Ripple };
