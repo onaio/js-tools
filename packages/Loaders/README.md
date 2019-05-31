@@ -1,43 +1,41 @@
-# Ripple
+# Loaders
 
----
+This package provides a number of React loading elements that you can use to show
+that something on your page is... loading.
 
-purely makes use of css to provide a ripple effect.
-
-The ripple loader component when used enhances interactivity when lazyloading static objects like videos, or other components. it is especially useful when loading components that may take a while to fully or correctly display.
-
-### Installation
+## Installation
 
 ```node
-yarn add @onaio/ripple
+yarn add @onaio/loaders
 ```
 
----
+## Ripple Loader
 
-## Usage[customization]
+The Ripple Loader displays a nice ripple effect via pure CSS.
 
-The customization object interface is as defined below.
-
-```js
-{
-  borderColor: string;
-  borderStyle: string;
-  borderWidth: string;
-  height: string;
-  minHeight: string;
-  width: string;
-}
-```
-
-### Code example
-
-Relative to the default setting:
-
-- sets ripple effect color to purple-ish
-- changes the border style
+### Usage
 
 ```javascript
-import Loader from '@onaio/ripple'
+import Ripple from '@onaio/loaders';
+
+<Ripple />;
+```
+
+### Customization
+
+The Ripple loader takes a number of props that can be used to customize it:
+
+- **borderColor**: the border color
+- **borderStyle**: the border style
+- **borderWidth**: the border width
+- **height**: the height
+- **minHeight**: the minimum height
+- **width**: the width
+
+#### Code example
+
+```javascript
+import Ripple from '@onaio/loaders'
 
 const props = {
   borderColor: '#FF22EF',
@@ -45,5 +43,5 @@ const props = {
   borderWidth: '4px',
 }
 
-<Loader {...props} />
+<Ripple {...props} />
 ```
