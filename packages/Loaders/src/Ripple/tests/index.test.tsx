@@ -1,21 +1,20 @@
-// test ExportModal
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
 
-import Loading from '../';
+import { Ripple } from '../';
 
-describe('components/Loading', () => {
+describe('components/Loaders/Ripple', () => {
   it('renders without crashing', () => {
-    shallow(<Loading />);
+    shallow(<Ripple />);
   });
-  it('renders the Loading component', () => {
-    const wrapper = mount(<Loading />);
+  it('renders the Ripple component', () => {
+    const wrapper = mount(<Ripple />);
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
 
-  it('renders the Loading component when props are given', () => {
+  it('renders the Ripple component when props are given', () => {
     const props = {
       borderColor: '#ff0000',
       borderStyle: 'solid',
@@ -24,7 +23,7 @@ describe('components/Loading', () => {
       minHeight: '70vh',
       width: '128px'
     };
-    const wrapper = mount(<Loading {...props} />);
+    const wrapper = mount(<Ripple {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     expect(wrapper.props()).toMatchSnapshot();
     wrapper.unmount();
