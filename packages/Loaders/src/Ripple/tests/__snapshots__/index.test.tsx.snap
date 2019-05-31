@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Loading renders the Loading component 1`] = `
+exports[`components/Loaders/Ripple renders the Ripple component 1`] = `
 <Ripple
   borderColor="#ff5d00"
   borderStyle="solid"
@@ -49,7 +49,7 @@ exports[`components/Loading renders the Loading component 1`] = `
 </Ripple>
 `;
 
-exports[`components/Loading renders the Loading component when props are given 1`] = `
+exports[`components/Loaders/Ripple renders the Ripple component when props are given 1`] = `
 <Ripple
   borderColor="#ff0000"
   borderStyle="solid"
@@ -98,7 +98,7 @@ exports[`components/Loading renders the Loading component when props are given 1
 </Ripple>
 `;
 
-exports[`components/Loading renders the Loading component when props are given 2`] = `
+exports[`components/Loaders/Ripple renders the Ripple component when props are given 2`] = `
 Object {
   "borderColor": "#ff0000",
   "borderStyle": "solid",
