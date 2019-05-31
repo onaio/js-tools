@@ -2,7 +2,7 @@
   "name": "@onaio/loaders",
   "version": "0.0.0",
   "types": " dist/types",
-  "description": "loading component with ripple effect",
+  "description": "Loading components for your everyday use",
   "main": "dist/index.js",
   "repository": "https://github.com/onaio/js-tools",
   "author": "Ona Engineering",
