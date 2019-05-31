@@ -1,6 +1,6 @@
 {
   "name": "@onaio/loaders",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "types": " dist/types",
   "description": "Loading components for your everyday use",
   "main": "dist/index.js",
@@ -15,12 +15,16 @@
     "tsc": "tsc",
     "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["../../setupTests"]
+    "setupFiles": [
+      "../../setupTests"
+    ]
   },
   "peerDependencies": {
     "react": "^16.8.1"
