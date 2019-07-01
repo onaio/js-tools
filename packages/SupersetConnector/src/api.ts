@@ -1,5 +1,5 @@
 import { parse, ParseConfig, ParseResult } from 'papaparse';
-import { SupersetConnectorConfig } from './utils';
+import { SupersetCallback, SupersetConnectorConfig } from './utils';
 
 /** Utility function to parse CSV response to JSON */
 function parseCSV(text: string, config: ParseConfig = { header: true, skipEmptyLines: true }) {
@@ -77,11 +77,11 @@ export class API {
      */
     this.doFetch = async (
       config: SupersetConnectorConfig,
-      callback: any = (res: { [key: string]: any }) => res
+      callback: SupersetCallback<any> = (res: Response) => res
     ) =>
       fetchAPI(config)
-        .catch(err => callback(err))
-        .then(res => {
+        .catch((err: Error) => callback(err))
+        .then((res: Response) => {
           /* Define response parse method */
           let parser;
           switch (config.mimeType) {
@@ -96,7 +96,8 @@ export class API {
           }
 
           /* Return parsed Response */
-          return res[parser]()
+          return (res as any)
+            [parser]()
             .then((parsed: string) => {
               /* if parsed text is CSV then return Papaparse via parseCSV */
               if (config.mimeType === 'text/csv') {
@@ -109,7 +110,11 @@ export class API {
         });
 
     /** version of this.fetch specifically for d3.queue fetching */
-    this.deferedFetch = (config: SupersetConnectorConfig, apiCallback: any, qCallback: any) => {
+    this.deferedFetch = (
+      config: SupersetConnectorConfig,
+      apiCallback: SupersetCallback<Response>,
+      qCallback: any
+    ) => {
       return self
         .doFetch(config, apiCallback)
         .then((data: { [key: string]: any }) => qCallback(null, data))
