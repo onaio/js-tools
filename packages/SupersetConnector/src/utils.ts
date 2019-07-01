@@ -17,3 +17,6 @@ export interface SupersetConnectorConfig {
   provider?: string /** oAuth2 Provider name as a string */;
   token: string /** oAuth2 Access Token as a string */;
 }
+
+/** Type definition callback function  */
+export type SupersetCallback = (e: { [key: string]: any }) => { [key: string]: any };
