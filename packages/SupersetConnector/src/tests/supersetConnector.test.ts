@@ -1,7 +1,7 @@
 import superset from '..';
-import { sliceResponse, parsedSliceResponse } from './fixtures';
-
-global.fetch = require('jest-fetch-mock');
+import { parsedSliceResponse, sliceResponse } from './fixtures';
+/* tslint:disable-next-line no-var-requires */
+const fetch = require('jest-fetch-mock');
 
 describe('superset-connector', () => {
   beforeEach(() => {
@@ -35,12 +35,14 @@ describe('superset-connector', () => {
   });
 
   it('should not authorize a user using an expired Ona token', async () => {
-    fetch.mockRejectOnce({ status: 302 });
+    fetch.mockRejectOnce(JSON.stringify({ status: 302 }));
     const authZstatus = await superset.authZ(
       {
         token: 'abcdefghij'
       },
-      res => res.status
+      res => {
+        return JSON.parse(res).status;
+      }
     );
     expect(authZstatus).toEqual(302);
   });
