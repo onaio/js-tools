@@ -21,8 +21,10 @@
     "access": "public"
   },
   "jest": {
+    "automock": false,
     "setupFiles": [
-      "../../setupTests"
+      "../../setupTests",
+      "../../setupJest.ts"
     ]
   },
   "dependencies": {
