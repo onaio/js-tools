@@ -7,9 +7,10 @@ export const processData = (res: { [key: string]: any }) => {
 
 /** interface to describe configuration options */
 export interface SupersetConnectorConfig {
-  credentials?: string /** Custom override for Fetch API 'credentials' setting */;
+  credentials?: RequestCredentials /** Custom override for Fetch API 'credentials' setting */;
   base?: string /** Overrides Auth URI Basepath, requires trailing '/' */;
   endpoint: string /** The endpoint to hit on the Superset API */;
+  extraPath?: string /** url path to append when hitting the Superset API */;
   method?: string /** Specify HTTP Method (defaults to GET) */;
   mimeType?: string /** Specify mimeType for Request Headers */;
   params?: string /** Additional parameters to be appended to API Path */;
