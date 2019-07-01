@@ -19,4 +19,4 @@ export interface SupersetConnectorConfig {
 }
 
 /** Type definition callback function  */
-export type SupersetCallback = (e: { [key: string]: any }) => { [key: string]: any };
+export type SupersetCallback<T> = (e: T) => { [key: string]: T };
