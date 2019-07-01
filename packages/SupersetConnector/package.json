@@ -26,8 +26,11 @@
     ]
   },
   "dependencies": {
-    "jest-fetch-mock": "^2.1.1",
-    "papaparse": "^4.6.3"
+    "papaparse": "^4.6.3",
+    "@types/papaparse": "^4.5.11"
+  },
+  "devDependencies": {
+    "jest-fetch-mock": "^2.1.1"
   },
   "keywords": [
     "Superset"
