@@ -32,7 +32,7 @@ const apiRequest = (config: SupersetConnectorConfig, headers: Headers) => {
   const base = config.base || 'http://localhost:8088/';
   let apiPath = `${base}`;
 
-  if (apiMap.hasOwnProperty(config.endpoint)) {
+  if (config.endpoint && apiMap.hasOwnProperty(config.endpoint)) {
     apiPath = `${base}${apiMap[config.endpoint]}`;
   }
 
