@@ -1,4 +1,4 @@
-import { Config } from './utils';
+import { SupersetConnectorConfig } from './utils';
 
 /* Authorization Request
  ** config.token    - (Required) oAuth2 Access Token as a string
@@ -6,7 +6,7 @@ import { Config } from './utils';
  ** config.base     - (Optional) Overrides Auth URI Basepath, requires trailing '/'
  ** callback        - (Required) Callback function to receive Fetch API res / err object
  */
-export const authZ = (config: Config, callback: any) => {
+export const authZ = (config: SupersetConnectorConfig, callback: any) => {
   const headers = new Headers();
   headers.append('Custom-Api-Token', config.token);
 
@@ -26,7 +26,7 @@ export const authZ = (config: Config, callback: any) => {
  ** config.base  - (Optional) Overrides DeAuth URI Basepath, requires trailing '/'
  ** callback     - (Required) Callback function to receive Fetch API res / err object
  */
-export const deAuthZ = (config: Config, callback: any) =>
+export const deAuthZ = (config: SupersetConnectorConfig, callback: any) =>
   fetch(`${(config && config.base) || 'http://localhost:8088/'}logout/`, {
     credentials: 'include',
     method: 'GET'
