@@ -1,22 +1,20 @@
-import { parse } from 'papaparse';
+import { parse, ParseConfig, ParseResult } from 'papaparse';
+import { SupersetConnectorConfig } from './utils';
 
 /** Utility function to parse CSV response to JSON */
-function parseCSV(text, config) {
-  return parse(
-    text,
-    config || {
-      header: true,
-      skipEmptyLines: true
-    }
-  ).data;
+function parseCSV(text: string, config: ParseConfig = { header: true, skipEmptyLines: true }) {
+  return parse(text, config).data;
 }
 
-const apiMap = {
+/** This object is used to map the endpoint from SupersetConnectorConfig to
+ * actual url endpoints on the Superset API.
+ */
+const apiMap: { [key: string]: string } = {
   slice: 'superset/slice_json'
 };
 
 /** Generate Headers for Fetch API */
-const apiHeaders = config => {
+const apiHeaders = (config: SupersetConnectorConfig | null = null): Headers => {
   const headers = new Headers();
 
   if (!config) {
@@ -30,18 +28,20 @@ const apiHeaders = config => {
 };
 
 /** Generate Request for Fetch API */
-const apiRequest = (config, headers) => {
+const apiRequest = (config: SupersetConnectorConfig, headers: Headers) => {
   const base = config.base || 'http://localhost:8088/';
-  let apiPath = `${base}${apiMap[config.endpoint] || ''}`;
+  let apiPath = `${base}`;
 
-  const reqConfig = {
-    method: config.method || 'GET',
-    credentials: config.credentials || 'include'
+  if (apiMap.hasOwnProperty(config.endpoint)) {
+    apiPath = `${base}${apiMap[config.endpoint]}`;
+  }
+
+  const reqConfig: RequestInit = {
+    credentials: config.credentials || 'include',
+    headers,
+    method: config.method || 'GET'
   };
 
-  if (headers) {
-    reqConfig.headers = headers;
-  }
   if (config.extraPath) {
     apiPath = `${apiPath}/${config.extraPath}`;
   }
@@ -53,10 +53,13 @@ const apiRequest = (config, headers) => {
 };
 
 /** Generate Fetch API Promise */
-const fetchAPI = config => fetch(apiRequest(config, apiHeaders(config)));
+const fetchAPI = (config: SupersetConnectorConfig) => fetch(apiRequest(config, apiHeaders(config)));
 
 /** API Module for FE Superset Connector */
 export class API {
+  public doFetch: any;
+  public deferedFetch: any;
+
   constructor() {
     const self = this;
 
@@ -72,7 +75,10 @@ export class API {
      * config.credentials(optional) Custom override for Fetch API 'credentials' setting
      * callback        - (optional) Function to take JSON response, otherwise res is simply returned
      */
-    this.doFetch = async (config, callback = res => res) =>
+    this.doFetch = async (
+      config: SupersetConnectorConfig,
+      callback: any = (res: { [key: string]: any }) => res
+    ) =>
       fetchAPI(config)
         .catch(err => callback(err))
         .then(res => {
@@ -91,26 +97,24 @@ export class API {
 
           /* Return parsed Response */
           return res[parser]()
-            .then(parsed => {
+            .then((parsed: string) => {
               /* if parsed text is CSV then return Papaparse via parseCSV */
               if (config.mimeType === 'text/csv') {
                 return { user: parseCSV(parsed) };
               }
               return parsed;
             })
-            .catch(err => (callback && callback(err)) || { res, err })
-            .then(user => (callback && callback(user)) || { res, user });
+            .catch((err: Error) => (callback && callback(err)) || { res, err })
+            .then((user: ParseResult) => (callback && callback(user)) || { res, user });
         });
 
     /** version of this.fetch specifically for d3.queue fetching */
-    this.deferedFetch = (config, apiCallback, qCallback) => {
+    this.deferedFetch = (config: SupersetConnectorConfig, apiCallback: any, qCallback: any) => {
       return self
         .doFetch(config, apiCallback)
-        .then(data => qCallback(null, data))
-        .catch(err => qCallback(err, null));
+        .then((data: { [key: string]: any }) => qCallback(null, data))
+        .catch((err: Error) => qCallback(err, null));
     };
-
-    // todo - add functionality to resolve multiple fetches
   }
 }
 
