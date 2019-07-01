@@ -1,4 +1,7 @@
-import { SupersetConnectorConfig } from './utils';
+import { SupersetCallback, SupersetConnectorConfig } from './utils';
+
+/** Type definition for error callback function  */
+export type callbackFunc = (e: string) => string | void;
 
 /* Authorization Request
  ** config.token    - (Required) oAuth2 Access Token as a string
@@ -6,7 +9,7 @@ import { SupersetConnectorConfig } from './utils';
  ** config.base     - (Optional) Overrides Auth URI Basepath, requires trailing '/'
  ** callback        - (Required) Callback function to receive Fetch API res / err object
  */
-export const authZ = (config: SupersetConnectorConfig, callback: any) => {
+export const authZ = (config: SupersetConnectorConfig, callback: SupersetCallback) => {
   const headers = new Headers();
   headers.append('Custom-Api-Token', config.token);
 
@@ -26,7 +29,7 @@ export const authZ = (config: SupersetConnectorConfig, callback: any) => {
  ** config.base  - (Optional) Overrides DeAuth URI Basepath, requires trailing '/'
  ** callback     - (Required) Callback function to receive Fetch API res / err object
  */
-export const deAuthZ = (config: SupersetConnectorConfig, callback: any) =>
+export const deAuthZ = (config: SupersetConnectorConfig, callback: SupersetCallback) =>
   fetch(`${(config && config.base) || 'http://localhost:8088/'}logout/`, {
     credentials: 'include',
     method: 'GET'
