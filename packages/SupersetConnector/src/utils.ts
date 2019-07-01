@@ -8,7 +8,6 @@ export const processData = (res: { [key: string]: any }) => {
 /** interface to describe configuration options */
 export interface Config {
   base?: string /** Overrides Auth URI Basepath, requires trailing '/' */;
-  callback: any /** Callback function to receive Fetch API res / err object */;
   provider?: string /** oAuth2 Provider name as a string */;
   token: string /** oAuth2 Access Token as a string */;
 }
