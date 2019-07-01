@@ -19,8 +19,12 @@ const apiMap = {
 const apiHeaders = config => {
   const headers = new Headers();
 
-  if (!config) return headers;
-  if (config.mimeType) headers.append('Content-Type', config.mimeType);
+  if (!config) {
+    return headers;
+  }
+  if (config.mimeType) {
+    headers.append('Content-Type', config.mimeType);
+  }
 
   return headers;
 };
@@ -35,9 +39,15 @@ const apiRequest = (config, headers) => {
     credentials: config.credentials || 'include'
   };
 
-  if (headers) reqConfig.headers = headers;
-  if (config.extraPath) apiPath = `${apiPath}/${config.extraPath}`;
-  if (config.params) apiPath = `${apiPath}?${config.params}`;
+  if (headers) {
+    reqConfig.headers = headers;
+  }
+  if (config.extraPath) {
+    apiPath = `${apiPath}/${config.extraPath}`;
+  }
+  if (config.params) {
+    apiPath = `${apiPath}?${config.params}`;
+  }
 
   return new Request(apiPath, reqConfig);
 };
@@ -83,7 +93,9 @@ export class API {
           return res[parser]()
             .then(parsed => {
               /* if parsed text is CSV then return Papaparse via parseCSV */
-              if (config.mimeType === 'text/csv') return { user: parseCSV(parsed) };
+              if (config.mimeType === 'text/csv') {
+                return { user: parseCSV(parsed) };
+              }
               return parsed;
             })
             .catch(err => (callback && callback(err)) || { res, err })
