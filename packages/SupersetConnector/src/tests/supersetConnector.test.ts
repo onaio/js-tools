@@ -70,6 +70,25 @@ describe('superset-connector', () => {
     expect(data).toEqual(parsedSliceResponse);
   });
 
+  it('should fetch CSV just fine', async () => {
+    const csvData = 'id,a,b,c,d\n' + '0,1,1,1,1\n' + '1,2,2,2,2\n' + '2,3,3,3,3';
+    fetch.mockResponseOnce(csvData, {
+      headers: { 'content-type': 'text/csv;charset=UTF-8' },
+      status: 200
+    });
+    const data = await superset.api.doFetch({
+      endpoint: 'slice',
+      extraPath: '892',
+      mimeType: 'text/csv',
+      token: 'hunter2'
+    });
+    expect(data).toEqual([
+      { a: '1', b: '1', c: '1', d: '1', id: '0' },
+      { a: '2', b: '2', c: '2', d: '2', id: '1' },
+      { a: '3', b: '3', c: '3', d: '3', id: '2' }
+    ]);
+  });
+
   it('should parse Slice data from Slice response', () => {
     expect(superset.processData(sliceResponse)).toEqual(parsedSliceResponse);
   });
