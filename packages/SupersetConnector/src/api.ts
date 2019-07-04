@@ -104,7 +104,7 @@ export class API {
               return parsed;
             })
             .catch((err: Error) => (callback && callback(err)) || { res, err })
-            .then((user: ParseResult) => (callback && callback(user)) || { res, user });
+            .then((data: ParseResult) => (callback && callback(data)) || { res, data });
         });
 
     /** version of this.fetch specifically for d3.queue fetching */
