@@ -1,4 +1,5 @@
 import { parse, ParseConfig, ParseResult } from 'papaparse';
+import { DEFAULT_SUPERSET_PROVIDER } from './constants';
 import { SupersetCallback, SupersetConnectorConfig } from './utils';
 
 /** Utility function to parse CSV response to JSON */
@@ -29,7 +30,7 @@ const apiHeaders = (config: SupersetConnectorConfig | null = null): Headers => {
 
 /** Generate Request for Fetch API */
 const apiRequest = (config: SupersetConnectorConfig, headers: Headers) => {
-  const base = config.base || 'http://localhost:8088/';
+  const base = config.base || DEFAULT_SUPERSET_PROVIDER;
   let apiPath = `${base}`;
 
   if (config.endpoint && apiMap.hasOwnProperty(config.endpoint)) {
