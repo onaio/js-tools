@@ -19,4 +19,4 @@ export interface SupersetConnectorConfig {
 }
 
 /** Type definition callback function  */
-export type SupersetCallback<T> = (e: T) => T;
+export type SupersetCallback<T> = (e: T) => any;
