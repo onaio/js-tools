@@ -51,7 +51,8 @@ describe('superset-connector', () => {
     fetch.mockResponseOnce(JSON.stringify(sliceResponse));
     const res = await superset.api.doFetch({
       endpoint: 'slice',
-      extraPath: '892'
+      extraPath: '892',
+      token: 'hunter2'
     });
     expect(res).toEqual(sliceResponse);
   });
@@ -61,7 +62,8 @@ describe('superset-connector', () => {
     const data = await superset.api.doFetch(
       {
         endpoint: 'slice',
-        extraPath: '892'
+        extraPath: '892',
+        token: 'hunter2'
       },
       res => superset.processData(res)
     );
