@@ -1,3 +1,4 @@
+import { DEFAULT_SUPERSET_URL } from './constants';
 import { SupersetCallback, SupersetConnectorConfig } from './utils';
 
 /** Authorization Request
@@ -9,7 +10,7 @@ export const authZ = (config: SupersetConnectorConfig, callback: SupersetCallbac
   headers.append('Custom-Api-Token', config.token);
 
   return fetch(
-    `${config.base || 'http://localhost:8088/'}oauth-authorized/${config.provider || 'onadata'}`,
+    `${config.base || DEFAULT_SUPERSET_URL}oauth-authorized/${config.provider || 'onadata'}`,
     {
       credentials: 'include',
       headers,
@@ -25,7 +26,7 @@ export const authZ = (config: SupersetConnectorConfig, callback: SupersetCallbac
  * @param {SupersetCallback<any>} callback - the callback function
  */
 export const deAuthZ = (config: SupersetConnectorConfig, callback: SupersetCallback<Response>) =>
-  fetch(`${(config && config.base) || 'http://localhost:8088/'}logout/`, {
+  fetch(`${(config && config.base) || DEFAULT_SUPERSET_URL}logout/`, {
     credentials: 'include',
     method: 'GET'
   })
