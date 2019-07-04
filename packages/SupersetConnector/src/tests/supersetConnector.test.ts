@@ -41,7 +41,7 @@ describe('superset-connector', () => {
         token: 'abcdefghij'
       },
       res => {
-        return JSON.parse(res).status;
+        return JSON.parse(res as any).status;
       }
     );
     expect(authZstatus).toEqual(302);
