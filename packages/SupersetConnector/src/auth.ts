@@ -1,10 +1,8 @@
 import { SupersetCallback, SupersetConnectorConfig } from './utils';
 
-/* Authorization Request
- ** config.token    - (Required) oAuth2 Access Token as a string
- ** config.provider - (Optional) oAuth2 Provider name as a string
- ** config.base     - (Optional) Overrides Auth URI Basepath, requires trailing '/'
- ** callback        - (Required) Callback function to receive Fetch API res / err object
+/** Authorization Request
+ * @param {SupersetConnectorConfig} config - the configuration options
+ * @param {SupersetCallback<any>} callback - the callback function
  */
 export const authZ = (config: SupersetConnectorConfig, callback: SupersetCallback<Response>) => {
   const headers = new Headers();
@@ -22,9 +20,9 @@ export const authZ = (config: SupersetConnectorConfig, callback: SupersetCallbac
     .catch(err => callback(err));
 };
 
-/* De-Authorization Request
- ** config.base  - (Optional) Overrides DeAuth URI Basepath, requires trailing '/'
- ** callback     - (Required) Callback function to receive Fetch API res / err object
+/** De-Authorization Request
+ * @param {SupersetConnectorConfig} config - the configuration options
+ * @param {SupersetCallback<any>} callback - the callback function
  */
 export const deAuthZ = (config: SupersetConnectorConfig, callback: SupersetCallback<Response>) =>
   fetch(`${(config && config.base) || 'http://localhost:8088/'}logout/`, {
