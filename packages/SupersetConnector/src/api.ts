@@ -63,17 +63,11 @@ export class API {
   constructor() {
     const self = this;
 
-    /** Resolve Fetch API Promise, convert to JSON, handle with callback/resolve as JSON
-     * config          - (required) Object containing options / credentials
-     * config.provider - (required) Name of the oAuth2 provider
-     * config.token    - (required) Access_Token provided by oAuth2 provider
-     * config.endpoint - (required) The endpoint to hit on the Superset API
-     * config.method   - (optional) Specify HTTP Method (defaults to GET)
-     * config.params   - (optional) Additional parameters to be appended to API Path
-     * config.mimeType - (optional) Specify mimeType for Request Headers
-     * config.base     - (optional) Base URL for API Requests, must include trailing '/'
-     * config.credentials(optional) Custom override for Fetch API 'credentials' setting
-     * callback        - (optional) Function to take JSON response, otherwise res is simply returned
+    /** Resolve Fetch API Promise, convert to JSON, handle with
+     * callback/resolve as JSON
+     * @param {SupersetConnectorConfig} config - the configuration options
+     * @param {SupersetCallback<any>} callback - the callback function
+     * @return {{ [key: string]: any }} data - the data
      */
     this.doFetch = async (
       config: SupersetConnectorConfig,
