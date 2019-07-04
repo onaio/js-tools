@@ -66,7 +66,7 @@ export class API {
    */
   public doFetch: (
     config: SupersetConnectorConfig,
-    callback: SupersetCallback<any>
+    callback?: SupersetCallback<any>
   ) => { [key: string]: any };
   public deferedFetch: any;
 
