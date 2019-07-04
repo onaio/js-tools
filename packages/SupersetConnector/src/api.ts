@@ -57,18 +57,21 @@ const fetchAPI = (config: SupersetConnectorConfig) => fetch(apiRequest(config, a
 
 /** API Module for FE Superset Connector */
 export class API {
-  public doFetch: any;
+  /** Resolve Fetch API Promise, convert to JSON, handle with
+   * callback/resolve as JSON
+   * @param {SupersetConnectorConfig} config - the configuration options
+   * @param {SupersetCallback<any>} callback - the callback function
+   * @return {{ [key: string]: any }} the data
+   */
+  public doFetch: (
+    config: SupersetConnectorConfig,
+    callback: SupersetCallback<any>
+  ) => { [key: string]: any };
   public deferedFetch: any;
 
   constructor() {
     const self = this;
 
-    /** Resolve Fetch API Promise, convert to JSON, handle with
-     * callback/resolve as JSON
-     * @param {SupersetConnectorConfig} config - the configuration options
-     * @param {SupersetCallback<any>} callback - the callback function
-     * @return {{ [key: string]: any }} data - the data
-     */
     this.doFetch = async (
       config: SupersetConnectorConfig,
       callback: SupersetCallback<any> = (res: Response) => res
