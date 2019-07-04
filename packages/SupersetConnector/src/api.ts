@@ -99,7 +99,7 @@ export class API {
             .then((parsed: string) => {
               /* if parsed text is CSV then return Papaparse via parseCSV */
               if (config.mimeType === 'text/csv') {
-                return { user: parseCSV(parsed) };
+                return parseCSV(parsed);
               }
               return parsed;
             })
