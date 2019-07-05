@@ -58,12 +58,16 @@ export interface SupersetOrderingOptions {
 
 /** Interface to describe Superset filter options */
 export interface SupersetFilter {
-  comparator?: string | number | string[] | number[];
-  clause: 'WHERE';
-  expressionType: 'SIMPLE' | 'SQL';
-  operator?: SupersetFilterOperators;
-  sqlExpression?: string;
-  subject?: string;
+  comparator?:
+    | string
+    | number
+    | string[]
+    | number[] /** the value to compare your filter field to */;
+  clause: 'WHERE' /** the clause to use */;
+  expressionType: 'SIMPLE' | 'SQL' /** the filter expression type */;
+  operator?: SupersetFilterOperators /** the operator to use in filtering */;
+  sqlExpression?: string /** the SQL statement to use in the filter e.g. "plan_id = '10f9e9fa'" */;
+  subject?: string /** the field you wish to filter by */;
 }
 
 /** Default superset filter options */
