@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.API = void 0;
+exports.default = exports.API = exports.apiRequest = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -13,38 +13,65 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
 var _papaparse = require("papaparse");
 
-function parseCSV(text, config) {
-  return (0, _papaparse.parse)(text, config || {
+var _constants = require("./constants");
+
+function parseCSV(text) {
+  var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
     header: true,
     skipEmptyLines: true
-  }).data;
+  };
+  return (0, _papaparse.parse)(text, config).data;
 }
 
 var apiMap = {
   slice: 'superset/slice_json'
 };
 
-var apiHeaders = function apiHeaders(config) {
+var apiHeaders = function apiHeaders() {
+  var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var headers = new Headers();
-  if (!config) return headers;
-  if (config.mimeType) headers.append('Content-Type', config.mimeType);
+
+  if (!config) {
+    return headers;
+  }
+
+  if (config.mimeType) {
+    headers.append('Content-Type', config.mimeType);
+  }
+
   return headers;
 };
 
 var apiRequest = function apiRequest(config, headers) {
-  var base = config.base || 'http://localhost:8088/';
-  var apiPath = "".concat(base).concat(apiMap[config.endpoint] || '');
+  var base = config.base || _constants.DEFAULT_SUPERSET_PROVIDER;
+  var apiPath = "".concat(base);
+
+  if (config.endpoint && apiMap.hasOwnProperty(config.endpoint)) {
+    apiPath = "".concat(base).concat(apiMap[config.endpoint]);
+  }
+
   var reqConfig = {
-    method: config.method || 'GET',
-    credentials: config.credentials || 'include'
+    credentials: config.credentials || 'include',
+    headers: headers,
+    method: config.method || 'GET'
   };
-  if (headers) reqConfig.headers = headers;
-  if (config.extraPath) apiPath = "".concat(apiPath, "/").concat(config.extraPath);
-  if (config.params) apiPath = "".concat(apiPath, "?").concat(config.params);
+
+  if (config.extraPath) {
+    apiPath = "".concat(apiPath, "/").concat(config.extraPath);
+  }
+
+  if (config.params) {
+    apiPath = "".concat(apiPath, "?").concat(config.params);
+  }
+
   return new Request(apiPath, reqConfig);
 };
+
+exports.apiRequest = apiRequest;
 
 var fetchAPI = function fetchAPI(config) {
   return fetch(apiRequest(config, apiHeaders(config)));
@@ -52,6 +79,8 @@ var fetchAPI = function fetchAPI(config) {
 
 var API = function API() {
   (0, _classCallCheck2.default)(this, API);
+  (0, _defineProperty2.default)(this, "doFetch", void 0);
+  (0, _defineProperty2.default)(this, "deferedFetch", void 0);
   var self = this;
 
   this.doFetch = function () {
@@ -84,19 +113,20 @@ var API = function API() {
                 }
 
                 return res[parser]().then(function (parsed) {
-                  if (config.mimeType === 'text/csv') return {
-                    user: parseCSV(parsed)
-                  };
+                  if (config.mimeType === 'text/csv') {
+                    return parseCSV(parsed);
+                  }
+
                   return parsed;
                 }).catch(function (err) {
                   return callback && callback(err) || {
                     res: res,
                     err: err
                   };
-                }).then(function (user) {
-                  return callback && callback(user) || {
+                }).then(function (data) {
+                  return callback && callback(data) || {
                     res: res,
-                    user: user
+                    data: data
                   };
                 });
               }));

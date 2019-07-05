@@ -1,3 +1,4 @@
+/* tslint:disable object-literal-sort-keys */
 export const sliceResponse = {
   cache_key: null,
   cached_dttm: null,

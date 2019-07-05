@@ -3,6 +3,7 @@
   "version": "0.0.9",
   "description": "A module for securely connecting to the Superset API",
   "main": "dist/index.js",
+  "types": "dist/types",
   "author": "Ona Engineering",
   "license": "Apache-2.0",
   "private": false,
@@ -11,7 +12,7 @@
   },
   "scripts": {
     "jest": "jest --coverage --verbose --color",
-    "transpile": "babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__' --copy-files"
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx' --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
   },
   "files": [
     "dist"
@@ -20,13 +21,18 @@
     "access": "public"
   },
   "jest": {
+    "automock": false,
     "setupFiles": [
-      "../../setupTests"
+      "../../setupTests",
+      "../../setupJest.ts"
     ]
   },
   "dependencies": {
-    "jest-fetch-mock": "^2.1.1",
-    "papaparse": "^4.6.3"
+    "papaparse": "^4.6.3",
+    "@types/papaparse": "^4.5.11"
+  },
+  "devDependencies": {
+    "jest-fetch-mock": "^2.1.1"
   },
   "keywords": [
     "Superset"
