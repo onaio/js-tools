@@ -110,8 +110,8 @@ export function getFormData(
   });
 
   return {
-    adhoc_filters: adhocFilters,
-    order_by_cols: orderByCols,
+    ...(orderByCols.length > 0 && { order_by_cols: orderByCols }),
+    ...(adhocFilters.length > 0 && { adhoc_filters: adhocFilters }),
     row_limit: rowLimit
   };
 }
