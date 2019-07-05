@@ -20,3 +20,17 @@ export interface SupersetConnectorConfig {
 
 /** Type definition callback function  */
 export type SupersetCallback<T> = (e: T) => any;
+
+/** Allowed Superset filter operators */
+export type SupersetFilterOperators =
+  | '=='
+  | '!='
+  | '>='
+  | '<='
+  | '<'
+  | '>'
+  | 'LIKE'
+  | 'in'
+  | 'not+in'
+  | 'IS+NULL'
+  | 'IS+NOT+NULL';
