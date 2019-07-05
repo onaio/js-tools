@@ -74,7 +74,7 @@ export interface SupersetFormData {
  * @param {Array<SupersetSQLFilterOption | SupersetAdhocFilterOption>} filters - array of filters to be sent to Superset
  * @returns {SupersetFormData} form data object
  */
-export function getSupersetFormData(
+export function getFormData(
   rowLimit: number = 1000,
   filters: Array<SupersetSQLFilterOption | SupersetAdhocFilterOption> = []
 ): SupersetFormData {
