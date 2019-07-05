@@ -47,6 +47,11 @@ export interface SupersetSQLFilterOption {
   sqlExpression: string;
 }
 
+/** Interface to describe Superset ordering options */
+export interface SupersetOrderingOptions {
+  [key: string]: boolean;
+}
+
 /** Interface to describe Superset filter options */
 export interface SupersetFilter {
   comparator?: string | number | string[] | number[];
@@ -70,19 +75,16 @@ export interface SupersetFormData {
   row_limit: number;
 }
 
-export interface SupersetOrdering {
-  [key: string]: boolean;
-}
-
 /** Get form data parameter
  * @param {number} rowLimit - the number of rows to return from Superset
  * @param {Array<SupersetSQLFilterOption | SupersetAdhocFilterOption>} filters - array of filters to be sent to Superset
+ * @param {SupersetOrderingOptions} ordering - an object containing fields to order by e.g. {plan: true} ==> order by the plan field ascending (false would mean descending)
  * @returns {SupersetFormData} form data object
  */
 export function getFormData(
   rowLimit: number = 1000,
   filters: Array<SupersetSQLFilterOption | SupersetAdhocFilterOption> = [],
-  ordering: SupersetOrdering = {}
+  ordering: SupersetOrderingOptions = {}
 ): SupersetFormData {
   const adhocFilters: SupersetFilter[] = filters.map(
     (filter): SupersetFilter => {
