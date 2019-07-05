@@ -61,6 +61,8 @@ The filters option can be either:
 - **Simple filter** e.g. `{ comparator: '10f9e9fa', operator: '==', subject: 'plan_id'}`
 - **SQL filter** e.g. `{ sqlExpression: "plan_id = '10f9e9fa'" }`
 
+Both of the above filters do the same thing i.e. filter where plan_id == '10f9e9fa'
+
 #### Example usage
 
 ```ts
@@ -88,8 +90,6 @@ const config = {
 // finally
 const data = await superset.api.doFetch(config);
 ```
-
-Both of the above filters do the same thing i.e. filter where plan_id == '10f9e9fa'
 
 ### API Fetch Middleware
 
