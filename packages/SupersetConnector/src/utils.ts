@@ -68,3 +68,38 @@ export interface SupersetFormData {
   adhoc_filters?: SupersetFilter[];
   row_limit: number;
 }
+
+/** Get form data parameter
+ * @param {number} rowLimit - the number of rows to return from Superset
+ * @param {Array<SupersetSQLFilterOption | SupersetAdhocFilterOption>} filters - array of filters to be sent to Superset
+ * @returns {SupersetFormData} form data object
+ */
+export function getSupersetFormData(
+  rowLimit: number = 1000,
+  filters: Array<SupersetSQLFilterOption | SupersetAdhocFilterOption> = []
+): SupersetFormData {
+  const adhocFilters: SupersetFilter[] = filters.map(
+    (filter): SupersetFilter => {
+      if (filter.hasOwnProperty('sqlExpression')) {
+        filter = filter as SupersetSQLFilterOption;
+        return {
+          ...defaultFilter,
+          expressionType: 'SQL',
+          sqlExpression: filter.sqlExpression
+        };
+      } else {
+        filter = filter as SupersetAdhocFilterOption;
+        return {
+          ...defaultFilter,
+          comparator: filter.comparator,
+          operator: filter.operator,
+          subject: filter.subject
+        };
+      }
+    }
+  );
+  return {
+    adhoc_filters: adhocFilters,
+    row_limit: rowLimit
+  };
+}
