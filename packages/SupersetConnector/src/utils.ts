@@ -62,3 +62,9 @@ const defaultFilter: SupersetFilter = {
   clause: 'WHERE',
   expressionType: 'SIMPLE'
 };
+
+/** Interface to describe Superset form data */
+export interface SupersetFormData {
+  adhoc_filters?: SupersetFilter[];
+  row_limit: number;
+}
