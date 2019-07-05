@@ -29,7 +29,7 @@ const apiHeaders = (config: SupersetConnectorConfig | null = null): Headers => {
 };
 
 /** Generate Request for Fetch API */
-const apiRequest = (config: SupersetConnectorConfig, headers: Headers) => {
+export const apiRequest = (config: SupersetConnectorConfig, headers: Headers) => {
   const base = config.base || DEFAULT_SUPERSET_PROVIDER;
   let apiPath = `${base}`;
 
