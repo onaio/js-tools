@@ -18,5 +18,21 @@ describe('superset-connector/utils', () => {
       ],
       row_limit: 1000
     });
+
+    // test adhoc filter
+    expect(
+      getSupersetFormData(1000, [{ comparator: '10f9e9fa', operator: '==', subject: 'plan_id' }])
+    ).toEqual({
+      adhoc_filters: [
+        {
+          clause: 'WHERE',
+          comparator: '10f9e9fa',
+          expressionType: 'SIMPLE',
+          operator: '==',
+          subject: 'plan_id'
+        }
+      ],
+      row_limit: 1000
+    });
   });
 });
