@@ -46,10 +46,14 @@ describe('superset-connector/utils', () => {
 
   it('getFormData works correctly with everything altogether', async () => {
     expect(
-      getFormData(3000, [
-        { sqlExpression: "plan_id+=+'10f9e9fa'+AND+goal_id+!=+'73'" },
-        { comparator: '10f9e9fa', operator: '==', subject: 'plan_id' }
-      ])
+      getFormData(
+        3000,
+        [
+          { sqlExpression: "plan_id+=+'10f9e9fa'+AND+goal_id+!=+'73'" },
+          { comparator: '10f9e9fa', operator: '==', subject: 'plan_id' }
+        ],
+        { gender: false }
+      )
     ).toEqual({
       adhoc_filters: [
         {
@@ -65,6 +69,7 @@ describe('superset-connector/utils', () => {
           subject: 'plan_id'
         }
       ],
+      order_by_cols: ['["gender",+false]'],
       row_limit: 3000
     });
   });
