@@ -2,7 +2,7 @@ import { getFormData } from '../utils';
 
 describe('superset-connector/utils', () => {
   it('getFormData works correctly wiht row limit', async () => {
-    expect(getFormData(2345)).toEqual({ adhoc_filters: [], row_limit: 2345 });
+    expect(getFormData(2345)).toEqual({ row_limit: 2345 });
   });
 
   it('getFormData works correctly with SQL filters', async () => {
