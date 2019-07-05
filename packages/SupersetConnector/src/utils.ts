@@ -56,3 +56,9 @@ export interface SupersetFilter {
   sqlExpression?: string;
   subject?: string;
 }
+
+/** Default superset filter options */
+const defaultFilter: SupersetFilter = {
+  clause: 'WHERE',
+  expressionType: 'SIMPLE'
+};
