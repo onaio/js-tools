@@ -53,7 +53,7 @@ export interface SupersetSQLFilterOption {
 
 /** Interface to describe Superset ordering options */
 export interface SupersetOrderingOptions {
-  [key: string]: boolean;
+  [key: string]: boolean /** key => value pair representing ordering options.  The key if the field to order by with the value being true (order ascending) or false (order descending) */;
 }
 
 /** Interface to describe Superset filter options */
