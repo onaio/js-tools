@@ -5,6 +5,13 @@ describe('superset-connector/utils', () => {
     expect(getFormData(2345)).toEqual({ row_limit: 2345 });
   });
 
+  it('getFormData works correctly wiht ordering', async () => {
+    expect(getFormData(2, [], { plan: true, goal: false })).toEqual({
+      order_by_cols: ['["plan",+true]', '["goal",+false]'],
+      row_limit: 2
+    });
+  });
+
   it('getFormData works correctly with SQL filters', async () => {
     expect(
       getFormData(1000, [{ sqlExpression: "plan_id+=+'10f9e9fa'+AND+goal_id+!=+'73'" }])
