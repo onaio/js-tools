@@ -28,7 +28,7 @@ describe('superset-connector/api', () => {
       new Headers()
     );
     expect(request.url).toEqual(
-      'onadata?form_data=%7B%22adhoc_filters%22:[%7B%22clause%22:%22WHERE%22,%22expressionType%22:%22SIMPLE%22,%22comparator%22:%2210f9e9fa-ce34-4b27-a961-72fab5206ab6%22,%22operator%22:%22==%22,%22subject%22:%22plan_id%22%7D],%22order_by_cols%22:[%22[%5C%22plan_id%5C%22,+true]%22,%22[%5C%22goal_id%5C%22,+false]%22],%22row_limit%22:100%7D'
+      'onadata?form_data=%7B%22order_by_cols%22:[%22[%5C%22plan_id%5C%22,+true]%22,%22[%5C%22goal_id%5C%22,+false]%22],%22adhoc_filters%22:[%7B%22clause%22:%22WHERE%22,%22expressionType%22:%22SIMPLE%22,%22comparator%22:%2210f9e9fa-ce34-4b27-a961-72fab5206ab6%22,%22operator%22:%22==%22,%22subject%22:%22plan_id%22%7D],%22row_limit%22:100%7D'
     );
   });
 });
