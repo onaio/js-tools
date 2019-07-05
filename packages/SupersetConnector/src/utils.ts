@@ -34,3 +34,25 @@ export type SupersetFilterOperators =
   | 'not+in'
   | 'IS+NULL'
   | 'IS+NOT+NULL';
+
+/** Superset ad-hoc filter options */
+export interface SupersetAdhocFilterOption {
+  comparator: string | number | string[] | number[];
+  operator: SupersetFilterOperators;
+  subject: string;
+}
+
+/** Superset SQL filter options */
+export interface SupersetSQLFilterOption {
+  sqlExpression: string;
+}
+
+/** Interface to describe Superset filter options */
+export interface SupersetFilter {
+  comparator?: string | number | string[] | number[];
+  clause: 'WHERE';
+  expressionType: 'SIMPLE' | 'SQL';
+  operator?: SupersetFilterOperators;
+  sqlExpression?: string;
+  subject?: string;
+}
