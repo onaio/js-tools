@@ -66,7 +66,12 @@ const defaultFilter: SupersetFilter = {
 /** Interface to describe Superset form data */
 export interface SupersetFormData {
   adhoc_filters?: SupersetFilter[];
+  order_by_cols?: any;
   row_limit: number;
+}
+
+export interface SupersetOrdering {
+  [key: string]: boolean;
 }
 
 /** Get form data parameter
@@ -76,7 +81,8 @@ export interface SupersetFormData {
  */
 export function getFormData(
   rowLimit: number = 1000,
-  filters: Array<SupersetSQLFilterOption | SupersetAdhocFilterOption> = []
+  filters: Array<SupersetSQLFilterOption | SupersetAdhocFilterOption> = [],
+  ordering: SupersetOrdering = {}
 ): SupersetFormData {
   const adhocFilters: SupersetFilter[] = filters.map(
     (filter): SupersetFilter => {
@@ -98,8 +104,14 @@ export function getFormData(
       }
     }
   );
+
+  const orderByCols = Object.keys(ordering).map(key => {
+    return `[\"${key}\",+${ordering[key].toString()}]`;
+  });
+
   return {
     adhoc_filters: adhocFilters,
+    order_by_cols: orderByCols,
     row_limit: rowLimit
   };
 }
