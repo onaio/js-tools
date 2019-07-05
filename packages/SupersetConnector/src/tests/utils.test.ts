@@ -13,14 +13,12 @@ describe('superset-connector/utils', () => {
   });
 
   it('getFormData works correctly with SQL filters', async () => {
-    expect(
-      getFormData(1000, [{ sqlExpression: "plan_id+=+'10f9e9fa'+AND+goal_id+!=+'73'" }])
-    ).toEqual({
+    expect(getFormData(1000, [{ sqlExpression: "plan_id = '10f9e9fa'" }])).toEqual({
       adhoc_filters: [
         {
           clause: 'WHERE',
           expressionType: 'SQL',
-          sqlExpression: "plan_id+=+'10f9e9fa'+AND+goal_id+!=+'73'"
+          sqlExpression: "plan_id = '10f9e9fa'"
         }
       ],
       row_limit: 1000
