@@ -48,7 +48,7 @@ export interface SupersetAdhocFilterOption {
 
 /** Superset SQL filter options */
 export interface SupersetSQLFilterOption {
-  sqlExpression: string;
+  sqlExpression: string /** the SQL statement to use in the filter e.g. "plan_id = '10f9e9fa'" */;
 }
 
 /** Interface to describe Superset ordering options */
