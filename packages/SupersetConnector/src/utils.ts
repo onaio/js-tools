@@ -37,9 +37,13 @@ export type SupersetFilterOperators =
 
 /** Superset ad-hoc filter options */
 export interface SupersetAdhocFilterOption {
-  comparator: string | number | string[] | number[];
-  operator: SupersetFilterOperators;
-  subject: string;
+  comparator:
+    | string
+    | number
+    | string[]
+    | number[] /** the value to compare your filter field to */;
+  operator: SupersetFilterOperators /** the operator to use in filtering */;
+  subject: string /** the field you wish to filter by */;
 }
 
 /** Superset SQL filter options */
