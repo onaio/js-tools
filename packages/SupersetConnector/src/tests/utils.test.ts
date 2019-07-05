@@ -1,11 +1,11 @@
 import { getFormData } from '../utils';
 
 describe('superset-connector/utils', () => {
-  it('getFormData should work correctly', async () => {
-    // test row_limit
+  it('getFormData works correctly wiht row limit', async () => {
     expect(getFormData(2345)).toEqual({ adhoc_filters: [], row_limit: 2345 });
+  });
 
-    // test SQL filter
+  it('getFormData works correctly with SQL filters', async () => {
     expect(
       getFormData(1000, [{ sqlExpression: "plan_id+=+'10f9e9fa'+AND+goal_id+!=+'73'" }])
     ).toEqual({
@@ -18,8 +18,9 @@ describe('superset-connector/utils', () => {
       ],
       row_limit: 1000
     });
+  });
 
-    // test adhoc filter
+  it('getFormData works correctly with ad hoc filters', async () => {
     expect(
       getFormData(1000, [{ comparator: '10f9e9fa', operator: '==', subject: 'plan_id' }])
     ).toEqual({
@@ -34,8 +35,9 @@ describe('superset-connector/utils', () => {
       ],
       row_limit: 1000
     });
+  });
 
-    // test everything altogether
+  it('getFormData works correctly with everything altogether', async () => {
     expect(
       getFormData(3000, [
         { sqlExpression: "plan_id+=+'10f9e9fa'+AND+goal_id+!=+'73'" },
