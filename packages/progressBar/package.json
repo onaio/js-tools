@@ -4,10 +4,7 @@
   "types": " dist/types",
   "description": "linear progress indicator",
   "main": "dist/index.js",
-  "repository": {
-    "type": "git",
-    "url": "\"https://github.com/onaio/js-tools\""
-  },
+  "repository": "\"https://github.com/onaio/js-tools\"",
   "author": "Ona Engineering",
   "license": "Apache-2.0",
   "bugs": {
@@ -31,5 +28,6 @@
   },
   "peerDependencies": {
     "react": "^16.8.1"
-  }
+  },
+  "private": false
 }
