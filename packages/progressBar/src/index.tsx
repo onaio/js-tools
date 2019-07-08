@@ -25,7 +25,7 @@ interface ProgressBarProps {
 const defaultProgressBarProps: Partial<ProgressBarProps> = {
   decimalPoints: 0,
   height: '10px',
-  lineColor: '#5269EB',
+  lineColor: '#0000FF',
   lineColorThresholds: undefined,
   max: 100,
   min: 0
@@ -45,16 +45,16 @@ const ProgressBar = (props: ProgressBarProps) => {
   const percentValue = decimalValue * 100;
   const percentValueString = percentValue.toFixed(decimalPoints);
 
-  // set the line color: if lineColorThresholds is not given then use lineColor
-  if (!lineColorThresholds) {
+  // set the line color: if lineColorThresholds is not given; lineColor will be used
+  if (lineColorThresholds) {
     // sort the color and their thresholds by the threshhold value
-    const DescendingThresholds = Object.entries(!lineColorThresholds).sort(
-      (e1, e2) => e2[1] - e1[1]
-    );
+    const AscendingThresholds = Object.entries(lineColorThresholds).sort((e1, e2) => e1[1] - e2[1]);
     // top to bottom check to see which color threshold is matched first by the percentvalue
-    DescendingThresholds.forEach(([key, threshhold]) =>
-      percentValue > threshhold ? (backgroundColor = key) : undefined
-    );
+    AscendingThresholds.forEach(([key, threshhold]) => {
+      if (percentValue >= threshhold) {
+        backgroundColor = key;
+      }
+    });
   }
 
   return (
