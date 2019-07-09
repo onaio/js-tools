@@ -1,5 +1,6 @@
 import { API } from './api';
 import { getFormData } from './utils';
+export * from './utils';
 /** Superset Connector Module */
 declare const superset: {
   api: API;
