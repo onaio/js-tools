@@ -1,6 +1,6 @@
 {
   "name": "@onaio/superset-connector",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A module for securely connecting to the Superset API",
   "main": "dist/index.js",
   "types": "dist/types",
@@ -28,8 +28,8 @@
     ]
   },
   "dependencies": {
-    "papaparse": "^4.6.3",
-    "@types/papaparse": "^4.5.11"
+    "@types/papaparse": "^4.5.11",
+    "papaparse": "^4.6.3"
   },
   "devDependencies": {
     "jest-fetch-mock": "^2.1.1"
