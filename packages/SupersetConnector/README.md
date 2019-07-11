@@ -61,6 +61,38 @@ The filters option can be either:
 - **Simple filter** e.g. `{ comparator: '10f9e9fa', operator: '==', subject: 'plan_id'}`
 - **SQL filter** e.g. `{ sqlExpression: "plan_id = '10f9e9fa'" }`
 
+```ts
+/** Allowed Superset filter operators */
+export type SupersetFilterOperators =
+  | '=='
+  | '!='
+  | '>='
+  | '<='
+  | '<'
+  | '>'
+  | 'LIKE'
+  | 'in'
+  | 'not+in'
+  | 'IS+NULL'
+  | 'IS+NOT+NULL';
+
+/** Superset ad-hoc filter options */
+export interface SupersetAdhocFilterOption {
+  comparator:
+    | string
+    | number
+    | string[]
+    | number[] /** the value to compare your filter field to */;
+  operator: SupersetFilterOperators /** the operator to use in filtering */;
+  subject: string /** the field you wish to filter by */;
+}
+
+/** Superset SQL filter options */
+export interface SupersetSQLFilterOption {
+  sqlExpression: string /** the SQL statement to use in the filter e.g. "plan_id = '10f9e9fa'" */;
+}
+```
+
 Both of the above filters do the same thing i.e. filter where plan_id == '10f9e9fa'
 
 #### Example usage
