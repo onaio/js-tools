@@ -61,6 +61,11 @@ The filters option can be either:
 - **Simple filter** e.g. `{ comparator: '10f9e9fa', operator: '==', subject: 'plan_id'}`
 - **SQL filter** e.g. `{ sqlExpression: "plan_id = '10f9e9fa'" }`
 
+Both of the above filters do the same thing i.e. filter where plan_id == '10f9e9fa'
+
+Both types of filters are documented via their respective interfaces, i.e.
+
+
 ```ts
 /** Allowed Superset filter operators */
 export type SupersetFilterOperators =
@@ -92,8 +97,6 @@ export interface SupersetSQLFilterOption {
   sqlExpression: string /** the SQL statement to use in the filter e.g. "plan_id = '10f9e9fa'" */;
 }
 ```
-
-Both of the above filters do the same thing i.e. filter where plan_id == '10f9e9fa'
 
 #### Example usage
 
