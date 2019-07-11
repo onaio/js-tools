@@ -77,7 +77,7 @@ const filters = [
 const ordering = {plan: true, goal: false}; // order by plan ascending and goal descending
 
 // construct the formData object
-const formData = superset.getFormData(rowLimit, filters, comparator);
+const formData = superset.getFormData(rowLimit, filters, ordering);
 
 // construct the configs
 const config = {
