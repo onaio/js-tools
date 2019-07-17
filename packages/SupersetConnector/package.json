@@ -1,6 +1,6 @@
 {
   "name": "@onaio/superset-connector",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "A module for securely connecting to the Superset API",
   "main": "dist/index.js",
   "types": "dist/types",
