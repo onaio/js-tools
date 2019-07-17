@@ -79,7 +79,7 @@ const defaultFilter: SupersetFilter = {
 /** Interface to describe Superset form data */
 export interface SupersetFormData {
   adhoc_filters?: SupersetFilter[];
-  order_by_cols?: any;
+  order_by_cols?: string[] /** Superset expects something like ['["plan",+true]', '["goal",+false]'] */;
   row_limit: number;
 }
 
