@@ -111,6 +111,10 @@ export function hasChildrenFunc(
 }
 ```
 
+#### shouldUseEffect
+
+This is a `boolean` value that controls whether to go into the `useEffect` hook.
+
 ### Code examples
 
 Simplest example:

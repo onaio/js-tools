@@ -7,6 +7,7 @@ import 'react-table/react-table.css';
 import notes from '../../packages/DrillDownTable/README.md';
 import DrillDownTable, { DropDownCellProps } from '../../packages/DrillDownTable/src';
 import { data } from '../../packages/DrillDownTable/src/tests/fixtures';
+import { jurisdictions } from './fixtures';
 
 function renderTable() {
   const columns = [
@@ -111,9 +112,38 @@ function renderCustomCellTable() {
   return <DrillDownTable {...cellProps} />;
 }
 
+function largeDataSet() {
+  const columns = [
+    {
+      Header: 'Name',
+      accessor: 'name'
+    },
+    {
+      Header: 'id',
+      accessor: 'id'
+    },
+    {
+      Header: 'parent',
+      accessor: 'parent_id'
+    },
+    {
+      Header: 'Level',
+      accessor: 'geographic_level'
+    }
+  ];
+  const props = {
+    columns,
+    data: jurisdictions,
+    linkerField: 'name',
+    rootParentId: ''
+  };
+  return <DrillDownTable {...props} />;
+}
+
 storiesOf('DrillDownTable', module)
   .add('simple', renderTable, { notes })
   .add('get columns from data', renderDerivedTable, { notes })
   .add('with nested columns', renderNestedColumnTable, { notes })
   .add('with no getTrProps', renderNoTrPropsTable, { notes })
-  .add('custom cell component', renderCustomCellTable, { notes });
+  .add('custom cell component', renderCustomCellTable, { notes })
+  .add('large dataset', largeDataSet, { notes });

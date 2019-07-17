@@ -24,14 +24,15 @@ export function hasChildrenFunc(
 
 /** Interface to define props of Drill down table */
 export interface DrillDownProps<T> extends Partial<TableProps<T>> {
-  CellComponent: React.ElementType;
-  extraCellProps?: FlexObject;
-  hasChildren?: hasChildrenFuncType;
-  identifierField?: string;
-  linkerField?: string;
-  parentIdentifierField?: string;
-  rootParentId?: any;
-  useDrillDownTrProps?: boolean;
+  CellComponent: React.ElementType /** The component used to render the cell that has the drill down */;
+  extraCellProps?: FlexObject /** props to be given to CellComponent */;
+  hasChildren?: hasChildrenFuncType /** function to check if a row of data has children or not */;
+  identifierField?: string /** unique identifier for a row */;
+  linkerField?: string /** the field to be used to drill down the data */;
+  parentIdentifierField?: string /** the field to identify a row's parent */;
+  rootParentId?: any /** the value of parentIdentifierField for rows that have not parent */;
+  shouldUseEffect?: boolean /** should we use useEffect */;
+  useDrillDownTrProps?: boolean /** whether to use drillDownTrProps */;
 }
 
 /** Interface for state */
@@ -47,7 +48,7 @@ interface State<D> extends Partial<FinalState<D>> {
  * the lowest, nad back with maximum flexibility.
  */
 function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
-  const { data, hasChildren, parentIdentifierField, useDrillDownTrProps } = props;
+  const { data, hasChildren, parentIdentifierField, shouldUseEffect, useDrillDownTrProps } = props;
   const columns = getColumns(props);
   // state variables
   const [currentParentId, setCurrentParentId] = useState(props.rootParentId);
@@ -61,7 +62,11 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
    * is updated to match it
    */
   useEffect(() => {
-    if (props.rootParentId != null && props.rootParentId !== currentParentId) {
+    if (
+      shouldUseEffect === true &&
+      props.rootParentId != null &&
+      props.rootParentId !== currentParentId
+    ) {
       setPreviousParentId(currentParentId);
       setCurrentParentId(props.rootParentId);
     }
@@ -169,6 +174,7 @@ DrillDownTable.defaultProps = {
   linkerField: ID,
   parentIdentifierField: PARENT_ID,
   rootParentId: ROOT_PARENT_ID,
+  shouldUseEffect: false,
   useDrillDownTrProps: true
 };
 

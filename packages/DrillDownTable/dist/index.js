@@ -57,6 +57,7 @@ function DrillDownTable(props) {
   var data = props.data,
       hasChildren = props.hasChildren,
       parentIdentifierField = props.parentIdentifierField,
+      shouldUseEffect = props.shouldUseEffect,
       useDrillDownTrProps = props.useDrillDownTrProps;
   var columns = (0, _WithHeaders.getColumns)(props);
 
@@ -81,7 +82,7 @@ function DrillDownTable(props) {
       setPreviousParentId = _useState8[1];
 
   (0, _react.useEffect)(function () {
-    if (props.rootParentId != null && props.rootParentId !== currentParentId) {
+    if (shouldUseEffect === true && props.rootParentId != null && props.rootParentId !== currentParentId) {
       setPreviousParentId(currentParentId);
       setCurrentParentId(props.rootParentId);
     }
@@ -196,6 +197,7 @@ DrillDownTable.defaultProps = {
   linkerField: _constants.ID,
   parentIdentifierField: _constants.PARENT_ID,
   rootParentId: _constants.ROOT_PARENT_ID,
+  shouldUseEffect: false,
   useDrillDownTrProps: true
 };
 var _default = DrillDownTable;
