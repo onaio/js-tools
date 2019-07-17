@@ -64,7 +64,7 @@ export const jurisdictions = [
     id: '071e366e-64a9-48e2-997f-5bdec39beb15',
     geographic_level: 6,
     parent_id: '4550a8ab-b310-4881-8c76-1b6a817ea63a',
-    name: ''
+    name: '071e366e-64a9-48e2-997f-5bdec39beb15'
   },
   {
     id: '6737a27a-7704-4747-99cf-b2a1d3e61bcb',
@@ -190,13 +190,13 @@ export const jurisdictions = [
     id: '3009e714-08fc-47b5-b5f4-7799daf91ec4',
     geographic_level: 6,
     parent_id: '4550a8ab-b310-4881-8c76-1b6a817ea63a',
-    name: ''
+    name: '3009e714-08fc-47b5-b5f4-7799daf91ec4'
   },
   {
     id: 'bf2e958c-be0c-4899-9250-0fe0d00d8a15',
     geographic_level: 6,
     parent_id: '4550a8ab-b310-4881-8c76-1b6a817ea63a',
-    name: ''
+    name: 'bf2e958c-be0c-4899-9250-0fe0d00d8a15'
   },
   {
     id: '4550a8ab-b310-4881-8c76-1b6a817ea63a',
