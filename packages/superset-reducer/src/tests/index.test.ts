@@ -12,4 +12,8 @@ describe('reducers/session', () => {
     store = createStore(combineReducers({ superset }), applyMiddleware(flushThunks, thunk));
     jest.resetAllMocks();
   });
+
+  it('Should have initial state', () => {
+    expect(isAuthorized(store.getState())).toBe(null);
+  });
 });
