@@ -145,3 +145,33 @@ export function getExtraData(state: Partial<Store>): { [key: string]: any } {
 export function getUser(state: Partial<Store>): User {
   return (state as any)[reducerName].user;
 }
+
+/** get API Token from the Redux store
+ * @param {Partial<Store>} state - the redux store
+ */
+export function getApiToken(state: Partial<Store>): string {
+  const extraData = (state as any)[reducerName].extraData;
+  return extraData.api_token || null;
+}
+
+/** get Access Token from the Redux store
+ * @param {Partial<Store>} state - the redux store
+ */
+export function getAccessToken(state: Partial<Store>): string | null {
+  const extraData = (state as any)[reducerName].extraData;
+  if (extraData.oAuth2Data && extraData.oAuth2Data.access_token) {
+    return extraData.oAuth2Data.access_token;
+  }
+  return null;
+}
+
+/** get the oAuth2 provider state parameter from the Redux store
+ * @param {Partial<Store>} state - the redux store
+ */
+export function getOauthProviderState(state: Partial<Store>): string | null {
+  const extraData = (state as any)[reducerName].extraData;
+  if (extraData.oAuth2Data && extraData.oAuth2Data.state) {
+    return extraData.oAuth2Data.state;
+  }
+  return null;
+}

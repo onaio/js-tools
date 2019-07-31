@@ -3,7 +3,10 @@ import { FlushThunks } from 'redux-testkit';
 import thunk from 'redux-thunk';
 import session, {
   authenticateUser,
+  getAccessToken,
+  getApiToken,
   getExtraData,
+  getOauthProviderState,
   getUser,
   isAuthenticated,
   logOutUser,
@@ -42,6 +45,10 @@ describe('reducers/session', () => {
       name: '',
       username: ''
     });
+    // initially no extra data
+    expect(getApiToken(store.getState())).toEqual(null);
+    expect(getAccessToken(store.getState())).toEqual(null);
+    expect(getOauthProviderState(store.getState())).toEqual(null);
   });
 
   it('should be able to do authentication', () => {
@@ -56,6 +63,10 @@ describe('reducers/session', () => {
       name: '',
       username: ''
     });
+    // initially no extra data
+    expect(getApiToken(store.getState())).toEqual(null);
+    expect(getAccessToken(store.getState())).toEqual(null);
+    expect(getOauthProviderState(store.getState())).toEqual(null);
 
     // call action to log in
     store.dispatch(authenticateUser(true, sessionUser, onadataUser));
@@ -72,6 +83,12 @@ describe('reducers/session', () => {
       name: 'mosh',
       username: 'moshthepitt'
     });
+    // should have api token
+    expect(getApiToken(store.getState())).toEqual('the api token');
+    // should have oAuth2Data and access_token
+    expect(getAccessToken(store.getState())).toEqual('hunter2');
+    // should have oAuth2Data and state
+    expect(getOauthProviderState(store.getState())).toEqual('opensrp');
 
     // call action to log out
     store.dispatch(logOutUser());
@@ -87,6 +104,10 @@ describe('reducers/session', () => {
       name: '',
       username: ''
     });
+    // no extra data when logged out
+    expect(getApiToken(store.getState())).toEqual(null);
+    expect(getAccessToken(store.getState())).toEqual(null);
+    expect(getOauthProviderState(store.getState())).toEqual(null);
   });
 
   it('should be able to update extraData', () => {
@@ -101,6 +122,10 @@ describe('reducers/session', () => {
       name: '',
       username: ''
     });
+    // initially no extra data
+    expect(getApiToken(store.getState())).toEqual(null);
+    expect(getAccessToken(store.getState())).toEqual(null);
+    expect(getOauthProviderState(store.getState())).toEqual(null);
 
     // call action to log in
     store.dispatch(authenticateUser(true, sessionUser, onadataUser));
@@ -109,6 +134,12 @@ describe('reducers/session', () => {
     expect(isAuthenticated(store.getState())).toBe(true);
     // should have extra data
     expect(getExtraData(store.getState())).toEqual(onadataUser);
+    // should have api token
+    expect(getApiToken(store.getState())).toEqual('the api token');
+    // should have oAuth2Data and access_token
+    expect(getAccessToken(store.getState())).toEqual('hunter2');
+    // should have oAuth2Data and state
+    expect(getOauthProviderState(store.getState())).toEqual('opensrp');
 
     // call action to update extraData with public user role object
     store.dispatch(updateExtraData(publicUserRole));
