@@ -62,6 +62,9 @@ Right now, the following selectors are provided:
 - `isAuthenticated`: check if the current user is logged in
 - `getUser`: get the logged in user
 - `getExtraData`: get the extra data object
+- `getApiToken`: get the api token of logged in user
+- `getAccessToken`: get access token of logged in user
+- `getOauthProviderState`: get the oauth provider state
 
 ### Sample code to use these selectors
 
