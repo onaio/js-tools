@@ -3,7 +3,10 @@ import { FlushThunks } from 'redux-testkit';
 import thunk from 'redux-thunk';
 import session, {
   authenticateUser,
+  getAccessToken,
+  getApiToken,
   getExtraData,
+  getOauthProviderState,
   getUser,
   isAuthenticated,
   logOutUser,
@@ -42,6 +45,10 @@ describe('reducers/session', () => {
       name: '',
       username: ''
     });
+    // initially no extra data
+    expect(getApiToken(store.getState())).toEqual(null);
+    expect(getAccessToken(store.getState())).toEqual(null);
+    expect(getOauthProviderState(store.getState())).toEqual(null);
   });
 
   it('should be able to do authentication', () => {
