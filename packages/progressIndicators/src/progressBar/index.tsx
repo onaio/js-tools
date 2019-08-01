@@ -1,14 +1,4 @@
-// import { number } from 'prop-types';
 import React from 'react';
-// import * as colors from '../colors';
-// import { GREEN_THRESHOLD, ORANGE_THRESHOLD, YELLOW_THRESHOLD } from '../configs/settings';
-
-/**
- * - Is it possible to prop the styles too
- * - how exactly would that work:
- *    prop in the background color => what if we had a background prop that took the background color
- *    what if props would included a background color and the threshhold.
- */
 
 /** Props for ProgressBar */
 interface ProgressBarProps {
@@ -28,10 +18,15 @@ const defaultProgressBarProps: Partial<ProgressBarProps> = {
   lineColor: '#0000FF',
   lineColorThresholds: undefined,
   max: 100,
-  min: 0
+  min: 0,
+  value: 0
 };
 
-/** Displays configurable progress bar */
+/** Displays configurable progress bar
+ * lineColor prop when you don't require different line colors
+ * lineColorThresholds when you have to match lineColors to certain value thresholds.
+ * LineColorThresholds will take precedence over lineColor if both are provided
+ */
 const ProgressBar = (props: ProgressBarProps) => {
   const { decimalPoints, height, value, lineColor, lineColorThresholds } = props;
   let backgroundColor = lineColor;
@@ -47,11 +42,11 @@ const ProgressBar = (props: ProgressBarProps) => {
 
   // set the line color: if lineColorThresholds is not given; lineColor will be used
   if (lineColorThresholds) {
-    // sort the color and their thresholds by the threshhold value
+    // sort the color and their thresholds by the threshold value
     const AscendingThresholds = Object.entries(lineColorThresholds).sort((e1, e2) => e1[1] - e2[1]);
-    // top to bottom check to see which color threshold is matched first by the percentvalue
-    AscendingThresholds.forEach(([key, threshhold]) => {
-      if (percentValue >= threshhold) {
+    // top to bottom check to see which color threshold is matched first by the percentValue
+    AscendingThresholds.forEach(([key, threshold]) => {
+      if (percentValue >= threshold) {
         backgroundColor = key;
       }
     });
