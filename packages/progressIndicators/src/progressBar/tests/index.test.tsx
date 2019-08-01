@@ -6,6 +6,7 @@ import ProgressBar from '../';
 const GREEN = '#00FF00';
 const RED = '#FF0000';
 const YELLOW = '#FFFF00';
+const BLUE = '#0000FF';
 
 describe('components/progressBar', () => {
   it('renders without crashing', () => {
@@ -26,7 +27,7 @@ describe('components/progressBar', () => {
     wrapper.unmount();
   });
 
-  it('renders correctly for different sets of props', () => {
+  it('renders correctly for this set of props', () => {
     const props = {
       decimalPoints: 0,
       height: '10px',
@@ -49,7 +50,7 @@ describe('components/progressBar', () => {
     wrapper.unmount();
   });
 
-  it('renders correctly for different sets of props1', () => {
+  it('renders correctly if both lineColor and threshold are given', () => {
     const props = {
       decimalPoints: 0,
       height: '10px',
@@ -73,7 +74,7 @@ describe('components/progressBar', () => {
     wrapper.unmount();
   });
 
-  it('renders correctly for different sets of props2', () => {
+  it('renders correctly for different value', () => {
     const props = {
       decimalPoints: 0,
       height: '10px',
@@ -97,7 +98,7 @@ describe('components/progressBar', () => {
     wrapper.unmount();
   });
 
-  it('uses lineColor if threshholds is not given', () => {
+  it('uses lineColor if thresholds are not given', () => {
     const props = {
       decimalPoints: 0,
       height: '10px',
@@ -115,5 +116,18 @@ describe('components/progressBar', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
-  // it('how does it behave when there is no value', () => {});
+
+  it('how does it behave when there is no value', () => {
+    const props = {
+      decimalPoints: 0,
+      height: '10px'
+    };
+    const wrapper = mount(<ProgressBar {...props} />);
+    expect(wrapper.find('.progress-bar').props().style).toMatchSnapshot({
+      backgroundColor: BLUE,
+      width: '0%'
+    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
 });

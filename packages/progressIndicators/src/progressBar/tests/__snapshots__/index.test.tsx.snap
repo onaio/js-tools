@@ -1,5 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`components/progressBar how does it behave when there is no value 1`] = `
+Object {
+  "backgroundColor": "#0000FF",
+  "width": "0%",
+}
+`;
+
+exports[`components/progressBar how does it behave when there is no value 2`] = `
+<ProgressBar
+  decimalPoints={0}
+  height="10px"
+  lineColor="#0000FF"
+  max={100}
+  min={0}
+  value={0}
+>
+  <div
+    className="progress"
+    style={
+      Object {
+        "height": "10px",
+        "marginBottom": "15px",
+      }
+    }
+  >
+    <div
+      aria-valuemax={100}
+      aria-valuemin={0}
+      aria-valuenow={0}
+      className="progress-bar"
+      role="progressbar"
+      style={
+        Object {
+          "backgroundColor": "#0000FF",
+          "width": "0%",
+        }
+      }
+    />
+  </div>
+</ProgressBar>
+`;
+
 exports[`components/progressBar renders correctly for different sets of props 1`] = `
 <ProgressBar
   decimalPoints={0}
@@ -203,14 +245,14 @@ Object {
 }
 `;
 
-exports[`components/progressBar uses lineColor if threshholds is not given 1`] = `
+exports[`components/progressBar uses lineColor if thresholds are not given 1`] = `
 Object {
   "backgroundColor": "#FFFF00",
   "width": "70%",
 }
 `;
 
-exports[`components/progressBar uses lineColor if threshholds is not given 2`] = `
+exports[`components/progressBar uses lineColor if thresholds are not given 2`] = `
 <ProgressBar
   decimalPoints={0}
   height="10px"
