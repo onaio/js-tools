@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/page/HeaderBreadcrumb renders HeaderBreadcrumb correctly 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <HeaderBreadcrumb
+    currentPage={
+      Object {
+        "label": "IRS",
+        "url": "/irs",
+      }
+    }
+    pages={
+      Array [
+        Object {
+          "label": "Home",
+          "url": "/",
+        },
+        Object {
+          "label": "Programs",
+          "url": "/programs",
+        },
+        Object {
+          "label": "Provinces",
+          "url": "",
+        },
+        Object {
+          "label": "Disctricts",
+        },
+      ]
+    }
+  >
+    <div>
+      <Breadcrumb
+        aria-label="breadcrumb"
+        className="reveal-breadcrumb"
+        listTag="ol"
+        tag="nav"
+      >
+        <nav
+          aria-label="breadcrumb"
+          className="reveal-breadcrumb"
+        >
+          <ol
+            className="breadcrumb"
+          >
+            <BreadcrumbItem
+              key="0"
+              tag="li"
+            >
+              <li
+                className="breadcrumb-item"
+              >
+                <Link
+                  key="0"
+                  to="/"
+                >
+                  <a
+                    href="/"
+                    onClick={[Function]}
+                  >
+                    Home
+                  </a>
+                </Link>
+              </li>
+            </BreadcrumbItem>
+            <BreadcrumbItem
+              key="1"
+              tag="li"
+            >
+              <li
+                className="breadcrumb-item"
+              >
+                <Link
+                  key="1"
+                  to="/programs"
+                >
+                  <a
+                    href="/programs"
+                    onClick={[Function]}
+                  >
+                    Programs
+                  </a>
+                </Link>
+              </li>
+            </BreadcrumbItem>
+            <BreadcrumbItem
+              key="2"
+              tag="li"
+            >
+              <li
+                className="breadcrumb-item"
+              >
+                Provinces
+              </li>
+            </BreadcrumbItem>
+            <BreadcrumbItem
+              key="3"
+              tag="li"
+            >
+              <li
+                className="breadcrumb-item"
+              >
+                Disctricts
+              </li>
+            </BreadcrumbItem>
+            <BreadcrumbItem
+              active={true}
+              tag="li"
+            >
+              <li
+                aria-current="page"
+                className="active breadcrumb-item"
+              >
+                IRS
+              </li>
+            </BreadcrumbItem>
+          </ol>
+        </nav>
+      </Breadcrumb>
+    </div>
+  </HeaderBreadcrumb>
+</Router>
+`;
