@@ -11,7 +11,7 @@ This component works by taking in data items, optional table classes as props an
 ### Examples
 
 ```tsx
-import ListView from '@onaio/listview';
+import ListView from '@onaio/list-view';
 
 const props = {
   data: [['Ed', 6, 'Taller'], ['Edd', 12, 'Tallest'], ['Eddie', 17, 'Tall']],
