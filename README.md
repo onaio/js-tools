@@ -214,7 +214,14 @@ yarn lint-js
 
 You can transpile a packages running the following commands in the root directory of the package:
 
+The command to do this depends on whether the package uses javascript or Typescript.
+
 ```sh
+
+# javascript package
+yarn babel src -d dist --root-mode upward --ignore '**/*.test.js,**/*.test.jsx,**/tests,**/__tests__'
+
+#typescript package
 yarn babel src -d dist --root-mode upward --extensions '.ts,.tsx' --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'
 ```
 
