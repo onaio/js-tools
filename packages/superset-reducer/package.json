@@ -35,10 +35,6 @@
     "redux-thunk": "^2.3.0",
     "seamless-immutable": "^7.1.4"
   },
-  "dependencies": {
-    "@types/react-table": "^6.7.22",
-    "prop-types": "^15.6.1"
-  },
   "devDependencies": {
     "@types/redux-testkit": "^1.0.3",
     "redux-testkit": "^1.0.6"
