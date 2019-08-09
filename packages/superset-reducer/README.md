@@ -55,11 +55,11 @@ const authorized = isAuthorized(state);
 
 Using this reducer is quite simple and can be done in one of two ways:
 
-1. Use [combineReducers](https://redux.js.org/api/combinereducers) to ensure that the session reducer is loaded into your Redux store
+1. Use [combineReducers](https://redux.js.org/api/combinereducers) to ensure that the superset reducer is loaded into your Redux store
 
 OR
 
-1. Register the session reducer so that it is added to your Redux store dynamically. You would do this in the case that you are using the [Reducer Registry](https://github.com/onaio/js-tools/tree/master/packages/reducer-registry).
+1. Register the superset reducer so that it is added to your Redux store dynamically. You would do this in the case that you are using the [Reducer Registry](https://github.com/onaio/js-tools/tree/master/packages/reducer-registry).
 
 ### sample code to register the reducer
 
