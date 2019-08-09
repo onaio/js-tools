@@ -1,9 +1,9 @@
 {
   "name": "@onaio/head-bread-crumb",
   "version": "0.0.0",
-  "description": "Simple component takes a list of elements and returns them wrapped in the provided HTML tag",
+  "description": "Configurable Breadcrumbs Component that renders breadcrumb items with urls as links or without urls as text nodes",
   "keywords": [
-    "render lists"
+    "breadcrumb "
   ],
   "author": "Ona Engineering",
   "homepage": "https://github.com/onaio/js-tools",
