@@ -1,0 +1,42 @@
+{
+  "name": "@onaio/superset-reducer",
+  "version": "0.0.0",
+  "description": "This is a reducer module that helps handle superset information in the redux store.",
+  "main": "dist/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onaio/js-tools.git"
+  },
+  "author": "Ona Engineering",
+  "types": "dist/types",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "peerDependencies": {
+    "@types/seamless-immutable": "^7.1.8",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "seamless-immutable": "^7.1.4"
+  },
+  "devDependencies": {
+    "@types/redux-testkit": "^1.0.3",
+    "redux-testkit": "^1.0.6"
+  }
+}
