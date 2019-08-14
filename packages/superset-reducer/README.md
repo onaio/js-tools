@@ -64,7 +64,7 @@ OR
 ### sample code to register the reducer
 
 ```typescript
-import supersetReducer, { reducerName as supersetReducerName } from '@onaio/session-reducer';
+import supersetReducer, { reducerName as supersetReducerName } from '@onaio/superset-reducer';
 import reducerRegistry from '@onaio/redux-reducer-registry';
 
 // /** register the superset reducer */
