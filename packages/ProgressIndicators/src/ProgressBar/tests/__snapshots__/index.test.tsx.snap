@@ -3,6 +3,7 @@
 exports[`components/progressBar how does it behave when there is no value 1`] = `
 Object {
   "backgroundColor": "#0000FF",
+  "height": "100%",
   "width": "0%",
 }
 `;
@@ -34,6 +35,7 @@ exports[`components/progressBar how does it behave when there is no value 2`] = 
       style={
         Object {
           "backgroundColor": "#0000FF",
+          "height": "100%",
           "width": "0%",
         }
       }
@@ -42,105 +44,7 @@ exports[`components/progressBar how does it behave when there is no value 2`] = 
 </ProgressBar>
 `;
 
-exports[`components/progressBar renders correctly for different sets of props 1`] = `
-<ProgressBar
-  decimalPoints={0}
-  height="10px"
-  lineColor="#0000FF"
-  lineColorThresholds={
-    Object {
-      "#00FF00": 70,
-      "#FF0000": 0,
-      "#FFFF00": 30,
-    }
-  }
-  max={100}
-  min={0}
-  value={10}
->
-  <div
-    className="progress"
-    style={
-      Object {
-        "height": "10px",
-        "marginBottom": "15px",
-      }
-    }
-  >
-    <div
-      aria-valuemax={100}
-      aria-valuemin={0}
-      aria-valuenow={10}
-      className="progress-bar"
-      role="progressbar"
-      style={
-        Object {
-          "backgroundColor": "#FF0000",
-          "width": "10%",
-        }
-      }
-    />
-  </div>
-</ProgressBar>
-`;
-
-exports[`components/progressBar renders correctly for different sets of props 2`] = `
-Object {
-  "backgroundColor": "#FF0000",
-  "width": "10%",
-}
-`;
-
-exports[`components/progressBar renders correctly for different sets of props1 1`] = `
-<ProgressBar
-  decimalPoints={0}
-  height="10px"
-  lineColor="#5269EB"
-  lineColorThresholds={
-    Object {
-      "#00FF00": 70,
-      "#FF0000": 0,
-      "#FFFF00": 30,
-    }
-  }
-  max={100}
-  min={0}
-  value={40}
->
-  <div
-    className="progress"
-    style={
-      Object {
-        "height": "10px",
-        "marginBottom": "15px",
-      }
-    }
-  >
-    <div
-      aria-valuemax={100}
-      aria-valuemin={0}
-      aria-valuenow={40}
-      className="progress-bar"
-      role="progressbar"
-      style={
-        Object {
-          "backgroundColor": "#FFFF00",
-          "width": "40%",
-        }
-      }
-    />
-  </div>
-</ProgressBar>
-`;
-
-exports[`components/progressBar renders correctly for different sets of props1 2`] = `
-Object {
-  "backgroundColor": "#FFFF00",
-  "width": "40%",
-}
-`;
-
-exports[`components/progressBar renders correctly for different sets of props2 1`] = `
+exports[`components/progressBar renders correctly for different value 1`] = `
 <ProgressBar
   decimalPoints={0}
   height="10px"
@@ -174,6 +78,7 @@ exports[`components/progressBar renders correctly for different sets of props2 1
       style={
         Object {
           "backgroundColor": "#00FF00",
+          "height": "100%",
           "width": "70%",
         }
       }
@@ -182,9 +87,10 @@ exports[`components/progressBar renders correctly for different sets of props2 1
 </ProgressBar>
 `;
 
-exports[`components/progressBar renders correctly for different sets of props2 2`] = `
+exports[`components/progressBar renders correctly for different value 2`] = `
 Object {
   "backgroundColor": "#00FF00",
+  "height": "100%",
   "width": "70%",
 }
 `;
@@ -216,6 +122,7 @@ exports[`components/progressBar renders correctly for the default props 1`] = `
       style={
         Object {
           "backgroundColor": "#0000FF",
+          "height": "100%",
           "width": "50%",
         }
       }
@@ -227,6 +134,7 @@ exports[`components/progressBar renders correctly for the default props 1`] = `
 exports[`components/progressBar renders correctly for the default props 2`] = `
 Object {
   "backgroundColor": "#0000FF",
+  "height": "100%",
   "width": "50%",
 }
 `;
@@ -240,14 +148,118 @@ Object {
   "role": "progressbar",
   "style": Object {
     "backgroundColor": "#0000FF",
+    "height": "100%",
     "width": "50%",
   },
+}
+`;
+
+exports[`components/progressBar renders correctly for this set of props 1`] = `
+<ProgressBar
+  decimalPoints={0}
+  height="10px"
+  lineColor="#0000FF"
+  lineColorThresholds={
+    Object {
+      "#00FF00": 70,
+      "#FF0000": 0,
+      "#FFFF00": 30,
+    }
+  }
+  max={100}
+  min={0}
+  value={10}
+>
+  <div
+    className="progress"
+    style={
+      Object {
+        "height": "10px",
+        "marginBottom": "15px",
+      }
+    }
+  >
+    <div
+      aria-valuemax={100}
+      aria-valuemin={0}
+      aria-valuenow={10}
+      className="progress-bar"
+      role="progressbar"
+      style={
+        Object {
+          "backgroundColor": "#FF0000",
+          "height": "100%",
+          "width": "10%",
+        }
+      }
+    />
+  </div>
+</ProgressBar>
+`;
+
+exports[`components/progressBar renders correctly for this set of props 2`] = `
+Object {
+  "backgroundColor": "#FF0000",
+  "height": "100%",
+  "width": "10%",
+}
+`;
+
+exports[`components/progressBar renders correctly if both lineColor and threshold are given 1`] = `
+<ProgressBar
+  decimalPoints={0}
+  height="10px"
+  lineColor="#5269EB"
+  lineColorThresholds={
+    Object {
+      "#00FF00": 70,
+      "#FF0000": 0,
+      "#FFFF00": 30,
+    }
+  }
+  max={100}
+  min={0}
+  value={40}
+>
+  <div
+    className="progress"
+    style={
+      Object {
+        "height": "10px",
+        "marginBottom": "15px",
+      }
+    }
+  >
+    <div
+      aria-valuemax={100}
+      aria-valuemin={0}
+      aria-valuenow={40}
+      className="progress-bar"
+      role="progressbar"
+      style={
+        Object {
+          "backgroundColor": "#FFFF00",
+          "height": "100%",
+          "width": "40%",
+        }
+      }
+    />
+  </div>
+</ProgressBar>
+`;
+
+exports[`components/progressBar renders correctly if both lineColor and threshold are given 2`] = `
+Object {
+  "backgroundColor": "#FFFF00",
+  "height": "100%",
+  "width": "40%",
 }
 `;
 
 exports[`components/progressBar uses lineColor if thresholds are not given 1`] = `
 Object {
   "backgroundColor": "#FFFF00",
+  "height": "100%",
   "width": "70%",
 }
 `;
@@ -279,6 +291,7 @@ exports[`components/progressBar uses lineColor if thresholds are not given 2`] =
       style={
         Object {
           "backgroundColor": "#FFFF00",
+          "height": "100%",
           "width": "70%",
         }
       }
