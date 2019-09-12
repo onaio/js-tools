@@ -1,8 +1,7 @@
-import { executionAsyncId } from 'async_hooks';
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
-import Paginator, { fetchPageNumbers } from '../../Paginator';
+import { fetchPageNumbers, Paginator } from '../../Paginator';
 
 describe('src/components/paginator - rendering', () => {
   it('renders without crashing', () => {
