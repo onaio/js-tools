@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`src/components/paginator - rendering renders correctly with minimal data(2 pages): paginationItem for page 1 1`] = `
+<PaginationItem
+  className="page-item  active"
+  key="0"
+  tag="li"
+>
+  <li
+    className="page-item  active page-item"
+  >
+    <PaginationLink
+      className="page-link"
+      href="#"
+      onClick={[Function]}
+      tag="a"
+    >
+      <a
+        className="page-link page-link"
+        href="#"
+        onClick={[Function]}
+      >
+        1
+      </a>
+    </PaginationLink>
+  </li>
+</PaginationItem>
+`;
+
+exports[`src/components/paginator - rendering renders correctly with minimal data(2 pages): paginationItem for page 2 1`] = `
+<PaginationItem
+  className="page-item "
+  key="1"
+  tag="li"
+>
+  <li
+    className="page-item  page-item"
+  >
+    <PaginationLink
+      className="page-link"
+      href="#"
+      onClick={[Function]}
+      tag="a"
+    >
+      <a
+        className="page-link page-link"
+        href="#"
+        onClick={[Function]}
+      >
+        2
+      </a>
+    </PaginationLink>
+  </li>
+</PaginationItem>
+`;
+
+exports[`src/components/paginator - rendering renders correctly without props: End page 1`] = `
+<PaginationItem
+  className="page-item  disabled"
+  tag="li"
+>
+  <li
+    className="page-item  disabled page-item"
+  >
+    <PaginationLink
+      aria-label="Next"
+      className="page-link"
+      href="#"
+      onClick={[Function]}
+      tag="a"
+    >
+      <a
+        aria-label="Next"
+        className="page-link page-link"
+        href="#"
+        onClick={[Function]}
+      >
+        <span
+          aria-hidden="true"
+        >
+          next
+        </span>
+        <span
+          className="sr-only"
+        >
+          Next
+        </span>
+      </a>
+    </PaginationLink>
+  </li>
+</PaginationItem>
+`;
+
+exports[`src/components/paginator - rendering renders correctly without props: Next page 1`] = `
+<PaginationItem
+  className="page-item disabled"
+  tag="li"
+>
+  <li
+    className="page-item disabled page-item"
+  >
+    <PaginationLink
+      aria-label="Previous"
+      className="page-link disabled"
+      href="#"
+      onClick={[Function]}
+      tag="a"
+    >
+      <a
+        aria-label="Previous"
+        className="page-link disabled page-link"
+        href="#"
+        onClick={[Function]}
+      >
+        <span
+          aria-hidden="true"
+        >
+          end
+        </span>
+        <span
+          className="sr-only"
+        >
+          End
+        </span>
+      </a>
+    </PaginationLink>
+  </li>
+</PaginationItem>
+`;
+
+exports[`src/components/paginator - rendering renders correctly without props: Start page 1`] = `
+<PaginationItem
+  className="page-item disabled"
+  tag="li"
+>
+  <li
+    className="page-item disabled page-item"
+  >
+    <PaginationLink
+      aria-label="Previous"
+      className="page-link"
+      href="#"
+      onClick={[Function]}
+      tag="a"
+    >
+      <a
+        aria-label="Previous"
+        className="page-link page-link"
+        href="#"
+        onClick={[Function]}
+      >
+        <span
+          aria-hidden="true"
+        >
+          start
+        </span>
+        <span
+          className="sr-only"
+        >
+          Start
+        </span>
+      </a>
+    </PaginationLink>
+  </li>
+</PaginationItem>
+`;
+
+exports[`src/components/paginator - rendering renders correctly without props: previous page 1`] = `
+<PaginationItem
+  className="page-item disabled"
+  tag="li"
+>
+  <li
+    className="page-item disabled page-item"
+  >
+    <PaginationLink
+      aria-label="Previous"
+      className="page-link"
+      href="#"
+      onClick={[Function]}
+      tag="a"
+    >
+      <a
+        aria-label="Previous"
+        className="page-link page-link"
+        href="#"
+        onClick={[Function]}
+      >
+        <span
+          aria-hidden="true"
+        >
+          previous
+        </span>
+        <span
+          className="sr-only"
+        >
+          Previous
+        </span>
+      </a>
+    </PaginationLink>
+  </li>
+</PaginationItem>
+`;
