@@ -9,6 +9,8 @@ interface ProgressBarProps {
   value: number;
   lineColor: string;
   lineColorThresholds?: { [key: string]: number } | undefined;
+  showLabel: boolean;
+  stripped: boolean;
 }
 
 /** default props for ProgressBar */
@@ -19,6 +21,8 @@ const defaultProgressBarProps: Partial<ProgressBarProps> = {
   lineColorThresholds: undefined,
   max: 100,
   min: 0,
+  showLabel: false,
+  stripped: false,
   value: 0
 };
 
@@ -28,7 +32,15 @@ const defaultProgressBarProps: Partial<ProgressBarProps> = {
  * LineColorThresholds will take precedence over lineColor if both are provided
  */
 const ProgressBar = (props: ProgressBarProps) => {
-  const { decimalPoints, height, value, lineColor, lineColorThresholds } = props;
+  const {
+    decimalPoints,
+    height,
+    value,
+    lineColor,
+    stripped,
+    lineColorThresholds,
+    showLabel
+  } = props;
   let backgroundColor = lineColor;
   const max = props.max || 100;
   const min = props.min || 0;
@@ -53,19 +65,20 @@ const ProgressBar = (props: ProgressBarProps) => {
   }
 
   return (
-    <div className="progress" style={{ height, marginBottom: '15px' }}>
+    <div className="progress">
       <div
-        className={`progress-bar`}
+        className={`progress-bar ${stripped ? 'progress-bar-striped' : ''}`}
         style={{
           backgroundColor: `${backgroundColor}`,
-          height: `100%`,
           width: `${percentValueString}%`
         }}
         role="progressbar"
         aria-valuenow={percentValue}
         aria-valuemin={min}
         aria-valuemax={max}
-      />
+      >
+        {showLabel ? `${percentValue}%` : null}
+      </div>
     </div>
   );
 };
