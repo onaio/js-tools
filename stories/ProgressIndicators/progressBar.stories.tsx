@@ -2,7 +2,8 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import ProgressBar from '../../packages/ProgressIndicators/src/ProgressBar';
 import notes from '../../packages/ProgressIndicators/src/ProgressBar/README.md';
-import './utilStyles.css';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const GREEN = '#00FF00';
 const RED = '#FF0000';
@@ -12,10 +13,22 @@ const valueProps = {
   value: 59
 };
 
+const stripped = true;
+
 const lineColorThresholds = {
   [GREEN]: 70,
   [RED]: 0,
   [YELLOW]: 30
+};
+
+const showLabelProps = {
+  showLabel: true,
+  value: 60
+};
+
+const showStripped = {
+  stripped,
+  value: 25
 };
 
 storiesOf('ProgressBar', module)
@@ -39,5 +52,19 @@ storiesOf('ProgressBar', module)
       <ProgressBar {...{ lineColorThresholds, value: 40 }} />
       <p>Whith a value of 80</p>
       <ProgressBar {...{ lineColorThresholds, value: 80 }} />
+    </div>
+  ))
+  .add('with value labels', () => (
+    <div>
+      <p>Show width values as labels </p>
+      <ProgressBar {...showLabelProps} />
+    </div>
+  ))
+  .add('with strips', () => (
+    <div>
+      <p>Contains strips </p>
+      <ProgressBar {...showStripped} />
+      <p>Contains strips with lineColorThresholds</p>
+      <ProgressBar {...{ lineColorThresholds, value: 20, stripped }} />
     </div>
   ));
