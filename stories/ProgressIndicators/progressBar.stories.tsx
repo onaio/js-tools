@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
+import notes from '../../packages/ProgressIndicators/README.md';
 import ProgressBar from '../../packages/ProgressIndicators/src/ProgressBar';
-import notes from '../../packages/ProgressIndicators/src/ProgressBar/README.md';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -15,6 +15,8 @@ const valueProps = {
 
 const stripped = true;
 
+const toggleAnime = true;
+
 const lineColorThresholds = {
   [GREEN]: 70,
   [RED]: 0,
@@ -24,11 +26,6 @@ const lineColorThresholds = {
 const showLabelProps = {
   showLabel: true,
   value: 60
-};
-
-const showStripped = {
-  stripped,
-  value: 25
 };
 
 storiesOf('ProgressBar', module)
@@ -56,15 +53,23 @@ storiesOf('ProgressBar', module)
   ))
   .add('with value labels', () => (
     <div>
-      <p>Show width values as labels </p>
+      <p> Show width values as labels </p>
       <ProgressBar {...showLabelProps} />
     </div>
   ))
   .add('with strips', () => (
     <div>
-      <p>Contains strips </p>
-      <ProgressBar {...showStripped} />
-      <p>Contains strips with lineColorThresholds</p>
+      <p> Contains strips </p>
+      <ProgressBar {...{ value: 35, stripped }} />
+      <p> Contains strips with lineColorThresholds </p>
       <ProgressBar {...{ lineColorThresholds, value: 20, stripped }} />
+    </div>
+  ))
+  .add('with animated stripped bars', () => (
+    <div>
+      <p>
+        Show animated strips if toggleAnime value is true otherwise show a stripped progress bar
+      </p>
+      <ProgressBar {...{ value: 60, toggleAnime }} />
     </div>
   ));
