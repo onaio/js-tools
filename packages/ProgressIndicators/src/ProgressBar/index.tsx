@@ -11,6 +11,7 @@ interface ProgressBarProps {
   lineColorThresholds?: { [key: string]: number } | undefined;
   showLabel: boolean;
   stripped: boolean;
+  toggleAnime: boolean;
 }
 
 /** default props for ProgressBar */
@@ -23,6 +24,7 @@ const defaultProgressBarProps: Partial<ProgressBarProps> = {
   min: 0,
   showLabel: false,
   stripped: false,
+  toggleAnime: false,
   value: 0
 };
 
@@ -34,12 +36,12 @@ const defaultProgressBarProps: Partial<ProgressBarProps> = {
 const ProgressBar = (props: ProgressBarProps) => {
   const {
     decimalPoints,
-    height,
     value,
     lineColor,
     stripped,
     lineColorThresholds,
-    showLabel
+    showLabel,
+    toggleAnime
   } = props;
   let backgroundColor = lineColor;
   const max = props.max || 100;
@@ -67,7 +69,8 @@ const ProgressBar = (props: ProgressBarProps) => {
   return (
     <div className="progress">
       <div
-        className={`progress-bar ${stripped ? 'progress-bar-striped' : ''}`}
+        className={`progress-bar ${stripped ? 'progress-bar-striped' : ''}
+        ${toggleAnime ? 'progress-bar-striped progress-bar-animated' : 'progress-bar-striped'}`}
         style={{
           backgroundColor: `${backgroundColor}`,
           width: `${percentValueString}%`
@@ -79,6 +82,14 @@ const ProgressBar = (props: ProgressBarProps) => {
       >
         {showLabel ? `${percentValue}%` : null}
       </div>
+      {/* <div className={`progress-bar progress-bar-striped progress-bar-animated`}
+      style={{width: `${percentValueString}%`}}
+      role="progressbar"
+        aria-valuenow={percentValue}
+        aria-valuemin={min}
+        aria-valuemax={max}
+      >
+      </div> */}
     </div>
   );
 };
