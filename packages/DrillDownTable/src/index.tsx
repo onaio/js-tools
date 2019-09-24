@@ -135,6 +135,7 @@ function DrillDownTable<T>(props: Partial<DrillDownProps<T>>) {
           }
 
           const cellProps: DropDownCellProps = {
+            cell,
             cellValue: cell.value,
             hasChildren: thisCellHasChildren
           };
