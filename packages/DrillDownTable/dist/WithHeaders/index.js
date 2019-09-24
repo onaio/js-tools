@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getColumns = getColumns;
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -35,8 +35,8 @@ function WithHeaders(props) {
   var newProps = {
     columns: getColumns(props)
   };
-  return _react.default.createElement(_reactTable.default, (0, _extends2.default)({}, newProps, props));
+  return _react["default"].createElement(_reactTable["default"], (0, _extends2["default"])({}, newProps, props));
 }
 
 var _default = WithHeaders;
-exports.default = _default;
+exports["default"] = _default;
