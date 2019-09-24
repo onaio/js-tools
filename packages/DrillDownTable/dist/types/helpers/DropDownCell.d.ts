@@ -1,6 +1,8 @@
 import React from 'react';
+import { CellInfo } from 'react-table';
 /** Interface for DropDown cell props */
 export interface DropDownCellProps {
+  cell: CellInfo;
   cellValue: Node;
   hasChildren: boolean;
 }
