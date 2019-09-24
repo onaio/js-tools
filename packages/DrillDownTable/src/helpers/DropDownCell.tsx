@@ -1,8 +1,10 @@
 import React from 'react';
+import { CellInfo } from 'react-table';
 import { CARET, CLICKABLE_CSS_CLASS, LINKER_ITEM_CSS_CLASS } from './constants';
 
 /** Interface for DropDown cell props */
 export interface DropDownCellProps {
+  cell: CellInfo;
   cellValue: Node;
   hasChildren: boolean;
 }
