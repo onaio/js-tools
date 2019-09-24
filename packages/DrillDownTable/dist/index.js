@@ -11,7 +11,7 @@ exports.hasChildrenFunc = hasChildrenFunc;
 Object.defineProperty(exports, "DropDownCell", {
   enumerable: true,
   get: function get() {
-    return _DropDownCell.default;
+    return _DropDownCell["default"];
   }
 });
 Object.defineProperty(exports, "DropDownCellProps", {
@@ -23,7 +23,7 @@ Object.defineProperty(exports, "DropDownCellProps", {
 Object.defineProperty(exports, "WithHeaders", {
   enumerable: true,
   get: function get() {
-    return _WithHeaders.default;
+    return _WithHeaders["default"];
   }
 });
 Object.defineProperty(exports, "getColumns", {
@@ -32,7 +32,7 @@ Object.defineProperty(exports, "getColumns", {
     return _WithHeaders.getColumns;
   }
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
@@ -62,22 +62,22 @@ function DrillDownTable(props) {
   var columns = (0, _WithHeaders.getColumns)(props);
 
   var _useState = (0, _react.useState)(props.rootParentId),
-      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+      _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
       currentParentId = _useState2[0],
       setCurrentParentId = _useState2[1];
 
   var _useState3 = (0, _react.useState)(props.data),
-      _useState4 = (0, _slicedToArray2.default)(_useState3, 1),
+      _useState4 = (0, _slicedToArray2["default"])(_useState3, 1),
       originalData = _useState4[0];
 
   var _useState5 = (0, _react.useState)(data && parentIdentifierField ? data.map(function (el) {
     return el[parentIdentifierField];
   }) : []),
-      _useState6 = (0, _slicedToArray2.default)(_useState5, 1),
+      _useState6 = (0, _slicedToArray2["default"])(_useState5, 1),
       parentNodes = _useState6[0];
 
   var _useState7 = (0, _react.useState)(null),
-      _useState8 = (0, _slicedToArray2.default)(_useState7, 2),
+      _useState8 = (0, _slicedToArray2["default"])(_useState7, 2),
       previousParentId = _useState8[0],
       setPreviousParentId = _useState8[1];
 
@@ -147,14 +147,15 @@ function DrillDownTable(props) {
     if (el.accessor === linkerField) {
       el.Cell = function (cell) {
         if (CellComponent !== undefined) {
-          var _identifierField = props.identifierField;
+          var identifierField = props.identifierField;
           var thisCellHasChildren = false;
 
-          if (hasChildren && _identifierField && hasChildren(cell, parentNodes, _identifierField)) {
+          if (hasChildren && identifierField && hasChildren(cell, parentNodes, identifierField)) {
             thisCellHasChildren = true;
           }
 
           var cellProps = {
+            cell: cell,
             cellValue: cell.value,
             hasChildren: thisCellHasChildren
           };
@@ -163,7 +164,7 @@ function DrillDownTable(props) {
             Object.assign(cellProps, extraCellProps);
           }
 
-          return _react.default.createElement(CellComponent, cellProps);
+          return _react["default"].createElement(CellComponent, cellProps);
         }
 
         return cell.value;
@@ -187,11 +188,11 @@ function DrillDownTable(props) {
     newProps.data = nextLevelData;
   }
 
-  return _react.default.createElement(_reactTable.default, newProps);
+  return _react["default"].createElement(_reactTable["default"], newProps);
 }
 
 DrillDownTable.defaultProps = {
-  CellComponent: _DropDownCell.default,
+  CellComponent: _DropDownCell["default"],
   hasChildren: hasChildrenFunc,
   identifierField: _constants.ID,
   linkerField: _constants.ID,
@@ -201,4 +202,4 @@ DrillDownTable.defaultProps = {
   useDrillDownTrProps: true
 };
 var _default = DrillDownTable;
-exports.default = _default;
+exports["default"] = _default;

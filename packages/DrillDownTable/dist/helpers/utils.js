@@ -8,10 +8,8 @@ exports.columnsFromObject = columnsFromObject;
 function columnsFromObject(item) {
   var columnsList = [];
 
-  var _arr = Object.keys(item);
-
-  for (var _i = 0; _i < _arr.length; _i++) {
-    var field = _arr[_i];
+  for (var _i = 0, _Object$keys = Object.keys(item); _i < _Object$keys.length; _i++) {
+    var field = _Object$keys[_i];
     var columnItem = {
       Header: field,
       accessor: field

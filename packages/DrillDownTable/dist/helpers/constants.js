@@ -22,7 +22,7 @@ exports.CLICKABLE_CSS_CLASS = CLICKABLE_CSS_CLASS;
 var CARET_CSS_CLASS = 'dd-caret';
 exports.CARET_CSS_CLASS = CARET_CSS_CLASS;
 
-var CARET = _react.default.createElement("span", {
+var CARET = _react["default"].createElement("span", {
   className: CARET_CSS_CLASS
 }, "\xA0\u25BC");
 
