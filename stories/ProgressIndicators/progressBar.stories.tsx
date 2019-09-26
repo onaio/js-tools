@@ -15,7 +15,7 @@ const valueProps = {
 
 const stripped = true;
 
-const Anime = true;
+const anime = true;
 
 const lineColorThresholds = {
   [GREEN]: 70,
@@ -67,9 +67,7 @@ storiesOf('ProgressBar', module)
   ))
   .add('with animated stripped bars', () => (
     <div>
-      <p>
-        Show animated strips if toggleAnime value is true otherwise show a stripped progress bar
-      </p>
-      <ProgressBar {...{ value: 60, Anime }} />
+      <p>Show animated strips if anime value is true otherwise show a stripped progress bar</p>
+      <ProgressBar {...{ value: 60, anime }} />
     </div>
   ));
