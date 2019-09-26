@@ -130,4 +130,34 @@ describe('components/progressBar', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.unmount();
   });
+
+  it('when the label value is provided', () => {
+    const props = {
+      showLabel: true,
+      value: 60
+    };
+    const wrapper = mount(<ProgressBar {...props} />);
+    expect(wrapper.text()).toEqual('60%');
+    wrapper.unmount();
+  });
+
+  it('renders a progress bar with strips', () => {
+    const props = {
+      stripped: true
+    };
+    const wrapper = mount(<ProgressBar {...props} />);
+    expect(wrapper.find('.progress-bar-striped')).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('renders an animated progress bar', () => {
+    const props = {
+      anime: true
+    };
+    const wrapper = mount(<ProgressBar {...props} />);
+    expect(wrapper.find('.progress-bar-animated')).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
+    wrapper.unmount();
+  });
 });
