@@ -1,7 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/esm/styles/prism/tomorrow';
 import { PaginationData, Paginator, PaginatorProps } from '../../packages/Pagination/';
 import notes from '../../packages/Pagination/README.md';
@@ -43,9 +42,7 @@ storiesOf('Paginator', module)
         return (
           <div>
             <h2> The props </h2>
-            <SyntaxHighlighter language="typescript" style={style}>
-              {manyRecordsDisplayCode}
-            </SyntaxHighlighter>
+            <pre>{manyRecordsDisplayCode}</pre>
 
             <br />
             <h3>The rendered component</h3>

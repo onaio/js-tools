@@ -113,7 +113,5 @@
     "typescript": "^3.3.3",
     "webpack": "^4.29.6"
   },
-  "dependencies": {
-    "react-syntax-highlighter": "^11.0.2"
-  }
+  "dependencies": {}
 }
