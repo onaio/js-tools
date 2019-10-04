@@ -302,3 +302,12 @@ lerna publish from-git
 ```
 
 You may want to checkout documentation for the [`lerna version`](https://github.com/lerna/lerna/tree/master/commands/version) and [`lerna publish`](https://github.com/lerna/lerna/tree/master/commands/publish) commands.
+
+## Resources
+
+The following links provide useful resources to help you contribute to this repo:
+
+- [Typescript in 5 minutes](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+- [Using enzyme with Jest](https://airbnb.io/enzyme/docs/guides/jest.html)
+- [Getting started with Jest](https://jestjs.io/docs/en/getting-started)
+- [Basic app on using typescript and storybook](https://medium.com/@dandobusiness/setting-up-a-react-typescript-storybook-project-5e4e9f540568)
