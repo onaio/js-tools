@@ -14,6 +14,9 @@ configuration is done via props; properties currently supported include:
 
 ```typescript
 /**
+ *  {boolean} anime - apply animation over stripped gradient
+ *  {boolean} showLabel - add label to the progressBar
+ *  {boolean} stripped - apply stripped gradient on the progressBar
  *  {number} decimalPoints - Rounds off the value to this number of decimalPoints;
  *  {string} height - height of the bar;
  *  {number} min:  - the lower bound for the range of the progressBar
@@ -34,6 +37,7 @@ A sample of the full list of props:
 
 ```typescript
 const props = {
+  anime: true,
   decimalPoints: 0,
   height: '10px',
   lineColor: '#5269EB',
@@ -44,7 +48,9 @@ const props = {
   },
   max: 100,
   min: 0,
-  value: 70
+  value: 70,
+  showLabel: false,
+  stripped: false
 };
 ```
 
