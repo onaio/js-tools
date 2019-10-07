@@ -2,27 +2,31 @@ import React from 'react';
 
 /** Props for ProgressBar */
 interface ProgressBarProps {
-  anime: boolean;
-  decimalPoints: number;
-  height: string;
-  min: number;
-  max: number;
-  value: number;
-  lineColor: string;
-  lineColorThresholds?: { [key: string]: number } | undefined;
-  showLabel: boolean;
-  stripped: boolean;
+  animate: boolean /** apply animation to progressBar */;
+  decimalPoints: number /** Rounds off the value to this number */;
+  height: string /** resizes the height of the progressBar */;
+  min: number /** set lower bound for the progressBar range */;
+  max: number /** set upper bound for the progressBar range */;
+  progressStrippedClass: string /** set progressBar class to stripped */;
+  progressAnimationClass: string /** set progressBar class to Animate */;
+  value: number /** Represents the progress bar value */;
+  lineColor: string /** set line colors */;
+  lineColorThresholds?: { [key: string]: number } | undefined /** set linecolor threshold */;
+  showLabel: boolean /** set label on progressBar */;
+  stripped: boolean /** set strips in progressBar */;
 }
 
 /** default props for ProgressBar */
 const defaultProgressBarProps: Partial<ProgressBarProps> = {
-  anime: false,
+  animate: false,
   decimalPoints: 0,
   height: '10px',
   lineColor: '#0000FF',
   lineColorThresholds: undefined,
   max: 100,
   min: 0,
+  progressAnimationClass: 'progress-bar-striped progress-bar-animated',
+  progressStrippedClass: 'progress-bar-striped',
   showLabel: false,
   stripped: false,
   value: 0
@@ -35,13 +39,15 @@ const defaultProgressBarProps: Partial<ProgressBarProps> = {
  */
 const ProgressBar = (props: ProgressBarProps) => {
   const {
-    anime,
+    animate,
     decimalPoints,
     value,
     lineColor,
     stripped,
     lineColorThresholds,
-    showLabel
+    showLabel,
+    progressStrippedClass,
+    progressAnimationClass
   } = props;
   let backgroundColor = lineColor;
   const max = props.max || 100;
@@ -69,8 +75,8 @@ const ProgressBar = (props: ProgressBarProps) => {
   return (
     <div className="progress">
       <div
-        className={`progress-bar ${stripped ? 'progress-bar-striped' : ''}
-        ${anime ? 'progress-bar-striped progress-bar-animated' : ''}`}
+        className={`progress-bar ${stripped ? progressStrippedClass : ''}
+        ${animate ? progressAnimationClass : ''}`}
         style={{
           backgroundColor: `${backgroundColor}`,
           width: `${percentValueString}%`
