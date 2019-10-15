@@ -1,11 +1,11 @@
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
-import { fetchPageNumbers, Paginator } from '../base';
+import { Paginator } from '../base';
 
 describe('src/components/paginator - rendering', () => {
   it('renders without crashing', () => {
-    const wrapper = shallow(<Paginator />);
+    shallow(<Paginator />);
   });
 
   it('renders correctly without props', () => {
@@ -200,39 +200,4 @@ describe('src/components/paginator - rendering', () => {
   });
 
   // TODO - tabbing through the links works??.
-});
-
-describe('src/components/paginator - helpers/utilities', () => {
-  it('fetchPageNumbers works for nominal case', () => {
-    let neighbourPillsNum = 2;
-    const totalPages = 24;
-    let currentPage = 8;
-    let expected: number[] = [6, 7, 8, 9, 10];
-    expect(fetchPageNumbers(neighbourPillsNum, totalPages, currentPage)).toEqual(expected);
-
-    neighbourPillsNum = 1;
-    expected = [7, 8, 9];
-    expect(fetchPageNumbers(neighbourPillsNum, totalPages, currentPage)).toEqual(expected);
-
-    neighbourPillsNum = 1;
-    expected = [14, 15, 16];
-    currentPage = 15;
-    expect(fetchPageNumbers(neighbourPillsNum, totalPages, currentPage)).toEqual(expected);
-  });
-
-  it('fetchPageNumbers works for right boundary edgecase', () => {
-    const neighbourPillsNum = 2;
-    const totalPages = 24;
-    const currentPage = 24;
-    const expected: number[] = [22, 23, 24];
-    expect(fetchPageNumbers(neighbourPillsNum, totalPages, currentPage)).toEqual(expected);
-  });
-
-  it('fetchPageNumbers works for left boundary edgecase', () => {
-    const neighbourPillsNum = 2;
-    const totalPages = 24;
-    const currentPage = 1;
-    const expected: number[] = [1, 2, 3];
-    expect(fetchPageNumbers(neighbourPillsNum, totalPages, currentPage)).toEqual(expected);
-  });
 });
