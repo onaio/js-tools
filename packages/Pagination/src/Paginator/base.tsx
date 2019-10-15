@@ -20,14 +20,22 @@ export interface PaginatorProps {
   pageNeighbours: number;
   onPageChange: (e: PaginationData) => void;
   ariaLabel?: string;
+  startLabel: string;
+  nextLabel: string;
+  previousLabel: string;
+  endLabel: string;
 }
 
 /** default props for paginator component */
 const defaultPaginatorProps: PaginatorProps = {
   ariaLabel: 'page navigation',
+  endLabel: 'End',
+  nextLabel: 'Next',
   onPageChange: f => f,
   pageLimit: 30,
   pageNeighbours: 2,
+  previousLabel: 'Previous',
+  startLabel: 'Start',
   totalRecords: 0
 };
 
@@ -98,8 +106,8 @@ const Paginator = (props: PaginatorProps) => {
             aria-label="Previous"
             onClick={handleClick(1)}
           >
-            <span aria-hidden="true">start</span>
-            <span className="sr-only">Start</span>
+            <span aria-hidden="true">{props.startLabel}</span>
+            <span className="sr-only">{props.startLabel}</span>
           </PaginationLink>
         </PaginationItem>
         <PaginationItem className={`page-item ${currentPage > 1 ? '' : 'disabled'}`}>
@@ -109,8 +117,8 @@ const Paginator = (props: PaginatorProps) => {
             aria-label="Previous"
             onClick={handleMoveLeft}
           >
-            <span aria-hidden="true">previous</span>
-            <span className="sr-only">Previous</span>
+            <span aria-hidden="true">{props.previousLabel}</span>
+            <span className="sr-only">{props.previousLabel}</span>
           </PaginationLink>
         </PaginationItem>
         {pages.map((page, index) => {
@@ -133,8 +141,8 @@ const Paginator = (props: PaginatorProps) => {
             aria-label="Next"
             onClick={handleMoveRight}
           >
-            <span aria-hidden="true">next</span>
-            <span className="sr-only">Next</span>
+            <span aria-hidden="true">{props.nextLabel}</span>
+            <span className="sr-only">{props.nextLabel}</span>
           </PaginationLink>
         </PaginationItem>
         <PaginationItem className={`page-item ${currentPage < totalPages ? '' : 'disabled'}`}>
@@ -144,8 +152,8 @@ const Paginator = (props: PaginatorProps) => {
             aria-label="Previous"
             onClick={handleClick(totalPages)}
           >
-            <span aria-hidden="true">end</span>
-            <span className="sr-only">End</span>
+            <span aria-hidden="true">{props.endLabel}</span>
+            <span className="sr-only">{props.endLabel}</span>
           </PaginationLink>
         </PaginationItem>
       </Pagination>
