@@ -1,9 +1,9 @@
 /** A bootstrap powered pagination component
  * inspired by https://scotch.io/tutorials/build-custom-pagination-with-react
  */
-import { range } from 'lodash';
 import React, { Fragment, MouseEvent, useState } from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { range } from './utils';
 
 /** interface for argument passed to the opPageChange prop */
 export interface PaginationData {

@@ -1,7 +1,7 @@
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
-import { fetchPageNumbers, Paginator } from '../../Paginator';
+import { fetchPageNumbers, Paginator } from '../base';
 
 describe('src/components/paginator - rendering', () => {
   it('renders without crashing', () => {
