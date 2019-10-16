@@ -2,10 +2,10 @@ import { storiesOf } from '@storybook/react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import style from 'react-syntax-highlighter/dist/esm/styles/prism/tomorrow';
-import { PaginationData, Paginator, PaginatorProps } from '../../packages/Pagination/';
 import notes from '../../packages/Pagination/README.md';
+import { PaginationData, Paginator, PaginatorProps } from '../../packages/Pagination/src';
 
-const aLotOfRecords: PaginatorProps = {
+const aLotOfRecords: Partial<PaginatorProps> = {
   ariaLabel: 'pagination demo for a lot of pages',
   onPageChange: data => alert(`clicked page no ${data.currentPage}`),
   pageLimit: 100,
