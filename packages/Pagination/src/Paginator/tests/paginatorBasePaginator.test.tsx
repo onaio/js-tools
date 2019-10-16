@@ -1,7 +1,9 @@
+/** Tests for the base paginator and the paginator component */
+
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
-import { Paginator } from '../base';
+import { Paginator } from '../paginator';
 
 describe('src/components/paginator - rendering', () => {
   it('renders without crashing', () => {

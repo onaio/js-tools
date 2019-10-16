@@ -78,7 +78,7 @@ exports[`src/components/paginator - rendering renders correctly without props: E
         <span
           aria-hidden="true"
         >
-          next
+          Next
         </span>
         <span
           className="sr-only"
@@ -115,7 +115,7 @@ exports[`src/components/paginator - rendering renders correctly without props: N
         <span
           aria-hidden="true"
         >
-          end
+          End
         </span>
         <span
           className="sr-only"
@@ -152,7 +152,7 @@ exports[`src/components/paginator - rendering renders correctly without props: S
         <span
           aria-hidden="true"
         >
-          start
+          Start
         </span>
         <span
           className="sr-only"
@@ -189,7 +189,7 @@ exports[`src/components/paginator - rendering renders correctly without props: p
         <span
           aria-hidden="true"
         >
-          previous
+          Previous
         </span>
         <span
           className="sr-only"
