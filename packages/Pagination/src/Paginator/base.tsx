@@ -1,7 +1,7 @@
 /** A bootstrap powered pagination component
  * inspired by https://scotch.io/tutorials/build-custom-pagination-with-react
  */
-import React, { Fragment, MouseEvent, useState } from 'react';
+import React, { Fragment, MouseEvent } from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import { fetchPageNumbers } from './utils';
 
@@ -14,24 +14,26 @@ export interface PaginationData {
 }
 
 /** interface for Paginator props */
-export interface PaginatorProps {
-  totalRecords: number;
+export interface BasePaginatorProps {
+  ariaLabel?: string;
+  currentPage: number;
+  endLabel: string;
+  nextLabel: string;
+  pageChangeHandler: (e: PaginationData) => void;
   pageLimit: number;
   pageNeighbours: number;
-  onPageChange: (e: PaginationData) => void;
-  ariaLabel?: string;
-  startLabel: string;
-  nextLabel: string;
   previousLabel: string;
-  endLabel: string;
+  startLabel: string;
+  totalRecords: number;
 }
 
 /** default props for paginator component */
-const defaultPaginatorProps: PaginatorProps = {
+export const defaultBasePaginatorProps: BasePaginatorProps = {
   ariaLabel: 'page navigation',
+  currentPage: 1,
   endLabel: 'End',
   nextLabel: 'Next',
-  onPageChange: f => f,
+  pageChangeHandler: f => f,
   pageLimit: 30,
   pageNeighbours: 2,
   previousLabel: 'Previous',
@@ -40,12 +42,18 @@ const defaultPaginatorProps: PaginatorProps = {
 };
 
 /** the pagination component */
-const Paginator = (props: PaginatorProps) => {
-  const { totalRecords, pageLimit, pageNeighbours, ariaLabel, onPageChange } = props;
+const BasePaginator = (props: BasePaginatorProps) => {
+  const {
+    totalRecords,
+    pageLimit,
+    pageNeighbours,
+    ariaLabel,
+    pageChangeHandler: onPageChange,
+    currentPage
+  } = props;
 
   let totalPages = 0;
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
   // pageNeighbours can be in [0, 1, 2, 3, 4, 5]
   const neighbourPillsNum = Math.max(0, Math.min(pageNeighbours, 5));
 
@@ -93,7 +101,6 @@ const Paginator = (props: PaginatorProps) => {
       totalRecords
     };
     onPageChange(paginationData);
-    setCurrentPage(thisPage);
   };
 
   return (
@@ -161,6 +168,6 @@ const Paginator = (props: PaginatorProps) => {
   );
 };
 
-Paginator.defaultProps = defaultPaginatorProps;
+BasePaginator.defaultProps = defaultBasePaginatorProps;
 
-export { Paginator };
+export { BasePaginator };
