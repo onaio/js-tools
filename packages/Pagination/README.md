@@ -17,25 +17,45 @@ Also since the component relies on bootstrap, add this `import 'bootstrap/dist/c
 
 ### Usage
 
+This component comes in 2 flavours:
+
+1. Paginator - uses the click Handler that's called Paginator
+2. routedPaginator - integrates and uses the current url to know what page data to show
+
+They share the below props
+
+#### Customization(Props)
+
+Customizable options for both Paginator & routedPaginator include:
+
+| PropName              | type     | description                                                        | type                |
+| --------------------- | -------- | ------------------------------------------------------------------ | ------------------- |
+| `ariaLabel`(optional) | `string` | custom aria label to add to the pagination component               | `"page Navigation"` |
+| `endLabel`            | `string` | label for pagination item linking to last page                     | `"End"`             |
+| `nextLabel`           | `string` | label for pagination item linking to the next page                 | `"Next"`            |
+| `pageLimit`           | `number` | integer representing number of records to display per page         | `30`                |
+| `pageNeighbours`      | `number` | integer representing number of links on either side of active link | `2`                 |
+| `previousLabel`       | `string` | label for pagination item linking to the previous page             | `Previous`          |
+| `startLabel`          | `string` | label for pagination item linking to the first page                | `Start`             |
+| `totalRecords`        | `number` | integer representing number of all records                         | `0`                 |
+
+#### **Paginator Component**
+
 ```typescript
-import { Paginator } from '@onaio/paginator';
+import { Paginator } from '@onaio/pagination';
 
 <Paginator />;
 ```
 
-### Customization(Props)
+##### _props for Paginator_
 
-Customizable options for Paginator include:
+Further customizable options for Paginator include:
 
-| PropName              | type                          | description                                                                          |
-| --------------------- | ----------------------------- | ------------------------------------------------------------------------------------ |
-| `ariaLabel`(optional) | `string`                      | custom aria label to add to the pagination component                                 |
-| `onPageChange`        | `(e: paginationData) => void` | function that is called when a link is clicked, see below for info on paginationData |
-| `pageLimit`           | `number`                      | integer representing number of records to display per page                           |
-| `pageNeighbours`      | `number`                      | integer representing number of links on either side of active link                   |
-| `totalRecords`        | `number`                      | integer representing number of all records                                           |
+| PropName       | type                          | description                                                                          |
+| -------------- | ----------------------------- | ------------------------------------------------------------------------------------ |
+| `onPageChange` | `(e: paginationData) => void` | function that is called when a link is clicked, see below for info on paginationData |
 
-#### PaginationData
+**PaginationData**:
 
 This documents the structure of the data object that is given as the first and only argument given to the onPageChange callback handler
 
@@ -46,9 +66,9 @@ This documents the structure of the data object that is given as the first and o
 | `totalPages`   | `number` | the total number of pages                                  |
 | `totalRecords` | `number` | integer representing number of all records                 |
 
-#### Code example
+#### Paginator Code example
 
-```javascript
+```typescript
 import { Paginator, PaginatorProps } from '@onaio/pagination';
 
 const props: PaginatorProps = {
@@ -60,4 +80,42 @@ const props: PaginatorProps = {
 };
 
 <Paginator {...props} />;
+```
+
+#### **RoutedPaginator Component**
+
+```typescript
+import { RoutedPaginator } from '@onaio/pagination';
+
+<RoutedPaginator />;
+```
+
+##### _Caveats_
+
+While `RoutedPaginator` might not take further props other than the ones listed above, there are a few setup
+details that are required for it to work correctly.
+
+1. for each route that will render a page with the `RoutedPaginator` component, you need to add a nested route with the key `tablePage` e.g
+
+   `SOME_PAGE_PATH` = `/records/:tablePage`
+
+   `SOME_PAGE_URL` = `/records/2`
+
+navigating to `SOME_PAGE_URL` would result in the routed component looking as below
+
+clicking on any other paginationItem creates a new url and redirects to it
+
+#### RoutedPaginator Code example
+
+```typescript
+import { RoutedPaginator, PaginatorProps } from '@onaio/pagination';
+
+const props: PaginatorProps = {
+  ariaLabel: 'pagination sample',
+  pageLimit: 35,
+  pageNeighbours: 3,
+  totalRecords: 589
+};
+
+<RoutedPaginator {...props} />;
 ```
