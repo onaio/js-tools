@@ -15,6 +15,7 @@ export interface RoutedPaginatorProps {
   previousLabel: string;
   startLabel: string;
   totalRecords: number;
+  urlKey: string;
 }
 
 /** default props for routedPagination component */
@@ -26,7 +27,8 @@ const defaultRoutedPaginatorProps: RoutedPaginatorProps = {
   pageNeighbours: 2,
   previousLabel: 'Previous',
   startLabel: 'Start',
-  totalRecords: 0
+  totalRecords: 0,
+  urlKey: 'Page'
 };
 /** the pagination component ; Places constraint on how anyone implementing
  * this component formats their urls, specifically it requires one to have a nested
@@ -40,8 +42,11 @@ const defaultRoutedPaginatorProps: RoutedPaginatorProps = {
  * where path is what is registered in a switch component and the url
  * is the url entry that goes into the history stack
  */
-const Paginator = (props: RoutedPaginatorProps & RouteComponentProps<{ tablePage?: string }>) => {
+const Paginator = (
+  props: RoutedPaginatorProps & RouteComponentProps<{ [key: string]: string }>
+) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const { urlKey } = props;
 
   useEffect(() => {
     // get currentPage from route and set that as the currentPage
@@ -55,7 +60,7 @@ const Paginator = (props: RoutedPaginatorProps & RouteComponentProps<{ tablePage
    */
   const currentPageFromRoute = () => {
     const { match } = props;
-    const pageFromUrl = match.params.tablePage;
+    const pageFromUrl = match.params[urlKey];
     const redirectToPage: number = pageFromUrl ? parseInt(pageFromUrl, 10) : 1;
     setCurrentPage(redirectToPage);
   };
@@ -69,7 +74,7 @@ const Paginator = (props: RoutedPaginatorProps & RouteComponentProps<{ tablePage
     let urlToRedirectTo = '';
     Object.entries(params).forEach(([k, v]) => {
       let val: number | string | undefined = v;
-      if (k === 'tablePage') {
+      if (k === urlKey) {
         val = thisPage;
       }
       urlToRedirectTo = path.replace(`/:${k}`, `/${val}`);
