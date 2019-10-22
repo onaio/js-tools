@@ -212,7 +212,7 @@ yarn lint-js
 
 ## Transpiling the package and generating type definations for it
 
-You can transpile a packages running the following commands in the root directory of the individual packages directory:
+You can transpile a package running the following commands in the root directory of the individual packages:
 
 The command to do this depends on whether the package uses javascript or Typescript.
 
