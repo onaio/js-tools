@@ -19,8 +19,8 @@ Also since the component relies on bootstrap, add this `import 'bootstrap/dist/c
 
 This component comes in 2 flavours:
 
-1. Paginator - uses the click Handler that's called Paginator
-2. routedPaginator - integrates and uses the current url to know what page data to show
+1. Paginator - uses the click Handler to pass data back to parent component
+2. routedPaginator - integrates with react-router; uses the current url to know what page data to show, clicking a paginationItem changes the current url
 
 They share the below props
 
@@ -90,20 +90,31 @@ import { RoutedPaginator } from '@onaio/pagination';
 <RoutedPaginator />;
 ```
 
-##### _Caveats_
+##### _props for RoutedPaginator_
 
-While `RoutedPaginator` might not take further props other than the ones listed above, there are a few setup
-details that are required for it to work correctly.
+Further customizable options for RoutedPaginator include:
 
-1. for each route that will render a page with the `RoutedPaginator` component, you need to add a nested route with the key `tablePage` e.g
+| PropName | type     | description                                                                             | default  |
+| -------- | -------- | --------------------------------------------------------------------------------------- | -------- |
+| `urlKey` | `string` | denotes the key in the the registered routes path whose value will be used as the page, | `"page"` |
 
-   `SOME_PAGE_PATH` = `/records/:tablePage`
+**urlKey example** :
 
-   `SOME_PAGE_URL` = `/records/2`
+for each route that will render a page with the `RoutedPaginator` component, you need to add a nested route with a dynamic key from which the `RoutedPaginator` will derive the currentPage, here is an example.
 
-navigating to `SOME_PAGE_URL` would result in the routed component looking as below
+say you wish to register a route that routes to the records page which uses the `RoutedPaginator` component, a basic path for that might look this
 
-clicking on any other paginationItem creates a new url and redirects to it
+`RECORDS_PAGE_PATH` = `/records`
+
+For the paginator to know what page is active we need to add a nested route with an arbitrary key , for this example lets choose `tablePage` as the `urlKey` Prop, so now our path becomes
+
+`RECORDS_PAGE_PATH` = `/records/:tablePage`
+
+and a possible url that will be matched by the above path can be:
+
+`SOME_PAGE_URL` = `/records/2`
+
+from this the RoutedPaginator will know that the current page is 2, and also it can now know what exact part of the url to modify when a user changes pages by clicking on a paginationItem
 
 #### RoutedPaginator Code example
 
