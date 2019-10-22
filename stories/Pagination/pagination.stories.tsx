@@ -1,9 +1,15 @@
 import { storiesOf } from '@storybook/react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { createBrowserHistory } from 'history';
 import React from 'react';
-import style from 'react-syntax-highlighter/dist/esm/styles/prism/tomorrow';
+import { Router } from 'react-router-dom';
 import notes from '../../packages/Pagination/README.md';
-import { PaginationData, Paginator, PaginatorProps } from '../../packages/Pagination/src';
+import {
+  PaginationData,
+  Paginator,
+  PaginatorProps,
+  RoutedPaginator
+} from '../../packages/Pagination/src';
 
 const aLotOfRecords: Partial<PaginatorProps> = {
   ariaLabel: 'pagination demo for a lot of pages',
@@ -53,6 +59,17 @@ storiesOf('Paginator', module)
         );
       };
       return <Component />;
+    },
+    { notes }
+  )
+  .add(
+    'routed Paginator under default conditions',
+    () => {
+      return (
+        <Router history={createBrowserHistory()}>
+          <RoutedPaginator />
+        </Router>
+      );
     },
     { notes }
   );
