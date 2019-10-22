@@ -1,241 +1,149 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`packages/paginator/routedPaginator renders correctly: base paginator 1`] = `
-<BasePaginator
-  ariaLabel="page navigation"
-  currentPage={1}
-  endLabel="End"
-  nextLabel="Next"
-  pageChangeHandler={[Function]}
-  pageLimit={30}
-  pageNeighbours={2}
-  previousLabel="Previous"
-  startLabel="Start"
-  totalRecords={135}
+exports[`packages/paginator/routedPaginator renders correctly: End page 1`] = `
+<PaginationItem
+  className="page-item  disabled"
+  tag="li"
 >
-  <Pagination
-    aria-label="page navigation"
-    listTag="ul"
-    size="sm"
-    tag="nav"
+  <li
+    className="page-item  disabled page-item"
   >
-    <nav
-      aria-label="page navigation"
-      className=""
+    <PaginationLink
+      aria-label="Next"
+      className="page-link"
+      href="#"
+      onClick={[Function]}
+      tag="a"
     >
-      <ul
-        className="pagination pagination-sm"
+      <a
+        aria-label="Next"
+        className="page-link page-link"
+        href="#"
+        onClick={[Function]}
       >
-        <PaginationItem
-          className="page-item disabled"
-          tag="li"
+        <span
+          aria-hidden="true"
         >
-          <li
-            className="page-item disabled page-item"
-          >
-            <PaginationLink
-              aria-label="Previous"
-              className="page-link"
-              href="#"
-              onClick={[Function]}
-              tag="a"
-            >
-              <a
-                aria-label="Previous"
-                className="page-link page-link"
-                href="#"
-                onClick={[Function]}
-              >
-                <span
-                  aria-hidden="true"
-                >
-                  Start
-                </span>
-                <span
-                  className="sr-only"
-                >
-                  Start
-                </span>
-              </a>
-            </PaginationLink>
-          </li>
-        </PaginationItem>
-        <PaginationItem
-          className="page-item disabled"
-          tag="li"
+          Next
+        </span>
+        <span
+          className="sr-only"
         >
-          <li
-            className="page-item disabled page-item"
-          >
-            <PaginationLink
-              aria-label="Previous"
-              className="page-link"
-              href="#"
-              onClick={[Function]}
-              tag="a"
-            >
-              <a
-                aria-label="Previous"
-                className="page-link page-link"
-                href="#"
-                onClick={[Function]}
-              >
-                <span
-                  aria-hidden="true"
-                >
-                  Previous
-                </span>
-                <span
-                  className="sr-only"
-                >
-                  Previous
-                </span>
-              </a>
-            </PaginationLink>
-          </li>
-        </PaginationItem>
-        <PaginationItem
-          className="page-item  active"
-          key="0"
-          tag="li"
+          Next
+        </span>
+      </a>
+    </PaginationLink>
+  </li>
+</PaginationItem>
+`;
+
+exports[`packages/paginator/routedPaginator renders correctly: Next page 1`] = `
+<PaginationItem
+  className="page-item disabled"
+  tag="li"
+>
+  <li
+    className="page-item disabled page-item"
+  >
+    <PaginationLink
+      aria-label="End"
+      className="page-link disabled"
+      href="#"
+      onClick={[Function]}
+      tag="a"
+    >
+      <a
+        aria-label="End"
+        className="page-link disabled page-link"
+        href="#"
+        onClick={[Function]}
+      >
+        <span
+          aria-hidden="true"
         >
-          <li
-            className="page-item  active page-item"
-          >
-            <PaginationLink
-              className="page-link"
-              href="#"
-              onClick={[Function]}
-              tag="a"
-            >
-              <a
-                className="page-link page-link"
-                href="#"
-                onClick={[Function]}
-              >
-                1
-              </a>
-            </PaginationLink>
-          </li>
-        </PaginationItem>
-        <PaginationItem
-          className="page-item "
-          key="1"
-          tag="li"
+          End
+        </span>
+        <span
+          className="sr-only"
         >
-          <li
-            className="page-item  page-item"
-          >
-            <PaginationLink
-              className="page-link"
-              href="#"
-              onClick={[Function]}
-              tag="a"
-            >
-              <a
-                className="page-link page-link"
-                href="#"
-                onClick={[Function]}
-              >
-                2
-              </a>
-            </PaginationLink>
-          </li>
-        </PaginationItem>
-        <PaginationItem
-          className="page-item "
-          key="2"
-          tag="li"
+          End
+        </span>
+      </a>
+    </PaginationLink>
+  </li>
+</PaginationItem>
+`;
+
+exports[`packages/paginator/routedPaginator renders correctly: Start page 1`] = `
+<PaginationItem
+  className="page-item disabled"
+  tag="li"
+>
+  <li
+    className="page-item disabled page-item"
+  >
+    <PaginationLink
+      aria-label="Start"
+      className="page-link"
+      href="#"
+      onClick={[Function]}
+      tag="a"
+    >
+      <a
+        aria-label="Start"
+        className="page-link page-link"
+        href="#"
+        onClick={[Function]}
+      >
+        <span
+          aria-hidden="true"
         >
-          <li
-            className="page-item  page-item"
-          >
-            <PaginationLink
-              className="page-link"
-              href="#"
-              onClick={[Function]}
-              tag="a"
-            >
-              <a
-                className="page-link page-link"
-                href="#"
-                onClick={[Function]}
-              >
-                3
-              </a>
-            </PaginationLink>
-          </li>
-        </PaginationItem>
-        <PaginationItem
-          className="page-item  "
-          tag="li"
+          Start
+        </span>
+        <span
+          className="sr-only"
         >
-          <li
-            className="page-item   page-item"
-          >
-            <PaginationLink
-              aria-label="Next"
-              className="page-link"
-              href="#"
-              onClick={[Function]}
-              tag="a"
-            >
-              <a
-                aria-label="Next"
-                className="page-link page-link"
-                href="#"
-                onClick={[Function]}
-              >
-                <span
-                  aria-hidden="true"
-                >
-                  Next
-                </span>
-                <span
-                  className="sr-only"
-                >
-                  Next
-                </span>
-              </a>
-            </PaginationLink>
-          </li>
-        </PaginationItem>
-        <PaginationItem
-          className="page-item "
-          tag="li"
+          Start
+        </span>
+      </a>
+    </PaginationLink>
+  </li>
+</PaginationItem>
+`;
+
+exports[`packages/paginator/routedPaginator renders correctly: previous page 1`] = `
+<PaginationItem
+  className="page-item disabled"
+  tag="li"
+>
+  <li
+    className="page-item disabled page-item"
+  >
+    <PaginationLink
+      aria-label="Previous"
+      className="page-link"
+      href="#"
+      onClick={[Function]}
+      tag="a"
+    >
+      <a
+        aria-label="Previous"
+        className="page-link page-link"
+        href="#"
+        onClick={[Function]}
+      >
+        <span
+          aria-hidden="true"
         >
-          <li
-            className="page-item  page-item"
-          >
-            <PaginationLink
-              aria-label="Previous"
-              className="page-link "
-              href="#"
-              onClick={[Function]}
-              tag="a"
-            >
-              <a
-                aria-label="Previous"
-                className="page-link  page-link"
-                href="#"
-                onClick={[Function]}
-              >
-                <span
-                  aria-hidden="true"
-                >
-                  End
-                </span>
-                <span
-                  className="sr-only"
-                >
-                  End
-                </span>
-              </a>
-            </PaginationLink>
-          </li>
-        </PaginationItem>
-      </ul>
-    </nav>
-  </Pagination>
-</BasePaginator>
+          Previous
+        </span>
+        <span
+          className="sr-only"
+        >
+          Previous
+        </span>
+      </a>
+    </PaginationLink>
+  </li>
+</PaginationItem>
 `;
