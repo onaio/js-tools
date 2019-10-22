@@ -47,7 +47,7 @@ import { Paginator } from '@onaio/pagination';
 <Paginator />;
 ```
 
-##### _props for Paginator_
+##### _Props for Paginator_
 
 Further customizable options for Paginator include:
 
@@ -90,7 +90,7 @@ import { RoutedPaginator } from '@onaio/pagination';
 <RoutedPaginator />;
 ```
 
-##### _props for RoutedPaginator_
+##### _Props for RoutedPaginator_
 
 Further customizable options for RoutedPaginator include:
 
