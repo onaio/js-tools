@@ -63,6 +63,7 @@ const BasePaginator = (props: BasePaginatorProps) => {
   const sanitizedCurrentPage = Math.max(1, Math.min(currentPage, totalPages));
 
   const pages = fetchPageNumbers(neighbourPillsNum, totalPages, currentPage);
+
   // click handlers
 
   /** click Handler; registers the number of the clicked pagination Item

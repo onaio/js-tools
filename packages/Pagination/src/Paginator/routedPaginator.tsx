@@ -55,6 +55,9 @@ const Paginator = (
     setCurrentPage(redirectToPage);
   };
 
+  /** takes in a number and modifies the url such that redirecting to the new url
+   * takes you to that page number
+   */
   const getRedirectUrl = (
     thisPage: number,
     path: string,
@@ -73,8 +76,6 @@ const Paginator = (
   };
 
   /** changeHandler that gets called when user clicks on paginationItem
-   * This sets the currentPage for the base paginator component and passed data
-   * up to the callback
    *
    * @param {PaginationData} paginationData - state of pagination component
    */
