@@ -100,14 +100,14 @@ exports[`src/components/paginator - rendering renders correctly without props: N
     className="page-item disabled page-item"
   >
     <PaginationLink
-      aria-label="Previous"
+      aria-label="End"
       className="page-link disabled"
       href="#"
       onClick={[Function]}
       tag="a"
     >
       <a
-        aria-label="Previous"
+        aria-label="End"
         className="page-link disabled page-link"
         href="#"
         onClick={[Function]}
@@ -137,14 +137,14 @@ exports[`src/components/paginator - rendering renders correctly without props: S
     className="page-item disabled page-item"
   >
     <PaginationLink
-      aria-label="Previous"
+      aria-label="Start"
       className="page-link"
       href="#"
       onClick={[Function]}
       tag="a"
     >
       <a
-        aria-label="Previous"
+        aria-label="Start"
         className="page-link page-link"
         href="#"
         onClick={[Function]}
