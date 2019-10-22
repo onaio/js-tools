@@ -30,18 +30,8 @@ const defaultRoutedPaginatorProps: RoutedPaginatorProps = {
   totalRecords: 0,
   urlKey: 'page'
 };
-/** the pagination component ; Places constraint on how anyone implementing
- * this component formats their urls, specifically it requires one to have a nested
- * route with the key `tablePage`
- *
- * e.g
- *
- * SOME_PAGE_PATH = /records/:tablePage
- * SOME_PAGE_URL = /records/2
- *
- * where path is what is registered in a switch component and the url
- * is the url entry that goes into the history stack
- */
+
+/** The RoutedPaginator dumb component */
 const Paginator = (
   props: RoutedPaginatorProps & RouteComponentProps<{ [key: string]: string }>
 ) => {
