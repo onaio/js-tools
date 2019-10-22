@@ -59,6 +59,9 @@ const BasePaginator = (props: BasePaginatorProps) => {
 
   totalPages = Math.ceil(totalRecords / pageLimit);
 
+  /** make sure passed in current page is within possible range */
+  const sanitizedCurrentPage = Math.max(1, Math.min(currentPage, totalPages));
+
   const pages = fetchPageNumbers(neighbourPillsNum, totalPages, currentPage);
   // click handlers
 
@@ -103,36 +106,38 @@ const BasePaginator = (props: BasePaginatorProps) => {
     onPageChange(paginationData);
   };
 
+  const { previousLabel, startLabel, nextLabel, endLabel } = props;
+
   return (
     <Fragment>
       <Pagination aria-label={ariaLabel} size="sm">
-        <PaginationItem className={`page-item ${currentPage > 1 ? '' : 'disabled'}`}>
+        <PaginationItem className={`page-item ${sanitizedCurrentPage > 1 ? '' : 'disabled'}`}>
           <PaginationLink
             className={`page-link`}
             href="#"
-            aria-label="Previous"
+            aria-label={startLabel}
             onClick={handleClick(1)}
           >
-            <span aria-hidden="true">{props.startLabel}</span>
-            <span className="sr-only">{props.startLabel}</span>
+            <span aria-hidden="true">{startLabel}</span>
+            <span className="sr-only">{startLabel}</span>
           </PaginationLink>
         </PaginationItem>
-        <PaginationItem className={`page-item ${currentPage > 1 ? '' : 'disabled'}`}>
+        <PaginationItem className={`page-item ${sanitizedCurrentPage > 1 ? '' : 'disabled'}`}>
           <PaginationLink
             className={`page-link`}
             href="#"
-            aria-label="Previous"
+            aria-label={previousLabel}
             onClick={handleMoveLeft}
           >
-            <span aria-hidden="true">{props.previousLabel}</span>
-            <span className="sr-only">{props.previousLabel}</span>
+            <span aria-hidden="true">{previousLabel}</span>
+            <span className="sr-only">{previousLabel}</span>
           </PaginationLink>
         </PaginationItem>
         {pages.map((page, index) => {
           return (
             <PaginationItem
               key={index}
-              className={`page-item ${currentPage === page ? ' active' : ''}`}
+              className={`page-item ${sanitizedCurrentPage === page ? ' active' : ''}`}
             >
               <PaginationLink className="page-link" href="#" onClick={handleClick(page as number)}>
                 {page}
@@ -141,26 +146,30 @@ const BasePaginator = (props: BasePaginatorProps) => {
           );
         })}
 
-        <PaginationItem className={`page-item  ${currentPage < totalPages ? '' : 'disabled'}`}>
+        <PaginationItem
+          className={`page-item  ${sanitizedCurrentPage < totalPages ? '' : 'disabled'}`}
+        >
           <PaginationLink
             className={`page-link`}
             href="#"
-            aria-label="Next"
+            aria-label={nextLabel}
             onClick={handleMoveRight}
           >
-            <span aria-hidden="true">{props.nextLabel}</span>
-            <span className="sr-only">{props.nextLabel}</span>
+            <span aria-hidden="true">{nextLabel}</span>
+            <span className="sr-only">{nextLabel}</span>
           </PaginationLink>
         </PaginationItem>
-        <PaginationItem className={`page-item ${currentPage < totalPages ? '' : 'disabled'}`}>
+        <PaginationItem
+          className={`page-item ${sanitizedCurrentPage < totalPages ? '' : 'disabled'}`}
+        >
           <PaginationLink
-            className={`page-link ${currentPage < totalPages ? '' : 'disabled'}`}
+            className={`page-link ${sanitizedCurrentPage < totalPages ? '' : 'disabled'}`}
             href="#"
-            aria-label="Previous"
+            aria-label={endLabel}
             onClick={handleClick(totalPages)}
           >
-            <span aria-hidden="true">{props.endLabel}</span>
-            <span className="sr-only">{props.endLabel}</span>
+            <span aria-hidden="true">{endLabel}</span>
+            <span className="sr-only">{endLabel}</span>
           </PaginationLink>
         </PaginationItem>
       </Pagination>
