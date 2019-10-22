@@ -28,7 +28,7 @@ const defaultRoutedPaginatorProps: RoutedPaginatorProps = {
   previousLabel: 'Previous',
   startLabel: 'Start',
   totalRecords: 0,
-  urlKey: 'Page'
+  urlKey: 'page'
 };
 /** the pagination component ; Places constraint on how anyone implementing
  * this component formats their urls, specifically it requires one to have a nested

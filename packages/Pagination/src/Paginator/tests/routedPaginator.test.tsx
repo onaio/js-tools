@@ -13,7 +13,7 @@ const TestComponent = props => (
   <Switch>
     <Route
       exact={true}
-      path="/records/:tablePage"
+      path="/records/:page"
       // tslint:disable-next-line: jsx-no-lambda
       render={routeProps => <RoutedPaginator {...routeProps} {...props} />}
     />
