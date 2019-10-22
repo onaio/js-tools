@@ -7,6 +7,12 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+Object.defineProperty(exports, "PaginationData", {
+  enumerable: true,
+  get: function get() {
+    return _base.PaginationData;
+  }
+});
 exports.Paginator = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));

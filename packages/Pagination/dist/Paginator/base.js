@@ -39,6 +39,7 @@ var BasePaginator = function BasePaginator(props) {
   var totalPages = 0;
   var neighbourPillsNum = Math.max(0, Math.min(pageNeighbours, 5));
   totalPages = Math.ceil(totalRecords / pageLimit);
+  var sanitizedCurrentPage = Math.max(1, Math.min(currentPage, totalPages));
   var pages = (0, _utils.fetchPageNumbers)(neighbourPillsNum, totalPages, currentPage);
 
   var handleClick = function handleClick(page) {
@@ -69,63 +70,67 @@ var BasePaginator = function BasePaginator(props) {
     onPageChange(paginationData);
   };
 
+  var previousLabel = props.previousLabel,
+      startLabel = props.startLabel,
+      nextLabel = props.nextLabel,
+      endLabel = props.endLabel;
   return _react["default"].createElement(_react.Fragment, null, _react["default"].createElement(_reactstrap.Pagination, {
     "aria-label": ariaLabel,
     size: "sm"
   }, _react["default"].createElement(_reactstrap.PaginationItem, {
-    className: "page-item ".concat(currentPage > 1 ? '' : 'disabled')
+    className: "page-item ".concat(sanitizedCurrentPage > 1 ? '' : 'disabled')
   }, _react["default"].createElement(_reactstrap.PaginationLink, {
     className: "page-link",
     href: "#",
-    "aria-label": "Previous",
+    "aria-label": startLabel,
     onClick: handleClick(1)
   }, _react["default"].createElement("span", {
     "aria-hidden": "true"
-  }, props.startLabel), _react["default"].createElement("span", {
+  }, startLabel), _react["default"].createElement("span", {
     className: "sr-only"
-  }, props.startLabel))), _react["default"].createElement(_reactstrap.PaginationItem, {
-    className: "page-item ".concat(currentPage > 1 ? '' : 'disabled')
+  }, startLabel))), _react["default"].createElement(_reactstrap.PaginationItem, {
+    className: "page-item ".concat(sanitizedCurrentPage > 1 ? '' : 'disabled')
   }, _react["default"].createElement(_reactstrap.PaginationLink, {
     className: "page-link",
     href: "#",
-    "aria-label": "Previous",
+    "aria-label": previousLabel,
     onClick: handleMoveLeft
   }, _react["default"].createElement("span", {
     "aria-hidden": "true"
-  }, props.previousLabel), _react["default"].createElement("span", {
+  }, previousLabel), _react["default"].createElement("span", {
     className: "sr-only"
-  }, props.previousLabel))), pages.map(function (page, index) {
+  }, previousLabel))), pages.map(function (page, index) {
     return _react["default"].createElement(_reactstrap.PaginationItem, {
       key: index,
-      className: "page-item ".concat(currentPage === page ? ' active' : '')
+      className: "page-item ".concat(sanitizedCurrentPage === page ? ' active' : '')
     }, _react["default"].createElement(_reactstrap.PaginationLink, {
       className: "page-link",
       href: "#",
       onClick: handleClick(page)
     }, page));
   }), _react["default"].createElement(_reactstrap.PaginationItem, {
-    className: "page-item  ".concat(currentPage < totalPages ? '' : 'disabled')
+    className: "page-item  ".concat(sanitizedCurrentPage < totalPages ? '' : 'disabled')
   }, _react["default"].createElement(_reactstrap.PaginationLink, {
     className: "page-link",
     href: "#",
-    "aria-label": "Next",
+    "aria-label": nextLabel,
     onClick: handleMoveRight
   }, _react["default"].createElement("span", {
     "aria-hidden": "true"
-  }, props.nextLabel), _react["default"].createElement("span", {
+  }, nextLabel), _react["default"].createElement("span", {
     className: "sr-only"
-  }, props.nextLabel))), _react["default"].createElement(_reactstrap.PaginationItem, {
-    className: "page-item ".concat(currentPage < totalPages ? '' : 'disabled')
+  }, nextLabel))), _react["default"].createElement(_reactstrap.PaginationItem, {
+    className: "page-item ".concat(sanitizedCurrentPage < totalPages ? '' : 'disabled')
   }, _react["default"].createElement(_reactstrap.PaginationLink, {
-    className: "page-link ".concat(currentPage < totalPages ? '' : 'disabled'),
+    className: "page-link ".concat(sanitizedCurrentPage < totalPages ? '' : 'disabled'),
     href: "#",
-    "aria-label": "Previous",
+    "aria-label": endLabel,
     onClick: handleClick(totalPages)
   }, _react["default"].createElement("span", {
     "aria-hidden": "true"
-  }, props.endLabel), _react["default"].createElement("span", {
+  }, endLabel), _react["default"].createElement("span", {
     className: "sr-only"
-  }, props.endLabel)))));
+  }, endLabel)))));
 };
 
 exports.BasePaginator = BasePaginator;

@@ -25,7 +25,8 @@ var defaultRoutedPaginatorProps = {
   pageNeighbours: 2,
   previousLabel: 'Previous',
   startLabel: 'Start',
-  totalRecords: 0
+  totalRecords: 0,
+  urlKey: 'page'
 };
 
 var Paginator = function Paginator(props) {
@@ -34,13 +35,14 @@ var Paginator = function Paginator(props) {
       currentPage = _useState2[0],
       setCurrentPage = _useState2[1];
 
+  var urlKey = props.urlKey;
   (0, _react.useEffect)(function () {
     currentPageFromRoute();
   }, []);
 
   var currentPageFromRoute = function currentPageFromRoute() {
     var match = props.match;
-    var pageFromUrl = match.params.tablePage;
+    var pageFromUrl = match.params[urlKey];
     var redirectToPage = pageFromUrl ? parseInt(pageFromUrl, 10) : 1;
     setCurrentPage(redirectToPage);
   };
@@ -54,7 +56,7 @@ var Paginator = function Paginator(props) {
 
       var val = v;
 
-      if (k === 'tablePage') {
+      if (k === urlKey) {
         val = thisPage;
       }
 

@@ -17,4 +17,4 @@ declare const Paginator: {
   (props: PaginatorProps): JSX.Element;
   defaultProps: PaginatorProps;
 };
-export { Paginator };
+export { Paginator, PaginationData };

@@ -13,13 +13,14 @@ export interface RoutedPaginatorProps {
   previousLabel: string;
   startLabel: string;
   totalRecords: number;
+  urlKey: string;
 }
 declare const RoutedPaginator: React.ComponentClass<
   Pick<
     RoutedPaginatorProps &
       RouteComponentProps<
         {
-          tablePage?: string | undefined;
+          [key: string]: string;
         },
         import('react-router').StaticContext,
         any
@@ -28,10 +29,11 @@ declare const RoutedPaginator: React.ComponentClass<
     | 'pageLimit'
     | 'pageNeighbours'
     | 'ariaLabel'
-    | 'endLabel'
-    | 'nextLabel'
     | 'previousLabel'
     | 'startLabel'
+    | 'nextLabel'
+    | 'endLabel'
+    | 'urlKey'
   >,
   any
 >;
