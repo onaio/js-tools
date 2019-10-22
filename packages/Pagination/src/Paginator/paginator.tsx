@@ -59,4 +59,4 @@ const Paginator = (props: PaginatorProps) => {
 
 Paginator.defaultProps = defaultPaginatorProps;
 
-export { Paginator };
+export { Paginator, PaginationData };
