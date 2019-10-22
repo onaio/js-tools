@@ -19,10 +19,10 @@ Also since the component relies on bootstrap, add this `import 'bootstrap/dist/c
 
 This component comes in 2 flavours:
 
-1. Paginator - uses the click Handler to pass data back to parent component
-2. routedPaginator - integrates with react-router; uses the current url to know what page data to show, clicking a paginationItem changes the current url
+1. Paginator - uses click Handlers to pass data(`PaginationData`) back to calling component
+2. RoutedPaginator - integrates with react-router; uses the current url to know which page of the paginated data to show, clicking a paginationItem changes the current url
 
-They share the below props
+_They share the below props_:
 
 #### Customization(Props)
 
@@ -57,7 +57,7 @@ Further customizable options for Paginator include:
 
 **PaginationData**:
 
-This documents the structure of the data object that is given as the first and only argument given to the onPageChange callback handler
+PaginationData describes the interface for data that the onPageChange handler is called with as an argument.
 
 | Property       | type     | description                                                |
 | -------------- | -------- | ---------------------------------------------------------- |
@@ -94,27 +94,35 @@ import { RoutedPaginator } from '@onaio/pagination';
 
 Further customizable options for RoutedPaginator include:
 
-| PropName | type     | description                                                                             | default  |
-| -------- | -------- | --------------------------------------------------------------------------------------- | -------- |
-| `urlKey` | `string` | denotes the key in the the registered routes path whose value will be used as the page, | `"page"` |
+| PropName | type     | description                                                      | default  |
+| -------- | -------- | ---------------------------------------------------------------- | -------- |
+| `urlKey` | `string` | the key in the path that will hold the value of the current page | `"page"` |
 
 **urlKey example** :
 
 for each route that will render a page with the `RoutedPaginator` component, you need to add a nested route with a dynamic key from which the `RoutedPaginator` will derive the currentPage, here is an example.
 
-say you wish to register a route that routes to the records page which uses the `RoutedPaginator` component, a basic path for that might look this
+Assuming we have a records page that will render a table whose data we wish to paginate.
+
+a starting basic path and url might look this
 
 `RECORDS_PAGE_PATH` = `/records`
 
-For the paginator to know what page is active we need to add a nested route with an arbitrary key , for this example lets choose `tablePage` as the `urlKey` Prop, so now our path becomes
+`RECORDS_PAGE_URL` = `/records`
+
+where react-router matches the url against the path so as to know what to render.
+
+The nest step would be to refactor our path to look like this
 
 `RECORDS_PAGE_PATH` = `/records/:tablePage`
 
-and a possible url that will be matched by the above path can be:
+making it possible to have a positive match for this url
 
-`SOME_PAGE_URL` = `/records/2`
+`RECORDS_PAGE_URL` = `/records/2`
 
-from this the RoutedPaginator will know that the current page is 2, and also it can now know what exact part of the url to modify when a user changes pages by clicking on a paginationItem
+The intention here being that we want the records page table to render the second page of whatever data it needs to show.
+
+To support such a use-case, we would pass the string `'tablePage'` as the value of `urlKey` so that the `RoutedPaginator` knows from what part of the url to pick the current page from and what part of the url to change once a user redirects to another page by clicking on one of the paginator's links.
 
 #### RoutedPaginator Code example
 
