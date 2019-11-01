@@ -9,12 +9,14 @@ Object {
 
 exports[`components/progressBar how does it behave when there is no value 2`] = `
 <ProgressBar
-  anime={false}
+  animate={false}
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
   max={100}
   min={0}
+  progressAnimationClass="progress-bar-striped progress-bar-animated"
+  progressStrippedClass="progress-bar-striped"
   showLabel={false}
   stripped={false}
   value={0}
@@ -44,12 +46,14 @@ exports[`components/progressBar renders a progress bar with strips 1`] = `ReactW
 
 exports[`components/progressBar renders a progress bar with strips 2`] = `
 <ProgressBar
-  anime={false}
+  animate={false}
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
   max={100}
   min={0}
+  progressAnimationClass="progress-bar-striped progress-bar-animated"
+  progressStrippedClass="progress-bar-striped"
   showLabel={false}
   stripped={true}
   value={0}
@@ -79,12 +83,15 @@ exports[`components/progressBar renders an animated progress bar 1`] = `ReactWra
 
 exports[`components/progressBar renders an animated progress bar 2`] = `
 <ProgressBar
+  animate={false}
   anime={true}
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
   max={100}
   min={0}
+  progressAnimationClass="progress-bar-striped progress-bar-animated"
+  progressStrippedClass="progress-bar-striped"
   showLabel={false}
   stripped={false}
   value={0}
@@ -97,7 +104,7 @@ exports[`components/progressBar renders an animated progress bar 2`] = `
       aria-valuemin={0}
       aria-valuenow={0}
       className="progress-bar 
-        progress-bar-striped progress-bar-animated"
+        "
       role="progressbar"
       style={
         Object {
@@ -112,7 +119,7 @@ exports[`components/progressBar renders an animated progress bar 2`] = `
 
 exports[`components/progressBar renders correctly for different value 1`] = `
 <ProgressBar
-  anime={false}
+  animate={false}
   decimalPoints={0}
   height="10px"
   lineColor="#5269EB"
@@ -125,6 +132,8 @@ exports[`components/progressBar renders correctly for different value 1`] = `
   }
   max={100}
   min={0}
+  progressAnimationClass="progress-bar-striped progress-bar-animated"
+  progressStrippedClass="progress-bar-striped"
   showLabel={false}
   stripped={false}
   value={70}
@@ -159,12 +168,14 @@ Object {
 
 exports[`components/progressBar renders correctly for the default props 1`] = `
 <ProgressBar
-  anime={false}
+  animate={false}
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
   max={100}
   min={0}
+  progressAnimationClass="progress-bar-striped progress-bar-animated"
+  progressStrippedClass="progress-bar-striped"
   showLabel={false}
   stripped={false}
   value={50}
@@ -215,7 +226,7 @@ Object {
 
 exports[`components/progressBar renders correctly for this set of props 1`] = `
 <ProgressBar
-  anime={false}
+  animate={false}
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
@@ -228,6 +239,8 @@ exports[`components/progressBar renders correctly for this set of props 1`] = `
   }
   max={100}
   min={0}
+  progressAnimationClass="progress-bar-striped progress-bar-animated"
+  progressStrippedClass="progress-bar-striped"
   showLabel={false}
   stripped={false}
   value={10}
@@ -262,7 +275,7 @@ Object {
 
 exports[`components/progressBar renders correctly if both lineColor and threshold are given 1`] = `
 <ProgressBar
-  anime={false}
+  animate={false}
   decimalPoints={0}
   height="10px"
   lineColor="#5269EB"
@@ -275,6 +288,8 @@ exports[`components/progressBar renders correctly if both lineColor and threshol
   }
   max={100}
   min={0}
+  progressAnimationClass="progress-bar-striped progress-bar-animated"
+  progressStrippedClass="progress-bar-striped"
   showLabel={false}
   stripped={false}
   value={40}
@@ -316,12 +331,14 @@ Object {
 
 exports[`components/progressBar uses lineColor if thresholds are not given 2`] = `
 <ProgressBar
-  anime={false}
+  animate={false}
   decimalPoints={0}
   height="10px"
   lineColor="#FFFF00"
   max={100}
   min={0}
+  progressAnimationClass="progress-bar-striped progress-bar-animated"
+  progressStrippedClass="progress-bar-striped"
   showLabel={false}
   stripped={false}
   value={70}
