@@ -11,13 +11,13 @@ interface ProgressBarProps {
   progressAnimationClass: string /** set progressBar class to Animate */;
   value: number /** Represents the progress bar value */;
   lineColor: string /** set line colors */;
-  lineColorThresholds?: { [key: string]: number } | undefined /** set linecolor threshold */;
+  lineColorThresholds?: { [key: string]: number } /** set linecolor threshold */;
   showLabel: boolean /** set label on progressBar */;
   stripped: boolean /** set strips in progressBar */;
 }
 
 /** default props for ProgressBar */
-const defaultProgressBarProps: Partial<ProgressBarProps> = {
+const defaultProgressBarProps = {
   animate: false,
   decimalPoints: 0,
   height: '10px',
