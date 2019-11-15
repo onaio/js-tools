@@ -29,6 +29,9 @@ export interface User {
   gravatar?: string;
   name: string;
   username: string;
+  user?: { [key: string]: any };
+  locations?: { [key: string]: any };
+  team?: { [key: string]: any };
 }
 /** interface to describe session state */
 export interface SessionState {

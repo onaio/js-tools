@@ -31,7 +31,10 @@ var initialState = (0, _seamlessImmutable["default"])({
     email: '',
     gravatar: '',
     name: '',
-    username: ''
+    username: '',
+    user: {},
+    locations: {},
+    team: {}
   }
 });
 exports.initialState = initialState;
