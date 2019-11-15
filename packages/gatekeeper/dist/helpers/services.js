@@ -27,18 +27,18 @@ function oauth2Callback(_x, _x2, _x3, _x4) {
 }
 
 function _oauth2Callback() {
-  _oauth2Callback = (0, _asyncToGenerator2.default)(_regenerator.default.mark(function _callee2(locationHash, url, provider, userInfoCallback) {
+  _oauth2Callback = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee2(locationHash, url, provider, userInfoCallback) {
     var method,
         _args2 = arguments;
-    return _regenerator.default.wrap(function _callee2$(_context2) {
+    return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             method = _args2.length > 4 && _args2[4] !== undefined ? _args2[4] : 'GET';
             return _context2.abrupt("return", provider.token.getToken(locationHash).then(function () {
-              var _ref = (0, _asyncToGenerator2.default)(_regenerator.default.mark(function _callee(oAuthObject) {
+              var _ref = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee(oAuthObject) {
                 var response, data;
-                return _regenerator.default.wrap(function _callee$(_context) {
+                return _regenerator["default"].wrap(function _callee$(_context) {
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
@@ -95,7 +95,7 @@ function fetchUser(_x5, _x6, _x7) {
 }
 
 function _fetchUser() {
-  _fetchUser = (0, _asyncToGenerator2.default)(_regenerator.default.mark(function _callee3(locationHash, url, provider) {
+  _fetchUser = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee3(locationHash, url, provider) {
     var authenticateActionCreator,
         recordResultActionCreator,
         userInfoCallback,
@@ -106,7 +106,7 @@ function _fetchUser() {
         user,
         extraData,
         _args3 = arguments;
-    return _regenerator.default.wrap(function _callee3$(_context3) {
+    return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:

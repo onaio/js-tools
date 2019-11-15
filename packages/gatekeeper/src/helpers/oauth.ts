@@ -43,7 +43,10 @@ export function getOnadataUserInfo(apiResponse: { [key: string]: any }): Session
     user: {
       email: apiResponse.email || '',
       gravatar: apiResponse.gravatar || '',
+      locations: apiResponse.locations || {},
       name: apiResponse.name || '',
+      team: apiResponse.team || {},
+      user: apiResponse.user || {},
       username: apiResponse.username
     }
   };
@@ -62,7 +65,10 @@ export function getOpenSRPUserInfo(apiResponse: { [key: string]: any }): Session
     user: {
       email: '',
       gravatar: '',
+      locations: {},
       name: '',
+      team: {},
+      user: {},
       username: apiResponse.userName
     }
   };

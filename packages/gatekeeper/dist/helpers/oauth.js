@@ -20,7 +20,7 @@ function getProviderFromOptions(options) {
       redirectUri = options.redirectUri,
       scopes = options.scopes,
       state = options.state;
-  return new _clientOauth.default({
+  return new _clientOauth["default"]({
     accessTokenUri: accessTokenUri,
     authorizationUri: authorizationUri,
     clientId: clientId,
@@ -41,7 +41,10 @@ function getOnadataUserInfo(apiResponse) {
     user: {
       email: apiResponse.email || '',
       gravatar: apiResponse.gravatar || '',
+      locations: apiResponse.locations || {},
       name: apiResponse.name || '',
+      team: apiResponse.team || {},
+      user: apiResponse.user || {},
       username: apiResponse.username
     }
   };
@@ -58,7 +61,10 @@ function getOpenSRPUserInfo(apiResponse) {
     user: {
       email: '',
       gravatar: '',
+      locations: {},
       name: '',
+      team: {},
+      user: {},
       username: apiResponse.userName
     }
   };

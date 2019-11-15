@@ -101,7 +101,10 @@ export const defaultOauthCallbackProps: Partial<OauthCallbackProps<RouteParams>>
   sessionUser: {
     email: '',
     gravatar: '',
+    locations: {},
     name: '',
+    team: {},
+    user: {},
     username: ''
   }
 };
