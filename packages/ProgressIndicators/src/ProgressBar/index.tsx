@@ -7,11 +7,10 @@ interface ProgressBarProps {
   height: string /** resizes the height of the progressBar */;
   min: number /** set lower bound for the progressBar range */;
   max: number /** set upper bound for the progressBar range */;
-  progressStrippedClass: string /** set progressBar class to stripped */;
-  progressAnimationClass: string /** set progressBar class to Animate */;
   value: number /** Represents the progress bar value */;
   lineColor: string /** set line colors */;
   lineColorThresholds?: { [key: string]: number } /** set linecolor threshold */;
+  progressClass: string /** sets the class for progressBar */;
   showLabel: boolean /** set label on progressBar */;
   stripped: boolean /** set strips in progressBar */;
 }
@@ -25,8 +24,7 @@ const defaultProgressBarProps = {
   lineColorThresholds: undefined,
   max: 100,
   min: 0,
-  progressAnimationClass: 'progress-bar-striped progress-bar-animated',
-  progressStrippedClass: 'progress-bar-striped',
+  progressClass: 'progress-bar-striped progress-bar-animated',
   showLabel: false,
   stripped: false,
   value: 0
@@ -46,8 +44,7 @@ const ProgressBar = (props: ProgressBarProps) => {
     stripped,
     lineColorThresholds,
     showLabel,
-    progressStrippedClass,
-    progressAnimationClass
+    progressClass
   } = props;
   let backgroundColor = lineColor;
   const max = props.max || 100;
@@ -75,8 +72,8 @@ const ProgressBar = (props: ProgressBarProps) => {
   return (
     <div className="progress">
       <div
-        className={`progress-bar ${stripped ? progressStrippedClass : ''}
-        ${animate ? progressAnimationClass : ''}`}
+        className={`progress-bar ${stripped ? progressClass : ''}
+        ${animate ? progressClass : ''}`}
         style={{
           backgroundColor: `${backgroundColor}`,
           width: `${percentValueString}%`
