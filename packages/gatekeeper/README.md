@@ -50,7 +50,11 @@ class App extends Component {
           <div className={'main-container'}>
             <Switch>
               <Route path="/login" component={Login} />
-              <Route path="/logout" component={() => <ConnectedLogout  logoutURL={'logout.url'}/>} />
+              <Route path="/logout" component={() => (
+              <ConnectedLogout
+                {...({ logoutURL: 'https://www.auth2serversURL/logout' } as Partial<LogoutProps>)}
+              />
+            )} />
             </Switch>
           </div>
         </Router>
