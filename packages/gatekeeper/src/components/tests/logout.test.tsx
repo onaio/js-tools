@@ -20,6 +20,7 @@ const HomeComponent = () => {
 const logoutActionCreatorMock = jest.fn();
 const logoutProps = {
   logoutActionCreator: logoutActionCreatorMock,
+  logoutURL: 'authserver.opensrp/logout.do', // this is an example logout url
   redirectPath: '/'
 };
 
@@ -54,6 +55,7 @@ describe('gatekeeper/ConnectedLogout', () => {
   });
 
   it('works with its props as expected', () => {
+    window.open = jest.fn();
     store.dispatch(logOutUser());
     const wrapper = mount(
       <Provider store={store}>
@@ -75,6 +77,7 @@ describe('gatekeeper/ConnectedLogout', () => {
     });
     expect(toJson(wrapper.find('HomeComponent div'))).toMatchSnapshot();
     expect(logoutActionCreatorMock).toHaveBeenCalled();
+    expect(window.open).toBeCalledWith('authserver.opensrp/logout.do');
   });
 
   it('renders the ConnectedLogout component when logged out', () => {
