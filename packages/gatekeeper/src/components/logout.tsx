@@ -8,8 +8,8 @@ import { logoutFromAuthServer } from '../helpers/utils';
 /** interface to describe props for Logout component
  * @member {typeof logOutUser}logoutActionCreator action creator that logs out user.
  * @member {string} redirectpath The URL we redirect to after loging out.
- * @member {string} logoutURL optional parameter provided if/when
- * you would like to logout of the authentication server.
+ * @member {string} logoutURL the url of the logout endpoint of the Oauth server.
+ * @member {(logoutUrl: string) => void} logoutFunction custom function to log user out of the Oauth server.
  */
 export interface LogoutProps {
   logoutActionCreator: typeof logOutUser;
@@ -43,7 +43,6 @@ Logout.defaultProps = defaultLogoutProps;
 export { Logout };
 
 /** Connect the component to the store */
-
 const mapDispatchToProps = { logoutActionCreator: logOutUser };
 
 /** Connected Logout component */
