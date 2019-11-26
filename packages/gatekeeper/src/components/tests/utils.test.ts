@@ -1,6 +1,6 @@
 import { logoutFromAuthServer } from '../../helpers/utils';
 
-describe('gatekeeper/ConnectedLogout/logoutFromAuthServer', () => {
+describe('gatekeeper/utils/logoutFromAuthServer', () => {
   it('calls window.open', () => {
     window.open = jest.fn();
     logoutFromAuthServer('authserver.opensrp/logout.do');
