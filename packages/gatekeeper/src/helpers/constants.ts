@@ -9,3 +9,6 @@ export type GENERIC_ERROR = typeof GENERIC_ERROR;
 
 export const LOGIN_URL = '/login';
 export type LOGIN_URL = typeof LOGIN_URL;
+
+export const DEFAULT_LOGOUT_DELAY = 20;
+export type DEFAULT_LOGOUT_DELAY = typeof DEFAULT_LOGOUT_DELAY;

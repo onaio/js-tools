@@ -1,3 +1,5 @@
+import { DEFAULT_LOGOUT_DELAY } from './constants';
+
 /** Type definition for error callback function  */
 export type ErrorCallback = (e: string) => string | void;
 
@@ -21,5 +23,5 @@ export function logoutFromAuthServer(logoutURL: string) {
       logoutWindow.close();
     }
     clearInterval(timer);
-  }, 20);
+  }, DEFAULT_LOGOUT_DELAY);
 }
