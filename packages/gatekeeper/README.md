@@ -37,7 +37,7 @@ class App extends Component {
 export default App
 ```
 
-You can use the logout component to log out of the authentication server as well. This can be done by passing a logoutURL prop to ConnectedLogout as follows:
+You can use the logout component to log out of the authentication server as well. This can be done by passing an optional logoutURL prop to ConnectedLogout as follows:
 
 ```tsx
 import { ConnectedLogout } from `@onaio/gatekeeper`;
