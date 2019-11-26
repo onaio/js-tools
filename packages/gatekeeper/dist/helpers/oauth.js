@@ -20,7 +20,7 @@ function getProviderFromOptions(options) {
       redirectUri = options.redirectUri,
       scopes = options.scopes,
       state = options.state;
-  return new _clientOauth.default({
+  return new _clientOauth["default"]({
     accessTokenUri: accessTokenUri,
     authorizationUri: authorizationUri,
     clientId: clientId,

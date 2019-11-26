@@ -37,6 +37,54 @@ class App extends Component {
 export default App
 ```
 
+You can use the logout component to log out of the authentication server as well. This can be done by passing an optional logoutURL logoutFunction props to ConnectedLogout as follows:
+
+```tsx
+import { ConnectedLogout } from `@onaio/gatekeeper`;
+import { logOutUser } from '@onaio/session-reducer';
+
+const logoutProps: LogoutProps = {
+  logoutActionCreator: logOutUser,
+  logoutFunction: function logoutFromAuthServer(logoutURL: string) {
+    const logoutWindow: Window | null = window.open(logoutURL);
+    const timer: NodeJS.Timeout = setInterval(() => {
+      if (logoutWindow) {
+        logoutWindow.close();
+      }
+
+      clearInterval(timer);
+    }, 20);
+  },
+  logoutURL: 'https://server.auth2serversURL/logout',
+  redirectPath: '/login'
+};
+
+class App extends Component {
+  render() {
+    return (
+     ...
+        <Router>
+          <div className={'main-container'}>
+            <Switch>
+              <Route path="/login" component={Login} />
+              <Route path="/logout" component={() => (
+              <ConnectedLogout
+                {...logoutProps}
+              />
+            )} />
+            </Switch>
+          </div>
+        </Router>
+     ...
+    )
+  }
+}
+
+export default App
+```
+
+the default logoutFunction prop supports logging out using GET requests to the logout URL of the authentication server; i.e. it does not support logging out by making POST requests. If your authentication server requires you to use a POST request, you need to pass in a suitable logout function.
+
 ### Extending the logout component
 
 The logout component takes these props that are useful in extending it:
@@ -142,7 +190,7 @@ A URL that does not match to a configured oAuth2 provider will result in an erro
 
 #### Extending the oAuth2 Callback Component
 
-The oAuth2 Callback Component takes a number of props that have defaults which you cna override for custom functionality.
+The oAuth2 Callback Component takes a number of props that have defaults which you can override for custom functionality.
 
 - **ErrorComponent**: a React component that renders a generic error message
 - **HTTP404Component**: a React component that renders a 404 error message; used when a provider is not found in the configuration
