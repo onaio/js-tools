@@ -8,7 +8,7 @@ import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { FlushThunks } from 'redux-testkit';
 import thunk from 'redux-thunk';
 import OauthLogin from '../login';
-import ConnectedLogout, { Logout } from '../logout';
+import ConnectedLogout, { Logout, logoutFromAuthServer } from '../logout';
 import * as fixtures from './fixtures';
 
 /** the test Home component */
@@ -18,9 +18,12 @@ const HomeComponent = () => {
 
 // mock logoutActionCreator
 const logoutActionCreatorMock = jest.fn();
+const logoutFunctionMock = jest.fn();
 const logoutProps = {
   logoutActionCreator: logoutActionCreatorMock,
-  logoutURL: 'authserver.opensrp/logout.do', // this is an example logout url
+  logoutFunction: logoutFunctionMock,
+  // this is an example logout url
+  logoutURL: 'authserver.opensrp/logout.do',
   redirectPath: '/'
 };
 
@@ -77,7 +80,7 @@ describe('gatekeeper/ConnectedLogout', () => {
     });
     expect(toJson(wrapper.find('HomeComponent div'))).toMatchSnapshot();
     expect(logoutActionCreatorMock).toHaveBeenCalled();
-    expect(window.open).toBeCalledWith('authserver.opensrp/logout.do');
+    expect(logoutFunctionMock).toBeCalledWith('authserver.opensrp/logout.do');
   });
 
   it('renders the ConnectedLogout component when logged out', () => {
@@ -132,5 +135,13 @@ describe('gatekeeper/ConnectedLogout', () => {
     });
     expect(toJson(wrapper.find('ProviderLinks'))).toMatchSnapshot();
     wrapper.unmount();
+  });
+});
+
+describe('gatekeeper/ConnectedLogout/logoutFromAuthServer', () => {
+  it('calls window.open', () => {
+    window.open = jest.fn();
+    logoutFromAuthServer('authserver.opensrp/logout.do');
+    expect(window.open).toBeCalledWith('authserver.opensrp/logout.do');
   });
 });
