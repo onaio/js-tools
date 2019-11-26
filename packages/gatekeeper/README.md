@@ -73,6 +73,8 @@ class App extends Component {
 export default App
 ```
 
+this logout component only supports logging out using GET requests to the logout URL of the authentication server; i.e. it does not support logging out by making POST requests.
+
 ### Extending the logout component
 
 The logout component takes these props that are useful in extending it:
