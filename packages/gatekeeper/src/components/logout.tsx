@@ -13,12 +13,13 @@ import { LOGIN_URL } from '../helpers/constants';
 export interface LogoutProps {
   logoutActionCreator: typeof logOutUser;
   redirectPath: string;
-  logoutURL?: string;
+  logoutURL: string | null;
 }
 
 /** default props for Logout component */
 export const defaultLogoutProps: LogoutProps = {
   logoutActionCreator: logOutUser,
+  logoutURL: null,
   redirectPath: LOGIN_URL
 };
 
