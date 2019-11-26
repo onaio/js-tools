@@ -8,7 +8,7 @@ import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { FlushThunks } from 'redux-testkit';
 import thunk from 'redux-thunk';
 import OauthLogin from '../login';
-import ConnectedLogout, { Logout, logoutFromAuthServer } from '../logout';
+import ConnectedLogout, { Logout } from '../logout';
 import * as fixtures from './fixtures';
 
 /** the test Home component */
@@ -135,13 +135,5 @@ describe('gatekeeper/ConnectedLogout', () => {
     });
     expect(toJson(wrapper.find('ProviderLinks'))).toMatchSnapshot();
     wrapper.unmount();
-  });
-});
-
-describe('gatekeeper/ConnectedLogout/logoutFromAuthServer', () => {
-  it('calls window.open', () => {
-    window.open = jest.fn();
-    logoutFromAuthServer('authserver.opensrp/logout.do');
-    expect(window.open).toBeCalledWith('authserver.opensrp/logout.do');
   });
 });
