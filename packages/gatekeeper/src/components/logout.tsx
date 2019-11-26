@@ -24,8 +24,10 @@ export const defaultLogoutProps: LogoutProps = {
 };
 
 /**
- * Open another window and go to the logout URL.
+ * Open another window and navigate to the logout URL.
  * @param {string} logoutURL URL string representing the auth server logout URL endpoint.
+ * This function takes the approach of opening a new window and navigating to the logout
+ * url of the authentication server in order to go around the browser's CORS policy.
  */
 function logoutFromAuthServer(logoutURL: string) {
   const logoutWindow: Window | null = window.open(logoutURL);
