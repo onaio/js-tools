@@ -14,11 +14,13 @@ export interface LogoutProps {
   logoutActionCreator: typeof logOutUser;
   redirectPath: string;
   logoutURL: string | null;
+  logoutFunction: (logoutUrl: string) => void | null;
 }
 
 /** default props for Logout component */
 export const defaultLogoutProps: LogoutProps = {
   logoutActionCreator: logOutUser,
+  logoutFunction: logoutFromAuthServer,
   logoutURL: null,
   redirectPath: LOGIN_URL
 };
@@ -29,7 +31,7 @@ export const defaultLogoutProps: LogoutProps = {
  * This function takes the approach of opening a new window and navigating to the logout
  * url of the authentication server in order to go around the browser's CORS policy.
  */
-function logoutFromAuthServer(logoutURL: string) {
+export function logoutFromAuthServer(logoutURL: string) {
   const logoutWindow: Window | null = window.open(logoutURL);
   const timer: NodeJS.Timeout = setInterval(() => {
     if (logoutWindow) {
@@ -43,7 +45,9 @@ function logoutFromAuthServer(logoutURL: string) {
 const Logout = (props: LogoutProps) => {
   const { logoutActionCreator, redirectPath } = props;
   logoutActionCreator();
-  if (props.logoutURL) {
+  if (props.logoutURL && props.logoutFunction) {
+    props.logoutFunction(props.logoutURL);
+  } else if (props.logoutURL) {
     logoutFromAuthServer(props.logoutURL);
   }
   return <Redirect to={redirectPath} />;
