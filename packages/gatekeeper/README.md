@@ -41,6 +41,13 @@ You can use the logout component to log out of the authentication server as well
 
 ```tsx
 import { ConnectedLogout } from `@onaio/gatekeeper`;
+import { logOutUser } from '@onaio/session-reducer';
+
+const logoutProps: LogoutProps = {
+  logoutActionCreator: logOutUser,
+  redirectPath: '/login',
+  logoutURL: 'https://server.auth2serversURL/logout'
+};
 
 class App extends Component {
   render() {
@@ -52,7 +59,7 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/logout" component={() => (
               <ConnectedLogout
-                {...({ logoutURL: 'https://www.auth2serversURL/logout' } as Partial<LogoutProps>)}
+                {...logoutProps}
               />
             )} />
             </Switch>
