@@ -7,7 +7,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.OauthCallback = exports.defaultOauthCallbackProps = exports.SuccessfulLogin = exports.RenderLoadingComponent = exports.RenderErrorComponent = exports.Component404 = void 0;
+exports["default"] = exports.OauthCallback = exports.defaultOauthCallbackProps = exports.SuccessfulLogin = exports.RenderLoadingComponent = exports.RenderErrorComponent = exports.Component404 = void 0;
 
 var _sessionReducer = require("@onaio/session-reducer");
 
@@ -24,9 +24,9 @@ var _oauth = require("../helpers/oauth");
 var _services = require("../helpers/services");
 
 var Component404 = function Component404() {
-  return _react.default.createElement("div", {
+  return _react["default"].createElement("div", {
     className: "gatekeeper-cb"
-  }, _react.default.createElement("p", {
+  }, _react["default"].createElement("p", {
     className: "gatekeeper-p"
   }, "Nothing here!"));
 };
@@ -34,9 +34,9 @@ var Component404 = function Component404() {
 exports.Component404 = Component404;
 
 var RenderErrorComponent = function RenderErrorComponent() {
-  return _react.default.createElement("div", {
+  return _react["default"].createElement("div", {
     className: "gatekeeper-cb"
-  }, _react.default.createElement("p", {
+  }, _react["default"].createElement("p", {
     className: "gatekeeper-p"
   }, "An error occurred!"));
 };
@@ -44,9 +44,9 @@ var RenderErrorComponent = function RenderErrorComponent() {
 exports.RenderErrorComponent = RenderErrorComponent;
 
 var RenderLoadingComponent = function RenderLoadingComponent() {
-  return _react.default.createElement("div", {
+  return _react["default"].createElement("div", {
     className: "gatekeeper-cb"
-  }, _react.default.createElement("p", {
+  }, _react["default"].createElement("p", {
     className: "gatekeeper-p"
   }, "Please wait..."));
 };
@@ -55,9 +55,9 @@ exports.RenderLoadingComponent = RenderLoadingComponent;
 
 var SuccessfulLogin = function SuccessfulLogin(props) {
   var user = props.user;
-  return _react.default.createElement("div", {
+  return _react["default"].createElement("div", {
     className: "gatekeeper-cb"
-  }, _react.default.createElement("p", {
+  }, _react["default"].createElement("p", {
     className: "gatekeeper-p"
   }, "Welcome back, ", user.username, "!"));
 };
@@ -101,16 +101,16 @@ var OauthCallback = function OauthCallback(props) {
   var locationHash = props.location.hash;
   var id = props.match.params.id;
 
-  var parsedParams = _queryString.default.parse(location.search);
+  var parsedParams = _queryString["default"].parse(location.search);
 
   var error = parsedParams.error;
 
   if (error) {
-    return _react.default.createElement(ErrorComponent, null);
+    return _react["default"].createElement(ErrorComponent, null);
   }
 
   if (!Object.keys(providers).includes(id)) {
-    return _react.default.createElement(HTTP404Component, null);
+    return _react["default"].createElement(HTTP404Component, null);
   }
 
   var providerOptions = providers[id];
@@ -118,14 +118,14 @@ var OauthCallback = function OauthCallback(props) {
   var provider = (0, _oauth.getProviderFromOptions)(providerOptions);
   (0, _react.useEffect)(function () {
     if (authSuccess === null || authenticated === false) {
-      (0, _services.fetchUser)(locationHash, userUri, provider, authenticateActionCreator, recordResultActionCreator, oAuthUserInfoGetter).catch(function (e) {});
+      (0, _services.fetchUser)(locationHash, userUri, provider, authenticateActionCreator, recordResultActionCreator, oAuthUserInfoGetter)["catch"](function (e) {});
     }
   }, []);
   var successProps = {
     extraData: sessionData,
     user: sessionUser
   };
-  return authSuccess === null ? _react.default.createElement(LoadingComponent, null) : authenticated === true ? _react.default.createElement(SuccessfulLoginComponent, successProps) : _react.default.createElement(UnSuccessfulLoginComponent, null);
+  return authSuccess === null ? _react["default"].createElement(LoadingComponent, null) : authenticated === true ? _react["default"].createElement(SuccessfulLoginComponent, successProps) : _react["default"].createElement(UnSuccessfulLoginComponent, null);
 };
 
 exports.OauthCallback = OauthCallback;
@@ -148,4 +148,4 @@ var mapDispatchToProps = {
 };
 var ConnectedOauthCallback = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(OauthCallback);
 var _default = ConnectedOauthCallback;
-exports.default = _default;
+exports["default"] = _default;

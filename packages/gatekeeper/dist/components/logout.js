@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.Logout = exports.defaultLogoutProps = void 0;
+exports["default"] = exports.Logout = exports.defaultLogoutProps = void 0;
 
 var _sessionReducer = require("@onaio/session-reducer");
 
@@ -17,8 +17,12 @@ var _reactRouterDom = require("react-router-dom");
 
 var _constants = require("../helpers/constants");
 
+var _utils = require("../helpers/utils");
+
 var defaultLogoutProps = {
   logoutActionCreator: _sessionReducer.logOutUser,
+  logoutFunction: _utils.logoutFromAuthServer,
+  logoutURL: null,
   redirectPath: _constants.LOGIN_URL
 };
 exports.defaultLogoutProps = defaultLogoutProps;
@@ -27,7 +31,14 @@ var Logout = function Logout(props) {
   var logoutActionCreator = props.logoutActionCreator,
       redirectPath = props.redirectPath;
   logoutActionCreator();
-  return _react.default.createElement(_reactRouterDom.Redirect, {
+
+  if (props.logoutURL && props.logoutFunction) {
+    props.logoutFunction(props.logoutURL);
+  } else if (props.logoutURL) {
+    (0, _utils.logoutFromAuthServer)(props.logoutURL);
+  }
+
+  return _react["default"].createElement(_reactRouterDom.Redirect, {
     to: redirectPath
   });
 };
@@ -39,4 +50,4 @@ var mapDispatchToProps = {
 };
 var ConnectedLogout = (0, _reactRedux.connect)(null, mapDispatchToProps)(Logout);
 var _default = ConnectedLogout;
-exports.default = _default;
+exports["default"] = _default;
