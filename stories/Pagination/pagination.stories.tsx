@@ -1,75 +1,187 @@
 import { storiesOf } from '@storybook/react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { createBrowserHistory } from 'history';
-import React from 'react';
-import { Router } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import notes from '../../packages/Pagination/README.md';
-import {
-  PaginationData,
-  Paginator,
-  PaginatorProps,
-  RoutedPaginator
-} from '../../packages/Pagination/src';
+import { usePagination } from '../../packages/Pagination/src';
 
-const aLotOfRecords: Partial<PaginatorProps> = {
-  ariaLabel: 'pagination demo for a lot of pages',
-  onPageChange: data => alert(`clicked page no ${data.currentPage}`),
-  pageLimit: 100,
-  pageNeighbours: 4,
-  totalRecords: 300000
-};
-
-const manyRecordsDisplayCode = `const aLotOfRecords: PaginatorProps = {
-    ariaLabel: 'pagination demo for a lot of pages',
-    onPageChange: data => {}, // do something with selected page data
-    pageLimit: 100,
-    pageNeighbours: 4,
+const bootstrapPaginatorProps = `const aLotOfRecords: PaginatorProps = {
+    pageSize: 100,
+    pageNeighbors: 3,
     totalRecords: 300000
   }
 
-
-  Paginator {...aLotOfRecords}
   `;
 
 storiesOf('Paginator', module)
-  .add('with default settings', () => <Paginator />, { notes })
   .add(
-    'Alot of records',
+    'bootstrap sample',
     () => {
-      const Component = (props: any) => {
-        const [pageNumber, setPageNumber] = React.useState<number>(1);
-        const onPageChange = (data: PaginationData) => setPageNumber(data.currentPage);
-
-        const paginatorProps = {
-          ...aLotOfRecords,
-          onPageChange
-        };
+      const Page = () => {
+        const options = { totalRecords: 300000, pageSize: 100, pageNeighbors: 3 };
+        const {
+          paginationState,
+          nextPage,
+          firstPage,
+          lastPage,
+          goToPage,
+          previousPage,
+          canNextPage,
+          canPreviousPage
+        } = usePagination(options);
 
         return (
-          <div>
-            <h2> The props </h2>
-            <pre>{manyRecordsDisplayCode}</pre>
+          <Fragment>
+            <div>
+              <h2> The props </h2>
+              <pre>{bootstrapPaginatorProps}</pre>
 
-            <br />
-            <h3>The rendered component</h3>
-            <br />
-            <p>Currently selected page: {`${pageNumber}`}</p>
-            <Paginator {...paginatorProps} />
-          </div>
+              <br />
+              <h3>The rendered component</h3>
+              <br />
+              <p>Currently selected page: {`${paginationState.currentPage}`}</p>
+            </div>
+            <Pagination aria-label="pagination" size="sm">
+              <PaginationItem className={`page-item ${canPreviousPage ? '' : 'disabled'}`}>
+                <PaginationLink
+                  className={`page-link`}
+                  href="#"
+                  aria-label="Start"
+                  // tslint:disable-next-line: jsx-no-lambda
+                  onClick={() => firstPage()}
+                >
+                  <span aria-hidden="true">Start</span>
+                  <span className="sr-only">Start</span>
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem className={`page-item ${canPreviousPage ? '' : 'disabled'}`}>
+                <PaginationLink
+                  className={`page-link`}
+                  href="#"
+                  aria-label="Previous"
+                  // tslint:disable-next-line: jsx-no-lambda
+                  onClick={() => previousPage()}
+                >
+                  <span aria-hidden="true">Previous</span>
+                  <span className="sr-only">Previous</span>
+                </PaginationLink>
+              </PaginationItem>
+              {paginationState.pagesToBeDisplayed.map((page, index) => {
+                return (
+                  <PaginationItem
+                    key={index}
+                    className={`page-item ${paginationState.currentPage === page ? ' active' : ''}`}
+                  >
+                    {/*  tslint:disable-next-line: jsx-no-lambda */}
+                    <PaginationLink className="page-link" href="#" onClick={() => goToPage(page)}>
+                      {page}
+                    </PaginationLink>
+                  </PaginationItem>
+                );
+              })}
+
+              <PaginationItem className={`page-item  ${canNextPage ? '' : 'disabled'}`}>
+                <PaginationLink
+                  className={`page-link`}
+                  href="#"
+                  aria-label={'Next'}
+                  // tslint:disable-next-line: jsx-no-lambda
+                  onClick={() => nextPage()}
+                >
+                  <span aria-hidden="true">Next</span>
+                  <span className="sr-only">Next</span>
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem className={`page-item ${canNextPage ? '' : 'disabled'}`}>
+                <PaginationLink
+                  href="#"
+                  aria-label="Last"
+                  // tslint:disable-next-line: jsx-no-lambda
+                  onClick={() => lastPage()}
+                >
+                  <span aria-hidden="true">Last</span>
+                  <span className="sr-only">Last</span>
+                </PaginationLink>
+              </PaginationItem>
+            </Pagination>
+          </Fragment>
         );
       };
-      return <Component />;
+
+      return <Page />;
     },
     { notes }
   )
   .add(
-    'routed Paginator under default conditions',
+    'custom pagination',
     () => {
-      return (
-        <Router history={createBrowserHistory()}>
-          <RoutedPaginator />
-        </Router>
-      );
+      const Page = () => {
+        const options = { totalRecords: 300000, pageSize: 100, pageNeighbors: 3 };
+        const {
+          paginationState,
+          nextPage,
+          firstPage,
+          lastPage,
+          goToPage,
+          previousPage,
+          canNextPage,
+          canPreviousPage
+        } = usePagination(options);
+        return (
+          <>
+            <div>
+              <h2> The props </h2>
+              <pre>{bootstrapPaginatorProps}</pre>
+
+              <br />
+              <h3>The rendered component</h3>
+              <br />
+              <p>Currently selected page: {`${paginationState.currentPage}`}</p>
+            </div>
+            <div className="pagination">
+              {/* tslint:disable-next-line: jsx-no-lambda */}
+              <button onClick={() => firstPage()} disabled={!canPreviousPage}>
+                {'<<'}
+              </button>{' '}
+              {/* tslint:disable-next-line: jsx-no-lambda */}
+              <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                {'<'}
+              </button>{' '}
+              {/* tslint:disable-next-line: jsx-no-lambda */}
+              <button onClick={() => nextPage()} disabled={!canNextPage}>
+                {'>'}
+              </button>{' '}
+              {/* tslint:disable-next-line: jsx-no-lambda */}
+              <button onClick={() => lastPage()} disabled={!canNextPage}>
+                {'>>'}
+              </button>{' '}
+              <span>
+                Page{' '}
+                <strong>
+                  {paginationState.currentPage} of {paginationState.totalPages}
+                </strong>{' '}
+              </span>
+              <span>
+                | Go to page:{' '}
+                <input
+                  type="number"
+                  defaultValue={paginationState.currentPage.toString()}
+                  max={paginationState.totalPages}
+                  min={1}
+                  value={paginationState.currentPage}
+                  // tslint:disable-next-line: jsx-no-lambda
+                  onChange={e => {
+                    const page = e.target.value ? Number(e.target.value) : 1;
+                    goToPage(page);
+                  }}
+                  style={{ width: '100px' }}
+                />
+              </span>{' '}
+            </div>
+          </>
+        );
+      };
+      return <Page />;
     },
     { notes }
   );
