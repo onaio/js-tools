@@ -3,14 +3,14 @@ import React from 'react';
 /** Props for ProgressBar */
 interface ProgressBarProps {
   animate: boolean /** apply animation to progressBar */;
-  decimalPoints: number /** Rounds off the value to this number */;
+  decimalPoints: number /** Rounds off the value to this number of decimal places */;
   height: string /** resizes the height of the progressBar */;
   min: number /** set lower bound for the progressBar range */;
   max: number /** set upper bound for the progressBar range */;
   value: number /** Represents the progress bar value */;
   lineColor: string /** set line colors */;
   lineColorThresholds?: { [key: string]: number } /** set linecolor threshold */;
-  progressClass: string /** sets the class for progressBar */;
+  cssClass: string /** sets either stripped or animated css gradient over progressBar */;
   showLabel: boolean /** set label on progressBar */;
   stripped: boolean /** set strips in progressBar */;
 }
@@ -18,23 +18,19 @@ interface ProgressBarProps {
 /** default props for ProgressBar */
 const defaultProgressBarProps = {
   animate: false,
+  cssClass: 'progress-bar-striped progress-bar-animated',
   decimalPoints: 0,
   height: '10px',
   lineColor: '#0000FF',
   lineColorThresholds: undefined,
   max: 100,
   min: 0,
-  progressClass: 'progress-bar-striped progress-bar-animated',
   showLabel: false,
   stripped: false,
   value: 0
 };
 
-/** Displays configurable progress bar
- * lineColor prop when you don't require different line colors
- * lineColorThresholds when you have to match lineColors to certain value thresholds.
- * LineColorThresholds will take precedence over lineColor if both are provided
- */
+/** Displays configurable progress bar */
 const ProgressBar = (props: ProgressBarProps) => {
   const {
     animate,
@@ -44,7 +40,7 @@ const ProgressBar = (props: ProgressBarProps) => {
     stripped,
     lineColorThresholds,
     showLabel,
-    progressClass
+    cssClass
   } = props;
   let backgroundColor = lineColor;
   const max = props.max || 100;
@@ -72,8 +68,8 @@ const ProgressBar = (props: ProgressBarProps) => {
   return (
     <div className="progress">
       <div
-        className={`progress-bar ${stripped ? progressClass : ''}
-        ${animate ? progressClass : ''}`}
+        className={`progress-bar ${stripped ? cssClass : ''}
+        ${animate ? cssClass : ''}`}
         style={{
           backgroundColor: `${backgroundColor}`,
           width: `${percentValueString}%`
