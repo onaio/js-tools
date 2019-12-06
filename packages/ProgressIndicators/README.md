@@ -30,6 +30,7 @@ configuration is done via props; properties currently supported include:
  *                [RED]: 0,
  *                [YELLOW]: 30
  *            }
+ * {string} cssClass - apply either stripped or animated css gradient on progressBar
  */
 ```
 
@@ -38,6 +39,7 @@ A sample of the full list of props:
 ```typescript
 const props = {
   anime: true,
+  cssClass: 'progress-bar-striped progress-bar-animated',
   decimalPoints: 0,
   height: '10px',
   lineColor: '#5269EB',
