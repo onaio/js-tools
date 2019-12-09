@@ -1,6 +1,6 @@
 /** headless component for pagination */
 import { useReducer } from 'react';
-import { fetchPageNumbers } from './utils';
+import { fetchPageNumbers, sanitizeNumber } from './utils';
 
 export interface PaginationOptions {
   totalRecords: number;
@@ -43,8 +43,8 @@ export const usePagination = (options: PaginationOptions) => {
   const { totalRecords, pageSize, pageNeighbors } = options;
   const totalPages = Math.ceil(totalRecords / pageSize);
 
-  // pageNeighbors can be in [0, 1, 2, 3, 4, 5]
-  const neighborPillsNum = Math.max(0, Math.min(pageNeighbors, 5));
+  // pageNeighbors can be in [2, 3, 4, 5]
+  const neighborPillsNum = Math.max(2, Math.min(pageNeighbors, 5));
 
   const defaultPaginationState: PaginationState = {
     currentPage: 1,
@@ -85,10 +85,10 @@ const changePageCreator = (
   totalPages: number,
   pageNeighbors: number
 ): SwitchCurrentPageAction => {
-  const thisPage = Math.max(1, Math.min(page, totalPages));
+  const thisPage = sanitizeNumber(page, totalPages);
   return {
     currentPage: thisPage,
-    pagesToBeDisplayed: fetchPageNumbers(pageNeighbors, totalPages, page),
+    pagesToBeDisplayed: fetchPageNumbers(pageNeighbors, totalPages, thisPage),
     type: paginationActionTypes.TO_PAGE
   };
 };
