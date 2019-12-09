@@ -1,9 +1,7 @@
 // test the reducer first
 import { mount, ReactWrapper, shallow } from 'enzyme';
 import React from 'react';
-import act from 'react-dom/test-utils';
-import ReactTestUtils from 'react-dom/test-utils';
-import { PaginationOptions, PaginationState, usePagination } from '..';
+import { PaginationOptions, usePagination } from '..';
 
 /** interface for the state that is returned  by the hook. */
 interface ReactWrapperWithHookState<T> extends ReactWrapper {
