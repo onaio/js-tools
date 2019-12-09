@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchPageNumbers = exports.range = void 0;
+exports.sanitizeNumber = exports.fetchPageNumbers = exports.range = void 0;
 
 var range = function range(start) {
   var stop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -33,3 +33,9 @@ var fetchPageNumbers = function fetchPageNumbers(neighbourPillsNum, totalPages, 
 };
 
 exports.fetchPageNumbers = fetchPageNumbers;
+
+var sanitizeNumber = function sanitizeNumber(pageNumber, allPages) {
+  return Math.min(Math.max(1, pageNumber), allPages);
+};
+
+exports.sanitizeNumber = sanitizeNumber;
