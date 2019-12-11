@@ -7,20 +7,16 @@ interface State {
   [key: string]: any;
 }
 
-/** Combine all reducers, but preserve initial state for not-yet-loaded
- * reducers
+/** Combine all reducers, but preserve any initial state
  */
 export function combine(reducers: Registry, initialState: State = {}) {
-  const reducerNames = Object.keys(reducers);
   Object.keys(initialState).forEach(item => {
-    if (reducerNames.indexOf(item) === -1) {
-      reducers[item] = (state = initialState[item]): Reducer => state;
-    }
+    reducers[item] = (state = initialState[item]): Reducer => state;
   });
   return combineReducers(reducers);
 }
 
-/** Function that returns a Redux store given a a list of Redicers and initial
+/** Function that returns a Redux store given a list of Reducers and initial
  * state
  */
 export function getStore(reducers: Registry, initialState: State = {}) {
