@@ -5,8 +5,7 @@ import { Registry } from './registry';
 interface State {
   [key: string]: any;
 }
-/** Combine all reducers, but preserve initial state for not-yet-loaded
- * reducers
+/** Combine all reducers, but preserve any initial state
  */
 export declare function combine(
   reducers: Registry,
@@ -17,7 +16,7 @@ export declare function combine(
   },
   import('redux').AnyAction
 >;
-/** Function that returns a Redux store given a a list of Redicers and initial
+/** Function that returns a Redux store given a list of Reducers and initial
  * state
  */
 export declare function getStore(
