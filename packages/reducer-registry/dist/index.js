@@ -14,7 +14,7 @@ Object.defineProperty(exports, "Registry", {
 Object.defineProperty(exports, "store", {
   enumerable: true,
   get: function get() {
-    return _store.default;
+    return _store["default"];
   }
 });
 Object.defineProperty(exports, "combine", {
@@ -29,11 +29,11 @@ Object.defineProperty(exports, "getStore", {
     return _store.getStore;
   }
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _registry = _interopRequireWildcard(require("./registry"));
 
 var _store = _interopRequireWildcard(require("./store"));
 
-var _default = _registry.default;
-exports.default = _default;
+var _default = _registry["default"];
+exports["default"] = _default;
