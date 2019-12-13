@@ -35,11 +35,15 @@ describe('reducer-registry', () => {
   it('should preserve initial state', () => {
     const initialState = {
       things: ['users', 'messages'],
+      users: ['bob', 'tom'],
       x: 1
     };
     reducerRegistry.register('users', users);
+    reducerRegistry.register('messages', messages);
     const newStore = getStore(reducerRegistry.getReducers(), initialState);
     expect(newStore.getState().x).toEqual(1);
     expect(newStore.getState().things).toEqual(['users', 'messages']);
+    expect(newStore.getState().users).toEqual(['bob', 'tom']);
+    expect(newStore.getState().messages).toEqual({ messages: [] });
   });
 });
