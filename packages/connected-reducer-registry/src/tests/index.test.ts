@@ -44,6 +44,14 @@ describe('store', () => {
     expect(selectAllMessages(store.getState())).toEqual([{ message: 'hello', user: 'bob' }]);
   });
 
+  it('should be able to work with initial state', () => {
+    reducerRegistry.register('messages', messages);
+    const newStore = getConnectedStore(reducerRegistry.getReducers(), {
+      messages: [{ foo: 'bar' }]
+    });
+    expect(newStore.getState().messages).toEqual([{ foo: 'bar' }]);
+  });
+
   it('should be able to create a connected store', () => {
     /** create default reducers */
     const defaultReducers = {};
