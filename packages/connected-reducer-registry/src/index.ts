@@ -11,26 +11,36 @@ declare global {
   }
 }
 
+/** Declare type for initial state */
+interface State {
+  [key: string]: any;
+}
+
 /** Create the browser history object */
 export const history = createBrowserHistory();
 
 /** Function to create the connected Redux Registry store
  * @param {Registry} reducers - The default reducers to include in the store.
+ * @param {State} initialState - The initial state.
  */
-export function getConnectedStore(reducers: Registry) {
+export function getConnectedStore(reducers: Registry, initialState: State = {}) {
   /** Register each of the initial reducers */
   Object.keys(reducers).forEach(reducerName => {
     reducerRegistry.register(reducerName, reducers[reducerName]);
   });
 
   /** Combine reducers */
-  const reducer = combine(reducerRegistry.getReducers());
+  const reducer = combine(reducerRegistry.getReducers(), initialState);
 
   /** Add redux dev tools to enhancers */
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   /** Create the store */
-  return createStore(reducer, composeEnhancers(applyMiddleware(thunk, routerMiddleware(history))));
+  return createStore(
+    reducer,
+    initialState,
+    composeEnhancers(applyMiddleware(thunk, routerMiddleware(history)))
+  );
 }
 
 /** Router reducer */
