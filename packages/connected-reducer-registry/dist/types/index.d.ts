@@ -6,13 +6,19 @@ declare global {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
   }
 }
+/** Declare type for initial state */
+interface State {
+  [key: string]: any;
+}
 /** Create the browser history object */
 export declare const history: import('history').History<any>;
 /** Function to create the connected Redux Registry store
  * @param {Registry} reducers - The default reducers to include in the store.
+ * @param {State} initialState - The initial state.
  */
 export declare function getConnectedStore(
-  reducers: Registry
+  reducers: Registry,
+  initialState?: State
 ): import('redux').Store<
   {
     [x: string]: any;
