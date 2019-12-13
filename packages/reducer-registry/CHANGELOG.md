@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.9](https://github.com/onaio/js-tools/compare/@onaio/redux-reducer-registry@0.0.8...@onaio/redux-reducer-registry@0.0.9) (2019-12-13)
+
+**Note:** Version bump only for package @onaio/redux-reducer-registry
+
 ## [0.0.8](https://github.com/onaio/js-tools/compare/@onaio/redux-reducer-registry@0.0.7...@onaio/redux-reducer-registry@0.0.8) (2019-04-16)
 
 **Note:** Version bump only for package @onaio/redux-reducer-registry
