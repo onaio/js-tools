@@ -3,15 +3,18 @@ import OauthLogin, { OauthLoginProps, ProviderLinks, ProviderLinksProps } from '
 import ConnectedLogout, { defaultLogoutProps, Logout, LogoutProps } from './components/logout';
 
 import ConnectedOauthCallback, {
-  Component404,
   defaultOauthCallbackProps,
   OauthCallback,
   OauthCallbackProps,
+  RouteParams
+} from './components/callback/implicit';
+
+import {
+  Component404,
   RenderErrorComponent,
-  RouteParams,
   SuccessfulLogin,
   SuccessfulLoginProps
-} from './components/callback';
+} from './components/callback/utils';
 
 import gateKeeperReducer, {
   GateKeeperActionTypes,
