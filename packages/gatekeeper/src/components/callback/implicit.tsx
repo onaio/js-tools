@@ -9,20 +9,20 @@ import qs from 'query-string';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { ActionCreator, Store } from 'redux';
-import { getSuccess, RecordAction, recordResult } from '../ducks/gatekeeper';
+import { getSuccess, RecordAction, recordResult } from '../../ducks/gatekeeper';
 import {
   getOnadataUserInfo,
   getProviderFromOptions,
   Providers,
   UserInfoFnType
-} from '../helpers/oauth';
-import { fetchUser } from '../helpers/services';
+} from '../../helpers/oauth';
+import { fetchUser } from '../../helpers/services';
 import {
   BaseCallbackComponent,
   BaseCallbackComponentProps,
   defaultBaseCallbackComponentProps
-} from './helpers/base';
-import { Component404, RenderErrorComponent } from './helpers/utils';
+} from './base';
+import { Component404, RenderErrorComponent } from './utils';
 
 /** Route params interface */
 export interface RouteParams {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`gatekeeper/OauthCallback renders correctly when logged in 1`] = `
+exports[`gatekeeper/implicit/OauthCallback renders correctly when logged in 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
@@ -191,7 +191,7 @@ exports[`gatekeeper/OauthCallback renders correctly when logged in 1`] = `
 </OauthCallback>
 `;
 
-exports[`gatekeeper/OauthCallback renders correctly when not loading 1`] = `
+exports[`gatekeeper/implicit/OauthCallback renders correctly when not loading 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
@@ -298,7 +298,7 @@ exports[`gatekeeper/OauthCallback renders correctly when not loading 1`] = `
 </OauthCallback>
 `;
 
-exports[`gatekeeper/OauthCallback renders correctly when not logged in 1`] = `
+exports[`gatekeeper/implicit/OauthCallback renders correctly when not logged in 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
@@ -405,7 +405,7 @@ exports[`gatekeeper/OauthCallback renders correctly when not logged in 1`] = `
 </OauthCallback>
 `;
 
-exports[`gatekeeper/OauthCallback renders correctly when oAuth error occurred 1`] = `
+exports[`gatekeeper/implicit/OauthCallback renders correctly when oAuth error occurred 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
@@ -512,7 +512,7 @@ exports[`gatekeeper/OauthCallback renders correctly when oAuth error occurred 1`
 </OauthCallback>
 `;
 
-exports[`gatekeeper/OauthCallback renders correctly when provider is not known 1`] = `
+exports[`gatekeeper/implicit/OauthCallback renders correctly when provider is not known 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
@@ -602,7 +602,7 @@ exports[`gatekeeper/OauthCallback renders correctly when provider is not known 1
 </OauthCallback>
 `;
 
-exports[`gatekeeper/OauthCallback renders correctly when uri cant be processed 1`] = `
+exports[`gatekeeper/implicit/OauthCallback renders correctly when uri cant be processed 1`] = `
 <OauthCallback
   ErrorComponent={[Function]}
   HTTP404Component={[Function]}
