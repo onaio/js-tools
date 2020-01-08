@@ -87,3 +87,30 @@ export async function fetchUser(
     errorCallbackFn(error.message);
   }
 }
+
+/** some docstring */
+export const fetchState = async (
+  url: string,
+  authenticateActionCreator: ActionCreator<AuthenticateAction> = authenticateUser,
+  recordResultActionCreator: ActionCreator<RecordAction> = recordResult,
+  errorCallbackFn: ErrorCallback = errorCallback
+) => {
+  fetch(url)
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error('fetching state failed');
+      }
+    })
+    .then(data => {
+      const { session } = data;
+      const { authenticated, user, extraData } = session;
+      authenticateActionCreator(authenticated, user, extraData);
+      recordResultActionCreator(true, extraData);
+    })
+    .catch(err => {
+      recordResultActionCreator(false, { err });
+      errorCallbackFn(err);
+    });
+};
