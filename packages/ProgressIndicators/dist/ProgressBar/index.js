@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports["default"] = exports.defaultProgressBarProps = void 0;
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
@@ -24,6 +24,7 @@ var defaultProgressBarProps = {
   stripped: false,
   value: 0
 };
+exports.defaultProgressBarProps = defaultProgressBarProps;
 
 var ProgressBar = function ProgressBar(props) {
   var animate = props.animate,

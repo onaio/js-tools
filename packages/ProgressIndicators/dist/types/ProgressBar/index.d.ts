@@ -1,6 +1,6 @@
 /// <reference types="react" />
 /** Props for ProgressBar */
-interface ProgressBarProps {
+export interface ProgressBarProps {
   animate: boolean /** apply animation to progressBar */;
   decimalPoints: number /** Rounds off the value to this number of decimal places */;
   height: string /** resizes the height of the progressBar */;
@@ -15,6 +15,20 @@ interface ProgressBarProps {
   showLabel: boolean /** set label on progressBar */;
   stripped: boolean /** set strips in progressBar */;
 }
+/** default props for ProgressBar */
+export declare const defaultProgressBarProps: {
+  animate: boolean;
+  cssClass: string;
+  decimalPoints: number;
+  height: string;
+  lineColor: string;
+  lineColorThresholds: undefined;
+  max: number;
+  min: number;
+  showLabel: boolean;
+  stripped: boolean;
+  value: number;
+};
 /** Displays configurable progress bar */
 declare const ProgressBar: {
   (props: ProgressBarProps): JSX.Element;
