@@ -1,7 +1,7 @@
 import React from 'react';
 
 /** Props for ProgressBar */
-interface ProgressBarProps {
+export interface ProgressBarProps {
   animate: boolean /** apply animation to progressBar */;
   decimalPoints: number /** Rounds off the value to this number of decimal places */;
   height: string /** resizes the height of the progressBar */;
@@ -16,7 +16,7 @@ interface ProgressBarProps {
 }
 
 /** default props for ProgressBar */
-const defaultProgressBarProps = {
+export const defaultProgressBarProps = {
   animate: false,
   cssClass: 'progress-bar-striped progress-bar-animated',
   decimalPoints: 0,
