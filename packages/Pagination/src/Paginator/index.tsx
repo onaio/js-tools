@@ -1,72 +1,106 @@
 /** headless component for pagination */
 import { useReducer } from 'react';
-import { fetchPageNumbers, sanitizeNumber } from './utils';
+import { sanitizeNumber } from './utils';
 
-export interface PaginationOptions {
+/** generic interface describing arbitrary object schema */
+export interface FlexObject {
+  [key: string]: any;
+}
+
+/** describes type of a custom reducer */
+type CustomReducer = (state: PaginationState, action: InterActionType) => FlexObject;
+
+/** desctibes options passed to the hook */
+export interface PaginationOptions<IState> {
   totalRecords: number;
   pageSize: number;
   pageNeighbors: number;
+  reducer: CustomReducer;
+  initialState: IState;
 }
 
+/** describes state exposed the using component */
 export interface PaginationState {
   currentPage: number;
   totalPages: number;
-  pagesToBeDisplayed: number[];
   pageSize: number;
   totalRecords: number;
 }
 
+/** types for actions */
 export enum paginationActionTypes {
   TO_PAGE = 'TO_PAGE'
 }
 
+/** describes an action to change the currentPage */
 export interface SwitchCurrentPageAction {
   type: paginationActionTypes;
   currentPage: number;
-  pagesToBeDisplayed: number[];
 }
 
-export function paginationReducer(state: PaginationState, action: SwitchCurrentPageAction) {
+/** a unios of all action types */
+type PageActionTypes = SwitchCurrentPageAction;
+
+export interface InterActionType extends PageActionTypes {
+  changes: { [key: string]: any };
+}
+
+/** default reducer */
+export function paginationReducer(state: PaginationState, action: PageActionTypes) {
   switch (action.type) {
     case paginationActionTypes.TO_PAGE:
       return {
         ...state,
-        currentPage: action.currentPage,
-        pagesToBeDisplayed: action.pagesToBeDisplayed
+        currentPage: action.currentPage
       };
     default:
       return state;
   }
 }
 
-export const usePagination = (options: PaginationOptions) => {
-  const { totalRecords, pageSize, pageNeighbors } = options;
-  const totalPages = Math.ceil(totalRecords / pageSize);
+/** combines the passed in custom reducer with the default reducer
+ * such that we apply changes defined by our reducer first and then
+ * pass on the new state and the action to the custom reducer
+ *
+ * @param {CustomReducer} reducer - their reducer
+ */
+const reducerCombiner = (reducer: CustomReducer) => {
+  return (state: any, action: any) => {
+    const changes = paginationReducer(state, action);
+    const response = reducer(state, { ...action, changes });
+    return response;
+  };
+};
 
-  // pageNeighbors can be in [2, 3, 4, 5]
-  const neighborPillsNum = Math.max(2, Math.min(pageNeighbors, 5));
+/** hook to expose page changing */
+export function usePagination<IState = {}>({
+  totalRecords = 0,
+  pageSize = 1,
+  reducer = (s: PaginationState, a: any) => a.changes,
+  initialState
+}: PaginationOptions<IState>) {
+  const totalPages = Math.ceil(totalRecords / pageSize); // division by zero error
 
   const defaultPaginationState: PaginationState = {
     currentPage: 1,
     pageSize,
-    pagesToBeDisplayed: fetchPageNumbers(neighborPillsNum, totalPages, 0),
     totalPages,
-    totalRecords
+    totalRecords,
+    ...initialState
   };
 
-  const [state, dispatch] = useReducer(paginationReducer, defaultPaginationState);
+  const combinedReducer = reducerCombiner(reducer);
+  const [paginationState, dispatch] = useReducer(combinedReducer, defaultPaginationState);
 
-  const nextPage = () =>
-    dispatch(changePageCreator(state.currentPage + 1, totalPages, pageNeighbors));
-  const firstPage = () => dispatch(changePageCreator(1, totalPages, pageNeighbors));
-  const lastPage = () => dispatch(changePageCreator(totalPages, totalPages, pageNeighbors));
+  const nextPage = () => dispatch(changePageCreator(paginationState.currentPage + 1, totalPages));
+  const firstPage = () => dispatch(changePageCreator(1, totalPages));
+  const lastPage = () => dispatch(changePageCreator(totalPages, totalPages));
   const previousPage = () =>
-    dispatch(changePageCreator(state.currentPage - 1, totalPages, pageNeighbors));
-  const goToPage = (pageNumber: number) =>
-    dispatch(changePageCreator(pageNumber, totalPages, pageNeighbors));
+    dispatch(changePageCreator(paginationState.currentPage - 1, totalPages));
+  const goToPage = (pageNumber: number) => dispatch(changePageCreator(pageNumber, totalPages));
 
-  const canPreviousPage = state.currentPage > 1;
-  const canNextPage = state.currentPage < totalPages;
+  const canPreviousPage = paginationState.currentPage > 1;
+  const canNextPage = paginationState.currentPage < totalPages;
 
   return {
     canNextPage,
@@ -75,20 +109,16 @@ export const usePagination = (options: PaginationOptions) => {
     goToPage,
     lastPage,
     nextPage,
-    paginationState: state,
+    paginationState,
     previousPage
   };
-};
+}
 
-const changePageCreator = (
-  page: number,
-  totalPages: number,
-  pageNeighbors: number
-): SwitchCurrentPageAction => {
+/** action creator : page change actions */
+const changePageCreator = (page: number, totalPages: number): PageActionTypes => {
   const thisPage = sanitizeNumber(page, totalPages);
   return {
     currentPage: thisPage,
-    pagesToBeDisplayed: fetchPageNumbers(pageNeighbors, totalPages, thisPage),
     type: paginationActionTypes.TO_PAGE
   };
 };

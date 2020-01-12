@@ -29,16 +29,20 @@ export const range = (start: number, stop: number | null = null, step: number = 
  * [x] => represents current page
  * {...x} => represents page neighbours
  *
+ * @param {number} totalRecords - the total number of pages
  * @param {number} neighbourPillsNum - the max number of links/pills on either side of current page
- * @param {number} totalPages - the total number of pages
+ * @param {number} pageSize - size of a single page
  * @param {number} currentPage - the currently selected page
  * @return {number []} - Array of numbers that will form the pills between previous and next
  */
 export const fetchPageNumbers = (
+  totalRecords: number,
   neighbourPillsNum: number,
-  totalPages: number,
-  currentPage: number
+  pageSize: number = 30,
+  currentPage: number = 1
 ) => {
+  const totalPages = Math.ceil(totalRecords / pageSize); // division by zero error
+
   const startPage = Math.max(1, currentPage - neighbourPillsNum);
   const endPage = Math.min(totalPages + 1, currentPage + neighbourPillsNum + 1);
 
