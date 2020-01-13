@@ -11,12 +11,12 @@ export interface FlexObject {
 type CustomReducer = (state: PaginationState, action: InterActionType) => FlexObject;
 
 /** describes options passed to the hook */
-export interface PaginationOptions<IState> {
+export interface PaginationOptions<IState = {}> {
   totalRecords: number;
   pageSize: number;
   pageNeighbors: number;
   reducer: CustomReducer;
-  initialState: IState;
+  initialState?: IState;
 }
 
 /** describes state exposed the using component */
@@ -81,12 +81,14 @@ export function usePagination<IState = {}>({
 }: PaginationOptions<IState>) {
   const totalPages = Math.ceil(totalRecords / pageSize); // division by zero error
 
+  const PassedInState = initialState ? initialState : {};
+
   const defaultPaginationState: PaginationState = {
     currentPage: 1,
     pageSize,
     totalPages,
     totalRecords,
-    ...initialState
+    ...PassedInState
   };
 
   const combinedReducer = reducerCombiner(reducer);
