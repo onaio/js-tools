@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import { InterActionType, PaginationState, usePagination } from '../src';
+import { Pagination, PaginationItem, PaginationLink, PaginationProps } from 'reactstrap';
+import { InterActionType, PaginationOptions, PaginationState, usePagination } from '../src';
 import { fetchPageNumbers } from './utils';
 
 /** custom reducer: adds some properties to state specific to bootstrap */
@@ -42,14 +42,19 @@ const BootstrapPagination: React.FC<Props> = props => {
 
   const initialDisplayedPages = fetchPageNumbers(totalRecords, pageNeighbors, pageSize);
 
-  const options = {
+  interface ExtendingOptions {
+    fetchPagesToDisplay: typeof fetchPagesToDisplay;
+    pageNeighbors: number;
+    pagesToDisplay: number[];
+  }
+
+  const options: PaginationOptions<ExtendingOptions> = {
     initialState: {
       fetchPagesToDisplay,
-      pageNeighbors: 3,
+      pageNeighbors,
       pagesToDisplay: initialDisplayedPages
     },
-    pageNeighbors: 3,
-    pageSize: 100,
+    pageSize,
     reducer: bootstrapReducer,
     totalRecords
   };
