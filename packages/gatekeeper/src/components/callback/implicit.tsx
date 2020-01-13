@@ -55,10 +55,10 @@ export interface OauthCallbackState {
   loading: boolean;
 }
 
-/** The oAuth callback component
+/** The OAuth callback component for the implicit OAuth flow.
  * This component should be on the page that receives the callback from the
- * oAuth provider.
- * It attempts to get the oAuth provider from the URL and then process the oAuth
+ * OAuth provider.
+ * It attempts to get the OAuth provider from the URL and then process the OAuth
  * login attempt.  This uses react-router
  * For instance, if you have a provider named onadata, this component should be
  * on a page that matches this pattern "https://example.com/callback/onadata"
