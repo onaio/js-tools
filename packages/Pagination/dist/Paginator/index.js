@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.paginationReducer = paginationReducer;
-exports.usePagination = exports.paginationActionTypes = void 0;
+exports.usePagination = usePagination;
+exports.paginationActionTypes = void 0;
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
@@ -31,8 +32,7 @@ function paginationReducer(state, action) {
   switch (action.type) {
     case paginationActionTypes.TO_PAGE:
       return _objectSpread({}, state, {
-        currentPage: action.currentPage,
-        pagesToBeDisplayed: action.pagesToBeDisplayed
+        currentPage: action.currentPage
       });
 
     default:
@@ -40,47 +40,65 @@ function paginationReducer(state, action) {
   }
 }
 
-var usePagination = function usePagination(options) {
-  var totalRecords = options.totalRecords,
-      pageSize = options.pageSize,
-      pageNeighbors = options.pageNeighbors;
+function reducerCombiner(reducer) {
+  return function (state, action) {
+    var changes = paginationReducer(state, action);
+    var response = reducer(state, _objectSpread({}, action, {
+      changes: changes
+    }));
+    return response;
+  };
+}
+
+function usePagination(_ref) {
+  var _ref$totalRecords = _ref.totalRecords,
+      totalRecords = _ref$totalRecords === void 0 ? 0 : _ref$totalRecords,
+      _ref$pageSize = _ref.pageSize,
+      pageSize = _ref$pageSize === void 0 ? 1 : _ref$pageSize,
+      _ref$reducer = _ref.reducer,
+      reducer = _ref$reducer === void 0 ? function (s, a) {
+    return a.changes;
+  } : _ref$reducer,
+      initialState = _ref.initialState;
   var totalPages = Math.ceil(totalRecords / pageSize);
-  var neighborPillsNum = Math.max(2, Math.min(pageNeighbors, 5));
-  var defaultPaginationState = {
+  var PassedInState = initialState ? initialState : {};
+
+  var defaultPaginationState = _objectSpread({
     currentPage: 1,
     pageSize: pageSize,
-    pagesToBeDisplayed: (0, _utils.fetchPageNumbers)(neighborPillsNum, totalPages, 0),
     totalPages: totalPages,
     totalRecords: totalRecords
-  };
+  }, PassedInState);
 
-  var _useReducer = (0, _react.useReducer)(paginationReducer, defaultPaginationState),
+  var combinedReducer = reducerCombiner(reducer);
+
+  var _useReducer = (0, _react.useReducer)(combinedReducer, defaultPaginationState),
       _useReducer2 = (0, _slicedToArray2["default"])(_useReducer, 2),
-      state = _useReducer2[0],
+      paginationState = _useReducer2[0],
       dispatch = _useReducer2[1];
 
   var nextPage = function nextPage() {
-    return dispatch(changePageCreator(state.currentPage + 1, totalPages, pageNeighbors));
+    return dispatch(changePageCreator(paginationState.currentPage + 1, totalPages));
   };
 
   var firstPage = function firstPage() {
-    return dispatch(changePageCreator(1, totalPages, pageNeighbors));
+    return dispatch(changePageCreator(1, totalPages));
   };
 
   var lastPage = function lastPage() {
-    return dispatch(changePageCreator(totalPages, totalPages, pageNeighbors));
+    return dispatch(changePageCreator(totalPages, totalPages));
   };
 
   var previousPage = function previousPage() {
-    return dispatch(changePageCreator(state.currentPage - 1, totalPages, pageNeighbors));
+    return dispatch(changePageCreator(paginationState.currentPage - 1, totalPages));
   };
 
   var goToPage = function goToPage(pageNumber) {
-    return dispatch(changePageCreator(pageNumber, totalPages, pageNeighbors));
+    return dispatch(changePageCreator(pageNumber, totalPages));
   };
 
-  var canPreviousPage = state.currentPage > 1;
-  var canNextPage = state.currentPage < totalPages;
+  var canPreviousPage = paginationState.currentPage > 1;
+  var canNextPage = paginationState.currentPage < totalPages;
   return {
     canNextPage: canNextPage,
     canPreviousPage: canPreviousPage,
@@ -88,18 +106,15 @@ var usePagination = function usePagination(options) {
     goToPage: goToPage,
     lastPage: lastPage,
     nextPage: nextPage,
-    paginationState: state,
+    paginationState: paginationState,
     previousPage: previousPage
   };
-};
+}
 
-exports.usePagination = usePagination;
-
-var changePageCreator = function changePageCreator(page, totalPages, pageNeighbors) {
+var changePageCreator = function changePageCreator(page, totalPages) {
   var thisPage = (0, _utils.sanitizeNumber)(page, totalPages);
   return {
     currentPage: thisPage,
-    pagesToBeDisplayed: (0, _utils.fetchPageNumbers)(pageNeighbors, totalPages, thisPage),
     type: paginationActionTypes.TO_PAGE
   };
 };
