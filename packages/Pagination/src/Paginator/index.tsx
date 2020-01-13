@@ -10,7 +10,7 @@ export interface FlexObject {
 /** describes type of a custom reducer */
 type CustomReducer = (state: PaginationState, action: InterActionType) => FlexObject;
 
-/** desctibes options passed to the hook */
+/** describes options passed to the hook */
 export interface PaginationOptions<IState> {
   totalRecords: number;
   pageSize: number;
@@ -38,7 +38,7 @@ export interface SwitchCurrentPageAction {
   currentPage: number;
 }
 
-/** a unios of all action types */
+/** a union of all action types */
 type PageActionTypes = SwitchCurrentPageAction;
 
 export interface InterActionType extends PageActionTypes {
@@ -72,7 +72,7 @@ const reducerCombiner = (reducer: CustomReducer) => {
   };
 };
 
-/** hook to expose page changing */
+/** hook to expose page mutating helper logic */
 export function usePagination<IState = {}>({
   totalRecords = 0,
   pageSize = 1,

@@ -1,21 +1,20 @@
-import { number } from 'prop-types';
 import * as React from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import { InterActionType, paginationActionTypes, PaginationState, usePagination } from '..';
+import { InterActionType, PaginationState, usePagination } from '../src';
 import { fetchPageNumbers } from './utils';
 
-/** custom reducer: adds soem properties to state specific to boostrap */
+/** custom reducer: adds some properties to state specific to bootstrap */
 export function bootstrapReducer(state: PaginationState, action: InterActionType) {
   switch (action.type) {
     case 'TO_PAGE':
       return {
         ...action.changes,
-        pagesToDisplay: action.changes.fecthPagesToDisplay(action.changes)
+        pagesToDisplay: action.changes.fetchPagesToDisplay(action.changes)
       };
     default:
       return {
         ...action.changes,
-        pagesToDisplay: action.changes.fecthPagesToDisplay(action.changes)
+        pagesToDisplay: action.changes.fetchPagesToDisplay(action.changes)
       };
   }
 }
@@ -32,12 +31,12 @@ const defaultProps: Props = {
   totalRecords: 1000
 };
 
-const fecthPagesToDisplay = (state: any) => {
+const fetchPagesToDisplay = (state: any) => {
   const { totalRecords, pageNeighbors, pageSize, currentPage } = state;
   return fetchPageNumbers(totalRecords, pageNeighbors, pageSize, currentPage);
 };
 
-/** boostrap-powered pagination component  */
+/** bootstrap-powered pagination component  */
 const BootstrapPagination: React.FC<Props> = props => {
   const { totalRecords, pageSize, pageNeighbors } = props;
 
@@ -45,7 +44,7 @@ const BootstrapPagination: React.FC<Props> = props => {
 
   const options = {
     initialState: {
-      fecthPagesToDisplay,
+      fetchPagesToDisplay,
       pageNeighbors: 3,
       pagesToDisplay: initialDisplayedPages
     },

@@ -1,45 +1,12 @@
-import { fetchPageNumbers, range } from '../utils';
+import { sanitizeNumber } from '../utils';
 
-describe('../utils', () => {
-  it('range works correctly for nominal case', () => {
-    expect(range(5)).toEqual([0, 1, 2, 3, 4]);
-    expect(range(1, 5)).toEqual([1, 2, 3, 4]);
-    expect(range(1, 5, 2)).toEqual([1, 3]);
-    expect(range(0)).toEqual([]);
-  });
-});
-
-describe('src/components/paginator - helpers/utilities', () => {
-  it('fetchPageNumbers works for nominal case', () => {
-    let neighbourPillsNum = 2;
-    const totalPages = 24;
-    let currentPage = 8;
-    let expected: number[] = [6, 7, 8, 9, 10];
-    expect(fetchPageNumbers(neighbourPillsNum, totalPages, currentPage)).toEqual(expected);
-
-    neighbourPillsNum = 1;
-    expected = [7, 8, 9];
-    expect(fetchPageNumbers(neighbourPillsNum, totalPages, currentPage)).toEqual(expected);
-
-    neighbourPillsNum = 1;
-    expected = [14, 15, 16];
-    currentPage = 15;
-    expect(fetchPageNumbers(neighbourPillsNum, totalPages, currentPage)).toEqual(expected);
-  });
-
-  it('fetchPageNumbers works for right boundary edgecase', () => {
-    const neighbourPillsNum = 2;
-    const totalPages = 24;
-    const currentPage = 24;
-    const expected: number[] = [22, 23, 24];
-    expect(fetchPageNumbers(neighbourPillsNum, totalPages, currentPage)).toEqual(expected);
-  });
-
-  it('fetchPageNumbers works for left boundary edgecase', () => {
-    const neighbourPillsNum = 2;
-    const totalPages = 24;
-    const currentPage = 1;
-    const expected: number[] = [1, 2, 3];
-    expect(fetchPageNumbers(neighbourPillsNum, totalPages, currentPage)).toEqual(expected);
+describe('../utils.sanitize number', () => {
+  it('works for nominal case', () => {
+    let result = sanitizeNumber(5, 89);
+    expect(result).toEqual(5);
+    result = sanitizeNumber(90, 89);
+    expect(result).toEqual(89);
+    result = sanitizeNumber(-1, 89);
+    expect(result).toEqual(1);
   });
 });
