@@ -286,7 +286,7 @@ Assuming that you have the `js-tools` repo cloned locally, switch to the `master
 2. Next, tag releases on Github and create a changelog for all updated packages:
 
 ```sh
-lerna version --github-release --conventional-commits
+lerna version --create-release=github --conventional-commits
 ```
 
 3. At this point, we are ready to publish to `npm`. You would, of course, need to log in to npm first:
