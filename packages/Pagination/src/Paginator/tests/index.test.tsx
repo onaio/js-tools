@@ -37,7 +37,7 @@ export default function HookWrapper<ExpectedState = any>(
   return wrapper;
 }
 
-const options: PaginationOptions = {
+const options: PaginationOptions<{}> = {
   pageSize: 50,
   totalRecords: 300023
 };
