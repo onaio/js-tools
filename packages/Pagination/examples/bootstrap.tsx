@@ -1,10 +1,23 @@
 import * as React from 'react';
-import { Pagination, PaginationItem, PaginationLink, PaginationProps } from 'reactstrap';
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import { InterActionType, PaginationOptions, PaginationState, usePagination } from '../src';
 import { fetchPageNumbers } from './utils';
 
-/** custom reducer: adds some properties to state specific to bootstrap */
-export function bootstrapReducer(state: PaginationState, action: InterActionType) {
+/** describes the properties that we are going to add to the usePagination's hook */
+interface ExtendingOptions {
+  fetchPagesToDisplay: typeof fetchPagesToDisplay;
+  pageNeighbors: number;
+  pagesToDisplay: number[];
+}
+
+/** custom reducer: adds some properties to state specific to bootstrap ie.
+ *  adds the property `pagesToDisplay` to the state so that we can have a limited
+ * number of pagination items displayed by the pagination component at any one time
+ */
+function bootstrapReducer(
+  state: PaginationState<ExtendingOptions>,
+  action: InterActionType<ExtendingOptions>
+) {
   switch (action.type) {
     case 'TO_PAGE':
       return {
@@ -19,19 +32,25 @@ export function bootstrapReducer(state: PaginationState, action: InterActionType
   }
 }
 
-export interface Props {
+/** interface for props to the BootstrapPagination component */
+interface Props {
   totalRecords: number;
   pageSize: number;
   pageNeighbors: number;
 }
 
+/** sensible defaults?  */
 const defaultProps: Props = {
   pageNeighbors: 3,
   pageSize: 30,
   totalRecords: 1000
 };
 
-const fetchPagesToDisplay = (state: any) => {
+/** a util function that takes in the usePagination returned state
+ * and uses some of its properties to calculate the pagination pages
+ * to be displayed based on the currently selected page
+ */
+const fetchPagesToDisplay = (state: PaginationState<ExtendingOptions>) => {
   const { totalRecords, pageNeighbors, pageSize, currentPage } = state;
   return fetchPageNumbers(totalRecords, pageNeighbors, pageSize, currentPage);
 };
@@ -41,12 +60,6 @@ const BootstrapPagination: React.FC<Props> = props => {
   const { totalRecords, pageSize, pageNeighbors } = props;
 
   const initialDisplayedPages = fetchPageNumbers(totalRecords, pageNeighbors, pageSize);
-
-  interface ExtendingOptions {
-    fetchPagesToDisplay: typeof fetchPagesToDisplay;
-    pageNeighbors: number;
-    pagesToDisplay: number[];
-  }
 
   const options: PaginationOptions<ExtendingOptions> = {
     initialState: {

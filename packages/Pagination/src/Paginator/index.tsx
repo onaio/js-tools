@@ -7,21 +7,28 @@ export interface FlexObject {
   [key: string]: any;
 }
 
-/** describes type of a custom reducer */
-type CustomReducer = (state: PaginationState, action: InterActionType) => FlexObject;
+type CustomReducer<IState> = (
+  state: PaginationState<IState>,
+  action: InterActionType<IState>
+) => FlexObject;
 
 /** describes options passed to the hook */
-export interface PaginationOptions<IState = {}> {
+export interface PaginationOptions<IState> {
   totalRecords: number;
   pageSize: number;
-  reducer?: CustomReducer;
+  reducer?: CustomReducer<IState>;
   initialState?: IState;
 }
+
+/** describes a generic paginationState that can be extended with
+ * other properties
+ */
+export type PaginationState<IState extends {}> = IState & DefaultPaginationState;
 
 /** describes default state exposed to the using component
  * This can be modified by a custom reducer if one is given
  */
-export interface PaginationState {
+interface DefaultPaginationState {
   currentPage: number;
   totalPages: number;
   pageSize: number;
@@ -42,12 +49,13 @@ export interface SwitchCurrentPageAction {
 /** a union of all action types */
 type PageActionTypes = SwitchCurrentPageAction;
 
-export interface InterActionType extends PageActionTypes {
-  changes: { [key: string]: any };
+/** describe the action after having passed through our reducer */
+export interface InterActionType<IState> extends PageActionTypes {
+  changes: PaginationState<IState>;
 }
 
 /** default reducer */
-export function paginationReducer(state: PaginationState, action: PageActionTypes) {
+export function paginationReducer<IState>(state: PaginationState<IState>, action: PageActionTypes) {
   switch (action.type) {
     case paginationActionTypes.TO_PAGE:
       return {
@@ -63,28 +71,28 @@ export function paginationReducer(state: PaginationState, action: PageActionType
  * such that we apply changes defined by our reducer first and then
  * pass on the newState and the action+newState to the custom reducer
  *
- * @param {CustomReducer} reducer - their reducer
+ * @param {CustomReducer<IState>} reducer - their reducer
  */
-const reducerCombiner = (reducer: CustomReducer) => {
+function reducerCombiner<IState>(reducer: CustomReducer<IState>) {
   return (state: any, action: any) => {
     const changes = paginationReducer(state, action);
     const response = reducer(state, { ...action, changes });
     return response;
   };
-};
+}
 
 /** hook to expose page mutating helper logic to the calling component */
-export function usePagination<IState = {}>({
+export function usePagination<IState>({
   totalRecords = 0,
   pageSize = 1,
-  reducer = (s: PaginationState, a: any) => a.changes,
+  reducer = (s: PaginationState<IState>, a: InterActionType<IState>) => a.changes,
   initialState
 }: PaginationOptions<IState>) {
   const totalPages = Math.ceil(totalRecords / pageSize); // division by zero error
 
   const PassedInState = initialState ? initialState : {};
 
-  const defaultPaginationState: PaginationState = {
+  const defaultPaginationState = {
     currentPage: 1,
     pageSize,
     totalPages,
