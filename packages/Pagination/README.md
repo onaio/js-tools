@@ -1,11 +1,10 @@
 # Pagination
 
-This package provides a number of Pagination components that you can use to split
-huge data sets into smaller viewable data chunks that we shall refer to as pages.
+This package provides a number of Pagination components that you can use to split huge data sets into smaller data chunks
 
 ## usePagination Hook
 
-Introduced in React@16.8.0 this hook provides the essential logic needed in managing the state of any pagination use-case.
+this hook provides the essential logic needed in managing the state of any pagination use-case.
 
 ### Installation
 
@@ -23,31 +22,16 @@ yarn add @onaio/pagination
 - **pageSize:**(number)
   - **required**
   - the number of records in a single page
-- **pageNeighbors:**(number)
+- **reducer:**(redux-styled reducer function)
   - optional
-  - for bootstrap like pagination component, the number of pagination links to show on either side of the current page.
+  - uses the [state reducer pattern](https://kentcdodds.com/blog/the-state-reducer-pattern-with-react-hooks) allowing you take control of state updates
+- **initialState:**(< generic >)
+  - optional
+  - any object passed as an initial state is spread over the default initial state before doing anything else.
 
 #### Paginator Code example
 
-```typescript
-import { usePaginator } from '@onaio/pagination';
-
-const MyPaginationComponent = () => {
-   const {
-          paginationState,
-          nextPage,
-          firstPage,
-          lastPage,
-          goToPage,
-          previousPage,
-          canNextPage,
-          canPreviousPage
-        } = usePagination(options);
-}
-
-return <>{/** Return custom ui here*/}</>
-}
-```
+Here is a [code sandbox](https://codesandbox.io/s/bootstrap-pagination-component-jxtbt) showing how this hook could be used to create a bootstrap-powered pagination component
 
 #### Exposed API
 
@@ -66,3 +50,5 @@ return <>{/** Return custom ui here*/}</>
 6. previousPage: decrements the currentPage counter by one
 7. canNextPage: can i go to the nextPage?, is there a nextPage?
 8. canPreviousPage: can i go to the previousPage?, is there a previousPage?
+
+**PS**: One can override the above exposed variables via the initial state or using their own custom reducer. due to this dynamic nature the pagination state is not guaranteed to always be as shown above.
