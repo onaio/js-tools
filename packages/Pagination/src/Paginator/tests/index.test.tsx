@@ -38,7 +38,6 @@ export default function HookWrapper<ExpectedState = any>(
 }
 
 const options: PaginationOptions = {
-  pageNeighbors: 5,
   pageSize: 50,
   totalRecords: 300023
 };
@@ -53,7 +52,6 @@ describe('works for initial render', () => {
     expect(state).toEqual({
       currentPage: 1,
       pageSize: 50,
-      pagesToBeDisplayed: [1, 2, 3, 4, 5],
       totalPages: 6001,
       totalRecords: 300023
     });
@@ -71,7 +69,6 @@ describe('works for initial render', () => {
     expect(state).toEqual({
       currentPage: 2,
       pageSize: 50,
-      pagesToBeDisplayed: [1, 2, 3, 4, 5, 6, 7],
       totalPages: 6001,
       totalRecords: 300023
     });
@@ -89,7 +86,6 @@ describe('works for initial render', () => {
     expect(state).toEqual({
       currentPage: 15,
       pageSize: 50,
-      pagesToBeDisplayed: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
       totalPages: 6001,
       totalRecords: 300023
     });
@@ -107,7 +103,6 @@ describe('works for initial render', () => {
     expect(state).toEqual({
       currentPage: 1,
       pageSize: 50,
-      pagesToBeDisplayed: [1, 2, 3, 4, 5, 6],
       totalPages: 6001,
       totalRecords: 300023
     });
@@ -125,7 +120,6 @@ describe('works for initial render', () => {
     expect(state).toEqual({
       currentPage: 6001,
       pageSize: 50,
-      pagesToBeDisplayed: [5996, 5997, 5998, 5999, 6000, 6001],
       totalPages: 6001,
       totalRecords: 300023
     });
@@ -145,7 +139,6 @@ describe('works for initial render', () => {
     expect(state).toEqual({
       currentPage: 4,
       pageSize: 50,
-      pagesToBeDisplayed: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       totalPages: 6001,
       totalRecords: 300023
     });
@@ -164,7 +157,6 @@ describe('works for initial render', () => {
     expect(state).toEqual({
       currentPage: 1,
       pageSize: 50,
-      pagesToBeDisplayed: [1, 2, 3, 4, 5, 6],
       totalPages: 6001,
       totalRecords: 300023
     });
@@ -183,7 +175,6 @@ describe('works for initial render', () => {
     expect(state).toEqual({
       currentPage: 6001,
       pageSize: 50,
-      pagesToBeDisplayed: [5996, 5997, 5998, 5999, 6000, 6001],
       totalPages: 6001,
       totalRecords: 300023
     });

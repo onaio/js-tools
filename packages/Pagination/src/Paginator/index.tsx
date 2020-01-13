@@ -14,8 +14,7 @@ type CustomReducer = (state: PaginationState, action: InterActionType) => FlexOb
 export interface PaginationOptions<IState = {}> {
   totalRecords: number;
   pageSize: number;
-  pageNeighbors: number;
-  reducer: CustomReducer;
+  reducer?: CustomReducer;
   initialState?: IState;
 }
 
