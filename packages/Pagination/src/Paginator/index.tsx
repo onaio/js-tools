@@ -18,7 +18,9 @@ export interface PaginationOptions<IState = {}> {
   initialState?: IState;
 }
 
-/** describes state exposed the using component */
+/** describes default state exposed to the using component
+ * This can be modified by a custom reducer if one is given
+ */
 export interface PaginationState {
   currentPage: number;
   totalPages: number;
@@ -59,7 +61,7 @@ export function paginationReducer(state: PaginationState, action: PageActionType
 
 /** combines the passed in custom reducer with the default reducer
  * such that we apply changes defined by our reducer first and then
- * pass on the new state and the action to the custom reducer
+ * pass on the newState and the action+newState to the custom reducer
  *
  * @param {CustomReducer} reducer - their reducer
  */
@@ -71,7 +73,7 @@ const reducerCombiner = (reducer: CustomReducer) => {
   };
 };
 
-/** hook to expose page mutating helper logic */
+/** hook to expose page mutating helper logic to the calling component */
 export function usePagination<IState = {}>({
   totalRecords = 0,
   pageSize = 1,
