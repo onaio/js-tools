@@ -63,7 +63,11 @@ describe('gatekeeper/custom/APICallback', () => {
     };
     store.dispatch(logOutUser());
     const wrapper = mount(<APICallback {...props} />);
-    expect(toJson(wrapper.find('APICallback'))).toMatchSnapshot();
+    expect(wrapper.find('SuccessfulLogin').props()).toEqual({
+      extraData: helperFixtures.OAuthExtradata,
+      user: helperFixtures.onadataUser
+    });
+    expect(toJson(wrapper.find('SuccessfulLogin div'))).toMatchSnapshot();
     wrapper.unmount();
   });
 
@@ -79,7 +83,7 @@ describe('gatekeeper/custom/APICallback', () => {
     };
     store.dispatch(logOutUser());
     const wrapper = mount(<APICallback {...props} />);
-    expect(toJson(wrapper.find('APICallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('RenderLoadingComponent'))).toMatchSnapshot();
     wrapper.unmount();
   });
 
@@ -95,7 +99,7 @@ describe('gatekeeper/custom/APICallback', () => {
     };
     store.dispatch(logOutUser());
     const wrapper = mount(<APICallback {...props} />);
-    expect(toJson(wrapper.find('APICallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('RenderErrorComponent'))).toMatchSnapshot();
     wrapper.unmount();
   });
 });
