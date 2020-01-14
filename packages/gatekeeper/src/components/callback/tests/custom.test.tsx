@@ -21,6 +21,7 @@ import * as helperFixtures from '../../../helpers/tests/fixtures';
 import * as fixtures from '../../tests/fixtures';
 import * as callback from '../custom';
 
+const ConnectedAPICallback = callback.default;
 const APICallback = callback.APICallback;
 
 const history = createBrowserHistory();
@@ -100,6 +101,27 @@ describe('gatekeeper/custom/APICallback', () => {
     store.dispatch(logOutUser());
     const wrapper = mount(<APICallback {...props} />);
     expect(toJson(wrapper.find('RenderErrorComponent'))).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('renders correctly when connected to the redux store', () => {
+    fetchMock.getOnce('http://example.com', JSON.stringify(helperFixtures.expressAPIResponse));
+    const props = {
+      apiURL: 'http://example.com'
+    };
+
+    const { authenticated, user, extraData } = helperFixtures.onadataSessionWithOauthData;
+    store.dispatch(authenticateUser(authenticated, user, extraData));
+    store.dispatch(recordResult(true, extraData));
+
+    const wrapper = mount(
+      <Provider store={store}>
+        <ConnectedAPICallback {...props} />
+      </Provider>
+    );
+
+    expect(wrapper.find('SuccessfulLogin').props()).toEqual(helperFixtures.ImplicitOAuthData);
+    expect(toJson(wrapper.find('SuccessfulLogin div'))).toMatchSnapshot();
     wrapper.unmount();
   });
 });
