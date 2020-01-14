@@ -139,8 +139,7 @@ export const expressAPIResponse = {
   }
 };
 
-export const OAuthExtradata = {
-  authenticated: true,
+export const ImplicitOAuthData = {
   extraData: {
     api_token: 'the api token',
     city: '',
@@ -173,4 +172,9 @@ export const OAuthExtradata = {
     name: 'mosh',
     username: 'moshthepitt'
   }
+};
+
+export const OAuthExtradata = {
+  authenticated: true,
+  ...ImplicitOAuthData
 };
