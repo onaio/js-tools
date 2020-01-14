@@ -66,4 +66,36 @@ describe('gatekeeper/custom/APICallback', () => {
     expect(toJson(wrapper.find('APICallback'))).toMatchSnapshot();
     wrapper.unmount();
   });
+
+  it('renders correctly when loading', () => {
+    fetchMock.getOnce('http://example.com', JSON.stringify(helperFixtures.expressAPIResponse));
+    const props = {
+      apiURL: 'http://example.com',
+      authSuccess: null,
+      authenticateActionCreator: authenticateUser,
+      authenticated: true,
+      sessionData: helperFixtures.onadataSession,
+      sessionUser: helperFixtures.onadataUser
+    };
+    store.dispatch(logOutUser());
+    const wrapper = mount(<APICallback {...props} />);
+    expect(toJson(wrapper.find('APICallback'))).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('renders correctly when not authenticated', () => {
+    fetchMock.getOnce('http://example.com', JSON.stringify(helperFixtures.expressAPIResponse));
+    const props = {
+      apiURL: 'http://example.com',
+      authSuccess: true,
+      authenticateActionCreator: authenticateUser,
+      authenticated: false,
+      sessionData: helperFixtures.onadataSession,
+      sessionUser: helperFixtures.onadataUser
+    };
+    store.dispatch(logOutUser());
+    const wrapper = mount(<APICallback {...props} />);
+    expect(toJson(wrapper.find('APICallback'))).toMatchSnapshot();
+    wrapper.unmount();
+  });
 });
