@@ -6,6 +6,7 @@ import {
   isAuthenticated
 } from '@onaio/session-reducer';
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { ActionCreator, Store } from 'redux';
 import { getSuccess, RecordAction, recordResult } from '../../ducks/gatekeeper';
 import { fetchState } from '../../helpers/services';
@@ -84,3 +85,35 @@ const APICallback = (props: APICallbackProps<RouteParams>) => {
 APICallback.defaultProps = defaultAPICallbackProps;
 
 export { APICallback };
+
+/** Connect the component to the store */
+
+/** map state to props */
+const mapStateToProps = (
+  state: Partial<Store>,
+  ownProps: Partial<APICallbackProps<RouteParams>>
+) => {
+  const result = {
+    authSuccess: getSuccess(state),
+    authenticated: isAuthenticated(state),
+    sessionData: getExtraData(state),
+    sessionUser: getUser(state)
+  };
+  Object.assign(result, ownProps);
+
+  return result;
+};
+
+/** map dispatch to props */
+const mapDispatchToProps = {
+  authenticateActionCreator: authenticateUser,
+  recordResultActionCreator: recordResult
+};
+
+/** created connected component */
+const ConnectedAPICallback = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(APICallback);
+
+export default ConnectedAPICallback;
