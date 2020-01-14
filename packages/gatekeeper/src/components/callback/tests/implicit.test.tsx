@@ -69,7 +69,7 @@ describe('gatekeeper/implicit/OauthCallback', () => {
     shallow(<OauthCallback {...props} />);
   });
 
-  it('renders correctly when not loading', () => {
+  it('renders correctly when loading', () => {
     fetchMock.getOnce(
       fixtures.providers.onadata.userUri,
       JSON.stringify(helperFixtures.onadataUser)
@@ -104,7 +104,7 @@ describe('gatekeeper/implicit/OauthCallback', () => {
 
     store.dispatch(logOutUser());
     const wrapper = mount(<OauthCallback {...props} />);
-    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('RenderLoadingComponent'))).toMatchSnapshot();
     wrapper.unmount();
   });
 
@@ -160,7 +160,7 @@ describe('gatekeeper/implicit/OauthCallback', () => {
       getOnadataUserInfo
     );
 
-    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('RenderErrorComponent'))).toMatchSnapshot();
     mock.mockRestore();
     wrapper.unmount();
   });
@@ -198,7 +198,7 @@ describe('gatekeeper/implicit/OauthCallback', () => {
       </Provider>
     );
 
-    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('SuccessfulLogin div'))).toMatchSnapshot();
     wrapper.unmount();
   });
 
@@ -231,7 +231,7 @@ describe('gatekeeper/implicit/OauthCallback', () => {
     };
 
     const wrapper = mount(<OauthCallback {...props} />);
-    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('RenderErrorComponent'))).toMatchSnapshot();
     wrapper.unmount();
   });
 
@@ -264,7 +264,7 @@ describe('gatekeeper/implicit/OauthCallback', () => {
     };
 
     const wrapper = mount(<OauthCallback {...props} />);
-    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('RenderErrorComponent'))).toMatchSnapshot();
     wrapper.unmount();
   });
 
@@ -296,7 +296,7 @@ describe('gatekeeper/implicit/OauthCallback', () => {
     };
 
     const wrapper = mount(<OauthCallback {...props} />);
-    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('Component404'))).toMatchSnapshot();
     wrapper.unmount();
   });
 });
