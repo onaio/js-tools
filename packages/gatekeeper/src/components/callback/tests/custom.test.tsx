@@ -21,13 +21,13 @@ import * as helperFixtures from '../../../helpers/tests/fixtures';
 import * as fixtures from '../../tests/fixtures';
 import * as callback from '../custom';
 
-const CustomCallback = callback.CustomCallback;
+const APICallback = callback.APICallback;
 
 const history = createBrowserHistory();
 reducerRegistry.register(sessionReducer, session);
 reducerRegistry.register(gateKeeperReducer, gatekeeper);
 
-describe('gatekeeper/custom/CustomCallback', () => {
+describe('gatekeeper/custom/APICallback', () => {
   beforeEach(() => {
     jest.resetAllMocks();
     fetchMock.restore();
@@ -48,7 +48,7 @@ describe('gatekeeper/custom/CustomCallback', () => {
         username: ''
       }
     };
-    shallow(<CustomCallback {...props} />);
+    shallow(<APICallback {...props} />);
   });
 
   it('renders correctly', () => {
@@ -62,8 +62,8 @@ describe('gatekeeper/custom/CustomCallback', () => {
       sessionUser: helperFixtures.onadataUser
     };
     store.dispatch(logOutUser());
-    const wrapper = mount(<CustomCallback {...props} />);
-    expect(toJson(wrapper.find('CustomCallback'))).toMatchSnapshot();
+    const wrapper = mount(<APICallback {...props} />);
+    expect(toJson(wrapper.find('APICallback'))).toMatchSnapshot();
     wrapper.unmount();
   });
 });

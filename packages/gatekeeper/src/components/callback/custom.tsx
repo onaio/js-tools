@@ -21,8 +21,8 @@ interface RouteParams {
   id: string;
 }
 
-/** interface for OauthCallbackProps props */
-export interface OauthCallbackProps<G> extends BaseCallbackComponentProps<G> {
+/** interface for APICallbackProps props */
+export interface APICallbackProps<G> extends BaseCallbackComponentProps<G> {
   ErrorComponent: React.ElementType;
   HTTP404Component: React.ElementType;
   apiURL: string;
@@ -31,7 +31,7 @@ export interface OauthCallbackProps<G> extends BaseCallbackComponentProps<G> {
 }
 
 /** default props for OauthCallback */
-export const defaultOauthCallbackProps: Partial<OauthCallbackProps<RouteParams>> = {
+export const defaultAPICallbackProps: Partial<APICallbackProps<RouteParams>> = {
   ...defaultBaseCallbackComponentProps,
   ErrorComponent: RenderErrorComponent,
   HTTP404Component: Component404,
@@ -40,7 +40,11 @@ export const defaultOauthCallbackProps: Partial<OauthCallbackProps<RouteParams>>
   recordResultActionCreator: recordResult
 };
 
-const CustomCallback = (props: OauthCallbackProps<RouteParams>) => {
+/**
+ * This component gets OAuth state from an API endpoint that returns JSON
+ * that represents the OAuth credentials.
+ */
+const APICallback = (props: APICallbackProps<RouteParams>) => {
   const {
     LoadingComponent,
     SuccessfulLoginComponent,
@@ -77,6 +81,6 @@ const CustomCallback = (props: OauthCallbackProps<RouteParams>) => {
   return <BaseCallbackComponent {...baseProps} />;
 };
 
-CustomCallback.defaultProps = defaultOauthCallbackProps;
+APICallback.defaultProps = defaultAPICallbackProps;
 
-export { CustomCallback };
+export { APICallback };
