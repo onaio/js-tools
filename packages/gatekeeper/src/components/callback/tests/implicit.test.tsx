@@ -198,6 +198,7 @@ describe('gatekeeper/implicit/OauthCallback', () => {
       </Provider>
     );
 
+    expect(wrapper.find('SuccessfulLogin').props()).toEqual(helperFixtures.ImplicitOAuthData);
     expect(toJson(wrapper.find('SuccessfulLogin div'))).toMatchSnapshot();
     wrapper.unmount();
   });
