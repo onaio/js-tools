@@ -1,11 +1,8 @@
-/** generic interface describing arbitrary object schema */
-export interface FlexObject {
-  [key: string]: any;
-}
-declare type CustomReducer<IState> = (
+/// <reference types="react" />
+declare type CustomReducer<IState, CustomActionTypes = {}> = (
   state: PaginationState<IState>,
-  action: InterActionType<IState>
-) => FlexObject;
+  action: ActionTypes<IState, CustomActionTypes>
+) => PaginationState<IState>;
 /** describes options passed to the hook */
 export interface PaginationOptions<IState> {
   totalRecords: number;
@@ -37,10 +34,15 @@ export interface SwitchCurrentPageAction {
 }
 /** a union of all action types */
 declare type PageActionTypes = SwitchCurrentPageAction;
-/** describe the action after having passed through our reducer */
-export interface InterActionType<IState> extends PageActionTypes {
-  changes: PaginationState<IState>;
-}
+/** describe the action after having passed through our reducer, you can use
+ * this as a type for custom actions that you wish to pass through your custom
+ * reducer
+ */
+export declare type ActionTypes<IState, CustomActionTypes = {}> =
+  | (PageActionTypes & {
+      changes: PaginationState<IState>;
+    })
+  | CustomActionTypes;
 /** default reducer */
 export declare function paginationReducer<IState>(
   state: PaginationState<IState>,
@@ -55,11 +57,12 @@ export declare function usePagination<IState>({
 }: PaginationOptions<IState>): {
   canNextPage: boolean;
   canPreviousPage: boolean;
+  dispatch: import('react').Dispatch<any>;
   firstPage: () => void;
   goToPage: (pageNumber: number) => void;
   lastPage: () => void;
   nextPage: () => void;
-  paginationState: FlexObject;
+  paginationState: PaginationState<IState>;
   previousPage: () => void;
 };
 export {};

@@ -2,15 +2,10 @@
 import { useReducer } from 'react';
 import { sanitizeNumber } from './utils';
 
-/** generic interface describing arbitrary object schema */
-export interface FlexObject {
-  [key: string]: any;
-}
-
-type CustomReducer<IState> = (
+type CustomReducer<IState, CustomActionTypes = {}> = (
   state: PaginationState<IState>,
-  action: InterActionType<IState>
-) => FlexObject;
+  action: ActionTypes<IState, CustomActionTypes>
+) => PaginationState<IState>;
 
 /** describes options passed to the hook */
 export interface PaginationOptions<IState> {
@@ -49,10 +44,15 @@ export interface SwitchCurrentPageAction {
 /** a union of all action types */
 type PageActionTypes = SwitchCurrentPageAction;
 
-/** describe the action after having passed through our reducer */
-export interface InterActionType<IState> extends PageActionTypes {
-  changes: PaginationState<IState>;
-}
+/** describe the action after having passed through our reducer, you can use
+ * this as a type for custom actions that you wish to pass through your custom
+ * reducer
+ */
+export type ActionTypes<IState, CustomActionTypes = {}> =
+  | PageActionTypes & {
+      changes: PaginationState<IState>;
+    }
+  | CustomActionTypes;
 
 /** default reducer */
 export function paginationReducer<IState>(state: PaginationState<IState>, action: PageActionTypes) {
@@ -75,8 +75,8 @@ export function paginationReducer<IState>(state: PaginationState<IState>, action
  */
 function reducerCombiner<IState>(reducer: CustomReducer<IState>) {
   return (state: any, action: any) => {
-    const changes = paginationReducer(state, action);
-    const response = reducer(state, { ...action, changes });
+    const newState = paginationReducer(state, action);
+    const response = reducer(newState, { ...action, changes: newState });
     return response;
   };
 }
@@ -85,14 +85,14 @@ function reducerCombiner<IState>(reducer: CustomReducer<IState>) {
 export function usePagination<IState>({
   totalRecords = 0,
   pageSize = 1,
-  reducer = (s: PaginationState<IState>, a: InterActionType<IState>) => a.changes,
+  reducer = (s: PaginationState<IState>, a: ActionTypes<IState>) => s,
   initialState
 }: PaginationOptions<IState>) {
   const totalPages = Math.ceil(totalRecords / pageSize); // division by zero error
 
   const PassedInState = initialState ? initialState : {};
 
-  const defaultPaginationState = {
+  const defaultPaginationState: any = {
     currentPage: 1,
     pageSize,
     totalPages,
@@ -116,6 +116,7 @@ export function usePagination<IState>({
   return {
     canNextPage,
     canPreviousPage,
+    dispatch,
     firstPage,
     goToPage,
     lastPage,

@@ -42,9 +42,9 @@ function paginationReducer(state, action) {
 
 function reducerCombiner(reducer) {
   return function (state, action) {
-    var changes = paginationReducer(state, action);
-    var response = reducer(state, _objectSpread({}, action, {
-      changes: changes
+    var newState = paginationReducer(state, action);
+    var response = reducer(newState, _objectSpread({}, action, {
+      changes: newState
     }));
     return response;
   };
@@ -57,7 +57,7 @@ function usePagination(_ref) {
       pageSize = _ref$pageSize === void 0 ? 1 : _ref$pageSize,
       _ref$reducer = _ref.reducer,
       reducer = _ref$reducer === void 0 ? function (s, a) {
-    return a.changes;
+    return s;
   } : _ref$reducer,
       initialState = _ref.initialState;
   var totalPages = Math.ceil(totalRecords / pageSize);
@@ -102,6 +102,7 @@ function usePagination(_ref) {
   return {
     canNextPage: canNextPage,
     canPreviousPage: canPreviousPage,
+    dispatch: dispatch,
     firstPage: firstPage,
     goToPage: goToPage,
     lastPage: lastPage,
