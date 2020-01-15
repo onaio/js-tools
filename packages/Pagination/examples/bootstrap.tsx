@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import { InterActionType, PaginationOptions, PaginationState, usePagination } from '../src';
+import { ActionTypes, PaginationOptions, PaginationState, usePagination } from '../src';
 import { fetchPageNumbers } from './utils';
 
 /** describes the properties that we are going to add to the usePagination's hook */
@@ -16,7 +16,7 @@ interface ExtendingOptions {
  */
 function bootstrapReducer(
   state: PaginationState<ExtendingOptions>,
-  action: InterActionType<ExtendingOptions>
+  action: ActionTypes<ExtendingOptions, any>
 ) {
   switch (action.type) {
     case 'TO_PAGE':
