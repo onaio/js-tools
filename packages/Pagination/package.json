@@ -1,7 +1,7 @@
 {
   "name": "@onaio/pagination",
   "version": "0.0.2",
-  "types": " dist/types",
+  "types": "dist/types",
   "description": "Bootstrap powered pagination component",
   "main": "dist/index.js",
   "repository": "https://github.com/onaio/js-tools",
