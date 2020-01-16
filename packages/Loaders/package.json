@@ -1,7 +1,7 @@
 {
   "name": "@onaio/loaders",
   "version": "0.0.1",
-  "types": " dist/types",
+  "types": "dist/types",
   "description": "Loading components for your everyday use",
   "main": "dist/index.js",
   "repository": "https://github.com/onaio/js-tools",
