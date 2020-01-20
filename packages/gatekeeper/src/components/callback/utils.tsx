@@ -1,29 +1,40 @@
 import { User } from '@onaio/session-reducer';
+import {
+  AN_ERROR_OCCURRED,
+  NOTHING_HERE,
+  PLEASE_WAIT,
+  WELCOME_BACK
+} from 'gatekeeper/src/helpers/constants';
 import React from 'react';
 
+/** describing props for the util components */
+interface Props {
+  message?: string;
+}
+
 /** default 404 page component */
-export const Component404 = () => {
+export const Component404 = ({ message = NOTHING_HERE }: Props) => {
   return (
     <div className="gatekeeper-cb">
-      <p className="gatekeeper-p">Nothing here!</p>
+      <p className="gatekeeper-p">{message}</p>
     </div>
   );
 };
 
 /** error page component */
-export const RenderErrorComponent = () => {
+export const RenderErrorComponent = ({ message = AN_ERROR_OCCURRED }: Props) => {
   return (
     <div className="gatekeeper-cb">
-      <p className="gatekeeper-p">An error occurred!</p>
+      <p className="gatekeeper-p">{message}</p>
     </div>
   );
 };
 
 /** loading component */
-export const RenderLoadingComponent = () => {
+export const RenderLoadingComponent = ({ message = PLEASE_WAIT }: Props) => {
   return (
     <div className="gatekeeper-cb">
-      <p className="gatekeeper-p">Please wait...</p>
+      <p className="gatekeeper-p">{message}</p>
     </div>
   );
 };
@@ -39,7 +50,9 @@ export const SuccessfulLogin = (props: SuccessfulLoginProps) => {
   const { user } = props;
   return (
     <div className="gatekeeper-cb">
-      <p className="gatekeeper-p">Welcome back, {user.username}!</p>
+      <p className="gatekeeper-p">
+        `${WELCOME_BACK}, {user.username}!`
+      </p>
     </div>
   );
 };

@@ -18,3 +18,15 @@ export type OAUTH_LOGIN_PROMPT_STRING = typeof OAUTH_LOGIN_PROMPT_STRING;
 
 export const NO_PROVIDERS_STRING = 'No Providers';
 export type NO_PROVIDERS_STRING = typeof NO_PROVIDERS_STRING;
+
+export const NOTHING_HERE = 'Nothing here!';
+export type NOTHING_HERE = typeof NOTHING_HERE;
+
+export const AN_ERROR_OCCURRED = 'An error occurred';
+export type AN_ERROR_OCCURRED = typeof AN_ERROR_OCCURRED;
+
+export const PLEASE_WAIT = 'Please wait...';
+export type PLEASE_WAIT = typeof PLEASE_WAIT;
+
+export const WELCOME_BACK = 'Welcome back, ';
+export type WELCOME_BACK = typeof WELCOME_BACK;
