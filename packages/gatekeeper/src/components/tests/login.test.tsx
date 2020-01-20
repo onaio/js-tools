@@ -21,7 +21,9 @@ describe('gatekeeper/OauthLogin', () => {
       providers: fixtures.providers
     };
     const wrapper = mount(<OauthLogin {...props} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper.text()).toMatchInlineSnapshot(
+      `"Please log in with one of the following providersonadata"`
+    );
     wrapper.unmount();
   });
 
@@ -39,7 +41,7 @@ describe('gatekeeper/OauthLogin', () => {
       providers: fixtures.providers
     };
     const wrapper = mount(<OauthLogin {...props} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(toJson(wrapper.find('.danger'))).toMatchSnapshot('custom provider link');
     wrapper.unmount();
   });
 
@@ -48,7 +50,7 @@ describe('gatekeeper/OauthLogin', () => {
       providers: undefined
     };
     const wrapper = mount(<OauthLogin {...props} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper.text().includes('No Providers')).toBeTruthy();
     wrapper.unmount();
   });
 
@@ -58,7 +60,7 @@ describe('gatekeeper/OauthLogin', () => {
       providers: fixtures.providers
     };
     const wrapper = mount(<OauthLogin {...props} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(toJson(wrapper.find('.gatekeeper-login'))).toMatchSnapshot();
     wrapper.unmount();
   });
 });

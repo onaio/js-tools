@@ -1,210 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`gatekeeper/OauthLogin renders correctly 1`] = `
-<OauthLogin
-  NO_PROVIDERS="No Providers"
-  OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
-  ProviderLinksComponent={[Function]}
-  authorizationGrant="IMPLICIT"
-  providers={
-    Object {
-      "onadata": Object {
-        "accessTokenUri": "https://stage-api.ona.io/o/token/",
-        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
-        "clientId": "hunter2",
-        "redirectUri": "https://example.com/oauth/callback/onadata/",
-        "scopes": Array [
-          "read",
-          "write",
-        ],
-        "state": "abc",
-        "userUri": "https://stage-api.ona.io/api/v1/user.json",
-      },
-    }
-  }
+exports[`gatekeeper/OauthLogin renders correctly with custom ProviderLinksComponent: custom provider link 1`] = `
+<div
+  className="danger"
 >
-  <ProviderLinks
-    OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
-    authorizationGrant="IMPLICIT"
-    providers={
-      Object {
-        "onadata": Object {
-          "accessTokenUri": "https://stage-api.ona.io/o/token/",
-          "authorizationUri": "https://stage-api.ona.io/o/authorize/",
-          "clientId": "hunter2",
-          "redirectUri": "https://example.com/oauth/callback/onadata/",
-          "scopes": Array [
-            "read",
-            "write",
-          ],
-          "state": "abc",
-          "userUri": "https://stage-api.ona.io/api/v1/user.json",
-        },
-      }
-    }
+  <p
+    className="closed"
   >
-    <div
-      className="gatekeeper-login"
-    >
-      <p
-        className="gatekeeper-p"
-      >
-        Please log in with one of the following providers
-      </p>
-      <p
-        className="gatekeeper-p item"
-        key="onadata"
-      >
-        <a
-          className="gatekeeper-btn"
-          href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&scope=read%20write&response_type=token&state=abc"
-        >
-          onadata
-        </a>
-      </p>
-    </div>
-  </ProviderLinks>
-</OauthLogin>
-`;
-
-exports[`gatekeeper/OauthLogin renders correctly with custom ProviderLinksComponent 1`] = `
-<OauthLogin
-  NO_PROVIDERS="No Providers"
-  OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
-  ProviderLinksComponent={[Function]}
-  authorizationGrant="IMPLICIT"
-  providers={
-    Object {
-      "onadata": Object {
-        "accessTokenUri": "https://stage-api.ona.io/o/token/",
-        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
-        "clientId": "hunter2",
-        "redirectUri": "https://example.com/oauth/callback/onadata/",
-        "scopes": Array [
-          "read",
-          "write",
-        ],
-        "state": "abc",
-        "userUri": "https://stage-api.ona.io/api/v1/user.json",
-      },
-    }
-  }
->
-  <CustomProviderLinks
-    OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
-    authorizationGrant="IMPLICIT"
-    providers={
-      Object {
-        "onadata": Object {
-          "accessTokenUri": "https://stage-api.ona.io/o/token/",
-          "authorizationUri": "https://stage-api.ona.io/o/authorize/",
-          "clientId": "hunter2",
-          "redirectUri": "https://example.com/oauth/callback/onadata/",
-          "scopes": Array [
-            "read",
-            "write",
-          ],
-          "state": "abc",
-          "userUri": "https://stage-api.ona.io/api/v1/user.json",
-        },
-      }
-    }
-  >
-    <div
-      className="danger"
-    >
-      <p
-        className="closed"
-      >
-        oops!
-      </p>
-    </div>
-  </CustomProviderLinks>
-</OauthLogin>
+    oops!
+  </p>
+</div>
 `;
 
 exports[`gatekeeper/OauthLogin renders correctly with no ProviderLinksComponent 1`] = `
-<OauthLogin
-  NO_PROVIDERS="No Providers"
-  OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
-  ProviderLinksComponent={[Function]}
-  authorizationGrant="IMPLICIT"
-  providers={
-    Object {
-      "onadata": Object {
-        "accessTokenUri": "https://stage-api.ona.io/o/token/",
-        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
-        "clientId": "hunter2",
-        "redirectUri": "https://example.com/oauth/callback/onadata/",
-        "scopes": Array [
-          "read",
-          "write",
-        ],
-        "state": "abc",
-        "userUri": "https://stage-api.ona.io/api/v1/user.json",
-      },
-    }
-  }
+<div
+  className="gatekeeper-login"
 >
-  <ProviderLinks
-    OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
-    authorizationGrant="IMPLICIT"
-    providers={
-      Object {
-        "onadata": Object {
-          "accessTokenUri": "https://stage-api.ona.io/o/token/",
-          "authorizationUri": "https://stage-api.ona.io/o/authorize/",
-          "clientId": "hunter2",
-          "redirectUri": "https://example.com/oauth/callback/onadata/",
-          "scopes": Array [
-            "read",
-            "write",
-          ],
-          "state": "abc",
-          "userUri": "https://stage-api.ona.io/api/v1/user.json",
-        },
-      }
-    }
+  <p
+    className="gatekeeper-p"
   >
-    <div
-      className="gatekeeper-login"
-    >
-      <p
-        className="gatekeeper-p"
-      >
-        Please log in with one of the following providers
-      </p>
-      <p
-        className="gatekeeper-p item"
-        key="onadata"
-      >
-        <a
-          className="gatekeeper-btn"
-          href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&scope=read%20write&response_type=token&state=abc"
-        >
-          onadata
-        </a>
-      </p>
-    </div>
-  </ProviderLinks>
-</OauthLogin>
-`;
-
-exports[`gatekeeper/OauthLogin renders correctly with no providers 1`] = `
-<OauthLogin
-  NO_PROVIDERS="No Providers"
-  OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
-  ProviderLinksComponent={[Function]}
-  authorizationGrant="IMPLICIT"
->
-  <div
-    className="gatekeeper-login"
+    Please log in with one of the following providers
+  </p>
+  <p
+    className="gatekeeper-p item"
+    key="onadata"
   >
-    <p
-      className="gatekeeper-p"
+    <a
+      className="gatekeeper-btn"
+      href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&scope=read%20write&response_type=token&state=abc"
     >
-      No Providers
-    </p>
-  </div>
-</OauthLogin>
+      onadata
+    </a>
+  </p>
+</div>
 `;
