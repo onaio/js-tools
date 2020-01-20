@@ -1,11 +1,11 @@
 import { User } from '@onaio/session-reducer';
+import React from 'react';
 import {
   AN_ERROR_OCCURRED,
   NOTHING_HERE,
   PLEASE_WAIT,
   WELCOME_BACK
-} from 'gatekeeper/src/helpers/constants';
-import React from 'react';
+} from '../../helpers/constants';
 
 /** describing props for the util components */
 interface Props {
