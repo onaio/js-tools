@@ -99,7 +99,7 @@ OauthLogin.defaultProps = {
   NO_PROVIDERS: NO_PROVIDERS_STRING,
   OAUTH_LOGIN_PROMPT: OAUTH_LOGIN_PROMPT_STRING,
   ProviderLinksComponent: ProviderLinks /** use the ProviderLinks component as the default */,
-  authorizationGrant: AuthorizationGrantType.IMPLICIT,
+  authorizationGrant: AuthorizationGrantType.IMPLICIT
 };
 
 export default OauthLogin;
