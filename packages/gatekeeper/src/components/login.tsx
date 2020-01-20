@@ -1,5 +1,6 @@
 import React from 'react';
 import { OauthLoginProps } from '..';
+import { NO_PROVIDERS_STRING, OAUTH_LOGIN_PROMPT_STRING } from '../helpers/constants';
 import { getProviderFromOptions, Providers } from '../helpers/oauth';
 
 /** types of supported authorization grant flow */
@@ -95,8 +96,8 @@ const OauthLogin = (props: OauthLoginProps) => {
 };
 
 OauthLogin.defaultProps = {
-  NO_PROVIDERS: 'No Providers',
-  OAUTH_LOGIN_PROMPT: 'Please log in with one of the following providers',
+  NO_PROVIDERS: NO_PROVIDERS_STRING,
+  OAUTH_LOGIN_PROMPT: OAUTH_LOGIN_PROMPT_STRING,
   ProviderLinksComponent: ProviderLinks /** use the ProviderLinks component as the default */,
   authorizationGrant: AuthorizationGrantType.IMPLICIT,
 };

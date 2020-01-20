@@ -12,3 +12,9 @@ export type LOGIN_URL = typeof LOGIN_URL;
 
 export const DEFAULT_LOGOUT_DELAY = 20;
 export type DEFAULT_LOGOUT_DELAY = typeof DEFAULT_LOGOUT_DELAY;
+
+export const OAUTH_LOGIN_PROMPT_STRING = 'Please log in with one of the following providers';
+export type OAUTH_LOGIN_PROMPT_STRING = typeof OAUTH_LOGIN_PROMPT_STRING;
+
+export const NO_PROVIDERS_STRING = 'No Providers';
+export type NO_PROVIDERS_STRING = typeof NO_PROVIDERS_STRING;
