@@ -50,9 +50,7 @@ export const SuccessfulLogin = (props: SuccessfulLoginProps) => {
   const { user } = props;
   return (
     <div className="gatekeeper-cb">
-      <p className="gatekeeper-p">
-        `${WELCOME_BACK}, {user.username}!`
-      </p>
+      <p className="gatekeeper-p">{`${WELCOME_BACK} ${user.username}!`}</p>
     </div>
   );
 };

@@ -7,9 +7,7 @@ exports[`gatekeeper/custom/APICallback renders correctly 1`] = `
   <p
     className="gatekeeper-p"
   >
-    Welcome back, 
-    moshthepitt
-    !
+    Welcome back,  moshthepitt!
   </p>
 </div>
 `;
@@ -21,9 +19,7 @@ exports[`gatekeeper/custom/APICallback renders correctly when connected to the r
   <p
     className="gatekeeper-p"
   >
-    Welcome back, 
-    moshthepitt
-    !
+    Welcome back,  moshthepitt!
   </p>
 </div>
 `;

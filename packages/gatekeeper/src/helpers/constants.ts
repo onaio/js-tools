@@ -22,7 +22,7 @@ export type NO_PROVIDERS_STRING = typeof NO_PROVIDERS_STRING;
 export const NOTHING_HERE = 'Nothing here!';
 export type NOTHING_HERE = typeof NOTHING_HERE;
 
-export const AN_ERROR_OCCURRED = 'An error occurred';
+export const AN_ERROR_OCCURRED = 'An error occurred!';
 export type AN_ERROR_OCCURRED = typeof AN_ERROR_OCCURRED;
 
 export const PLEASE_WAIT = 'Please wait...';

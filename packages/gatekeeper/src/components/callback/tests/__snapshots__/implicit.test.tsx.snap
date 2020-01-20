@@ -21,9 +21,7 @@ exports[`gatekeeper/implicit/OauthCallback renders correctly when logged in 1`] 
   <p
     className="gatekeeper-p"
   >
-    Welcome back, 
-    moshthepitt
-    !
+    Welcome back,  moshthepitt!
   </p>
 </div>
 `;
