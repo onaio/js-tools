@@ -25,46 +25,27 @@ Object {
 }
 `;
 
-exports[`gatekeeper/ConnectedLogout renders the ConnectedLogout component when logged out 2`] = `
-<ProviderLinks
-  providers={
-    Object {
-      "onadata": Object {
-        "accessTokenUri": "https://stage-api.ona.io/o/token/",
-        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
-        "clientId": "hunter2",
-        "redirectUri": "https://example.com/oauth/callback/onadata/",
-        "scopes": Array [
-          "read",
-          "write",
-        ],
-        "state": "abc",
-        "userUri": "https://stage-api.ona.io/api/v1/user.json",
-      },
-    }
-  }
+exports[`gatekeeper/ConnectedLogout renders the ConnectedLogout component when logged out: Gatekeeper logged out 1`] = `
+<div
+  className="gatekeeper-login"
 >
-  <div
-    className="gatekeeper-login"
+  <p
+    className="gatekeeper-p"
   >
-    <p
-      className="gatekeeper-p"
+    Please log in with one of the following providers
+  </p>
+  <p
+    className="gatekeeper-p item"
+    key="onadata"
+  >
+    <a
+      className="gatekeeper-btn"
+      href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&scope=read%20write&response_type=token&state=abc"
     >
-      Please log in with one of the following providers
-    </p>
-    <p
-      className="gatekeeper-p item"
-      key="onadata"
-    >
-      <a
-        className="gatekeeper-btn"
-        href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&scope=read%20write&response_type=token&state=abc"
-      >
-        onadata
-      </a>
-    </p>
-  </div>
-</ProviderLinks>
+      onadata
+    </a>
+  </p>
+</div>
 `;
 
 exports[`gatekeeper/ConnectedLogout renders the ConnectedLogout when logged in 1`] = `
@@ -92,46 +73,27 @@ Object {
 }
 `;
 
-exports[`gatekeeper/ConnectedLogout renders the ConnectedLogout when logged in 2`] = `
-<ProviderLinks
-  providers={
-    Object {
-      "onadata": Object {
-        "accessTokenUri": "https://stage-api.ona.io/o/token/",
-        "authorizationUri": "https://stage-api.ona.io/o/authorize/",
-        "clientId": "hunter2",
-        "redirectUri": "https://example.com/oauth/callback/onadata/",
-        "scopes": Array [
-          "read",
-          "write",
-        ],
-        "state": "abc",
-        "userUri": "https://stage-api.ona.io/api/v1/user.json",
-      },
-    }
-  }
+exports[`gatekeeper/ConnectedLogout renders the ConnectedLogout when logged in: Gatekeeper logged in 1`] = `
+<div
+  className="gatekeeper-login"
 >
-  <div
-    className="gatekeeper-login"
+  <p
+    className="gatekeeper-p"
   >
-    <p
-      className="gatekeeper-p"
+    Please log in with one of the following providers
+  </p>
+  <p
+    className="gatekeeper-p item"
+    key="onadata"
+  >
+    <a
+      className="gatekeeper-btn"
+      href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&scope=read%20write&response_type=token&state=abc"
     >
-      Please log in with one of the following providers
-    </p>
-    <p
-      className="gatekeeper-p item"
-      key="onadata"
-    >
-      <a
-        className="gatekeeper-btn"
-        href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&scope=read%20write&response_type=token&state=abc"
-      >
-        onadata
-      </a>
-    </p>
-  </div>
-</ProviderLinks>
+      onadata
+    </a>
+  </p>
+</div>
 `;
 
 exports[`gatekeeper/ConnectedLogout works with its props as expected 1`] = `
