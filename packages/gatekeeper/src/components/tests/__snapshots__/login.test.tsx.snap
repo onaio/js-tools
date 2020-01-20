@@ -2,7 +2,10 @@
 
 exports[`gatekeeper/OauthLogin renders correctly 1`] = `
 <OauthLogin
+  NO_PROVIDERS="No Providers"
+  OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
   ProviderLinksComponent={[Function]}
+  authorizationGrant="IMPLICIT"
   providers={
     Object {
       "onadata": Object {
@@ -21,6 +24,8 @@ exports[`gatekeeper/OauthLogin renders correctly 1`] = `
   }
 >
   <ProviderLinks
+    OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
+    authorizationGrant="IMPLICIT"
     providers={
       Object {
         "onadata": Object {
@@ -64,7 +69,10 @@ exports[`gatekeeper/OauthLogin renders correctly 1`] = `
 
 exports[`gatekeeper/OauthLogin renders correctly with custom ProviderLinksComponent 1`] = `
 <OauthLogin
+  NO_PROVIDERS="No Providers"
+  OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
   ProviderLinksComponent={[Function]}
+  authorizationGrant="IMPLICIT"
   providers={
     Object {
       "onadata": Object {
@@ -83,6 +91,8 @@ exports[`gatekeeper/OauthLogin renders correctly with custom ProviderLinksCompon
   }
 >
   <CustomProviderLinks
+    OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
+    authorizationGrant="IMPLICIT"
     providers={
       Object {
         "onadata": Object {
@@ -115,7 +125,10 @@ exports[`gatekeeper/OauthLogin renders correctly with custom ProviderLinksCompon
 
 exports[`gatekeeper/OauthLogin renders correctly with no ProviderLinksComponent 1`] = `
 <OauthLogin
+  NO_PROVIDERS="No Providers"
+  OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
   ProviderLinksComponent={[Function]}
+  authorizationGrant="IMPLICIT"
   providers={
     Object {
       "onadata": Object {
@@ -134,6 +147,8 @@ exports[`gatekeeper/OauthLogin renders correctly with no ProviderLinksComponent 
   }
 >
   <ProviderLinks
+    OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
+    authorizationGrant="IMPLICIT"
     providers={
       Object {
         "onadata": Object {
@@ -177,7 +192,10 @@ exports[`gatekeeper/OauthLogin renders correctly with no ProviderLinksComponent 
 
 exports[`gatekeeper/OauthLogin renders correctly with no providers 1`] = `
 <OauthLogin
+  NO_PROVIDERS="No Providers"
+  OAUTH_LOGIN_PROMPT="Please log in with one of the following providers"
   ProviderLinksComponent={[Function]}
+  authorizationGrant="IMPLICIT"
 >
   <div
     className="gatekeeper-login"
@@ -185,7 +203,7 @@ exports[`gatekeeper/OauthLogin renders correctly with no providers 1`] = `
     <p
       className="gatekeeper-p"
     >
-      No providers
+      No Providers
     </p>
   </div>
 </OauthLogin>
