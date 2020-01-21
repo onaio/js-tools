@@ -1,6 +1,5 @@
 import React from 'react';
-import { OauthLoginProps } from '..';
-import { NO_PROVIDERS_STRING, OAUTH_LOGIN_PROMPT_STRING } from '../helpers/constants';
+import { NO_PROVIDERS, OAUTH_LOGIN_PROMPT } from '../helpers/constants';
 import { getProviderFromOptions, Providers } from '../helpers/oauth';
 
 /** types of supported authorization grant flow */
@@ -17,13 +16,13 @@ export interface OAuthLoginHookOptions {
 
 /** interface for ProviderLinks props */
 export interface ProviderLinksProps extends OAuthLoginHookOptions {
-  OAUTH_LOGIN_PROMPT?: string;
+  OAuthLoginPromptMessage: string;
 }
 
 /** interface for OauthLogin props */
 export interface OauthLoginProps extends ProviderLinksProps {
-  ProviderLinksComponent?: React.ElementType;
-  NO_PROVIDERS?: string;
+  ProviderLinksComponent: React.ElementType;
+  noProvidersMessage: string;
 }
 
 /** hook returns an object where the provider name is the key and the value is
@@ -55,11 +54,11 @@ export function useOAuthLogin(options: OAuthLoginHookOptions): { [key: string]: 
  * log in with those providers
  */
 export const ProviderLinks = (props: ProviderLinksProps) => {
-  const { providers, authorizationGrant, OAUTH_LOGIN_PROMPT } = props;
+  const { providers, authorizationGrant, OAuthLoginPromptMessage } = props;
   const authorizationUris = useOAuthLogin({ providers, authorizationGrant });
   return (
     <div className="gatekeeper-login">
-      <p className="gatekeeper-p">{OAUTH_LOGIN_PROMPT}</p>
+      <p className="gatekeeper-p">{OAuthLoginPromptMessage}</p>
       {/** loop through the authorization uris */
       Object.entries(authorizationUris).map(item => {
         return (
@@ -83,23 +82,23 @@ const OauthLogin = (props: OauthLoginProps) => {
     providers,
     ProviderLinksComponent,
     authorizationGrant,
-    NO_PROVIDERS,
-    OAUTH_LOGIN_PROMPT
+    noProvidersMessage,
+    OAuthLoginPromptMessage
   } = props;
   return ProviderLinksComponent && providers ? (
-    <ProviderLinksComponent {...{ providers, authorizationGrant, OAUTH_LOGIN_PROMPT }} />
+    <ProviderLinksComponent {...{ providers, authorizationGrant, OAuthLoginPromptMessage }} />
   ) : (
     <div className="gatekeeper-login">
-      <p className="gatekeeper-p">{NO_PROVIDERS}</p>
+      <p className="gatekeeper-p">{noProvidersMessage}</p>
     </div>
   );
 };
 
 OauthLogin.defaultProps = {
-  NO_PROVIDERS: NO_PROVIDERS_STRING,
-  OAUTH_LOGIN_PROMPT: OAUTH_LOGIN_PROMPT_STRING,
+  OAuthLoginPromptMessage: OAUTH_LOGIN_PROMPT,
   ProviderLinksComponent: ProviderLinks /** use the ProviderLinks component as the default */,
-  authorizationGrant: AuthorizationGrantType.IMPLICIT
+  authorizationGrant: AuthorizationGrantType.IMPLICIT,
+  noProvidersMessage: NO_PROVIDERS
 };
 
 export default OauthLogin;

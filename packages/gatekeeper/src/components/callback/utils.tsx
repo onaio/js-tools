@@ -9,7 +9,7 @@ import {
 
 /** describing props for the util components */
 interface Props {
-  message?: string;
+  message: string;
 }
 
 /** default 404 page component */
