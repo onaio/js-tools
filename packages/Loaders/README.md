@@ -21,6 +21,12 @@ import Ripple from '@onaio/loaders';
 <Ripple />;
 ```
 
+Also, if the styling does not work out of the box, you might have to import the stylesheet with:
+
+```typescript
+import '@onaio/loaders/dist/style.css';
+```
+
 ### Customization
 
 The Ripple loader takes a number of props that can be used to customize it:
