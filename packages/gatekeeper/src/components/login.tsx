@@ -11,7 +11,7 @@ export enum AuthorizationGrantType {
 /** describes object to pass to the OAuthHook */
 export interface OAuthLoginHookOptions {
   providers: Providers;
-  authorizationGrant: AuthorizationGrantType;
+  authorizationGrantType: AuthorizationGrantType;
 }
 
 /** interface for ProviderLinks props */
@@ -31,16 +31,16 @@ export interface OauthLoginProps extends ProviderLinksProps {
  * @return {[key: string]: string} - an object
  */
 export function useOAuthLogin(options: OAuthLoginHookOptions): { [key: string]: string } {
-  const { providers: rawProviders, authorizationGrant } = options;
+  const { providers: rawProviders, authorizationGrantType } = options;
 
   /** get the ClientOAuth2 object for each provider */
   const authorizationUris: { [key: string]: string } = {};
   Object.entries(rawProviders).map(item => {
     const thisProvider = getProviderFromOptions(item[1]);
     const authorizationUri =
-      authorizationGrant === AuthorizationGrantType.IMPLICIT
+      authorizationGrantType === AuthorizationGrantType.IMPLICIT
         ? thisProvider.token.getUri()
-        : authorizationGrant === AuthorizationGrantType.AUTHORIZATION_CODE
+        : authorizationGrantType === AuthorizationGrantType.AUTHORIZATION_CODE
         ? thisProvider.code.getUri()
         : '#';
     authorizationUris[item[0]] = authorizationUri;
@@ -54,8 +54,11 @@ export function useOAuthLogin(options: OAuthLoginHookOptions): { [key: string]: 
  * log in with those providers
  */
 export const ProviderLinks = (props: ProviderLinksProps) => {
-  const { providers, authorizationGrant, OAuthLoginPromptMessage } = props;
-  const authorizationUris = useOAuthLogin({ providers, authorizationGrant });
+  const { providers, authorizationGrantType, OAuthLoginPromptMessage } = props;
+  const authorizationUris = useOAuthLogin({
+    authorizationGrantType,
+    providers
+  });
   return (
     <div className="gatekeeper-login">
       <p className="gatekeeper-p">{OAuthLoginPromptMessage}</p>
@@ -81,12 +84,12 @@ const OauthLogin = (props: OauthLoginProps) => {
   const {
     providers,
     ProviderLinksComponent,
-    authorizationGrant,
+    authorizationGrantType,
     noProvidersMessage,
     OAuthLoginPromptMessage
   } = props;
   return ProviderLinksComponent && providers ? (
-    <ProviderLinksComponent {...{ providers, authorizationGrant, OAuthLoginPromptMessage }} />
+    <ProviderLinksComponent {...{ providers, authorizationGrantType, OAuthLoginPromptMessage }} />
   ) : (
     <div className="gatekeeper-login">
       <p className="gatekeeper-p">{noProvidersMessage}</p>
@@ -97,7 +100,7 @@ const OauthLogin = (props: OauthLoginProps) => {
 OauthLogin.defaultProps = {
   OAuthLoginPromptMessage: OAUTH_LOGIN_PROMPT,
   ProviderLinksComponent: ProviderLinks /** use the ProviderLinks component as the default */,
-  authorizationGrant: AuthorizationGrantType.IMPLICIT,
+  authorizationGrantType: AuthorizationGrantType.IMPLICIT,
   noProvidersMessage: NO_PROVIDERS
 };
 
