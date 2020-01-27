@@ -29,7 +29,7 @@ describe('gatekeeper/OauthLogin', () => {
 
   it('renders correct links for implicit authorization grant flow', () => {
     const props = {
-      authorizationGrant: AuthorizationGrantType.IMPLICIT,
+      authorizationGrantType: AuthorizationGrantType.IMPLICIT,
       providers: fixtures.providers
     };
     const wrapper = mount(<OauthLogin {...props} />);
@@ -39,7 +39,7 @@ describe('gatekeeper/OauthLogin', () => {
 
   it('renders correct links for Authorization code-authorization grant flow', () => {
     const props = {
-      authorizationGrant: AuthorizationGrantType.AUTHORIZATION_CODE,
+      authorizationGrantType: AuthorizationGrantType.AUTHORIZATION_CODE,
       providers: fixtures.providers
     };
     const wrapper = mount(<OauthLogin {...props} />);
