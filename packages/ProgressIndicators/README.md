@@ -5,7 +5,7 @@ Graphical control element to visualize progress
 ## Installation
 
 ```sh
-yarn add @onaio/progress-bar
+yarn add @onaio/progress-indicators
 ```
 
 ## Configuration
@@ -59,7 +59,7 @@ const props = {
 ### Code Example
 
 ```typescript
-import ProgressBar from '@onaio/progress-bar';
+import ProgressBar from '@onaio/progress-indicators';
 
 // props defined above
 
