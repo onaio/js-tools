@@ -11,6 +11,12 @@ Object.defineProperty(exports, "OauthLogin", {
     return _login["default"];
   }
 });
+Object.defineProperty(exports, "AuthorizationGrantType", {
+  enumerable: true,
+  get: function get() {
+    return _login.AuthorizationGrantType;
+  }
+});
 Object.defineProperty(exports, "OauthLoginProps", {
   enumerable: true,
   get: function get() {
@@ -56,55 +62,79 @@ Object.defineProperty(exports, "LogoutProps", {
 Object.defineProperty(exports, "ConnectedOauthCallback", {
   enumerable: true,
   get: function get() {
-    return _callback["default"];
-  }
-});
-Object.defineProperty(exports, "Component404", {
-  enumerable: true,
-  get: function get() {
-    return _callback.Component404;
+    return _implicit["default"];
   }
 });
 Object.defineProperty(exports, "defaultOauthCallbackProps", {
   enumerable: true,
   get: function get() {
-    return _callback.defaultOauthCallbackProps;
+    return _implicit.defaultOauthCallbackProps;
   }
 });
 Object.defineProperty(exports, "OauthCallback", {
   enumerable: true,
   get: function get() {
-    return _callback.OauthCallback;
+    return _implicit.OauthCallback;
   }
 });
 Object.defineProperty(exports, "OauthCallbackProps", {
   enumerable: true,
   get: function get() {
-    return _callback.OauthCallbackProps;
-  }
-});
-Object.defineProperty(exports, "RenderErrorComponent", {
-  enumerable: true,
-  get: function get() {
-    return _callback.RenderErrorComponent;
+    return _implicit.OauthCallbackProps;
   }
 });
 Object.defineProperty(exports, "RouteParams", {
   enumerable: true,
   get: function get() {
-    return _callback.RouteParams;
+    return _implicit.RouteParams;
+  }
+});
+Object.defineProperty(exports, "ConnectedAPICallback", {
+  enumerable: true,
+  get: function get() {
+    return _custom["default"];
+  }
+});
+Object.defineProperty(exports, "APICallback", {
+  enumerable: true,
+  get: function get() {
+    return _custom.APICallback;
+  }
+});
+Object.defineProperty(exports, "APICallbackProps", {
+  enumerable: true,
+  get: function get() {
+    return _custom.APICallbackProps;
+  }
+});
+Object.defineProperty(exports, "defaultAPICallbackProps", {
+  enumerable: true,
+  get: function get() {
+    return _custom.defaultAPICallbackProps;
+  }
+});
+Object.defineProperty(exports, "Component404", {
+  enumerable: true,
+  get: function get() {
+    return _utils.Component404;
+  }
+});
+Object.defineProperty(exports, "RenderErrorComponent", {
+  enumerable: true,
+  get: function get() {
+    return _utils.RenderErrorComponent;
   }
 });
 Object.defineProperty(exports, "SuccessfulLogin", {
   enumerable: true,
   get: function get() {
-    return _callback.SuccessfulLogin;
+    return _utils.SuccessfulLogin;
   }
 });
 Object.defineProperty(exports, "SuccessfulLoginProps", {
   enumerable: true,
   get: function get() {
-    return _callback.SuccessfulLoginProps;
+    return _utils.SuccessfulLoginProps;
   }
 });
 Object.defineProperty(exports, "gateKeeperReducer", {
@@ -224,13 +254,13 @@ Object.defineProperty(exports, "oauth2Callback", {
 Object.defineProperty(exports, "errorCallback", {
   enumerable: true,
   get: function get() {
-    return _utils.errorCallback;
+    return _utils2.errorCallback;
   }
 });
 Object.defineProperty(exports, "ErrorCallback", {
   enumerable: true,
   get: function get() {
-    return _utils.ErrorCallback;
+    return _utils2.ErrorCallback;
   }
 });
 
@@ -238,7 +268,11 @@ var _login = _interopRequireWildcard(require("./components/login"));
 
 var _logout = _interopRequireWildcard(require("./components/logout"));
 
-var _callback = _interopRequireWildcard(require("./components/callback"));
+var _implicit = _interopRequireWildcard(require("./components/callback/implicit"));
+
+var _custom = _interopRequireWildcard(require("./components/callback/custom"));
+
+var _utils = require("./components/callback/utils");
 
 var _gatekeeper = _interopRequireWildcard(require("./ducks/gatekeeper"));
 
@@ -246,4 +280,4 @@ var _oauth = require("./helpers/oauth");
 
 var _services = require("./helpers/services");
 
-var _utils = require("./helpers/utils");
+var _utils2 = require("./helpers/utils");
