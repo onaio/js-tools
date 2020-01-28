@@ -1,4 +1,5 @@
 import { isAuthenticated } from '@onaio/session-reducer';
+import qs from 'qs';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
@@ -35,6 +36,13 @@ const PrivateRoute = (props: PrivateRouteProps) => {
     redirectPath,
     ...theOtherProps
   } = props;
+
+  const currentPath = props.path;
+  // we can now create the full redirect path, append q for next page based on location
+  let fullRedirectPath = redirectPath;
+  if (typeof currentPath !== 'undefined' && currentPath.length > 0) {
+    fullRedirectPath = `${redirectPath}?${qs.stringify({ next: currentPath })}`;
+  }
   return (
     /* tslint:disable jsx-no-lambda */
     <Route
@@ -43,7 +51,7 @@ const PrivateRoute = (props: PrivateRouteProps) => {
         (authenticated === true || disableLoginProtection === true) && Component ? (
           <Component {...routeProps} {...theOtherProps} />
         ) : (
-          <Redirect to={redirectPath} />
+          <Redirect to={fullRedirectPath} />
         )
       }
     />
