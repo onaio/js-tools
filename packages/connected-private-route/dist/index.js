@@ -5,13 +5,15 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.PrivateRoute = void 0;
+exports["default"] = exports.PrivateRoute = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
 var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutProperties"));
 
 var _sessionReducer = require("@onaio/session-reducer");
+
+var _qs = _interopRequireDefault(require("qs"));
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -30,11 +32,20 @@ var PrivateRoute = function PrivateRoute(props) {
       authenticated = props.authenticated,
       disableLoginProtection = props.disableLoginProtection,
       redirectPath = props.redirectPath,
-      theOtherProps = (0, _objectWithoutProperties2.default)(props, ["component", "authenticated", "disableLoginProtection", "redirectPath"]);
-  return _react.default.createElement(_reactRouterDom.Route, (0, _extends2.default)({}, theOtherProps, {
+      theOtherProps = (0, _objectWithoutProperties2["default"])(props, ["component", "authenticated", "disableLoginProtection", "redirectPath"]);
+  var currentPath = props.path;
+  var fullRedirectPath = redirectPath;
+
+  if (typeof currentPath !== 'undefined' && currentPath.length > 0) {
+    fullRedirectPath = "".concat(redirectPath, "?").concat(_qs["default"].stringify({
+      next: currentPath
+    }));
+  }
+
+  return _react["default"].createElement(_reactRouterDom.Route, (0, _extends2["default"])({}, theOtherProps, {
     render: function render(routeProps) {
-      return (authenticated === true || disableLoginProtection === true) && Component ? _react.default.createElement(Component, (0, _extends2.default)({}, routeProps, theOtherProps)) : _react.default.createElement(_reactRouterDom.Redirect, {
-        to: redirectPath
+      return (authenticated === true || disableLoginProtection === true) && Component ? _react["default"].createElement(Component, (0, _extends2["default"])({}, routeProps, theOtherProps)) : _react["default"].createElement(_reactRouterDom.Redirect, {
+        to: fullRedirectPath
       });
     }
   }));
@@ -53,4 +64,4 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var ConnectedPrivateRoute = (0, _reactRedux.connect)(mapStateToProps, null)(PrivateRoute);
 var _default = ConnectedPrivateRoute;
-exports.default = _default;
+exports["default"] = _default;
