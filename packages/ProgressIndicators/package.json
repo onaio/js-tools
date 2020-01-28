@@ -1,7 +1,7 @@
 {
   "name": "@onaio/progress-indicators",
   "version": "0.0.1",
-  "types": " dist/types",
+  "types": "dist/types",
   "description": "linear progress indicator",
   "main": "dist/index.js",
   "repository": "\"https://github.com/onaio/js-tools\"",
