@@ -17,6 +17,7 @@ export interface BaseCallbackComponentProps<G> extends RouteComponentProps<G> {
   authenticated: boolean;
   sessionData: { [key: string]: any };
   sessionUser: User;
+  working: boolean;
 }
 
 /** default props for BaseCallbackComponent */
@@ -32,7 +33,8 @@ export const defaultBaseCallbackComponentProps: Partial<BaseCallbackComponentPro
     gravatar: '',
     name: '',
     username: ''
-  }
+  },
+  working: false
 };
 
 /** The oAuth callback component
@@ -52,12 +54,13 @@ const BaseCallbackComponent = (props: BaseCallbackComponentProps<RouteParams>) =
     authSuccess,
     authenticated,
     sessionData,
-    sessionUser
+    sessionUser,
+    working
   } = props;
 
   const successProps = { extraData: sessionData, user: sessionUser };
 
-  return authSuccess === null ? (
+  return authSuccess === null || working === true ? (
     <LoadingComponent />
   ) : authenticated === true ? (
     <SuccessfulLoginComponent {...successProps} />
