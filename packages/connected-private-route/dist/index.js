@@ -13,7 +13,7 @@ var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/h
 
 var _sessionReducer = require("@onaio/session-reducer");
 
-var _qs = _interopRequireDefault(require("qs"));
+var _querystring = _interopRequireDefault(require("querystring"));
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -37,7 +37,7 @@ var PrivateRoute = function PrivateRoute(props) {
   var fullRedirectPath = redirectPath;
 
   if (typeof currentPath !== 'undefined' && currentPath.length > 0) {
-    fullRedirectPath = "".concat(redirectPath, "?").concat(_qs["default"].stringify({
+    fullRedirectPath = "".concat(redirectPath, "?").concat(_querystring["default"].stringify({
       next: currentPath
     }));
   }
