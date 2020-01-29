@@ -2,7 +2,31 @@
 
 This is a wrapper around the [`Route` component from react-router](https://reacttraining.com/react-router/web/api/Route).
 
-Basically what it does is that it checks if the current user is logged in and if so allows them to access the route/page, otherwise it sends them to the defined redirect page(usually the login page). The component will append the path the user was trying to access(if authentication fails) onto the redirect path as query string with key `next`
+Basically what it does is that it checks if the current user is logged in and if so allows them to access the route/page, otherwise it sends them to the defined redirect page(usually the login page).
+The component will append the path the user was trying to access onto the redirect path as query string with key `next` should authentication fail.
+For instance. Say the user types in some url in the browser e.g `'< domain-name/dashboards >'`.
+If the path `/dashboards` routes to this component e.g
+
+```typescript
+        <Router>
+          <div className={'main-container'}>
+            <Switch>
+              <Route path="/login" component={Login} />
+              <ConnectedPrivateRoute
+                exact
+                path="/dashboards"
+                component={Home}
+                redirectPath="/login"
+                disableLoginProtection=false
+              />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
+        </Router>
+```
+
+should the user not be authenticated then the redirectPath becomes `/login?next=%2Fdashboard`
+`
 
 ## Sample usage
 
