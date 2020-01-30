@@ -123,7 +123,7 @@ describe('ConnectedPrivateRoute', () => {
         hash: '',
         key: expect.any(String),
         pathname: '/denied',
-        search: '',
+        search: '?next=%2Fdashboard',
         state: undefined
       })
     });
@@ -160,7 +160,7 @@ describe('ConnectedPrivateRoute', () => {
         hash: '',
         key: expect.any(String),
         pathname: '/login',
-        search: '',
+        search: '?next=%2Fdashboard',
         state: undefined
       })
     });
