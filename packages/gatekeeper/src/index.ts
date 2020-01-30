@@ -1,4 +1,9 @@
-import OauthLogin, { OauthLoginProps, ProviderLinks, ProviderLinksProps } from './components/login';
+import OauthLogin, {
+  AuthorizationGrantType,
+  OauthLoginProps,
+  ProviderLinks,
+  ProviderLinksProps
+} from './components/login';
 
 import ConnectedLogout, { defaultLogoutProps, Logout, LogoutProps } from './components/logout';
 
@@ -8,6 +13,12 @@ import ConnectedOauthCallback, {
   OauthCallbackProps,
   RouteParams
 } from './components/callback/implicit';
+
+import ConnectedAPICallback, {
+  APICallback,
+  APICallbackProps,
+  defaultAPICallbackProps
+} from './components/callback/custom';
 
 import {
   Component404,
@@ -80,5 +91,10 @@ export {
   RenderErrorComponent,
   RouteParams,
   UserInfoFnType,
-  RECORD
+  RECORD,
+  ConnectedAPICallback,
+  defaultAPICallbackProps,
+  APICallback,
+  APICallbackProps,
+  AuthorizationGrantType
 };

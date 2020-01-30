@@ -5,10 +5,18 @@ import {
   getUser,
   isAuthenticated
 } from '@onaio/session-reducer';
+import { Action } from 'history';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { ActionCreator, Store } from 'redux';
-import { getSuccess, RecordAction, recordResult } from '../../ducks/gatekeeper';
+import {
+  authenticationProgress,
+  AuthenticationProgressAction,
+  getSuccess,
+  isWorking,
+  RecordAction,
+  recordResult
+} from '../../ducks/gatekeeper';
 import { fetchState } from '../../helpers/services';
 import { errorCallback } from '../../helpers/utils';
 import {
@@ -29,6 +37,8 @@ export interface APICallbackProps<G> extends BaseCallbackComponentProps<G> {
   apiURL: string;
   authenticateActionCreator: ActionCreator<AuthenticateAction>;
   recordResultActionCreator: ActionCreator<RecordAction>;
+  authenticationProgressCreator: ActionCreator<AuthenticationProgressAction>;
+  working: boolean;
 }
 
 /** default props for OauthCallback */
@@ -38,7 +48,9 @@ export const defaultAPICallbackProps: Partial<APICallbackProps<RouteParams>> = {
   HTTP404Component: Component404,
   UnSuccessfulLoginComponent: RenderErrorComponent,
   authenticateActionCreator: authenticateUser,
-  recordResultActionCreator: recordResult
+  authenticationProgressCreator: authenticationProgress,
+  recordResultActionCreator: recordResult,
+  working: false
 };
 
 /**
@@ -55,17 +67,23 @@ const APICallback = (props: APICallbackProps<RouteParams>) => {
     authenticated,
     authenticateActionCreator,
     recordResultActionCreator,
+    authenticationProgressCreator,
     sessionData,
-    sessionUser
+    sessionUser,
+    working
   } = props;
 
   useEffect(() => {
     if (authSuccess === null || authenticated === false) {
-      fetchState(apiURL, authenticateActionCreator, recordResultActionCreator, errorCallback).catch(
-        e => {
-          /** do nothing - is this wise?? */
-        }
-      );
+      fetchState(
+        apiURL,
+        authenticateActionCreator,
+        recordResultActionCreator,
+        authenticationProgress,
+        errorCallback
+      ).catch(e => {
+        /** do nothing - is this wise?? */
+      });
     }
   }, []); // The empty array causes this effect to only run on mount
 
@@ -76,7 +94,8 @@ const APICallback = (props: APICallbackProps<RouteParams>) => {
     authSuccess,
     authenticated,
     sessionData,
-    sessionUser
+    sessionUser,
+    working
   };
 
   return <BaseCallbackComponent {...baseProps} />;
@@ -97,7 +116,8 @@ const mapStateToProps = (
     authSuccess: getSuccess(state),
     authenticated: isAuthenticated(state),
     sessionData: getExtraData(state),
-    sessionUser: getUser(state)
+    sessionUser: getUser(state),
+    working: isWorking(state)
   };
   Object.assign(result, ownProps);
 
@@ -107,6 +127,7 @@ const mapStateToProps = (
 /** map dispatch to props */
 const mapDispatchToProps = {
   authenticateActionCreator: authenticateUser,
+  authenticationProgressCreator: authenticationProgress,
   recordResultActionCreator: recordResult
 };
 

@@ -103,7 +103,7 @@ describe('gatekeeper/ConnectedLogout', () => {
         state: undefined
       })
     });
-    expect(toJson(wrapper.find('ProviderLinks'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('.gatekeeper-login'))).toMatchSnapshot('Gatekeeper logged out');
     wrapper.unmount();
   });
 
@@ -133,7 +133,7 @@ describe('gatekeeper/ConnectedLogout', () => {
         state: undefined
       })
     });
-    expect(toJson(wrapper.find('ProviderLinks'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('.gatekeeper-login'))).toMatchSnapshot('Gatekeeper logged in');
     wrapper.unmount();
   });
 });

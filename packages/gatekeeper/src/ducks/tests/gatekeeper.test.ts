@@ -1,7 +1,13 @@
 import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { FlushThunks } from 'redux-testkit';
 import thunk from 'redux-thunk';
-import gatekeeper, { getResult, getSuccess, recordResult } from '../gatekeeper';
+import gatekeeper, {
+  authenticationProgress,
+  getResult,
+  getSuccess,
+  isWorking,
+  recordResult
+} from '../gatekeeper';
 
 describe('ducks/gatekeeper', () => {
   let flushThunks;
@@ -18,6 +24,7 @@ describe('ducks/gatekeeper', () => {
     expect(getSuccess(store.getState())).toBe(null);
     // initially result
     expect(getResult(store.getState())).toEqual({});
+    expect(isWorking(store.getState())).toBeFalsy();
   });
 
   it('should record information', () => {
@@ -41,5 +48,13 @@ describe('ducks/gatekeeper', () => {
     expect(getSuccess(store.getState())).toBe(false);
     // result is what we expect
     expect(getResult(store.getState())).toEqual({ bar: 'foo' });
+  });
+
+  it('dispatching authentication progress works', () => {
+    expect(isWorking(store.getState())).toBeFalsy();
+    store.dispatch(authenticationProgress(false));
+    expect(isWorking(store.getState())).toBeFalsy();
+    store.dispatch(authenticationProgress(true));
+    expect(isWorking(store.getState())).toBeTruthy();
   });
 });

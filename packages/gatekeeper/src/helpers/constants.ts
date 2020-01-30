@@ -12,3 +12,21 @@ export type LOGIN_URL = typeof LOGIN_URL;
 
 export const DEFAULT_LOGOUT_DELAY = 20;
 export type DEFAULT_LOGOUT_DELAY = typeof DEFAULT_LOGOUT_DELAY;
+
+export const OAUTH_LOGIN_PROMPT = 'Please log in with one of the following providers';
+export type OAUTH_LOGIN_PROMPT = typeof OAUTH_LOGIN_PROMPT;
+
+export const NO_PROVIDERS = 'No Providers';
+export type NO_PROVIDERS = typeof NO_PROVIDERS;
+
+export const NOTHING_HERE = 'Nothing here!';
+export type NOTHING_HERE = typeof NOTHING_HERE;
+
+export const AN_ERROR_OCCURRED = 'An error occurred!';
+export type AN_ERROR_OCCURRED = typeof AN_ERROR_OCCURRED;
+
+export const PLEASE_WAIT = 'Please wait...';
+export type PLEASE_WAIT = typeof PLEASE_WAIT;
+
+export const WELCOME_BACK = 'Welcome back, ';
+export type WELCOME_BACK = typeof WELCOME_BACK;
