@@ -2,7 +2,7 @@
 import { logOutUser } from '@onaio/session-reducer';
 /** interface to describe props for Logout component
  * @member {typeof logOutUser}logoutActionCreator action creator that logs out user.
- * @member {string} redirectpath The URL we redirect to after loging out.
+ * @member {string} redirectPath The URL we redirect to after logging out.
  * @member {string} logoutURL the url of the logout endpoint of the Oauth server.
  * @member {(logoutUrl: string) => void} logoutFunction custom function to log user out of the Oauth server.
  */

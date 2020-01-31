@@ -1,34 +1,73 @@
 import React from 'react';
+import { NO_PROVIDERS, OAUTH_LOGIN_PROMPT } from '../helpers/constants';
 import { getProviderFromOptions, Providers } from '../helpers/oauth';
 
-/** interface for OauthLogin props */
-export interface OauthLoginProps {
-  ProviderLinksComponent?: React.ElementType;
+/** types of supported authorization grant flow */
+export enum AuthorizationGrantType {
+  IMPLICIT = 'IMPLICIT',
+  AUTHORIZATION_CODE = 'AUTHORIZATION_CODE'
+}
+
+/** describes object to pass to the OAuthHook */
+export interface OAuthLoginHookOptions {
   providers: Providers;
+  authorizationGrantType: AuthorizationGrantType;
 }
 
 /** interface for ProviderLinks props */
-export interface ProviderLinksProps {
-  providers: Providers;
+export interface ProviderLinksProps extends OAuthLoginHookOptions {
+  OAuthLoginPromptMessage: string;
+}
+
+/** interface for OauthLogin props */
+export interface OauthLoginProps extends ProviderLinksProps {
+  ProviderLinksComponent: React.ElementType;
+  noProvidersMessage: string;
+}
+
+/** hook returns an object where the provider name is the key and the value is
+ * the authorizationUri,
+ * @param {OAuthLoginHookOptions} options - initial data required for processing
+ * @return {[key: string]: string} - an object
+ */
+export function useOAuthLogin(options: OAuthLoginHookOptions): { [key: string]: string } {
+  const { providers: rawProviders, authorizationGrantType } = options;
+
+  /** get the ClientOAuth2 object for each provider */
+  const authorizationUris: { [key: string]: string } = {};
+  Object.entries(rawProviders).map(item => {
+    const thisProvider = getProviderFromOptions(item[1]);
+    const authorizationUri =
+      authorizationGrantType === AuthorizationGrantType.IMPLICIT
+        ? thisProvider.token.getUri()
+        : authorizationGrantType === AuthorizationGrantType.AUTHORIZATION_CODE
+        ? thisProvider.code.getUri()
+        : '#';
+    authorizationUris[item[0]] = authorizationUri;
+    return authorizationUris;
+  });
+
+  return authorizationUris;
 }
 
 /** This component takes providers as a prop and renders a list of links to
  * log in with those providers
  */
 export const ProviderLinks = (props: ProviderLinksProps) => {
-  const { providers } = props;
+  const { providers, authorizationGrantType, OAuthLoginPromptMessage } = props;
+  const authorizationUris = useOAuthLogin({
+    authorizationGrantType,
+    providers
+  });
   return (
     <div className="gatekeeper-login">
-      <p className="gatekeeper-p">Please log in with one of the following providers</p>
-      {/** loop through the providers */
-      Object.entries(providers).map(item => {
-        const thisProvider = getProviderFromOptions(
-          item[1]
-        ); /** get the ClientOAuth2 object for each provider */
+      <p className="gatekeeper-p">{OAuthLoginPromptMessage}</p>
+      {/** loop through the authorization uris */
+      Object.entries(authorizationUris).map(item => {
         return (
           /** render a link for each provider */
           <p className="gatekeeper-p item" key={item[0]}>
-            <a className="gatekeeper-btn" href={thisProvider.token.getUri()}>
+            <a className="gatekeeper-btn" href={item[1]}>
               {item[0]}
             </a>
           </p>
@@ -42,18 +81,27 @@ export const ProviderLinks = (props: ProviderLinksProps) => {
  * links of oAuth providers.
  */
 const OauthLogin = (props: OauthLoginProps) => {
-  const { providers, ProviderLinksComponent } = props;
+  const {
+    providers,
+    ProviderLinksComponent,
+    authorizationGrantType,
+    noProvidersMessage,
+    OAuthLoginPromptMessage
+  } = props;
   return ProviderLinksComponent && providers ? (
-    <ProviderLinksComponent {...{ providers }} />
+    <ProviderLinksComponent {...{ providers, authorizationGrantType, OAuthLoginPromptMessage }} />
   ) : (
     <div className="gatekeeper-login">
-      <p className="gatekeeper-p">No providers</p>
+      <p className="gatekeeper-p">{noProvidersMessage}</p>
     </div>
   );
 };
 
 OauthLogin.defaultProps = {
-  ProviderLinksComponent: ProviderLinks /** use the ProviderLinks component as the default */
+  OAuthLoginPromptMessage: OAUTH_LOGIN_PROMPT,
+  ProviderLinksComponent: ProviderLinks /** use the ProviderLinks component as the default */,
+  authorizationGrantType: AuthorizationGrantType.IMPLICIT,
+  noProvidersMessage: NO_PROVIDERS
 };
 
 export default OauthLogin;

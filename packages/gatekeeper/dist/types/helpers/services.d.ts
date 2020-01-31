@@ -41,4 +41,11 @@ export declare function fetchUser(
   errorCallbackFn?: ErrorCallback,
   method?: HTTPMethod
 ): Promise<void>;
+/** some docstring */
+export declare const fetchState: (
+  url: string,
+  authenticateActionCreator?: ActionCreator<AuthenticateAction>,
+  recordResultActionCreator?: ActionCreator<RecordAction>,
+  errorCallbackFn?: ErrorCallback
+) => Promise<void>;
 export {};

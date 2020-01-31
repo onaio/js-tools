@@ -10,10 +10,17 @@ export interface RecordAction extends AnyAction {
   type: typeof RECORD;
 }
 
+/** action that informs on progress of fetch user async action in custom callback */
+export interface AuthenticationProgressAction extends AnyAction {
+  working: boolean;
+  type: typeof AUTHENTICATION_PROGRESS;
+}
+
 /** interface to describe GateKeeper state */
 export interface GateKeeperState {
   result: { [key: string]: any } /** stores the result of the auth attempt */;
   success: boolean | null /** was it successful or not */;
+  working: boolean /** is the async call to authenticate in progress or not? */;
 }
 
 /** Create type for GateKeeper reducer actions */
@@ -26,7 +33,8 @@ export type ImmutableGateKeeperState = GateKeeperState &
 /** Initial state for GateKeeper */
 export const initialState: ImmutableGateKeeperState = SeamlessImmutable({
   result: {},
-  success: null
+  success: null,
+  working: false
 });
 
 /** GateKeeper reducer function
@@ -43,6 +51,10 @@ export default function reducer(
         result: { ...action.result },
         success: action.success
       });
+    case AUTHENTICATION_PROGRESS:
+      return state.merge({
+        working: action.working
+      });
     default:
       return state;
   }
@@ -52,8 +64,10 @@ export default function reducer(
 
 /** authenticate success action type */
 export const RECORD = '@onaio/gatekeeper/reducer/RECORD';
+export const AUTHENTICATION_PROGRESS = '@onaio/gatekeeper/reducer/AUTHENTICATION_PROGRESS';
 
 // action creators
+
 /** record the result of the authentication attempt
  * @param {boolean} success - whether it was successful or not
  * @param {{ [key: string]: any }} result - an object containing result information
@@ -65,6 +79,16 @@ export const recordResult = (
   result,
   success,
   type: RECORD
+});
+
+/** creates an AuthenticationProgressAction
+ * @param {boolean} working - work state of the async call to authenticate
+ *
+ * @return {AuthenticationProgressAction}
+ */
+export const authenticationProgress = (working: boolean): AuthenticationProgressAction => ({
+  type: AUTHENTICATION_PROGRESS,
+  working
 });
 
 // selectors
@@ -81,4 +105,11 @@ export function getResult(state: Partial<Store>): { [key: string]: any } {
  */
 export function getSuccess(state: Partial<Store>): boolean {
   return (state as any)[reducerName].success;
+}
+
+/** returns if async call to authenticate is in progress
+ * @param {Partial<Store>} state - the redux store
+ */
+export function isWorking(state: Partial<Store>): boolean {
+  return (state as any)[reducerName].working;
 }

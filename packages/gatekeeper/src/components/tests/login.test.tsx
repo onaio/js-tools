@@ -1,7 +1,7 @@
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
-import OauthLogin from '../login';
+import OauthLogin, { AuthorizationGrantType } from '../login';
 import * as fixtures from './fixtures';
 
 describe('gatekeeper/OauthLogin', () => {
@@ -21,7 +21,29 @@ describe('gatekeeper/OauthLogin', () => {
       providers: fixtures.providers
     };
     const wrapper = mount(<OauthLogin {...props} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper.text()).toMatchInlineSnapshot(
+      `"Please log in with one of the following providersonadata"`
+    );
+    wrapper.unmount();
+  });
+
+  it('renders correct links for implicit authorization grant flow', () => {
+    const props = {
+      authorizationGrantType: AuthorizationGrantType.IMPLICIT,
+      providers: fixtures.providers
+    };
+    const wrapper = mount(<OauthLogin {...props} />);
+    expect(toJson(wrapper.find('a'))).toMatchSnapshot(`implicit authorization grant`);
+    wrapper.unmount();
+  });
+
+  it('renders correct links for Authorization code-authorization grant flow', () => {
+    const props = {
+      authorizationGrantType: AuthorizationGrantType.AUTHORIZATION_CODE,
+      providers: fixtures.providers
+    };
+    const wrapper = mount(<OauthLogin {...props} />);
+    expect(toJson(wrapper.find('a'))).toMatchSnapshot(`Authorization code authorization grant`);
     wrapper.unmount();
   });
 
@@ -39,7 +61,7 @@ describe('gatekeeper/OauthLogin', () => {
       providers: fixtures.providers
     };
     const wrapper = mount(<OauthLogin {...props} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(toJson(wrapper.find('.danger'))).toMatchSnapshot('custom provider link');
     wrapper.unmount();
   });
 
@@ -48,7 +70,7 @@ describe('gatekeeper/OauthLogin', () => {
       providers: undefined
     };
     const wrapper = mount(<OauthLogin {...props} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper.text().includes('No Providers')).toBeTruthy();
     wrapper.unmount();
   });
 
@@ -58,7 +80,7 @@ describe('gatekeeper/OauthLogin', () => {
       providers: fixtures.providers
     };
     const wrapper = mount(<OauthLogin {...props} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(toJson(wrapper.find('.gatekeeper-login'))).toMatchSnapshot();
     wrapper.unmount();
   });
 });

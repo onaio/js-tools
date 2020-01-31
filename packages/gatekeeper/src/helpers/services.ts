@@ -1,7 +1,12 @@
 import { AuthenticateAction, authenticateUser } from '@onaio/session-reducer';
 import ClientOAuth2 from 'client-oauth2';
 import { ActionCreator } from 'redux';
-import { RecordAction, recordResult } from '../ducks/gatekeeper';
+import {
+  authenticationProgress,
+  AuthenticationProgressAction,
+  RecordAction,
+  recordResult
+} from '../ducks/gatekeeper';
 import { GENERIC_ERROR, OAUTH2_HTTP_ERROR } from './constants';
 import { getOnadataUserInfo, UserInfoFnType } from './oauth';
 import { ErrorCallback, errorCallback } from './utils';
@@ -87,3 +92,37 @@ export async function fetchUser(
     errorCallbackFn(error.message);
   }
 }
+
+/** some docstring */
+export const fetchState = async (
+  url: string,
+  authenticateActionCreator: ActionCreator<AuthenticateAction> = authenticateUser,
+  recordResultActionCreator: ActionCreator<RecordAction> = recordResult,
+  authenticationProgressCreator: ActionCreator<
+    AuthenticationProgressAction
+  > = authenticationProgress,
+  errorCallbackFn: ErrorCallback = errorCallback
+) => {
+  authenticationProgressCreator(true);
+  fetch(url)
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        authenticationProgressCreator(false);
+        throw new Error('fetching state failed');
+      }
+    })
+    .then(data => {
+      const { session } = data;
+      const { authenticated, user, extraData } = session;
+      authenticateActionCreator(authenticated, user, extraData);
+      recordResultActionCreator(true, extraData);
+      authenticationProgressCreator(false);
+    })
+    .catch(err => {
+      recordResultActionCreator(false, { err });
+      authenticationProgressCreator(false);
+      errorCallbackFn(err);
+    });
+};

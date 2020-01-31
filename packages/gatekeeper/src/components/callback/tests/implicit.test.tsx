@@ -11,12 +11,15 @@ import fetchMock from 'fetch-mock';
 import { createBrowserHistory } from 'history';
 import React from 'react';
 import { Provider } from 'react-redux';
-import gatekeeper, { recordResult, reducerName as gateKeeperReducer } from '../../ducks/gatekeeper';
-import { getOnadataUserInfo } from '../../helpers/oauth';
-import * as serviceHelpers from '../../helpers/services';
-import * as helperFixtures from '../../helpers/tests/fixtures';
-import * as callback from '../callback';
-import * as fixtures from './fixtures';
+import gatekeeper, {
+  recordResult,
+  reducerName as gateKeeperReducer
+} from '../../../ducks/gatekeeper';
+import { getOnadataUserInfo } from '../../../helpers/oauth';
+import * as serviceHelpers from '../../../helpers/services';
+import * as helperFixtures from '../../../helpers/tests/fixtures';
+import * as fixtures from '../../tests/fixtures';
+import * as callback from '../implicit';
 
 const ConnectedOauthCallback = callback.default;
 const OauthCallback = callback.OauthCallback;
@@ -25,7 +28,7 @@ const history = createBrowserHistory();
 reducerRegistry.register(sessionReducer, session);
 reducerRegistry.register(gateKeeperReducer, gatekeeper);
 
-describe('gatekeeper/OauthCallback', () => {
+describe('gatekeeper/implicit/OauthCallback', () => {
   beforeEach(() => {
     jest.resetAllMocks();
     fetchMock.restore();
@@ -66,7 +69,7 @@ describe('gatekeeper/OauthCallback', () => {
     shallow(<OauthCallback {...props} />);
   });
 
-  it('renders correctly when not loading', () => {
+  it('renders correctly when loading', () => {
     fetchMock.getOnce(
       fixtures.providers.onadata.userUri,
       JSON.stringify(helperFixtures.onadataUser)
@@ -101,7 +104,7 @@ describe('gatekeeper/OauthCallback', () => {
 
     store.dispatch(logOutUser());
     const wrapper = mount(<OauthCallback {...props} />);
-    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('RenderLoadingComponent'))).toMatchSnapshot();
     wrapper.unmount();
   });
 
@@ -157,7 +160,7 @@ describe('gatekeeper/OauthCallback', () => {
       getOnadataUserInfo
     );
 
-    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('RenderErrorComponent'))).toMatchSnapshot();
     mock.mockRestore();
     wrapper.unmount();
   });
@@ -195,7 +198,8 @@ describe('gatekeeper/OauthCallback', () => {
       </Provider>
     );
 
-    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    expect(wrapper.find('SuccessfulLogin').props()).toEqual(helperFixtures.ImplicitOAuthData);
+    expect(toJson(wrapper.find('SuccessfulLogin div'))).toMatchSnapshot();
     wrapper.unmount();
   });
 
@@ -228,7 +232,7 @@ describe('gatekeeper/OauthCallback', () => {
     };
 
     const wrapper = mount(<OauthCallback {...props} />);
-    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('RenderErrorComponent'))).toMatchSnapshot();
     wrapper.unmount();
   });
 
@@ -261,7 +265,7 @@ describe('gatekeeper/OauthCallback', () => {
     };
 
     const wrapper = mount(<OauthCallback {...props} />);
-    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('RenderErrorComponent'))).toMatchSnapshot();
     wrapper.unmount();
   });
 
@@ -293,7 +297,7 @@ describe('gatekeeper/OauthCallback', () => {
     };
 
     const wrapper = mount(<OauthCallback {...props} />);
-    expect(toJson(wrapper.find('OauthCallback'))).toMatchSnapshot();
+    expect(toJson(wrapper.find('Component404'))).toMatchSnapshot();
     wrapper.unmount();
   });
 });

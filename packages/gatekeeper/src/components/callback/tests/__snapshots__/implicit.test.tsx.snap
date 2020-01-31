@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gatekeeper/implicit/OauthCallback renders correctly when loading 1`] = `
+<RenderLoadingComponent>
+  <div
+    className="gatekeeper-cb"
+  >
+    <p
+      className="gatekeeper-p"
+    >
+      Please wait...
+    </p>
+  </div>
+</RenderLoadingComponent>
+`;
+
+exports[`gatekeeper/implicit/OauthCallback renders correctly when logged in 1`] = `
+<div
+  className="gatekeeper-cb"
+>
+  <p
+    className="gatekeeper-p"
+  >
+    Welcome back,  moshthepitt!
+  </p>
+</div>
+`;
+
+exports[`gatekeeper/implicit/OauthCallback renders correctly when not logged in 1`] = `
+<RenderErrorComponent>
+  <div
+    className="gatekeeper-cb"
+  >
+    <p
+      className="gatekeeper-p"
+    >
+      An error occurred!
+    </p>
+  </div>
+</RenderErrorComponent>
+`;
+
+exports[`gatekeeper/implicit/OauthCallback renders correctly when oAuth error occurred 1`] = `
+<RenderErrorComponent>
+  <div
+    className="gatekeeper-cb"
+  >
+    <p
+      className="gatekeeper-p"
+    >
+      An error occurred!
+    </p>
+  </div>
+</RenderErrorComponent>
+`;
+
+exports[`gatekeeper/implicit/OauthCallback renders correctly when provider is not known 1`] = `
+<Component404>
+  <div
+    className="gatekeeper-cb"
+  >
+    <p
+      className="gatekeeper-p"
+    >
+      Nothing here!
+    </p>
+  </div>
+</Component404>
+`;
+
+exports[`gatekeeper/implicit/OauthCallback renders correctly when uri cant be processed 1`] = `
+<RenderErrorComponent>
+  <div
+    className="gatekeeper-cb"
+  >
+    <p
+      className="gatekeeper-p"
+    >
+      An error occurred!
+    </p>
+  </div>
+</RenderErrorComponent>
+`;

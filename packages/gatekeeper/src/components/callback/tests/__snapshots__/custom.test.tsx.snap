@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gatekeeper/custom/APICallback renders correctly 1`] = `
+<div
+  className="gatekeeper-cb"
+>
+  <p
+    className="gatekeeper-p"
+  >
+    Welcome back,  moshthepitt!
+  </p>
+</div>
+`;
+
+exports[`gatekeeper/custom/APICallback renders correctly when connected to the redux store 1`] = `
+<div
+  className="gatekeeper-cb"
+>
+  <p
+    className="gatekeeper-p"
+  >
+    Welcome back,  moshthepitt!
+  </p>
+</div>
+`;
+
+exports[`gatekeeper/custom/APICallback renders correctly when loading 1`] = `
+<RenderLoadingComponent>
+  <div
+    className="gatekeeper-cb"
+  >
+    <p
+      className="gatekeeper-p"
+    >
+      Please wait...
+    </p>
+  </div>
+</RenderLoadingComponent>
+`;
+
+exports[`gatekeeper/custom/APICallback renders correctly when not authenticated 1`] = `
+<RenderErrorComponent>
+  <div
+    className="gatekeeper-cb"
+  >
+    <p
+      className="gatekeeper-p"
+    >
+      An error occurred!
+    </p>
+  </div>
+</RenderErrorComponent>
+`;

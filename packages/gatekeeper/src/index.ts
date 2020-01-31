@@ -1,17 +1,31 @@
-import OauthLogin, { OauthLoginProps, ProviderLinks, ProviderLinksProps } from './components/login';
+import OauthLogin, {
+  AuthorizationGrantType,
+  OauthLoginProps,
+  ProviderLinks,
+  ProviderLinksProps
+} from './components/login';
 
 import ConnectedLogout, { defaultLogoutProps, Logout, LogoutProps } from './components/logout';
 
 import ConnectedOauthCallback, {
-  Component404,
   defaultOauthCallbackProps,
   OauthCallback,
   OauthCallbackProps,
+  RouteParams
+} from './components/callback/implicit';
+
+import ConnectedAPICallback, {
+  APICallback,
+  APICallbackProps,
+  defaultAPICallbackProps
+} from './components/callback/custom';
+
+import {
+  Component404,
   RenderErrorComponent,
-  RouteParams,
   SuccessfulLogin,
   SuccessfulLoginProps
-} from './components/callback';
+} from './components/callback/utils';
 
 import gateKeeperReducer, {
   GateKeeperActionTypes,
@@ -77,5 +91,10 @@ export {
   RenderErrorComponent,
   RouteParams,
   UserInfoFnType,
-  RECORD
+  RECORD,
+  ConnectedAPICallback,
+  defaultAPICallbackProps,
+  APICallback,
+  APICallbackProps,
+  AuthorizationGrantType
 };

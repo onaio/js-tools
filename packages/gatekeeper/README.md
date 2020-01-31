@@ -2,7 +2,8 @@
 
 GateKeeper provides re-usable tools that help you add authentication to your React application.
 
-GateKeeper currently supports authentication with oAuth2 using the [implicit grant type](https://oauth.net/2/grant-types/implicit/).
+GateKeeper currently fully supports authentication with oAuth2 using the [implicit grant type](https://oauth.net/2/grant-types/implicit/) and partially
+using the [Authorization code flow](https://auth0.com/docs/flows/concepts/auth-code).
 
 ## Setting Up
 
@@ -96,7 +97,7 @@ The logout component takes these props that are useful in extending it:
 
 ### oAuth2 Login Component
 
-GateKeeper provides a simple login page component to help start the oAuth2 process.
+GateKeeper provides both a simple login page component and a `useOAuthLogin` react hook to help start the oAuth2 process.
 
 You can use it this way:
 
@@ -136,6 +137,40 @@ class App extends Component {
     );
   }
 }
+```
+
+or using a hook.
+
+```tsx
+// for functional-hook loving components
+import { useOAuthLogin } from `@onaio/gatekeeper`;
+
+/** define some oAuth2 providers */
+// will use the the provider from above example
+
+const LoginComponent = () => {
+  const options = {
+    providers,
+    authorizationGrantType: AuthorizationGrantType.AUTHORIZATION_CODE
+  };
+  const authorizationUris = useOAuthLogin(options);
+
+  return (
+    <div>
+      {/** loop through the authorization uris */
+      Object.entries(authorizationUris).map(item => {
+        return (
+          /** render a link for each provider */
+          <p className="gatekeeper-p item" key={item[0]}>
+            <a className="gatekeeper-btn" href={item[1]}>
+              {item[0]}
+            </a>
+          </p>
+        );
+      })}
+    </div>
+  );
+};
 ```
 
 ### oAuth2 Callback Component

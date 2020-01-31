@@ -99,3 +99,82 @@ export const openSRPSession = {
     username: openSRPResponse.userName
   }
 };
+
+export const expressAPIResponse = {
+  gatekeeper: {
+    result: {
+      oAuth2Data: {
+        access_token: 'hunter2',
+        expires_in: 1142,
+        refresh_token: 'iloveoov',
+        scope: 'read write',
+        token_type: 'bearer'
+      },
+      preferredName: 'Superset User',
+      roles: ['Provider'],
+      userName: 'superset-user'
+    },
+    success: true
+  },
+  session: {
+    authenticated: true,
+    extraData: {
+      oAuth2Data: {
+        access_token: 'hunter2',
+        expires_in: 1142,
+        refresh_token: 'iloveoov',
+        scope: 'read write',
+        token_type: 'bearer'
+      },
+      preferredName: 'Superset User',
+      roles: ['Provider'],
+      userName: 'superset-user'
+    },
+    user: {
+      email: '',
+      gravatar: '',
+      name: '',
+      username: 'superset-user'
+    }
+  }
+};
+
+export const ImplicitOAuthData = {
+  extraData: {
+    api_token: 'the api token',
+    city: '',
+    country: '',
+    email: 'mosh@example.com',
+    gravatar:
+      'https://secure.gravatar.com/avatar/ae22ab897231db07205bd5d00e64cbbf?d=https%3A%2F%2Fona.io%2Fstatic%2Fimages%2Fdefault_avatar.png&s=60',
+
+    name: 'mosh',
+    oAuth2Data: {
+      access_token: 'iLoveOov',
+      expires_in: '36000',
+      scope: 'read write',
+      state: 'abc',
+      token_type: 'Bearer'
+    },
+    organization: '',
+    require_auth: true,
+    temp_token: 'the temp token',
+    twitter: '',
+    url: 'https://stage-api.ona.io/api/v1/profiles/moshthepitt',
+    user: 'https://stage-api.ona.io/api/v1/users/moshthepitt',
+    username: 'moshthepitt',
+    website: ''
+  },
+  user: {
+    email: 'mosh@example.com',
+    gravatar:
+      'https://secure.gravatar.com/avatar/ae22ab897231db07205bd5d00e64cbbf?d=https%3A%2F%2Fona.io%2Fstatic%2Fimages%2Fdefault_avatar.png&s=60',
+    name: 'mosh',
+    username: 'moshthepitt'
+  }
+};
+
+export const OAuthExtradata = {
+  authenticated: true,
+  ...ImplicitOAuthData
+};
