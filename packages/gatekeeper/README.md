@@ -97,7 +97,7 @@ The logout component takes these props that are useful in extending it:
 
 ### oAuth2 Login Component
 
-GateKeeper provides a simple login page component and hook to help start the oAuth2 process.
+GateKeeper provides both a simple login page component and a `useOAuthLogin` react hook to help start the oAuth2 process.
 
 You can use it this way:
 
@@ -143,7 +143,7 @@ or using a hook.
 
 ```tsx
 // for functional-hook loving components
-import { OauthLogin } from `@onaio/gatekeeper`;
+import { useOAuthLogin } from `@onaio/gatekeeper`;
 
 /** define some oAuth2 providers */
 // will use the the provider from above example
