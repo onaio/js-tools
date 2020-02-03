@@ -3,7 +3,9 @@ import {
   authenticateUser,
   getExtraData,
   getUser,
-  isAuthenticated
+  isAuthenticated,
+  LogOutAction,
+  logOutUser
 } from '@onaio/session-reducer';
 import { Action } from 'history';
 import React, { useEffect } from 'react';
@@ -36,8 +38,9 @@ export interface APICallbackProps<G> extends BaseCallbackComponentProps<G> {
   HTTP404Component: React.ElementType;
   apiURL: string;
   authenticateActionCreator: ActionCreator<AuthenticateAction>;
-  recordResultActionCreator: ActionCreator<RecordAction>;
   authenticationProgressCreator: ActionCreator<AuthenticationProgressAction>;
+  logoutActionCreator: ActionCreator<LogOutAction>;
+  recordResultActionCreator: ActionCreator<RecordAction>;
   working: boolean;
 }
 
@@ -49,6 +52,7 @@ export const defaultAPICallbackProps: Partial<APICallbackProps<RouteParams>> = {
   UnSuccessfulLoginComponent: RenderErrorComponent,
   authenticateActionCreator: authenticateUser,
   authenticationProgressCreator: authenticationProgress,
+  logoutActionCreator: logOutUser,
   recordResultActionCreator: recordResult,
   working: false
 };
@@ -68,6 +72,7 @@ const APICallback = (props: APICallbackProps<RouteParams>) => {
     authenticateActionCreator,
     recordResultActionCreator,
     authenticationProgressCreator,
+    logoutActionCreator,
     sessionData,
     sessionUser,
     working
@@ -75,13 +80,14 @@ const APICallback = (props: APICallbackProps<RouteParams>) => {
 
   useEffect(() => {
     if (authSuccess === null || authenticated === false) {
-      fetchState(
-        apiURL,
+      fetchState({
         authenticateActionCreator,
+        authenticationProgressCreator,
+        errorCallbackFn: errorCallback,
+        logoutActionCreator,
         recordResultActionCreator,
-        authenticationProgress,
-        errorCallback
-      ).catch(e => {
+        url: apiURL
+      }).catch(e => {
         /** do nothing - is this wise?? */
       });
     }
@@ -128,6 +134,7 @@ const mapStateToProps = (
 const mapDispatchToProps = {
   authenticateActionCreator: authenticateUser,
   authenticationProgressCreator: authenticationProgress,
+  logoutActionCreator: logOutUser,
   recordResultActionCreator: recordResult
 };
 

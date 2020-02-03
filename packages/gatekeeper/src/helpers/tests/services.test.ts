@@ -1,6 +1,6 @@
 import fetchMock from 'fetch-mock';
 import { getOnadataUserInfo } from '../oauth';
-import { fetchUser, oauth2Callback } from '../services';
+import { fetchState, fetchUser, oauth2Callback } from '../services';
 import * as fixtures from './fixtures';
 
 describe('gatekeeper/services', () => {

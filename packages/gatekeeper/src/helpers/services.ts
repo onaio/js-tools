@@ -1,4 +1,9 @@
-import { AuthenticateAction, authenticateUser } from '@onaio/session-reducer';
+import {
+  AuthenticateAction,
+  authenticateUser,
+  LogOutAction,
+  logOutUser
+} from '@onaio/session-reducer';
 import ClientOAuth2 from 'client-oauth2';
 import { ActionCreator } from 'redux';
 import {
@@ -94,15 +99,14 @@ export async function fetchUser(
 }
 
 /** some docstring */
-export const fetchState = async (
-  url: string,
-  authenticateActionCreator: ActionCreator<AuthenticateAction> = authenticateUser,
-  recordResultActionCreator: ActionCreator<RecordAction> = recordResult,
-  authenticationProgressCreator: ActionCreator<
-    AuthenticationProgressAction
-  > = authenticationProgress,
-  errorCallbackFn: ErrorCallback = errorCallback
-) => {
+export const fetchState = async ({
+  url = '',
+  authenticateActionCreator = authenticateUser,
+  recordResultActionCreator = recordResult,
+  authenticationProgressCreator = authenticationProgress,
+  errorCallbackFn = errorCallback,
+  logoutActionCreator = logOutUser
+}) => {
   authenticationProgressCreator(true);
   fetch(url)
     .then(res => {
@@ -115,6 +119,13 @@ export const fetchState = async (
     })
     .then(data => {
       const { session } = data;
+      if (!session) {
+        logoutActionCreator();
+        const err = new Error('User is logged out');
+        recordResultActionCreator(false, { err });
+        authenticationProgressCreator(false);
+        return;
+      }
       const { authenticated, user, extraData } = session;
       authenticateActionCreator(authenticated, user, extraData);
       recordResultActionCreator(true, extraData);
