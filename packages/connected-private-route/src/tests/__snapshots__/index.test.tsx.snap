@@ -56,13 +56,31 @@ exports[`ConnectedPrivateRoute renders without crashing when not authenticated 1
   authenticated={false}
   component={[Function]}
   disableLoginProtection={false}
-  path="/dashboard"
+  location={
+    Object {
+      "hash": "#howdy",
+      "pathname": "/dashboard",
+      "search": "?q=string",
+      "state": Object {},
+    }
+  }
+  path="/"
   redirectPath="/denied"
 >
   <Route
-    path="/dashboard"
+    path="/"
     render={[Function]}
-  />
+  >
+    <Redirect
+      to="/denied?next=%2Fdashboard%3Fq%3Dstring%23howdy"
+    >
+      <Lifecycle
+        onMount={[Function]}
+        onUpdate={[Function]}
+        to="/denied?next=%2Fdashboard%3Fq%3Dstring%23howdy"
+      />
+    </Redirect>
+  </Route>
 </PrivateRoute>
 `;
 
@@ -83,7 +101,7 @@ Object {
     "hash": "",
     "key": Any<String>,
     "pathname": "/denied",
-    "search": "?next=%2Fdashboard",
+    "search": "?next=%2Fdashboard%3Fq%3Dstring%23howdy",
     "state": undefined,
   },
   "push": [Function],
@@ -96,14 +114,22 @@ exports[`ConnectedPrivateRoute works when connected to the redux store 1`] = `
   authenticated={false}
   disableLoginProtection={false}
   dispatch={[Function]}
-  path="/dashboard"
   redirectPath="/login"
 >
   <Route
     dispatch={[Function]}
-    path="/dashboard"
     render={[Function]}
-  />
+  >
+    <Redirect
+      to="/login"
+    >
+      <Lifecycle
+        onMount={[Function]}
+        onUpdate={[Function]}
+        to="/login"
+      />
+    </Redirect>
+  </Route>
 </PrivateRoute>
 `;
 
@@ -112,7 +138,6 @@ Object {
   "authenticated": false,
   "disableLoginProtection": false,
   "dispatch": Any<Function>,
-  "path": "/dashboard",
   "redirectPath": "/login",
 }
 `;
@@ -134,7 +159,7 @@ Object {
     "hash": "",
     "key": Any<String>,
     "pathname": "/login",
-    "search": "?next=%2Fdashboard",
+    "search": "",
     "state": undefined,
   },
   "push": [Function],

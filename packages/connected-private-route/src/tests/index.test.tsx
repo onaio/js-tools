@@ -97,7 +97,13 @@ describe('ConnectedPrivateRoute', () => {
       authenticated: false,
       component: TestComponent,
       disableLoginProtection: false,
-      path: '/dashboard',
+      location: {
+        hash: '#howdy',
+        pathname: '/dashboard',
+        search: '?q=string',
+        state: {}
+      },
+      path: '/',
       redirectPath: '/denied'
     };
     shallow(
@@ -123,7 +129,7 @@ describe('ConnectedPrivateRoute', () => {
         hash: '',
         key: expect.any(String),
         pathname: '/denied',
-        search: '?next=%2Fdashboard',
+        search: '?next=%2Fdashboard%3Fq%3Dstring%23howdy',
         state: undefined
       })
     });
@@ -142,7 +148,7 @@ describe('ConnectedPrivateRoute', () => {
     const wrapper = mount(
       <Provider store={store}>
         <MemoryRouter initialEntries={['/dashboard']} initialIndex={0}>
-          <ConnectedPrivateRoute path="/dashboard" />
+          <ConnectedPrivateRoute />
         </MemoryRouter>
       </Provider>
     );
@@ -160,7 +166,7 @@ describe('ConnectedPrivateRoute', () => {
         hash: '',
         key: expect.any(String),
         pathname: '/login',
-        search: '?next=%2Fdashboard',
+        search: '',
         state: undefined
       })
     });
