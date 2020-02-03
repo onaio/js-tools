@@ -32,8 +32,9 @@ var PrivateRoute = function PrivateRoute(props) {
       authenticated = props.authenticated,
       disableLoginProtection = props.disableLoginProtection,
       redirectPath = props.redirectPath,
-      theOtherProps = (0, _objectWithoutProperties2["default"])(props, ["component", "authenticated", "disableLoginProtection", "redirectPath"]);
-  var currentPath = props.path;
+      location = props.location,
+      theOtherProps = (0, _objectWithoutProperties2["default"])(props, ["component", "authenticated", "disableLoginProtection", "redirectPath", "location"]);
+  var currentPath = "".concat(location && location.pathname || '').concat(location && location.search || '').concat(location && location.hash || '');
   var fullRedirectPath = redirectPath;
 
   if (typeof currentPath !== 'undefined' && currentPath.length > 0) {
