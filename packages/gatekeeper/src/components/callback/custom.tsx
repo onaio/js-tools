@@ -79,7 +79,7 @@ const APICallback = (props: APICallbackProps<RouteParams>) => {
         apiURL,
         authenticateActionCreator,
         recordResultActionCreator,
-        authenticationProgress,
+        authenticationProgressCreator,
         errorCallback
       ).catch(e => {
         /** do nothing - is this wise?? */

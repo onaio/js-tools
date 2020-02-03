@@ -15,7 +15,6 @@ import gatekeeper, {
   recordResult,
   reducerName as gateKeeperReducer
 } from '../../../ducks/gatekeeper';
-import * as gk from '../../../ducks/gatekeeper';
 import { getOnadataUserInfo } from '../../../helpers/oauth';
 import * as serviceHelpers from '../../../helpers/services';
 import * as helperFixtures from '../../../helpers/tests/fixtures';
@@ -108,15 +107,16 @@ describe('gatekeeper/custom/APICallback', () => {
   it('authenticationProgress is used correctly', async () => {
     store.dispatch(logOutUser());
     fetchMock.getOnce('http://example.com', JSON.stringify(helperFixtures.expressAPIResponse));
+    const authenticationProgressMock = jest.fn();
     const props = {
       apiURL: 'http://example.com',
       authSuccess: true,
       authenticateActionCreator: authenticateUser,
       authenticated: false,
+      authenticationProgressCreator: authenticationProgressMock,
       sessionData: helperFixtures.onadataSession,
       sessionUser: helperFixtures.onadataUser
     };
-    const authenticationProgressMock = jest.spyOn(gk, 'authenticationProgress');
     const wrapper = mount(<APICallback {...props} />);
     await new Promise(resolve => setImmediate(resolve));
     expect(authenticationProgressMock.mock.calls).toEqual([[true], [false]]);
