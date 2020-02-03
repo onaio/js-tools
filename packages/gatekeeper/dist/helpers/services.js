@@ -37,7 +37,7 @@ function _oauth2Callback() {
           case 0:
             method = _args3.length > 4 && _args3[4] !== undefined ? _args3[4] : 'GET';
             return _context3.abrupt("return", provider.token.getToken(locationHash).then(function () {
-              var _ref2 = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee2(oAuthObject) {
+              var _ref3 = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee2(oAuthObject) {
                 var response, data;
                 return _regenerator["default"].wrap(function _callee2$(_context2) {
                   while (1) {
@@ -77,7 +77,7 @@ function _oauth2Callback() {
               }));
 
               return function (_x9) {
-                return _ref2.apply(this, arguments);
+                return _ref3.apply(this, arguments);
               };
             }()));
 
@@ -156,39 +156,50 @@ function _fetchUser() {
 }
 
 var fetchState = function () {
-  var _ref = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee(url) {
-    var authenticateActionCreator,
-        recordResultActionCreator,
-        errorCallbackFn,
-        _args = arguments;
+  var _ref2 = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee(_ref) {
+    var _ref$url, url, _ref$authenticateActi, authenticateActionCreator, _ref$recordResultActi, recordResultActionCreator, _ref$authenticationPr, authenticationProgressCreator, _ref$errorCallbackFn, errorCallbackFn, _ref$logoutActionCrea, logoutActionCreator;
+
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            authenticateActionCreator = _args.length > 1 && _args[1] !== undefined ? _args[1] : _sessionReducer.authenticateUser;
-            recordResultActionCreator = _args.length > 2 && _args[2] !== undefined ? _args[2] : _gatekeeper.recordResult;
-            errorCallbackFn = _args.length > 3 && _args[3] !== undefined ? _args[3] : _utils.errorCallback;
+            _ref$url = _ref.url, url = _ref$url === void 0 ? '' : _ref$url, _ref$authenticateActi = _ref.authenticateActionCreator, authenticateActionCreator = _ref$authenticateActi === void 0 ? _sessionReducer.authenticateUser : _ref$authenticateActi, _ref$recordResultActi = _ref.recordResultActionCreator, recordResultActionCreator = _ref$recordResultActi === void 0 ? _gatekeeper.recordResult : _ref$recordResultActi, _ref$authenticationPr = _ref.authenticationProgressCreator, authenticationProgressCreator = _ref$authenticationPr === void 0 ? _gatekeeper.authenticationProgress : _ref$authenticationPr, _ref$errorCallbackFn = _ref.errorCallbackFn, errorCallbackFn = _ref$errorCallbackFn === void 0 ? _utils.errorCallback : _ref$errorCallbackFn, _ref$logoutActionCrea = _ref.logoutActionCreator, logoutActionCreator = _ref$logoutActionCrea === void 0 ? _sessionReducer.logOutUser : _ref$logoutActionCrea;
+            authenticationProgressCreator(true);
             fetch(url).then(function (res) {
               if (res.ok) {
                 return res.json();
               } else {
+                authenticationProgressCreator(false);
                 throw new Error('fetching state failed');
               }
             }).then(function (data) {
               var session = data.session;
+
+              if (!session) {
+                logoutActionCreator();
+                var err = new Error('User is logged out');
+                recordResultActionCreator(false, {
+                  err: err
+                });
+                authenticationProgressCreator(false);
+                return;
+              }
+
               var authenticated = session.authenticated,
                   user = session.user,
                   extraData = session.extraData;
               authenticateActionCreator(authenticated, user, extraData);
               recordResultActionCreator(true, extraData);
+              authenticationProgressCreator(false);
             })["catch"](function (err) {
               recordResultActionCreator(false, {
                 err: err
               });
+              authenticationProgressCreator(false);
               errorCallbackFn(err);
             });
 
-          case 4:
+          case 3:
           case "end":
             return _context.stop();
         }
@@ -197,7 +208,7 @@ var fetchState = function () {
   }));
 
   return function fetchState(_x8) {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }();
 

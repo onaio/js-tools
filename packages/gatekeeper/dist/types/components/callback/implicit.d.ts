@@ -46,6 +46,7 @@ declare const ConnectedOauthCallback: import('react-redux').ConnectedComponentCl
   Pick<
     OauthCallbackProps<RouteParams>,
     | 'providers'
+    | 'working'
     | 'match'
     | 'LoadingComponent'
     | 'SuccessfulLoginComponent'

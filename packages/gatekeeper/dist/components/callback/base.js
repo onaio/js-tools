@@ -23,7 +23,8 @@ var defaultBaseCallbackComponentProps = {
     gravatar: '',
     name: '',
     username: ''
-  }
+  },
+  working: false
 };
 exports.defaultBaseCallbackComponentProps = defaultBaseCallbackComponentProps;
 
@@ -34,12 +35,13 @@ var BaseCallbackComponent = function BaseCallbackComponent(props) {
       authSuccess = props.authSuccess,
       authenticated = props.authenticated,
       sessionData = props.sessionData,
-      sessionUser = props.sessionUser;
+      sessionUser = props.sessionUser,
+      working = props.working;
   var successProps = {
     extraData: sessionData,
     user: sessionUser
   };
-  return authSuccess === null ? _react["default"].createElement(LoadingComponent, null) : authenticated === true ? _react["default"].createElement(SuccessfulLoginComponent, successProps) : _react["default"].createElement(UnSuccessfulLoginComponent, null);
+  return authSuccess === null || working === true ? _react["default"].createElement(LoadingComponent, null) : authenticated === true ? _react["default"].createElement(SuccessfulLoginComponent, successProps) : _react["default"].createElement(UnSuccessfulLoginComponent, null);
 };
 
 exports.BaseCallbackComponent = BaseCallbackComponent;

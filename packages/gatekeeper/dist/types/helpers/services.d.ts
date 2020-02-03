@@ -1,9 +1,9 @@
-import { AuthenticateAction } from '@onaio/session-reducer';
+import { AuthenticateAction, LogOutAction } from '@onaio/session-reducer';
 import ClientOAuth2 from 'client-oauth2';
 import { ActionCreator } from 'redux';
-import { RecordAction } from '../ducks/gatekeeper';
+import { AuthenticationProgressAction, RecordAction } from '../ducks/gatekeeper';
 import { UserInfoFnType } from './oauth';
-import { ErrorCallback } from './utils';
+import { ErrorCallback, errorCallback } from './utils';
 /** allowed http methods */
 declare type HTTPMethod = 'GET' | 'POST' | 'get' | 'post';
 /** Calls the oAuth provider to get user details
@@ -42,10 +42,36 @@ export declare function fetchUser(
   method?: HTTPMethod
 ): Promise<void>;
 /** some docstring */
-export declare const fetchState: (
-  url: string,
-  authenticateActionCreator?: ActionCreator<AuthenticateAction>,
-  recordResultActionCreator?: ActionCreator<RecordAction>,
-  errorCallbackFn?: ErrorCallback
-) => Promise<void>;
+export declare const fetchState: ({
+  url,
+  authenticateActionCreator,
+  recordResultActionCreator,
+  authenticationProgressCreator,
+  errorCallbackFn,
+  logoutActionCreator
+}: {
+  url?: string | undefined;
+  authenticateActionCreator?:
+    | ((
+        authenticated: boolean,
+        user: import('@onaio/session-reducer/dist/types').User,
+        extraDatUsera?:
+          | {
+              [key: string]: any;
+            }
+          | undefined
+      ) => AuthenticateAction)
+    | undefined;
+  recordResultActionCreator?:
+    | ((
+        success: boolean,
+        result?: {
+          [key: string]: any;
+        }
+      ) => RecordAction)
+    | undefined;
+  authenticationProgressCreator?: ((working: boolean) => AuthenticationProgressAction) | undefined;
+  errorCallbackFn?: typeof errorCallback | undefined;
+  logoutActionCreator?: (() => LogOutAction) | undefined;
+}) => Promise<void>;
 export {};

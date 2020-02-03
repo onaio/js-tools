@@ -16,6 +16,7 @@ export interface BaseCallbackComponentProps<G> extends RouteComponentProps<G> {
     [key: string]: any;
   };
   sessionUser: User;
+  working: boolean;
 }
 /** default props for BaseCallbackComponent */
 export declare const defaultBaseCallbackComponentProps: Partial<

@@ -36,7 +36,10 @@ var defaultAPICallbackProps = _objectSpread({}, _base.defaultBaseCallbackCompone
   HTTP404Component: _utils2.Component404,
   UnSuccessfulLoginComponent: _utils2.RenderErrorComponent,
   authenticateActionCreator: _sessionReducer.authenticateUser,
-  recordResultActionCreator: _gatekeeper.recordResult
+  authenticationProgressCreator: _gatekeeper.authenticationProgress,
+  logoutActionCreator: _sessionReducer.logOutUser,
+  recordResultActionCreator: _gatekeeper.recordResult,
+  working: false
 });
 
 exports.defaultAPICallbackProps = defaultAPICallbackProps;
@@ -50,11 +53,21 @@ var APICallback = function APICallback(props) {
       authenticated = props.authenticated,
       authenticateActionCreator = props.authenticateActionCreator,
       recordResultActionCreator = props.recordResultActionCreator,
+      authenticationProgressCreator = props.authenticationProgressCreator,
+      logoutActionCreator = props.logoutActionCreator,
       sessionData = props.sessionData,
-      sessionUser = props.sessionUser;
+      sessionUser = props.sessionUser,
+      working = props.working;
   (0, _react.useEffect)(function () {
     if (authSuccess === null || authenticated === false) {
-      (0, _services.fetchState)(apiURL, authenticateActionCreator, recordResultActionCreator, _utils.errorCallback)["catch"](function (e) {});
+      (0, _services.fetchState)({
+        authenticateActionCreator: authenticateActionCreator,
+        authenticationProgressCreator: authenticationProgressCreator,
+        errorCallbackFn: _utils.errorCallback,
+        logoutActionCreator: logoutActionCreator,
+        recordResultActionCreator: recordResultActionCreator,
+        url: apiURL
+      })["catch"](function (e) {});
     }
   }, []);
   var baseProps = {
@@ -64,7 +77,8 @@ var APICallback = function APICallback(props) {
     authSuccess: authSuccess,
     authenticated: authenticated,
     sessionData: sessionData,
-    sessionUser: sessionUser
+    sessionUser: sessionUser,
+    working: working
   };
   return _react["default"].createElement(_base.BaseCallbackComponent, baseProps);
 };
@@ -77,7 +91,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     authSuccess: (0, _gatekeeper.getSuccess)(state),
     authenticated: (0, _sessionReducer.isAuthenticated)(state),
     sessionData: (0, _sessionReducer.getExtraData)(state),
-    sessionUser: (0, _sessionReducer.getUser)(state)
+    sessionUser: (0, _sessionReducer.getUser)(state),
+    working: (0, _gatekeeper.isWorking)(state)
   };
   Object.assign(result, ownProps);
   return result;
@@ -85,6 +100,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = {
   authenticateActionCreator: _sessionReducer.authenticateUser,
+  authenticationProgressCreator: _gatekeeper.authenticationProgress,
+  logoutActionCreator: _sessionReducer.logOutUser,
   recordResultActionCreator: _gatekeeper.recordResult
 };
 var ConnectedAPICallback = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(APICallback);

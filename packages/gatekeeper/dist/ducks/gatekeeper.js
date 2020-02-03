@@ -8,7 +8,8 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = reducer;
 exports.getResult = getResult;
 exports.getSuccess = getSuccess;
-exports.recordResult = exports.RECORD = exports.initialState = exports.reducerName = void 0;
+exports.isWorking = isWorking;
+exports.authenticationProgress = exports.recordResult = exports.AUTHENTICATION_PROGRESS = exports.RECORD = exports.initialState = exports.reducerName = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -22,7 +23,8 @@ var reducerName = 'gatekeeper';
 exports.reducerName = reducerName;
 var initialState = (0, _seamlessImmutable["default"])({
   result: {},
-  success: null
+  success: null,
+  working: false
 });
 exports.initialState = initialState;
 
@@ -37,6 +39,11 @@ function reducer() {
         success: action.success
       });
 
+    case AUTHENTICATION_PROGRESS:
+      return state.merge({
+        working: action.working
+      });
+
     default:
       return state;
   }
@@ -44,6 +51,8 @@ function reducer() {
 
 var RECORD = '@onaio/gatekeeper/reducer/RECORD';
 exports.RECORD = RECORD;
+var AUTHENTICATION_PROGRESS = '@onaio/gatekeeper/reducer/AUTHENTICATION_PROGRESS';
+exports.AUTHENTICATION_PROGRESS = AUTHENTICATION_PROGRESS;
 
 var recordResult = function recordResult(success) {
   var result = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -56,10 +65,23 @@ var recordResult = function recordResult(success) {
 
 exports.recordResult = recordResult;
 
+var authenticationProgress = function authenticationProgress(working) {
+  return {
+    type: AUTHENTICATION_PROGRESS,
+    working: working
+  };
+};
+
+exports.authenticationProgress = authenticationProgress;
+
 function getResult(state) {
   return state[reducerName].result;
 }
 
 function getSuccess(state) {
   return state[reducerName].success;
+}
+
+function isWorking(state) {
+  return state[reducerName].working;
 }
