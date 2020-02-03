@@ -8,23 +8,18 @@ import session, {
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import fetchMock from 'fetch-mock';
-import { createBrowserHistory } from 'history';
 import React from 'react';
 import { Provider } from 'react-redux';
 import gatekeeper, {
   recordResult,
   reducerName as gateKeeperReducer
 } from '../../../ducks/gatekeeper';
-import { getOnadataUserInfo } from '../../../helpers/oauth';
-import * as serviceHelpers from '../../../helpers/services';
 import * as helperFixtures from '../../../helpers/tests/fixtures';
-import * as fixtures from '../../tests/fixtures';
 import * as callback from '../custom';
 
 const ConnectedAPICallback = callback.default;
 const APICallback = callback.APICallback;
 
-const history = createBrowserHistory();
 reducerRegistry.register(sessionReducer, session);
 reducerRegistry.register(gateKeeperReducer, gatekeeper);
 
