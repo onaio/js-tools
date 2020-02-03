@@ -37,7 +37,7 @@ const PrivateRoute = (props: PrivateRouteProps) => {
     ...theOtherProps
   } = props;
 
-  const currentPath = props.path;
+  const currentPath = (props.location && props.location.pathname) || '';
   // we can now create the full redirect path, append q for next page based on location
   let fullRedirectPath = redirectPath;
   // is currentPath a non-empty string
