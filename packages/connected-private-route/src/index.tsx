@@ -42,11 +42,8 @@ const PrivateRoute = (props: PrivateRouteProps) => {
   const currentPath = `${(location && location.pathname) || ''}${(location && location.search) ||
     ''}${(location && location.hash) || ''}`;
   // we can now create the full redirect path, append next searchParma
-  let fullRedirectPath = redirectPath;
-  // is currentPath a non-empty string
-  if (typeof currentPath !== 'undefined' && currentPath.length > 0) {
-    fullRedirectPath = `${redirectPath}?${queryString.stringify({ next: currentPath })}`;
-  }
+  const fullRedirectPath = `${redirectPath}?${queryString.stringify({ next: currentPath })}`;
+
   return (
     /* tslint:disable jsx-no-lambda */
     <Route
