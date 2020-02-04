@@ -5,6 +5,7 @@ import {
   logOutUser
 } from '@onaio/session-reducer';
 import ClientOAuth2 from 'client-oauth2';
+import { Action } from 'history';
 import { ActionCreator } from 'redux';
 import {
   authenticationProgress,
@@ -98,15 +99,28 @@ export async function fetchUser(
   }
 }
 
-/** some docstring */
-export const fetchState = async ({
-  url = '',
-  authenticateActionCreator = authenticateUser,
-  recordResultActionCreator = recordResult,
-  authenticationProgressCreator = authenticationProgress,
-  errorCallbackFn = errorCallback,
-  logoutActionCreator = logOutUser
-}) => {
+interface FetchStateActionCreators {
+  authenticateActionCreator?: ActionCreator<AuthenticateAction>;
+  recordResultActionCreator?: ActionCreator<RecordAction>;
+  authenticationProgressCreator?: ActionCreator<AuthenticationProgressAction>;
+  errorCallbackFn?: ErrorCallback;
+  logoutActionCreator?: ActionCreator<LogOutAction>;
+}
+
+/** fetches session info from provided url
+ * @params {string} url - points to location of the sessions
+ * @params {options} - actionCreators
+ */
+export const fetchState = async (
+  url: string,
+  {
+    authenticateActionCreator = authenticateUser,
+    recordResultActionCreator = recordResult,
+    authenticationProgressCreator = authenticationProgress,
+    errorCallbackFn = errorCallback,
+    logoutActionCreator = logOutUser
+  }: FetchStateActionCreators
+) => {
   authenticationProgressCreator(true);
   fetch(url)
     .then(res => {
