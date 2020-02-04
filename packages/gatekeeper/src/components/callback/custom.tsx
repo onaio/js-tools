@@ -7,7 +7,6 @@ import {
   LogOutAction,
   logOutUser
 } from '@onaio/session-reducer';
-import { Action } from 'history';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { ActionCreator, Store } from 'redux';
