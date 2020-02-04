@@ -3,7 +3,7 @@ import ClientOAuth2 from 'client-oauth2';
 import { ActionCreator } from 'redux';
 import { AuthenticationProgressAction, RecordAction } from '../ducks/gatekeeper';
 import { UserInfoFnType } from './oauth';
-import { ErrorCallback, errorCallback } from './utils';
+import { ErrorCallback } from './utils';
 /** allowed http methods */
 declare type HTTPMethod = 'GET' | 'POST' | 'get' | 'post';
 /** Calls the oAuth provider to get user details
@@ -41,37 +41,26 @@ export declare function fetchUser(
   errorCallbackFn?: ErrorCallback,
   method?: HTTPMethod
 ): Promise<void>;
-/** some docstring */
-export declare const fetchState: ({
-  url,
-  authenticateActionCreator,
-  recordResultActionCreator,
-  authenticationProgressCreator,
-  errorCallbackFn,
-  logoutActionCreator
-}: {
-  url?: string | undefined;
-  authenticateActionCreator?:
-    | ((
-        authenticated: boolean,
-        user: import('@onaio/session-reducer/dist/types').User,
-        extraDatUsera?:
-          | {
-              [key: string]: any;
-            }
-          | undefined
-      ) => AuthenticateAction)
-    | undefined;
-  recordResultActionCreator?:
-    | ((
-        success: boolean,
-        result?: {
-          [key: string]: any;
-        }
-      ) => RecordAction)
-    | undefined;
-  authenticationProgressCreator?: ((working: boolean) => AuthenticationProgressAction) | undefined;
-  errorCallbackFn?: typeof errorCallback | undefined;
-  logoutActionCreator?: (() => LogOutAction) | undefined;
-}) => Promise<void>;
+/** describes options to be passed to fetchState as second argument */
+interface FetchStateActionCreators {
+  authenticateActionCreator?: ActionCreator<AuthenticateAction>;
+  recordResultActionCreator?: ActionCreator<RecordAction>;
+  authenticationProgressCreator?: ActionCreator<AuthenticationProgressAction>;
+  errorCallbackFn?: ErrorCallback;
+  logoutActionCreator?: ActionCreator<LogOutAction>;
+}
+/** fetches session info from provided url
+ * @params {string} url - points to location of the sessions
+ * @params {options} - actionCreators
+ */
+export declare const fetchState: (
+  url: string,
+  {
+    authenticateActionCreator,
+    recordResultActionCreator,
+    authenticationProgressCreator,
+    errorCallbackFn,
+    logoutActionCreator
+  }: FetchStateActionCreators
+) => Promise<void>;
 export {};

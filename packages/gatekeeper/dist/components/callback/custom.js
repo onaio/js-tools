@@ -60,13 +60,12 @@ var APICallback = function APICallback(props) {
       working = props.working;
   (0, _react.useEffect)(function () {
     if (authSuccess === null || authenticated === false) {
-      (0, _services.fetchState)({
+      (0, _services.fetchState)(apiURL, {
         authenticateActionCreator: authenticateActionCreator,
         authenticationProgressCreator: authenticationProgressCreator,
         errorCallbackFn: _utils.errorCallback,
         logoutActionCreator: logoutActionCreator,
-        recordResultActionCreator: recordResultActionCreator,
-        url: apiURL
+        recordResultActionCreator: recordResultActionCreator
       })["catch"](function (e) {});
     }
   }, []);
@@ -92,7 +91,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     authenticated: (0, _sessionReducer.isAuthenticated)(state),
     sessionData: (0, _sessionReducer.getExtraData)(state),
     sessionUser: (0, _sessionReducer.getUser)(state),
-    working: (0, _gatekeeper.isWorking)(state)
+    working: (0, _gatekeeper.isAuthenticating)(state)
   };
   Object.assign(result, ownProps);
   return result;

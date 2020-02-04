@@ -76,7 +76,7 @@ function _oauth2Callback() {
                 }, _callee2);
               }));
 
-              return function (_x9) {
+              return function (_x10) {
                 return _ref3.apply(this, arguments);
               };
             }()));
@@ -156,14 +156,14 @@ function _fetchUser() {
 }
 
 var fetchState = function () {
-  var _ref2 = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee(_ref) {
-    var _ref$url, url, _ref$authenticateActi, authenticateActionCreator, _ref$recordResultActi, recordResultActionCreator, _ref$authenticationPr, authenticationProgressCreator, _ref$errorCallbackFn, errorCallbackFn, _ref$logoutActionCrea, logoutActionCreator;
+  var _ref2 = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee(url, _ref) {
+    var _ref$authenticateActi, authenticateActionCreator, _ref$recordResultActi, recordResultActionCreator, _ref$authenticationPr, authenticationProgressCreator, _ref$errorCallbackFn, errorCallbackFn, _ref$logoutActionCrea, logoutActionCreator;
 
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _ref$url = _ref.url, url = _ref$url === void 0 ? '' : _ref$url, _ref$authenticateActi = _ref.authenticateActionCreator, authenticateActionCreator = _ref$authenticateActi === void 0 ? _sessionReducer.authenticateUser : _ref$authenticateActi, _ref$recordResultActi = _ref.recordResultActionCreator, recordResultActionCreator = _ref$recordResultActi === void 0 ? _gatekeeper.recordResult : _ref$recordResultActi, _ref$authenticationPr = _ref.authenticationProgressCreator, authenticationProgressCreator = _ref$authenticationPr === void 0 ? _gatekeeper.authenticationProgress : _ref$authenticationPr, _ref$errorCallbackFn = _ref.errorCallbackFn, errorCallbackFn = _ref$errorCallbackFn === void 0 ? _utils.errorCallback : _ref$errorCallbackFn, _ref$logoutActionCrea = _ref.logoutActionCreator, logoutActionCreator = _ref$logoutActionCrea === void 0 ? _sessionReducer.logOutUser : _ref$logoutActionCrea;
+            _ref$authenticateActi = _ref.authenticateActionCreator, authenticateActionCreator = _ref$authenticateActi === void 0 ? _sessionReducer.authenticateUser : _ref$authenticateActi, _ref$recordResultActi = _ref.recordResultActionCreator, recordResultActionCreator = _ref$recordResultActi === void 0 ? _gatekeeper.recordResult : _ref$recordResultActi, _ref$authenticationPr = _ref.authenticationProgressCreator, authenticationProgressCreator = _ref$authenticationPr === void 0 ? _gatekeeper.authenticationProgress : _ref$authenticationPr, _ref$errorCallbackFn = _ref.errorCallbackFn, errorCallbackFn = _ref$errorCallbackFn === void 0 ? _utils.errorCallback : _ref$errorCallbackFn, _ref$logoutActionCrea = _ref.logoutActionCreator, logoutActionCreator = _ref$logoutActionCrea === void 0 ? _sessionReducer.logOutUser : _ref$logoutActionCrea;
             authenticationProgressCreator(true);
             fetch(url).then(function (res) {
               if (res.ok) {
@@ -177,12 +177,7 @@ var fetchState = function () {
 
               if (!session) {
                 logoutActionCreator();
-                var err = new Error('User is logged out');
-                recordResultActionCreator(false, {
-                  err: err
-                });
-                authenticationProgressCreator(false);
-                return;
+                throw new Error('User is logged out');
               }
 
               var authenticated = session.authenticated,
@@ -207,7 +202,7 @@ var fetchState = function () {
     }, _callee);
   }));
 
-  return function fetchState(_x8) {
+  return function fetchState(_x8, _x9) {
     return _ref2.apply(this, arguments);
   };
 }();

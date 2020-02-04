@@ -8,7 +8,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = reducer;
 exports.getResult = getResult;
 exports.getSuccess = getSuccess;
-exports.isWorking = isWorking;
+exports.isAuthenticating = isAuthenticating;
 exports.authenticationProgress = exports.recordResult = exports.AUTHENTICATION_PROGRESS = exports.RECORD = exports.initialState = exports.reducerName = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
@@ -82,6 +82,6 @@ function getSuccess(state) {
   return state[reducerName].success;
 }
 
-function isWorking(state) {
+function isAuthenticating(state) {
   return state[reducerName].working;
 }
