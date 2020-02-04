@@ -1,6 +1,7 @@
 import fetchMock from 'fetch-mock';
 import { getOnadataUserInfo } from '../oauth';
 import { fetchState, fetchUser, oauth2Callback } from '../services';
+import { errorCallback } from '../utils';
 import * as fixtures from './fixtures';
 
 describe('gatekeeper/services', () => {
@@ -131,9 +132,11 @@ describe('gatekeeper/services', () => {
     const authenticateCreatorMock = jest.fn();
     const recordResultCreatorMock = jest.fn();
     const logoutMock = jest.fn();
+    const errorCallbackMock = jest.fn();
     fetchMock.getOnce(url, { error: 'Not authorized' });
     fetchState(url, {
       authenticateActionCreator: authenticateCreatorMock,
+      errorCallbackFn: errorCallbackMock,
       logoutActionCreator: logoutMock,
       recordResultActionCreator: recordResultCreatorMock
     });
@@ -142,5 +145,6 @@ describe('gatekeeper/services', () => {
     expect(logoutMock).toHaveBeenCalled();
     expect(authenticateCreatorMock).not.toHaveBeenCalled();
     expect(recordResultCreatorMock).toHaveBeenCalledTimes(1);
+    expect(errorCallbackMock).toHaveBeenCalledTimes(1);
   });
 });
