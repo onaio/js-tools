@@ -14,7 +14,7 @@ import {
   authenticationProgress,
   AuthenticationProgressAction,
   getSuccess,
-  isWorking,
+  isAuthenticating,
   RecordAction,
   recordResult
 } from '../../ducks/gatekeeper';
@@ -121,7 +121,7 @@ const mapStateToProps = (
     authenticated: isAuthenticated(state),
     sessionData: getExtraData(state),
     sessionUser: getUser(state),
-    working: isWorking(state)
+    working: isAuthenticating(state)
   };
   Object.assign(result, ownProps);
 

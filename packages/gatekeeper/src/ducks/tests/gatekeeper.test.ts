@@ -5,7 +5,7 @@ import gatekeeper, {
   authenticationProgress,
   getResult,
   getSuccess,
-  isWorking,
+  isAuthenticating,
   recordResult
 } from '../gatekeeper';
 
@@ -24,7 +24,7 @@ describe('ducks/gatekeeper', () => {
     expect(getSuccess(store.getState())).toBe(null);
     // initially result
     expect(getResult(store.getState())).toEqual({});
-    expect(isWorking(store.getState())).toBeFalsy();
+    expect(isAuthenticating(store.getState())).toBeFalsy();
   });
 
   it('should record information', () => {
@@ -51,10 +51,10 @@ describe('ducks/gatekeeper', () => {
   });
 
   it('dispatching authentication progress works', () => {
-    expect(isWorking(store.getState())).toBeFalsy();
+    expect(isAuthenticating(store.getState())).toBeFalsy();
     store.dispatch(authenticationProgress(false));
-    expect(isWorking(store.getState())).toBeFalsy();
+    expect(isAuthenticating(store.getState())).toBeFalsy();
     store.dispatch(authenticationProgress(true));
-    expect(isWorking(store.getState())).toBeTruthy();
+    expect(isAuthenticating(store.getState())).toBeTruthy();
   });
 });

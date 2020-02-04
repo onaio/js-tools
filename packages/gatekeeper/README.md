@@ -332,17 +332,19 @@ Right now, the following selectors are provided:
 
 - `getResult`: get the result object
 - `getSuccess`: returns a boolean if the authentication attempt was successful or not. Is null by default - which means authentication has not been attempted.
+- `isAuthenticating`: returns a boolean denoting if `fetchState` is done retrieving credentials. One can use this to have a loader displayed during authentication period.
 
 ##### Sample code to use these selectors
 
 ```ts
-import { getResult, getSuccess } from '@onaio/gatekeeper';
+import { getResult, getSuccess, isAuthenticating } from '@onaio/gatekeeper';
 
 // we assume you have a state object defined somewhere
 let state;
 
 const authSuccess = getSuccess(state);
 const authData = getResult(state);
+const authenticating = isAuthenticating(state);
 ```
 
 #### Usage

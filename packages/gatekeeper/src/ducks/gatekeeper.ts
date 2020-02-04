@@ -110,6 +110,6 @@ export function getSuccess(state: Partial<Store>): boolean {
 /** returns if async call to authenticate is in progress
  * @param {Partial<Store>} state - the redux store
  */
-export function isWorking(state: Partial<Store>): boolean {
+export function isAuthenticating(state: Partial<Store>): boolean {
   return (state as any)[reducerName].working;
 }
