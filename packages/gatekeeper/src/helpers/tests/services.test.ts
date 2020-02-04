@@ -94,11 +94,10 @@ describe('gatekeeper/services', () => {
     const authenticateCreatorMock = jest.fn();
     const recordResultCreatorMock = jest.fn();
     const logoutMock = jest.fn();
-    fetchState({
+    fetchState(url, {
       authenticateActionCreator: authenticateCreatorMock,
       logoutActionCreator: logoutMock,
-      recordResultActionCreator: recordResultCreatorMock,
-      url
+      recordResultActionCreator: recordResultCreatorMock
     });
     await new Promise(resolve => setImmediate(resolve));
     const extraData = {
@@ -133,11 +132,10 @@ describe('gatekeeper/services', () => {
     const recordResultCreatorMock = jest.fn();
     const logoutMock = jest.fn();
     fetchMock.getOnce(url, { error: 'Not authorized' });
-    fetchState({
+    fetchState(url, {
       authenticateActionCreator: authenticateCreatorMock,
       logoutActionCreator: logoutMock,
-      recordResultActionCreator: recordResultCreatorMock,
-      url
+      recordResultActionCreator: recordResultCreatorMock
     });
     await new Promise(resolve => setImmediate(resolve));
 

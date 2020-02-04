@@ -80,13 +80,12 @@ const APICallback = (props: APICallbackProps<RouteParams>) => {
 
   useEffect(() => {
     if (authSuccess === null || authenticated === false) {
-      fetchState({
+      fetchState(apiURL, {
         authenticateActionCreator,
         authenticationProgressCreator,
         errorCallbackFn: errorCallback,
         logoutActionCreator,
-        recordResultActionCreator,
-        url: apiURL
+        recordResultActionCreator
       }).catch(e => {
         /** do nothing - is this wise?? */
       });
