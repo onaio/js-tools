@@ -38,9 +38,10 @@ const PrivateRoute = (props: PrivateRouteProps) => {
     ...theOtherProps
   } = props;
 
+  /** recreates the url : the path; query string if any; a hash tag if any */
   const currentPath = `${(location && location.pathname) || ''}${(location && location.search) ||
     ''}${(location && location.hash) || ''}`;
-  // we can now create the full redirect path, append q for next page based on location
+  // we can now create the full redirect path, append next searchParma
   let fullRedirectPath = redirectPath;
   // is currentPath a non-empty string
   if (typeof currentPath !== 'undefined' && currentPath.length > 0) {
