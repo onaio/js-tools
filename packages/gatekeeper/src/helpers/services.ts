@@ -136,10 +136,7 @@ export const fetchState = async (
       const { session } = data;
       if (!session) {
         logoutActionCreator();
-        const err = new Error('User is logged out');
-        recordResultActionCreator(false, { err });
-        authenticationProgressCreator(false);
-        return;
+        return Promise.reject('User is logged out');
       }
       const { authenticated, user, extraData } = session;
       authenticateActionCreator(authenticated, user, extraData);
