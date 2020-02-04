@@ -1,7 +1,7 @@
-import { AuthenticateAction } from '@onaio/session-reducer';
+import { AuthenticateAction, LogOutAction } from '@onaio/session-reducer';
 import React from 'react';
 import { ActionCreator } from 'redux';
-import { RecordAction } from '../../ducks/gatekeeper';
+import { AuthenticationProgressAction, RecordAction } from '../../ducks/gatekeeper';
 import { BaseCallbackComponentProps } from './base';
 interface RouteParams {
   id: string;
@@ -12,7 +12,10 @@ export interface APICallbackProps<G> extends BaseCallbackComponentProps<G> {
   HTTP404Component: React.ElementType;
   apiURL: string;
   authenticateActionCreator: ActionCreator<AuthenticateAction>;
+  authenticationProgressCreator: ActionCreator<AuthenticationProgressAction>;
+  logoutActionCreator: ActionCreator<LogOutAction>;
   recordResultActionCreator: ActionCreator<RecordAction>;
+  working: boolean;
 }
 /** default props for OauthCallback */
 export declare const defaultAPICallbackProps: Partial<APICallbackProps<RouteParams>>;

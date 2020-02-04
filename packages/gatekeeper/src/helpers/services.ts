@@ -1,5 +1,11 @@
-import { AuthenticateAction, authenticateUser } from '@onaio/session-reducer';
+import {
+  AuthenticateAction,
+  authenticateUser,
+  LogOutAction,
+  logOutUser
+} from '@onaio/session-reducer';
 import ClientOAuth2 from 'client-oauth2';
+import { Action } from 'history';
 import { ActionCreator } from 'redux';
 import {
   authenticationProgress,
@@ -93,15 +99,28 @@ export async function fetchUser(
   }
 }
 
-/** some docstring */
+/** describes options to be passed to fetchState as second argument */
+interface FetchStateActionCreators {
+  authenticateActionCreator?: ActionCreator<AuthenticateAction>;
+  recordResultActionCreator?: ActionCreator<RecordAction>;
+  authenticationProgressCreator?: ActionCreator<AuthenticationProgressAction>;
+  errorCallbackFn?: ErrorCallback;
+  logoutActionCreator?: ActionCreator<LogOutAction>;
+}
+
+/** fetches session info from provided url
+ * @params {string} url - points to location of the sessions
+ * @params {options} - actionCreators
+ */
 export const fetchState = async (
   url: string,
-  authenticateActionCreator: ActionCreator<AuthenticateAction> = authenticateUser,
-  recordResultActionCreator: ActionCreator<RecordAction> = recordResult,
-  authenticationProgressCreator: ActionCreator<
-    AuthenticationProgressAction
-  > = authenticationProgress,
-  errorCallbackFn: ErrorCallback = errorCallback
+  {
+    authenticateActionCreator = authenticateUser,
+    recordResultActionCreator = recordResult,
+    authenticationProgressCreator = authenticationProgress,
+    errorCallbackFn = errorCallback,
+    logoutActionCreator = logOutUser
+  }: FetchStateActionCreators
 ) => {
   authenticationProgressCreator(true);
   fetch(url)
@@ -115,6 +134,10 @@ export const fetchState = async (
     })
     .then(data => {
       const { session } = data;
+      if (!session) {
+        logoutActionCreator();
+        throw new Error('User is logged out');
+      }
       const { authenticated, user, extraData } = session;
       authenticateActionCreator(authenticated, user, extraData);
       recordResultActionCreator(true, extraData);

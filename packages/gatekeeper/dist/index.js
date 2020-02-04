@@ -179,6 +179,12 @@ Object.defineProperty(exports, "initialGateKeeperState", {
     return _gatekeeper.initialState;
   }
 });
+Object.defineProperty(exports, "isAuthenticating", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper.isAuthenticating;
+  }
+});
 Object.defineProperty(exports, "RECORD", {
   enumerable: true,
   get: function get() {

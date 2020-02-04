@@ -3,9 +3,10 @@ import {
   authenticateUser,
   getExtraData,
   getUser,
-  isAuthenticated
+  isAuthenticated,
+  LogOutAction,
+  logOutUser
 } from '@onaio/session-reducer';
-import { Action } from 'history';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { ActionCreator, Store } from 'redux';
@@ -13,7 +14,7 @@ import {
   authenticationProgress,
   AuthenticationProgressAction,
   getSuccess,
-  isWorking,
+  isAuthenticating,
   RecordAction,
   recordResult
 } from '../../ducks/gatekeeper';
@@ -36,8 +37,9 @@ export interface APICallbackProps<G> extends BaseCallbackComponentProps<G> {
   HTTP404Component: React.ElementType;
   apiURL: string;
   authenticateActionCreator: ActionCreator<AuthenticateAction>;
-  recordResultActionCreator: ActionCreator<RecordAction>;
   authenticationProgressCreator: ActionCreator<AuthenticationProgressAction>;
+  logoutActionCreator: ActionCreator<LogOutAction>;
+  recordResultActionCreator: ActionCreator<RecordAction>;
   working: boolean;
 }
 
@@ -49,6 +51,7 @@ export const defaultAPICallbackProps: Partial<APICallbackProps<RouteParams>> = {
   UnSuccessfulLoginComponent: RenderErrorComponent,
   authenticateActionCreator: authenticateUser,
   authenticationProgressCreator: authenticationProgress,
+  logoutActionCreator: logOutUser,
   recordResultActionCreator: recordResult,
   working: false
 };
@@ -68,6 +71,7 @@ const APICallback = (props: APICallbackProps<RouteParams>) => {
     authenticateActionCreator,
     recordResultActionCreator,
     authenticationProgressCreator,
+    logoutActionCreator,
     sessionData,
     sessionUser,
     working
@@ -75,13 +79,13 @@ const APICallback = (props: APICallbackProps<RouteParams>) => {
 
   useEffect(() => {
     if (authSuccess === null || authenticated === false) {
-      fetchState(
-        apiURL,
+      fetchState(apiURL, {
         authenticateActionCreator,
-        recordResultActionCreator,
-        authenticationProgress,
-        errorCallback
-      ).catch(e => {
+        authenticationProgressCreator,
+        errorCallbackFn: errorCallback,
+        logoutActionCreator,
+        recordResultActionCreator
+      }).catch(e => {
         /** do nothing - is this wise?? */
       });
     }
@@ -117,7 +121,7 @@ const mapStateToProps = (
     authenticated: isAuthenticated(state),
     sessionData: getExtraData(state),
     sessionUser: getUser(state),
-    working: isWorking(state)
+    working: isAuthenticating(state)
   };
   Object.assign(result, ownProps);
 
@@ -128,6 +132,7 @@ const mapStateToProps = (
 const mapDispatchToProps = {
   authenticateActionCreator: authenticateUser,
   authenticationProgressCreator: authenticationProgress,
+  logoutActionCreator: logOutUser,
   recordResultActionCreator: recordResult
 };
 

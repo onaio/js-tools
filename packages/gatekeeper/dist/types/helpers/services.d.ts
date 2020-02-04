@@ -1,7 +1,7 @@
-import { AuthenticateAction } from '@onaio/session-reducer';
+import { AuthenticateAction, LogOutAction } from '@onaio/session-reducer';
 import ClientOAuth2 from 'client-oauth2';
 import { ActionCreator } from 'redux';
-import { RecordAction } from '../ducks/gatekeeper';
+import { AuthenticationProgressAction, RecordAction } from '../ducks/gatekeeper';
 import { UserInfoFnType } from './oauth';
 import { ErrorCallback } from './utils';
 /** allowed http methods */
@@ -41,11 +41,26 @@ export declare function fetchUser(
   errorCallbackFn?: ErrorCallback,
   method?: HTTPMethod
 ): Promise<void>;
-/** some docstring */
+/** describes options to be passed to fetchState as second argument */
+interface FetchStateActionCreators {
+  authenticateActionCreator?: ActionCreator<AuthenticateAction>;
+  recordResultActionCreator?: ActionCreator<RecordAction>;
+  authenticationProgressCreator?: ActionCreator<AuthenticationProgressAction>;
+  errorCallbackFn?: ErrorCallback;
+  logoutActionCreator?: ActionCreator<LogOutAction>;
+}
+/** fetches session info from provided url
+ * @params {string} url - points to location of the sessions
+ * @params {options} - actionCreators
+ */
 export declare const fetchState: (
   url: string,
-  authenticateActionCreator?: ActionCreator<AuthenticateAction>,
-  recordResultActionCreator?: ActionCreator<RecordAction>,
-  errorCallbackFn?: ErrorCallback
+  {
+    authenticateActionCreator,
+    recordResultActionCreator,
+    authenticationProgressCreator,
+    errorCallbackFn,
+    logoutActionCreator
+  }: FetchStateActionCreators
 ) => Promise<void>;
 export {};

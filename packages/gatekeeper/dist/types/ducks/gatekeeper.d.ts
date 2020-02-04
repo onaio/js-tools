@@ -9,12 +9,18 @@ export interface RecordAction extends AnyAction {
   success: boolean | null;
   type: typeof RECORD;
 }
+/** action that informs on progress of fetch user async action in custom callback */
+export interface AuthenticationProgressAction extends AnyAction {
+  working: boolean;
+  type: typeof AUTHENTICATION_PROGRESS;
+}
 /** interface to describe GateKeeper state */
 export interface GateKeeperState {
   result: {
     [key: string]: any;
   } /** stores the result of the auth attempt */;
   success: boolean | null /** was it successful or not */;
+  working: boolean /** is the async call to authenticate in progress or not? */;
 }
 /** Create type for GateKeeper reducer actions */
 export declare type GateKeeperActionTypes = RecordAction | AnyAction;
@@ -33,6 +39,7 @@ export default function reducer(
 ): ImmutableGateKeeperState;
 /** authenticate success action type */
 export declare const RECORD = '@onaio/gatekeeper/reducer/RECORD';
+export declare const AUTHENTICATION_PROGRESS = '@onaio/gatekeeper/reducer/AUTHENTICATION_PROGRESS';
 /** record the result of the authentication attempt
  * @param {boolean} success - whether it was successful or not
  * @param {{ [key: string]: any }} result - an object containing result information
@@ -43,6 +50,12 @@ export declare const recordResult: (
     [key: string]: any;
   }
 ) => RecordAction;
+/** creates an AuthenticationProgressAction
+ * @param {boolean} working - work state of the async call to authenticate
+ *
+ * @return {AuthenticationProgressAction}
+ */
+export declare const authenticationProgress: (working: boolean) => AuthenticationProgressAction;
 /** get result
  * @param {Partial<Store>} state - the redux store
  */
@@ -55,3 +68,7 @@ export declare function getResult(
  * @param {Partial<Store>} state - the redux store
  */
 export declare function getSuccess(state: Partial<Store>): boolean;
+/** returns if async call to authenticate is in progress
+ * @param {Partial<Store>} state - the redux store
+ */
+export declare function isAuthenticating(state: Partial<Store>): boolean;

@@ -1,6 +1,7 @@
 import fetchMock from 'fetch-mock';
 import { getOnadataUserInfo } from '../oauth';
-import { fetchUser, oauth2Callback } from '../services';
+import { fetchState, fetchUser, oauth2Callback } from '../services';
+import { errorCallback } from '../utils';
 import * as fixtures from './fixtures';
 
 describe('gatekeeper/services', () => {
@@ -86,5 +87,64 @@ describe('gatekeeper/services', () => {
     }
     expect(error).toEqual(new Error('oAuth service oauth2Callback failed, data not returned'));
     expect(recordResultActionCreator).toHaveBeenCalledWith(false, { error });
+  });
+
+  it('fetchState works correctly', async () => {
+    const url = 'http://localhost:3000/oauth/state';
+    fetchMock.getOnce(url, fixtures.expressAPIResponse);
+    const authenticateCreatorMock = jest.fn();
+    const recordResultCreatorMock = jest.fn();
+    const logoutMock = jest.fn();
+    fetchState(url, {
+      authenticateActionCreator: authenticateCreatorMock,
+      logoutActionCreator: logoutMock,
+      recordResultActionCreator: recordResultCreatorMock
+    });
+    await new Promise(resolve => setImmediate(resolve));
+    const extraData = {
+      oAuth2Data: {
+        access_token: 'hunter2',
+        expires_in: 1142,
+        refresh_token: 'iloveoov',
+        scope: 'read write',
+        token_type: 'bearer'
+      },
+      preferredName: 'Superset User',
+      roles: ['Provider'],
+      userName: 'superset-user'
+    };
+
+    expect(authenticateCreatorMock).toHaveBeenCalledWith(
+      true,
+      {
+        email: '',
+        gravatar: '',
+        name: '',
+        username: 'superset-user'
+      },
+      extraData
+    );
+    expect(recordResultCreatorMock).toHaveBeenCalledWith(true, extraData);
+  });
+
+  it('fetchState handles unexpected response', async () => {
+    const url = 'http://localhost:3000/oauth/state';
+    const authenticateCreatorMock = jest.fn();
+    const recordResultCreatorMock = jest.fn();
+    const logoutMock = jest.fn();
+    const errorCallbackMock = jest.fn();
+    fetchMock.getOnce(url, { error: 'Not authorized' });
+    fetchState(url, {
+      authenticateActionCreator: authenticateCreatorMock,
+      errorCallbackFn: errorCallbackMock,
+      logoutActionCreator: logoutMock,
+      recordResultActionCreator: recordResultCreatorMock
+    });
+    await new Promise(resolve => setImmediate(resolve));
+
+    expect(logoutMock).toHaveBeenCalled();
+    expect(authenticateCreatorMock).not.toHaveBeenCalled();
+    expect(recordResultCreatorMock).toHaveBeenCalledTimes(1);
+    expect(errorCallbackMock).toHaveBeenCalledTimes(1);
   });
 });
