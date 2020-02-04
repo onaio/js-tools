@@ -32,16 +32,12 @@ var PrivateRoute = function PrivateRoute(props) {
       authenticated = props.authenticated,
       disableLoginProtection = props.disableLoginProtection,
       redirectPath = props.redirectPath,
-      theOtherProps = (0, _objectWithoutProperties2["default"])(props, ["component", "authenticated", "disableLoginProtection", "redirectPath"]);
-  var currentPath = props.path;
-  var fullRedirectPath = redirectPath;
-
-  if (typeof currentPath !== 'undefined' && currentPath.length > 0) {
-    fullRedirectPath = "".concat(redirectPath, "?").concat(_querystring["default"].stringify({
-      next: currentPath
-    }));
-  }
-
+      location = props.location,
+      theOtherProps = (0, _objectWithoutProperties2["default"])(props, ["component", "authenticated", "disableLoginProtection", "redirectPath", "location"]);
+  var currentPath = "".concat(location && location.pathname || '').concat(location && location.search || '').concat(location && location.hash || '');
+  var fullRedirectPath = "".concat(redirectPath, "?").concat(_querystring["default"].stringify({
+    next: currentPath
+  }));
   return _react["default"].createElement(_reactRouterDom.Route, (0, _extends2["default"])({}, theOtherProps, {
     render: function render(routeProps) {
       return (authenticated === true || disableLoginProtection === true) && Component ? _react["default"].createElement(Component, (0, _extends2["default"])({}, routeProps, theOtherProps)) : _react["default"].createElement(_reactRouterDom.Redirect, {

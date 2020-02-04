@@ -97,7 +97,13 @@ describe('ConnectedPrivateRoute', () => {
       authenticated: false,
       component: TestComponent,
       disableLoginProtection: false,
-      path: '/dashboard',
+      location: {
+        hash: '#howdy',
+        pathname: '/dashboard',
+        search: '?q=string',
+        state: {}
+      },
+      path: '/',
       redirectPath: '/denied'
     };
     shallow(
@@ -107,7 +113,7 @@ describe('ConnectedPrivateRoute', () => {
     );
 
     const wrapper = mount(
-      <MemoryRouter initialEntries={['/dashboard']} initialIndex={0}>
+      <MemoryRouter initialEntries={['/dashboard?q=string#howdy']} initialIndex={0}>
         <PrivateRoute {...props} />
       </MemoryRouter>
     );
@@ -123,7 +129,43 @@ describe('ConnectedPrivateRoute', () => {
         hash: '',
         key: expect.any(String),
         pathname: '/denied',
-        search: '?next=%2Fdashboard',
+        search: '?next=%2Fdashboard%3Fq%3Dstring%23howdy',
+        state: undefined
+      })
+    });
+    wrapper.unmount();
+  });
+
+  it('constructs url to add to next searchParam correctly', () => {
+    const props = {
+      authenticated: false,
+      component: TestComponent,
+      disableLoginProtection: false,
+      location: {
+        hash: '#howdy',
+        pathname: '/dashboard/hunter',
+        search: '?q=string',
+        state: {}
+      },
+      path: '/dashboard/:id',
+      redirectPath: '/denied'
+    };
+
+    const wrapper = mount(
+      <MemoryRouter initialEntries={['/dashboard/hunter?q=string#howdy']} initialIndex={0}>
+        <PrivateRoute {...props} />
+      </MemoryRouter>
+    );
+
+    expect(wrapper.find('PrivateRoute').props()).toEqual(props);
+    /** check that a redirect happened */
+    expect(wrapper.find('Router').prop('history')).toMatchSnapshot({
+      entries: expect.any(Array),
+      location: expect.objectContaining({
+        hash: '',
+        key: expect.any(String),
+        pathname: '/denied',
+        search: '?next=%2Fdashboard%2Fhunter%3Fq%3Dstring%23howdy',
         state: undefined
       })
     });
@@ -142,7 +184,7 @@ describe('ConnectedPrivateRoute', () => {
     const wrapper = mount(
       <Provider store={store}>
         <MemoryRouter initialEntries={['/dashboard']} initialIndex={0}>
-          <ConnectedPrivateRoute path="/dashboard" />
+          <ConnectedPrivateRoute />
         </MemoryRouter>
       </Provider>
     );
@@ -160,7 +202,7 @@ describe('ConnectedPrivateRoute', () => {
         hash: '',
         key: expect.any(String),
         pathname: '/login',
-        search: '?next=%2Fdashboard',
+        search: '?next=',
         state: undefined
       })
     });
