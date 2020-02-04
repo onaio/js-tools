@@ -202,7 +202,7 @@ describe('ConnectedPrivateRoute', () => {
         hash: '',
         key: expect.any(String),
         pathname: '/login',
-        search: '',
+        search: '?next=',
         state: undefined
       })
     });

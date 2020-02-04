@@ -146,12 +146,12 @@ exports[`ConnectedPrivateRoute works when connected to the redux store 1`] = `
     render={[Function]}
   >
     <Redirect
-      to="/login"
+      to="/login?next="
     >
       <Lifecycle
         onMount={[Function]}
         onUpdate={[Function]}
-        to="/login"
+        to="/login?next="
       />
     </Redirect>
   </Route>
@@ -184,7 +184,7 @@ Object {
     "hash": "",
     "key": Any<String>,
     "pathname": "/login",
-    "search": "",
+    "search": "?next=",
     "state": undefined,
   },
   "push": [Function],
