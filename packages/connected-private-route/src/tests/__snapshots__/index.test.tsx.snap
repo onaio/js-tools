@@ -1,5 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ConnectedPrivateRoute constructs url to add to next searchParam correctly 1`] = `
+Object {
+  "action": "REPLACE",
+  "block": [Function],
+  "canGo": [Function],
+  "createHref": [Function],
+  "entries": Any<Array>,
+  "go": [Function],
+  "goBack": [Function],
+  "goForward": [Function],
+  "index": 0,
+  "length": 1,
+  "listen": [Function],
+  "location": ObjectContaining {
+    "hash": "",
+    "key": Any<String>,
+    "pathname": "/denied",
+    "search": "?next=%2Fdashboard%2Fhunter%3Fq%3Dstring%23howdy",
+    "state": undefined,
+  },
+  "push": [Function],
+  "replace": [Function],
+}
+`;
+
 exports[`ConnectedPrivateRoute disableLoginProtection works with ConnectedPrivateRoute 1`] = `
 <span>
   we do not sow
