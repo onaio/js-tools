@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.11](https://github.com/onaio/js-tools/compare/@onaio/connected-private-route@0.0.10...@onaio/connected-private-route@0.0.11) (2020-02-04)
+
+**Note:** Version bump only for package @onaio/connected-private-route
+
 ## [0.0.10](https://github.com/onaio/js-tools/compare/@onaio/connected-private-route@0.0.9...@onaio/connected-private-route@0.0.10) (2020-01-30)
 
 **Note:** Version bump only for package @onaio/connected-private-route
