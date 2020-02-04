@@ -99,6 +99,7 @@ export async function fetchUser(
   }
 }
 
+/** describes options to be passed to fetchState as second argument */
 interface FetchStateActionCreators {
   authenticateActionCreator?: ActionCreator<AuthenticateAction>;
   recordResultActionCreator?: ActionCreator<RecordAction>;
