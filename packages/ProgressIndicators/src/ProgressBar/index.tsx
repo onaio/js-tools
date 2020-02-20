@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 /** Props for ProgressBar */
 export interface ProgressBarProps {
   animate: boolean /** apply animation to progressBar */;
+  animatedCssClass: string;
   decimalPoints: number /** Rounds off the value to this number of decimal places */;
   height: string /** resizes the height of the progressBar */;
   min: number /** set lower bound for the progressBar range */;
@@ -10,7 +11,7 @@ export interface ProgressBarProps {
   value: number /** Represents the progress bar value */;
   lineColor: string /** set line colors */;
   lineColorThresholds?: { [key: string]: number } /** set linecolor threshold */;
-  cssClass: string /** sets either stripped or animated css gradient over progressBar */;
+  stripedCssClass: string /** sets either stripped or animated css gradient over progressBar */;
   showLabel: boolean /** set label on progressBar */;
   stripped: boolean /** set strips in progressBar */;
 }
@@ -18,7 +19,6 @@ export interface ProgressBarProps {
 /** default props for ProgressBar */
 export const defaultProgressBarProps: Partial<ProgressBarProps> = {
   animate: false,
-  cssClass: 'progress-bar-striped progress-bar-animated',
   decimalPoints: 0,
   height: '10px',
   lineColor: '#0000FF',
@@ -26,6 +26,7 @@ export const defaultProgressBarProps: Partial<ProgressBarProps> = {
   max: 100,
   min: 0,
   showLabel: false,
+  stripedCssClass: 'progress-bar-striped',
   stripped: false,
   value: 0
 };
@@ -45,10 +46,10 @@ class ProgressBar extends Component<ProgressBarProps, {}> {
       decimalPoints,
       value,
       lineColor,
+      stripedCssClass,
       stripped,
       lineColorThresholds,
-      showLabel,
-      cssClass
+      showLabel
     } = props;
     let backgroundColor = lineColor;
     const max = props.max || 100;
@@ -78,8 +79,8 @@ class ProgressBar extends Component<ProgressBarProps, {}> {
     return (
       <div className="progress">
         <div
-          className={`progress-bar ${stripped ? cssClass : ''}
-          ${animate ? cssClass : ''}`}
+          className={`progress-bar ${stripped ? stripedCssClass : ''}
+          ${animate ? `${stripedCssClass} progress-bar-animated` : ''}`}
           style={{
             backgroundColor: `${backgroundColor}`,
             width: `${percentValueString}%`
