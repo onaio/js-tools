@@ -10,13 +10,13 @@ Object {
 exports[`components/progressBar how does it behave when there is no value 2`] = `
 <ProgressBar
   animate={false}
-  cssClass="progress-bar-striped progress-bar-animated"
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
   max={100}
   min={0}
   showLabel={false}
+  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={0}
 >
@@ -28,7 +28,7 @@ exports[`components/progressBar how does it behave when there is no value 2`] = 
       aria-valuemin={0}
       aria-valuenow={0}
       className="progress-bar 
-        "
+          "
       role="progressbar"
       style={
         Object {
@@ -46,13 +46,13 @@ exports[`components/progressBar renders a progress bar with strips 1`] = `ReactW
 exports[`components/progressBar renders a progress bar with strips 2`] = `
 <ProgressBar
   animate={false}
-  cssClass="progress-bar-striped progress-bar-animated"
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
   max={100}
   min={0}
   showLabel={false}
+  stripedCssClass="progress-bar-striped"
   stripped={true}
   value={0}
 >
@@ -63,8 +63,8 @@ exports[`components/progressBar renders a progress bar with strips 2`] = `
       aria-valuemax={100}
       aria-valuemin={0}
       aria-valuenow={0}
-      className="progress-bar progress-bar-striped progress-bar-animated
-        "
+      className="progress-bar progress-bar-striped
+          "
       role="progressbar"
       style={
         Object {
@@ -83,13 +83,13 @@ exports[`components/progressBar renders an animated progress bar 2`] = `
 <ProgressBar
   animate={false}
   anime={true}
-  cssClass="progress-bar-striped progress-bar-animated"
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
   max={100}
   min={0}
   showLabel={false}
+  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={0}
 >
@@ -101,7 +101,7 @@ exports[`components/progressBar renders an animated progress bar 2`] = `
       aria-valuemin={0}
       aria-valuenow={0}
       className="progress-bar 
-        "
+          "
       role="progressbar"
       style={
         Object {
@@ -117,7 +117,6 @@ exports[`components/progressBar renders an animated progress bar 2`] = `
 exports[`components/progressBar renders correctly for different value 1`] = `
 <ProgressBar
   animate={false}
-  cssClass="progress-bar-striped progress-bar-animated"
   decimalPoints={0}
   height="10px"
   lineColor="#5269EB"
@@ -131,6 +130,7 @@ exports[`components/progressBar renders correctly for different value 1`] = `
   max={100}
   min={0}
   showLabel={false}
+  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={70}
 >
@@ -142,7 +142,7 @@ exports[`components/progressBar renders correctly for different value 1`] = `
       aria-valuemin={0}
       aria-valuenow={70}
       className="progress-bar 
-        "
+          "
       role="progressbar"
       style={
         Object {
@@ -165,13 +165,13 @@ Object {
 exports[`components/progressBar renders correctly for the default props 1`] = `
 <ProgressBar
   animate={false}
-  cssClass="progress-bar-striped progress-bar-animated"
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
   max={100}
   min={0}
   showLabel={false}
+  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={50}
 >
@@ -183,7 +183,7 @@ exports[`components/progressBar renders correctly for the default props 1`] = `
       aria-valuemin={0}
       aria-valuenow={50}
       className="progress-bar 
-        "
+          "
       role="progressbar"
       style={
         Object {
@@ -210,7 +210,7 @@ Object {
   "aria-valuenow": 50,
   "children": null,
   "className": "progress-bar 
-        ",
+          ",
   "role": "progressbar",
   "style": Object {
     "backgroundColor": "#0000FF",
@@ -222,7 +222,6 @@ Object {
 exports[`components/progressBar renders correctly for this set of props 1`] = `
 <ProgressBar
   animate={false}
-  cssClass="progress-bar-striped progress-bar-animated"
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
@@ -236,6 +235,7 @@ exports[`components/progressBar renders correctly for this set of props 1`] = `
   max={100}
   min={0}
   showLabel={false}
+  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={10}
 >
@@ -247,7 +247,7 @@ exports[`components/progressBar renders correctly for this set of props 1`] = `
       aria-valuemin={0}
       aria-valuenow={10}
       className="progress-bar 
-        "
+          "
       role="progressbar"
       style={
         Object {
@@ -270,7 +270,6 @@ Object {
 exports[`components/progressBar renders correctly if both lineColor and threshold are given 1`] = `
 <ProgressBar
   animate={false}
-  cssClass="progress-bar-striped progress-bar-animated"
   decimalPoints={0}
   height="10px"
   lineColor="#5269EB"
@@ -284,6 +283,7 @@ exports[`components/progressBar renders correctly if both lineColor and threshol
   max={100}
   min={0}
   showLabel={false}
+  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={40}
 >
@@ -295,7 +295,7 @@ exports[`components/progressBar renders correctly if both lineColor and threshol
       aria-valuemin={0}
       aria-valuenow={40}
       className="progress-bar 
-        "
+          "
       role="progressbar"
       style={
         Object {
@@ -325,13 +325,13 @@ Object {
 exports[`components/progressBar uses lineColor if thresholds are not given 2`] = `
 <ProgressBar
   animate={false}
-  cssClass="progress-bar-striped progress-bar-animated"
   decimalPoints={0}
   height="10px"
   lineColor="#FFFF00"
   max={100}
   min={0}
   showLabel={false}
+  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={70}
 >
@@ -343,7 +343,7 @@ exports[`components/progressBar uses lineColor if thresholds are not given 2`] =
       aria-valuemin={0}
       aria-valuenow={70}
       className="progress-bar 
-        "
+          "
       role="progressbar"
       style={
         Object {
