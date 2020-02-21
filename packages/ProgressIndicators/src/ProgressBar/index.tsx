@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 /** Props for ProgressBar */
 export interface ProgressBarProps {
   animate: boolean /** apply animation to progressBar */;
-  animatedCssClass: string;
   decimalPoints: number /** Rounds off the value to this number of decimal places */;
   height: string /** resizes the height of the progressBar */;
   min: number /** set lower bound for the progressBar range */;
@@ -11,7 +10,7 @@ export interface ProgressBarProps {
   value: number /** Represents the progress bar value */;
   lineColor: string /** set line colors */;
   lineColorThresholds?: { [key: string]: number } /** set linecolor threshold */;
-  stripedCssClass: string /** sets either stripped or animated css gradient over progressBar */;
+  stripedCssClass: string /** sets stripped css gradient over progressBar */;
   showLabel: boolean /** set label on progressBar */;
   stripped: boolean /** set strips in progressBar */;
 }
