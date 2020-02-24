@@ -10,7 +10,7 @@ export interface ProgressBarProps {
   value: number /** Represents the progress bar value */;
   lineColor: string /** set line colors */;
   lineColorThresholds?: { [key: string]: number } /** set linecolor threshold */;
-  stripedCssClass: string /** sets stripped css gradient over progressBar */;
+  cssClass: string /** sets stripped css gradient over progressBar */;
   showLabel: boolean /** set label on progressBar */;
   stripped: boolean /** set strips in progressBar */;
 }
@@ -18,6 +18,7 @@ export interface ProgressBarProps {
 /** default props for ProgressBar */
 export const defaultProgressBarProps: Partial<ProgressBarProps> = {
   animate: false,
+  cssClass: 'progress-bar-striped',
   decimalPoints: 0,
   height: '10px',
   lineColor: '#0000FF',
@@ -25,7 +26,6 @@ export const defaultProgressBarProps: Partial<ProgressBarProps> = {
   max: 100,
   min: 0,
   showLabel: false,
-  stripedCssClass: 'progress-bar-striped',
   stripped: false,
   value: 0
 };
@@ -45,7 +45,7 @@ class ProgressBar extends Component<ProgressBarProps, {}> {
       decimalPoints,
       value,
       lineColor,
-      stripedCssClass,
+      cssClass,
       stripped,
       lineColorThresholds,
       showLabel
@@ -68,18 +68,14 @@ class ProgressBar extends Component<ProgressBarProps, {}> {
         (e1, e2) => e1[1] - e2[1]
       );
       // top to bottom check to see which color threshold is matched first by the percentValue
-      AscendingThresholds.forEach(([key, threshold]) => {
-        if (percentValue >= threshold) {
-          backgroundColor = key;
-        }
-      });
+      backgroundColor = AscendingThresholds.filter(item => item[1] >= percentValue)[0][0];
     }
 
     return (
       <div className="progress">
         <div
-          className={`progress-bar ${stripped ? stripedCssClass : ''}
-          ${animate ? `${stripedCssClass} progress-bar-animated` : ''}`}
+          className={`progress-bar ${stripped ? cssClass : ''}
+          ${animate ? `${cssClass} progress-bar-animated` : ''}`}
           style={{
             backgroundColor: `${backgroundColor}`,
             width: `${percentValueString}%`
