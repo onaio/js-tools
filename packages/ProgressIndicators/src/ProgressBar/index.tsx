@@ -68,7 +68,12 @@ class ProgressBar extends Component<ProgressBarProps, {}> {
         (e1, e2) => e1[1] - e2[1]
       );
       // top to bottom check to see which color threshold is matched first by the percentValue
-      backgroundColor = AscendingThresholds.filter(item => item[1] >= percentValue)[0][0];
+      for (const item of AscendingThresholds) {
+        if (item[1] >= percentValue) {
+          backgroundColor = item[0];
+          break;
+        }
+      }
     }
 
     return (
