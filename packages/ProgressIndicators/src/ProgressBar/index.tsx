@@ -64,11 +64,11 @@ class ProgressBar extends Component<ProgressBarProps, {}> {
     // set the line color: if lineColorThresholds is not given; lineColor will be used
     if (lineColorThresholds) {
       // sort the color and their thresholds by the threshold value
-      const AscendingThresholds = Object.entries(lineColorThresholds).sort(
+      const ascendingThresholds = Object.entries(lineColorThresholds).sort(
         (e1, e2) => e1[1] - e2[1]
       );
       // top to bottom check to see which color threshold is matched first by the percentValue
-      for (const item of AscendingThresholds) {
+      for (const item of ascendingThresholds) {
         if (item[1] >= percentValue) {
           backgroundColor = item[0];
           break;
