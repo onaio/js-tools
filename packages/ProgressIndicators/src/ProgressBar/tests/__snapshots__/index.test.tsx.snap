@@ -10,13 +10,13 @@ Object {
 exports[`components/progressBar how does it behave when there is no value 2`] = `
 <ProgressBar
   animate={false}
+  cssClass="progress-bar-striped"
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
   max={100}
   min={0}
   showLabel={false}
-  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={0}
 >
@@ -46,13 +46,13 @@ exports[`components/progressBar renders a progress bar with strips 1`] = `ReactW
 exports[`components/progressBar renders a progress bar with strips 2`] = `
 <ProgressBar
   animate={false}
+  cssClass="progress-bar-striped"
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
   max={100}
   min={0}
   showLabel={false}
-  stripedCssClass="progress-bar-striped"
   stripped={true}
   value={0}
 >
@@ -83,13 +83,13 @@ exports[`components/progressBar renders an animated progress bar 2`] = `
 <ProgressBar
   animate={false}
   anime={true}
+  cssClass="progress-bar-striped"
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
   max={100}
   min={0}
   showLabel={false}
-  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={0}
 >
@@ -117,6 +117,7 @@ exports[`components/progressBar renders an animated progress bar 2`] = `
 exports[`components/progressBar renders correctly for different value 1`] = `
 <ProgressBar
   animate={false}
+  cssClass="progress-bar-striped"
   decimalPoints={0}
   height="10px"
   lineColor="#5269EB"
@@ -130,7 +131,6 @@ exports[`components/progressBar renders correctly for different value 1`] = `
   max={100}
   min={0}
   showLabel={false}
-  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={70}
 >
@@ -165,13 +165,13 @@ Object {
 exports[`components/progressBar renders correctly for the default props 1`] = `
 <ProgressBar
   animate={false}
+  cssClass="progress-bar-striped"
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
   max={100}
   min={0}
   showLabel={false}
-  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={50}
 >
@@ -222,6 +222,7 @@ Object {
 exports[`components/progressBar renders correctly for this set of props 1`] = `
 <ProgressBar
   animate={false}
+  cssClass="progress-bar-striped"
   decimalPoints={0}
   height="10px"
   lineColor="#0000FF"
@@ -235,7 +236,6 @@ exports[`components/progressBar renders correctly for this set of props 1`] = `
   max={100}
   min={0}
   showLabel={false}
-  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={10}
 >
@@ -251,7 +251,7 @@ exports[`components/progressBar renders correctly for this set of props 1`] = `
       role="progressbar"
       style={
         Object {
-          "backgroundColor": "#FF0000",
+          "backgroundColor": "#FFFF00",
           "width": "10%",
         }
       }
@@ -262,7 +262,7 @@ exports[`components/progressBar renders correctly for this set of props 1`] = `
 
 exports[`components/progressBar renders correctly for this set of props 2`] = `
 Object {
-  "backgroundColor": "#FF0000",
+  "backgroundColor": "#FFFF00",
   "width": "10%",
 }
 `;
@@ -270,6 +270,7 @@ Object {
 exports[`components/progressBar renders correctly if both lineColor and threshold are given 1`] = `
 <ProgressBar
   animate={false}
+  cssClass="progress-bar-striped"
   decimalPoints={0}
   height="10px"
   lineColor="#5269EB"
@@ -283,7 +284,6 @@ exports[`components/progressBar renders correctly if both lineColor and threshol
   max={100}
   min={0}
   showLabel={false}
-  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={40}
 >
@@ -299,7 +299,7 @@ exports[`components/progressBar renders correctly if both lineColor and threshol
       role="progressbar"
       style={
         Object {
-          "backgroundColor": "#FFFF00",
+          "backgroundColor": "#00FF00",
           "width": "40%",
         }
       }
@@ -310,7 +310,7 @@ exports[`components/progressBar renders correctly if both lineColor and threshol
 
 exports[`components/progressBar renders correctly if both lineColor and threshold are given 2`] = `
 Object {
-  "backgroundColor": "#FFFF00",
+  "backgroundColor": "#00FF00",
   "width": "40%",
 }
 `;
@@ -325,13 +325,13 @@ Object {
 exports[`components/progressBar uses lineColor if thresholds are not given 2`] = `
 <ProgressBar
   animate={false}
+  cssClass="progress-bar-striped"
   decimalPoints={0}
   height="10px"
   lineColor="#FFFF00"
   max={100}
   min={0}
   showLabel={false}
-  stripedCssClass="progress-bar-striped"
   stripped={false}
   value={70}
 >
