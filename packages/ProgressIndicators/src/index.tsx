@@ -1,2 +1,2 @@
-import ProgressBar from './ProgressBar';
-export { ProgressBar };
+import ProgressBar, { defaultProgressBarProps, ProgressBarProps } from './ProgressBar';
+export { defaultProgressBarProps, ProgressBarProps, ProgressBar };
