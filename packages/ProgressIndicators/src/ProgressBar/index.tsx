@@ -10,7 +10,7 @@ export interface ProgressBarProps {
   value: number /** Represents the progress bar value */;
   lineColor: string /** set line colors */;
   lineColorThresholds?: { [key: string]: number } /** set linecolor threshold */;
-  cssClass: string /** sets either stripped or animated css gradient over progressBar */;
+  cssClass: string /** sets css gradient over progressBar */;
   showLabel: boolean /** set label on progressBar */;
   stripped: boolean /** set strips in progressBar */;
 }
