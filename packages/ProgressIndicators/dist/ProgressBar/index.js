@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
@@ -7,13 +9,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = exports.defaultProgressBarProps = void 0;
 
-var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-var _react = _interopRequireDefault(require("react"));
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _react = _interopRequireWildcard(require("react"));
 
 var defaultProgressBarProps = {
   animate: false,
-  cssClass: 'progress-bar-striped progress-bar-animated',
+  cssClass: 'progress-bar-striped',
   decimalPoints: 0,
   height: '10px',
   lineColor: '#0000FF',
@@ -26,58 +38,90 @@ var defaultProgressBarProps = {
 };
 exports.defaultProgressBarProps = defaultProgressBarProps;
 
-var ProgressBar = function ProgressBar(props) {
-  var animate = props.animate,
-      decimalPoints = props.decimalPoints,
-      value = props.value,
-      lineColor = props.lineColor,
-      stripped = props.stripped,
-      lineColorThresholds = props.lineColorThresholds,
-      showLabel = props.showLabel,
-      cssClass = props.cssClass;
-  var backgroundColor = lineColor;
-  var max = props.max || 100;
-  var min = props.min || 0;
-  var range = max - min;
+var ProgressBar = function (_Component) {
+  (0, _inherits2["default"])(ProgressBar, _Component);
 
-  if (range <= 0) {
-    range = 100;
+  function ProgressBar(props) {
+    (0, _classCallCheck2["default"])(this, ProgressBar);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ProgressBar).call(this, props));
   }
 
-  var decimalValue = value / range;
-  var percentValue = decimalValue * 100;
-  var percentValueString = percentValue.toFixed(decimalPoints);
+  (0, _createClass2["default"])(ProgressBar, [{
+    key: "render",
+    value: function render() {
+      var props = this.props;
+      var animate = props.animate,
+          decimalPoints = props.decimalPoints,
+          value = props.value,
+          lineColor = props.lineColor,
+          cssClass = props.cssClass,
+          stripped = props.stripped,
+          lineColorThresholds = props.lineColorThresholds,
+          showLabel = props.showLabel;
+      var backgroundColor = lineColor;
+      var max = props.max || 100;
+      var min = props.min || 0;
+      var range = max - min;
 
-  if (lineColorThresholds) {
-    var AscendingThresholds = Object.entries(lineColorThresholds).sort(function (e1, e2) {
-      return e1[1] - e2[1];
-    });
-    AscendingThresholds.forEach(function (_ref) {
-      var _ref2 = (0, _slicedToArray2["default"])(_ref, 2),
-          key = _ref2[0],
-          threshold = _ref2[1];
-
-      if (percentValue >= threshold) {
-        backgroundColor = key;
+      if (range <= 0) {
+        range = 100;
       }
-    });
-  }
 
-  return _react["default"].createElement("div", {
-    className: "progress"
-  }, _react["default"].createElement("div", {
-    className: "progress-bar ".concat(stripped ? cssClass : '', "\n        ").concat(animate ? cssClass : ''),
-    style: {
-      backgroundColor: "".concat(backgroundColor),
-      width: "".concat(percentValueString, "%")
-    },
-    role: "progressbar",
-    "aria-valuenow": percentValue,
-    "aria-valuemin": min,
-    "aria-valuemax": max
-  }, showLabel ? "".concat(percentValue, "%") : null));
-};
+      var decimalValue = value / range;
+      var percentValue = decimalValue * 100;
+      var percentValueString = percentValue.toFixed(decimalPoints);
 
-ProgressBar.defaultProps = defaultProgressBarProps;
+      if (lineColorThresholds) {
+        var ascendingThresholds = Object.entries(lineColorThresholds).sort(function (e1, e2) {
+          return e1[1] - e2[1];
+        });
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+          for (var _iterator = ascendingThresholds[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var item = _step.value;
+
+            if (item[1] >= percentValue) {
+              backgroundColor = item[0];
+              break;
+            }
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+              _iterator["return"]();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
+        }
+      }
+
+      return _react["default"].createElement("div", {
+        className: "progress"
+      }, _react["default"].createElement("div", {
+        className: "progress-bar ".concat(stripped ? cssClass : '', "\n          ").concat(animate ? "".concat(cssClass, " progress-bar-animated") : ''),
+        style: {
+          backgroundColor: "".concat(backgroundColor),
+          width: "".concat(percentValueString, "%")
+        },
+        role: "progressbar",
+        "aria-valuenow": percentValue,
+        "aria-valuemin": min,
+        "aria-valuemax": max
+      }, showLabel ? "".concat(percentValue, "%") : null));
+    }
+  }]);
+  return ProgressBar;
+}(_react.Component);
+
+(0, _defineProperty2["default"])(ProgressBar, "defaultProps", defaultProgressBarProps);
 var _default = ProgressBar;
 exports["default"] = _default;
