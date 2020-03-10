@@ -3,7 +3,11 @@ import React from 'react';
 import { ActionCreator } from 'redux';
 import { Base } from './Base';
 
-/** interface for the props of the connected component created by SingleObject  */
+/** interface for the props of the connected component created by SingleObject
+ * @typeparam TAction - the type definition for the Action.
+ * @typeparam TObject - the type definition for the Object that we are fetching
+ *            from the Redux store.
+ */
 interface SingleObjectProps<TAction, TObject> {
   actionCreator: ActionCreator<TAction>;
   object?: TObject;
@@ -25,8 +29,14 @@ interface SingleObjectProps<TAction, TObject> {
  * storing it in a Redux store.
  *
  * Every method in this class can and should be overwritten to cater to custom needs.
+ *
+ * @typeparam ObjectType - the type definition for the Object that we are fetching
+ *            from the Redux store.
+ * @typeparam ActionType - the type definition for the Action.
+ * @typeparam SelectorType - the type definition for the Selector.
+ * @typeparam PropsType - the type definition for the props that the connected component takes.
+ * @typeparam RootState - the type definition for the Redux store (global state).
  */
-// export class SingleObject<ObjectType, ActionType, SelectorType, PropsType, RootState = Registry> {
 export class SingleObject<
   ObjectType,
   ActionType,
