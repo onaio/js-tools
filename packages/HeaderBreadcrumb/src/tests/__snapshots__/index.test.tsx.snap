@@ -75,12 +75,17 @@ exports[`components/page/HeaderBreadcrumb renders HeaderBreadcrumb correctly 1`]
                   key="0"
                   to="/"
                 >
-                  <a
+                  <LinkAnchor
                     href="/"
-                    onClick={[Function]}
+                    navigate={[Function]}
                   >
-                    Home
-                  </a>
+                    <a
+                      href="/"
+                      onClick={[Function]}
+                    >
+                      Home
+                    </a>
+                  </LinkAnchor>
                 </Link>
               </li>
             </BreadcrumbItem>
@@ -95,12 +100,17 @@ exports[`components/page/HeaderBreadcrumb renders HeaderBreadcrumb correctly 1`]
                   key="1"
                   to="/programs"
                 >
-                  <a
+                  <LinkAnchor
                     href="/programs"
-                    onClick={[Function]}
+                    navigate={[Function]}
                   >
-                    Programs
-                  </a>
+                    <a
+                      href="/programs"
+                      onClick={[Function]}
+                    >
+                      Programs
+                    </a>
+                  </LinkAnchor>
                 </Link>
               </li>
             </BreadcrumbItem>
