@@ -15,11 +15,7 @@ describe('formik-effect', () => {
       <div>
         <h1>My Cool Form with a SideEffect</h1>
         {/* tslint:disable jsx-no-lambda */}
-        {/* tslint:disable no-console */}
-        <Formik
-          onSubmit={values => console.log(values)}
-          initialValues={{ firstName: '', lastName: '', email: '' }}
-        >
+        <Formik onSubmit={jest.fn()} initialValues={{ firstName: '', lastName: '', email: '' }}>
           {() => (
             <Form translate="yes">
               <FormikEffect onChange={mock} />
@@ -31,7 +27,6 @@ describe('formik-effect', () => {
           )}
         </Formik>
         {/* tslint:enable jsx-no-lambda */}
-        {/* tslint:enable no-console */}
       </div>
     );
 
