@@ -2,14 +2,14 @@ import { connect, FormikContextType, FormikState, FormikValues } from 'formik';
 import { useEffect, useRef } from 'react';
 
 /** Type def for Formik onChange function */
-export type FormikOnchangeFunc<T> = (
+export type FormikOnChangeFunc<T> = (
   currentValues: FormikState<T>,
   nextValues: FormikState<T>
 ) => void;
 
 /** Interface to describe FormikEffect props */
 export interface FormikEffectProps<T = FormikValues> {
-  readonly onChange: FormikOnchangeFunc<T>;
+  readonly onChange: FormikOnChangeFunc<T>;
 }
 
 /** Interface for connected FormikEffect Props */
