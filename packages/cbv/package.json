@@ -35,5 +35,8 @@
     "react": "^16.13.0",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5"
+  },
+  "dependencies": {
+    "@onaio/redux-reducer-registry": "^0.0.9"
   }
 }
