@@ -17,13 +17,16 @@ import reducer, {
 interface TestProps {
   actionCreator?: typeof sendMessage;
   callbackFunc?: () => void;
-  messages?: Message[];
+  message?: Message;
 }
 
-const TestComponent = (_: TestProps) => <div>mosh</div>;
+const TestComponent = (props: TestProps) => {
+  const { message } = props;
+  return message ? <div className="xxx">{message.message}</div> : <div>error</div>;
+};
 
 /** SingleObject options */
-const objectListOptions = {
+const singleObjectOptions = {
   actionCreator: sendMessage,
   dispatchPropName: 'actionCreator',
   returnPropName: 'message',
@@ -35,7 +38,7 @@ const ClassBasedView = new SingleObject<
   SendMessageAction,
   typeof selectOneMessage,
   TestProps
->(TestComponent, objectListOptions);
+>(TestComponent, singleObjectOptions);
 
 describe('cbv/SingleObject', () => {
   let flushThunks;
@@ -121,6 +124,8 @@ describe('cbv/SingleObject', () => {
       });
 
       const finalProps = wrapper.find('Connect(HoC)>HoC>TestComponent').props();
+
+      expect(wrapper.find('.xxx').text()).toEqual('hello');
 
       const payload = { user: 'bob', message: 'hello' };
 
