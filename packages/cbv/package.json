@@ -29,7 +29,8 @@
   "devDependencies": {
     "@types/react-redux": "^7.1.7",
     "@types/redux-testkit": "^1.0.3",
-    "redux-testkit": "^1.0.6"
+    "redux-testkit": "^1.0.6",
+    "redux-thunk": "^2.3.0"
   },
   "peerDependencies": {
     "react": "^16.13.0",
