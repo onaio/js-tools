@@ -19,7 +19,7 @@ Write details about the bug
 Steps to reproduce the behavior:
 
 <!--
-how can we in the most minimal steps repoduce the error/ bug. , when possible please include a code sanbox with the minimal amount of code that repoduces the bug
+how can we in the most minimal steps reproduce the error/ bug. , when possible please include a code sandbox with the minimal amount of code that reproduces the bug
 -->
 
 **Expected behavior**
@@ -37,5 +37,5 @@ If applicable, add screenshots to help explain your problem.
 **Additional context**
 
 <!--
-Tell us anything else you think we should know. (e.g. detailed explanation, stacktraces, related issues, suggestions how to fix, links for us to have context, eg. stackoverflow, github threads)
+Tell us anything else you think we should know. (e.g. detailed explanation, stacktrace, related issues, suggestions how to fix, links for us to have context, eg. stackoverflow, github threads)
 -->

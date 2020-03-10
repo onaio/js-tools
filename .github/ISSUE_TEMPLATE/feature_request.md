@@ -10,9 +10,6 @@ Please fill in as much of the template below as you're able.
 
 **Is this a new feature or an enhancement?**
 
-- [ ] **New feature**
-- [ ] **Enhancement**
-
 **Is your feature request related to a problem? Please describe.**
 
 <!--

@@ -21,5 +21,5 @@ list of non-trivial changes included with the PR
 
 - [ ] tests are included and passing
 - [ ] documentation is changed or added
+- [ ] a .storybook story was added where necessary.
 - [ ] code is [transpiled](https://github.com/onaio/js-tools#transpiling-the-package-and-generating-type-definations-for-it)
-- [ ] you have generated [typings](https://github.com/onaio/js-tools#transpiling-the-package-and-generating-type-definations-for-it)
