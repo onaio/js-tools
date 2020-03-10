@@ -8,7 +8,11 @@ import ListView from '../../packages/ListView/src';
 
 function renderListView() {
   const props = {
-    data: [['Ed', 6, 'Taller'], ['Edd', 12, 'Tallest'], ['Eddie', 17, 'Tall']],
+    data: [
+      ['Ed', 6, 'Taller'],
+      ['Edd', 12, 'Tallest'],
+      ['Eddie', 17, 'Tall']
+    ],
     headerItems: ['Name', 'Age', 'Height'],
     tableClass: 'table-striped',
     tbodyClass: 'table-active',

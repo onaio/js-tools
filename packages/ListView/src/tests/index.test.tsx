@@ -25,7 +25,11 @@ describe('ListView', () => {
 
   it('renders correctly', () => {
     const props = {
-      data: [['Ed', 6, 'Taller'], ['Edd', 12, 'Tallest'], ['Eddie', 17, 'Tall']],
+      data: [
+        ['Ed', 6, 'Taller'],
+        ['Edd', 12, 'Tallest'],
+        ['Eddie', 17, 'Tall']
+      ],
       headerItems: ['Name', 'Age', 'Height'],
       tableClass: 'table-striped',
       tbodyClass: 'table-active',
@@ -93,7 +97,11 @@ describe('ListView', () => {
 
   it('renders correctly with custom renderHeaders prop', () => {
     const props = {
-      data: [['Ed', 6], ['Edd', 12], ['Eddie', 17]],
+      data: [
+        ['Ed', 6],
+        ['Edd', 12],
+        ['Eddie', 17]
+      ],
       headerItems: ['Name', 'Age'],
       renderHeaders: (items, theadClass, thClass, trClass) => (
         <thead className={theadClass}>
@@ -124,7 +132,11 @@ describe('ListView', () => {
 
   it('renders correctly with custom renderRows prop', () => {
     const props = {
-      data: [['Ed', 6], ['Edd', 12], ['Eddie', 17]],
+      data: [
+        ['Ed', 6],
+        ['Edd', 12],
+        ['Eddie', 17]
+      ],
       headerItems: ['Name', 'Age'],
       renderRows: (rowData, tbodyClass, tdClass, trClass) => {
         const rows = rowData.map((items, itemKey) => (
