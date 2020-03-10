@@ -27,6 +27,9 @@ interface ConnectedFormikEffectsProps<T> extends FormikEffectProps<T> {
  * Based on: https://github.com/jaredpalmer/formik-effect
  * which is currently not working (since React 16.3 API changes)
  * TODO: We'll need to replace this once formik-effect is updated
+ *
+ * @param {ConnectedFormikEffectsProps<T>} props
+ * @returns null
  */
 function FormikEffect<T>(props: ConnectedFormikEffectsProps<T>) {
   const { formik, onChange } = props;
