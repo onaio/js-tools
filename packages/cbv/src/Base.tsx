@@ -83,10 +83,7 @@ export abstract class Base<ActionType, SelectorType, PropsType, RootState = Regi
     /** map state to props */
     const mapStateToProps = this.getMapStateToProps();
     /** connect to store */
-    return connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(this.getHOC());
+    return connect(mapStateToProps, mapDispatchToProps)(this.getHOC());
   }
 
   /**

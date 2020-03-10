@@ -65,7 +65,10 @@ describe('cbv/ObjectList', () => {
     store.dispatch(sendMessage({ user: 'bobbie', message: 'hello hello' }));
 
     expect(mapStateToProps(store.getState(), {} as any)).toEqual({
-      messages: [{ user: 'bob', message: 'hello' }, { user: 'bobbie', message: 'hello hello' }]
+      messages: [
+        { user: 'bob', message: 'hello' },
+        { user: 'bobbie', message: 'hello hello' }
+      ]
     });
   });
 
@@ -112,7 +115,10 @@ describe('cbv/ObjectList', () => {
 
       const expected = {
         actionCreator: sendMessage,
-        messages: [{ user: 'bob', message: 'hello' }, { user: 'bobbie', message: 'hello hello' }],
+        messages: [
+          { user: 'bob', message: 'hello' },
+          { user: 'bobbie', message: 'hello hello' }
+        ],
         objectList: []
       };
 
