@@ -1,0 +1,43 @@
+{
+  "name": "@onaio/cbv",
+  "version": "0.0.0",
+  "description": "Class Based Views powered by React & Redux",
+  "main": "dist/index.js",
+  "types": "dist/types",
+  "repository": "https://github.com/onaio/js-tools",
+  "author": "Ona Engineering",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-redux": "^7.1.7",
+    "@types/redux-testkit": "^1.0.3",
+    "redux-testkit": "^1.0.6",
+    "redux-thunk": "^2.3.0"
+  },
+  "peerDependencies": {
+    "react": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
+  },
+  "dependencies": {
+    "@onaio/redux-reducer-registry": "^0.0.9"
+  }
+}
