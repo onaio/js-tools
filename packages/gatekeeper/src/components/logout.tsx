@@ -46,9 +46,6 @@ export { Logout };
 const mapDispatchToProps = { logoutActionCreator: logOutUser };
 
 /** Connected Logout component */
-const ConnectedLogout = connect(
-  null,
-  mapDispatchToProps
-)(Logout);
+const ConnectedLogout = connect(null, mapDispatchToProps)(Logout);
 
 export default ConnectedLogout;

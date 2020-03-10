@@ -137,9 +137,6 @@ const mapDispatchToProps = {
 };
 
 /** created connected component */
-const ConnectedAPICallback = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(APICallback);
+const ConnectedAPICallback = connect(mapStateToProps, mapDispatchToProps)(APICallback);
 
 export default ConnectedAPICallback;
