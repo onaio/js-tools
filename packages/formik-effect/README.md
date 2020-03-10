@@ -29,27 +29,31 @@ import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import { FormikEffect } from '@onaio/formik-effect';
 
-
-export const Signup = () =>
+export const SignupForm = () => (
   <div>
     <h1>My Cool Form with a SideEffect</h1>
+    {/* tslint:disable jsx-no-lambda */}
+    {/* tslint:disable no-console */}
     <Formik
       onSubmit={values => console.log(values)}
       initialValues={{ firstName: '', lastName: '', email: '' }}
-      render={props =>
-        <Form className="whatever">
+    >
+      {() => (
+        <Form translate="yes">
           <FormikEffect onChange={(currentFormikState, nextFormikState) => {
                // do whatevs
                // FYI if you alter state it will cause another render
             }};
-          />
-          <Field name="firstName" placeholder="First Name" />
-          <Field name="lastName" placeholder="Last Name" />
+          <Field id="firstName" name="firstName" placeholder="First Name" />
+          <Field id="lastName" name="lastName" placeholder="Last Name" />
           <Field name="email" type="email" placeholder="Email Address" />
           <button type="submit">Submit</button>
-        </Form>}
-    />
-  </div>;
+        </Form>
+      )}
+    </Formik>
+    {/* tslint:enable jsx-no-lambda */}
+    {/* tslint:enable no-console */}
+  </div>
 ```
 
 ## API
