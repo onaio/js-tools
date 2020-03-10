@@ -1,6 +1,6 @@
 {
   "name": "@onaio/cbv",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Class Based Views powered by React & Redux",
   "main": "dist/index.js",
   "types": "dist/types",

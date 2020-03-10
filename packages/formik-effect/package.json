@@ -1,6 +1,6 @@
 {
   "name": "@onaio/formik-effect",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Declarative Formik component for side-effects.",
   "author": "Ona Engineering",
   "homepage": "https://github.com/onaio/js-tools",
