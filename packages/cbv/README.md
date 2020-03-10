@@ -73,7 +73,7 @@ import reducer, {
   SendMessageAction
 } from 'some reducer module';
 
-const TheComponent = (props: TestProps) => {
+const TheComponent = (props: Props) => {
   const { message } = props;
   return message ? <div>{message.message}</div> : <div>error</div>;
 };
