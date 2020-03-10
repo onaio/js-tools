@@ -48,7 +48,10 @@ describe('cbv/ObjectList', () => {
   beforeEach(() => {
     jest.resetAllMocks();
     flushThunks = FlushThunks.createMiddleware();
-    store = createStore(combineReducers({ reducer }), applyMiddleware(flushThunks, thunk));
+    store = createStore(
+      combineReducers({ messages: reducer }),
+      applyMiddleware(flushThunks, thunk)
+    );
     store.dispatch(removeMessagesAction());
   });
   it('getMapStateToProps works as expected', () => {
