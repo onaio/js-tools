@@ -54,7 +54,7 @@ const ConnectedSomeComponent = ClassBasedView.render();
 
 ## SingleObject
 
-`SingleObject` is a class based view that works with components that expect to receive an array of objects from the Redux store.
+`SingleObject` is a class based view that works with components that expect to receive a single of objects from the Redux store.
 
 ### How does it work?
 
