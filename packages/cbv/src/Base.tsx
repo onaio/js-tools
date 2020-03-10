@@ -3,12 +3,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ActionCreator } from 'redux';
 
-/** interface to describe Base options */
+/**
+ * interface to describe Base options
+ * @typeparam TAction - the type definition for the Action.
+ * @typeparam TSelector - the type definition for the Selector.
+ */
 export interface CBVOptions<TAction, TSelector> {
-  actionCreator: ActionCreator<TAction>;
-  returnPropName: string;
-  dispatchPropName: string;
-  selector: TSelector;
+  actionCreator: ActionCreator<TAction> /** The action creator function to use */;
+  returnPropName: string /** The name of the prop used in mapStateToProps which represents the variable fetched from the redux state */;
+  dispatchPropName: string /** The name of the prop used in mapDispatchToProps which represents the dispatch-able action creator */;
+  selector: TSelector /** The selector function to use when getting the value from the Redux store */;
 }
 
 /**
@@ -27,6 +31,11 @@ export interface CBVOptions<TAction, TSelector> {
  * storing them in a Redux store.
  *
  * Every method in this class can and should be overwritten to cater to custom needs.
+ *
+ * @typeparam ActionType - the type definition for the Action.
+ * @typeparam SelectorType - the type definition for the Selector.
+ * @typeparam PropsType - the type definition for the props that the connected component takes.
+ * @typeparam RootState - the type definition for the Redux store (global state).
  */
 export abstract class Base<ActionType, SelectorType, PropsType, RootState = Registry> {
   public Component: React.ElementType;
