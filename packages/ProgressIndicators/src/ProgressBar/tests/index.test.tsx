@@ -44,7 +44,7 @@ describe('components/progressBar', () => {
     const wrapper = mount(<ProgressBar {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     expect(wrapper.find('.progress-bar').props().style).toMatchSnapshot({
-      backgroundColor: RED,
+      backgroundColor: YELLOW,
       width: '10%'
     });
     wrapper.unmount();
@@ -68,7 +68,7 @@ describe('components/progressBar', () => {
     const wrapper = mount(<ProgressBar {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     expect(wrapper.find('.progress-bar').props().style).toMatchSnapshot({
-      backgroundColor: YELLOW,
+      backgroundColor: GREEN,
       width: '40%'
     });
     wrapper.unmount();

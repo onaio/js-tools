@@ -49,9 +49,9 @@ export type PageActionTypes = SwitchCurrentPageAction;
  * reducer
  */
 export type ActionTypes<IState, CustomActionTypes = {}> =
-  | PageActionTypes & {
+  | (PageActionTypes & {
       changes: PaginationState<IState>;
-    }
+    })
   | CustomActionTypes;
 
 /** default reducer */

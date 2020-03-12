@@ -24,6 +24,7 @@ describe('store', () => {
       location: {
         hash: '',
         pathname: '/',
+        query: {},
         search: '',
         state: undefined
       }

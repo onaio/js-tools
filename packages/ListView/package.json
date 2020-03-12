@@ -1,6 +1,6 @@
 {
   "name": "@onaio/list-view",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple component for listing items in a table",
   "main": "dist/index.js",
   "types": "dist/types",

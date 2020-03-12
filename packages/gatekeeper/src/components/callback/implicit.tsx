@@ -154,9 +154,6 @@ const mapDispatchToProps = {
 };
 
 /** created connected component */
-const ConnectedOauthCallback = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(OauthCallback);
+const ConnectedOauthCallback = connect(mapStateToProps, mapDispatchToProps)(OauthCallback);
 
 export default ConnectedOauthCallback;

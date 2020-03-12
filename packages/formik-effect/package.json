@@ -1,0 +1,37 @@
+{
+  "name": "@onaio/formik-effect",
+  "version": "0.0.1",
+  "description": "Declarative Formik component for side-effects.",
+  "author": "Ona Engineering",
+  "homepage": "https://github.com/onaio/js-tools",
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "types": "dist/types",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onaio/js-tools.git"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx' --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "peerDependencies": {
+    "formik": "^2.1.4",
+    "react": "^16.13.0"
+  }
+}

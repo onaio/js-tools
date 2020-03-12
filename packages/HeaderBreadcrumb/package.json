@@ -1,6 +1,6 @@
 {
   "name": "@onaio/head-bread-crumb",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Configurable Breadcrumbs Component that renders breadcrumb items with urls as links or without urls as text nodes",
   "keywords": [
     "breadcrumb "

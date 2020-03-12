@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import { Component } from 'react';
 /** Props for ProgressBar */
 export interface ProgressBarProps {
   animate: boolean /** apply animation to progressBar */;
@@ -11,39 +11,16 @@ export interface ProgressBarProps {
   lineColorThresholds?: {
     [key: string]: number;
   } /** set linecolor threshold */;
-  cssClass: string /** sets either stripped or animated css gradient over progressBar */;
+  cssClass: string /** sets css gradient over progressBar */;
   showLabel: boolean /** set label on progressBar */;
   stripped: boolean /** set strips in progressBar */;
 }
 /** default props for ProgressBar */
-export declare const defaultProgressBarProps: {
-  animate: boolean;
-  cssClass: string;
-  decimalPoints: number;
-  height: string;
-  lineColor: string;
-  lineColorThresholds: undefined;
-  max: number;
-  min: number;
-  showLabel: boolean;
-  stripped: boolean;
-  value: number;
-};
+export declare const defaultProgressBarProps: Partial<ProgressBarProps>;
 /** Displays configurable progress bar */
-declare const ProgressBar: {
-  (props: ProgressBarProps): JSX.Element;
-  defaultProps: {
-    animate: boolean;
-    cssClass: string;
-    decimalPoints: number;
-    height: string;
-    lineColor: string;
-    lineColorThresholds: undefined;
-    max: number;
-    min: number;
-    showLabel: boolean;
-    stripped: boolean;
-    value: number;
-  };
-};
+declare class ProgressBar extends Component<ProgressBarProps, {}> {
+  public static defaultProps: Partial<ProgressBarProps>;
+  constructor(props: ProgressBarProps);
+  public render(): JSX.Element;
+}
 export default ProgressBar;
