@@ -1,4 +1,12 @@
+import { Color } from 'csstype';
 import React, { Component } from 'react';
+
+export interface IndicatorThresholdItem {
+  color: Color;
+  name: string;
+  orEquals?: boolean;
+  value: number;
+}
 
 /** Props for ProgressBar */
 export interface ProgressBarProps {
