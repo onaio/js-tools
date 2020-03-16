@@ -2,7 +2,7 @@
 import { RouteComponentProps } from 'react-router';
 import { Dimensions } from '../../helpers';
 /** Interface for GARoute
- * Compoenent will always render null since DOMwise we don't need
+ * Component will always render null since DOMwise we don't need
  * to do anything
  */
 export interface GARouteProps extends RouteComponentProps {
