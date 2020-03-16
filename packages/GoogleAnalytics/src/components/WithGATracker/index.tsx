@@ -2,10 +2,7 @@ import React, { Component, ComponentType } from 'react';
 import { ConnectedComponent } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { trackPage } from '../../helpers';
-
-type Props = RouteComponentProps;
-type FlexComponent<T = {}> = ComponentType<T>;
-type ConnectedFlexComponent = ConnectedComponent<FlexComponent<any>, any>;
+import { ConnectedFlexComponent, FlexComponent } from './../../../../utils/src/types';
 
 /**
  * Higher Order Component (HOC) which handles Google Analytics page view tracking
@@ -14,14 +11,14 @@ type ConnectedFlexComponent = ConnectedComponent<FlexComponent<any>, any>;
  * @returns HOC rendering the WrappedComponent
  */
 const WithGATracker = (WrappedComponent: FlexComponent | ConnectedFlexComponent) => {
-  const WithGATrackerHOC = class extends Component<Props> {
+  const WithGATrackerHOC = class extends Component<RouteComponentProps> {
     public componentDidMount() {
       // track the page view
       const page = `${this.props.location.pathname}${this.props.location.search}`;
       trackPage(page);
     }
 
-    public componentDidUpdate(prevProps: Props) {
+    public componentDidUpdate(prevProps: RouteComponentProps) {
       const { location } = this.props;
       const previousPage = prevProps.location.pathname + prevProps.location.search;
       const currentPage = location.pathname + location.search;

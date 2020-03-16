@@ -1,114 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`/components/GARoute renders the route tracker correctly 1`] = `
-<Router
-  history={
-    Object {
-      "action": "POP",
-      "block": [Function],
-      "createHref": [Function],
-      "go": [Function],
-      "goBack": [Function],
-      "goForward": [Function],
-      "length": 1,
-      "listen": [Function],
-      "location": Object {
-        "hash": "",
-        "pathname": "/",
-        "search": "",
-        "state": undefined,
-      },
-      "push": [Function],
-      "replace": [Function],
-    }
-  }
->
-  <RouteTracker
-    dimensions={
-      Object {
-        "env": "test",
-        "username": "superman",
-      }
-    }
-    history={
-      Object {
-        "action": "POP",
-        "block": [Function],
-        "createHref": [Function],
-        "go": [Function],
-        "goBack": [Function],
-        "goForward": [Function],
-        "length": 1,
-        "listen": [Function],
-        "location": Object {
-          "hash": "",
-          "pathname": "/",
-          "search": "",
-          "state": undefined,
-        },
-        "push": [Function],
-        "replace": [Function],
-      }
-    }
-    location={
-      Object {
-        "hash": undefined,
-        "pathname": "/home",
-        "search": "?foo=bar",
-        "state": undefined,
-      }
-    }
-    match={
-      Object {
-        "isExact": true,
-        "params": Object {},
-        "path": "/home",
-        "url": "/home",
-      }
-    }
+<RouteTracker>
+  <Route
+    component={[Function]}
   >
-    <Route
-      component={[Function]}
-    >
-      <GARoute
-        history={
-          Object {
-            "action": "POP",
-            "block": [Function],
-            "createHref": [Function],
-            "go": [Function],
-            "goBack": [Function],
-            "goForward": [Function],
-            "length": 1,
-            "listen": [Function],
-            "location": Object {
-              "hash": "",
-              "pathname": "/",
-              "search": "",
-              "state": undefined,
-            },
-            "push": [Function],
-            "replace": [Function],
-          }
-        }
-        location={
-          Object {
+    <GARoute
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
             "hash": "",
             "pathname": "/",
             "search": "",
             "state": undefined,
-          }
+          },
+          "push": [Function],
+          "replace": [Function],
         }
-        match={
-          Object {
-            "isExact": true,
-            "params": Object {},
-            "path": "/",
-            "url": "/",
-          }
+      }
+      location={
+        Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
         }
-      />
-    </Route>
-  </RouteTracker>
-</Router>
+      }
+      match={
+        Object {
+          "isExact": true,
+          "params": Object {},
+          "path": "/",
+          "url": "/",
+        }
+      }
+    />
+  </Route>
+</RouteTracker>
 `;

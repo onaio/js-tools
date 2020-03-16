@@ -1,3 +1,6 @@
+import { ComponentType } from 'react';
+import { ConnectedComponent } from 'react-redux';
+
 /** Interface for a generic object
  *
  * This can work when you need to describe an object which is unknown e.g.
@@ -11,6 +14,7 @@
  * any by default).  Care must be taken not to do this.  Use Dictionary only when
  * you have to.
  */
+
 export interface Dictionary<T = any> {
   [key: string]: T;
 }
@@ -46,3 +50,13 @@ export interface Success<T> {
  * Inspired by https://gdelgado.ca/type-safe-error-handling-in-typescript.html#title
  */
 export type Result<T> = Success<T> | Failure;
+
+/**
+ * Generic type for a react component
+ */
+export type FlexComponent<T = {}> = ComponentType<T>;
+
+/**
+ * Generic Type for a react connected component
+ */
+export type ConnectedFlexComponent = ConnectedComponent<FlexComponent<any>, any>;

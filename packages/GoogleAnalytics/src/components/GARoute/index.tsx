@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { InitializeOptions } from 'react-ga';
+import React, { useEffect } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Route } from 'react-router-dom';
 import { Dimensions, trackPage } from '../../helpers';
 
 /** Interface for GARoute
- * Compoenent will always render null since DOMwise we don't need
+ * Component ill always render null since DOMwise we don't need
  * to do anything
  */
 export interface GARouteProps extends RouteComponentProps {

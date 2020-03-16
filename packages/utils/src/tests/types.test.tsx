@@ -1,5 +1,15 @@
+import { FunctionComponent } from 'react';
+import { connect } from 'react-redux';
 import { expectType } from 'tsd';
-import { Dictionary, Failure, Result, Success, UpdateType } from '../types';
+import {
+  ConnectedFlexComponent,
+  Dictionary,
+  Failure,
+  FlexComponent,
+  Result,
+  Success,
+  UpdateType
+} from '../types';
 
 describe('types', () => {
   it('Dictionary works', () => {
@@ -34,5 +44,18 @@ describe('types', () => {
     type AB = UpdateType<A, B>;
 
     expectType<AB>({ bar: 1337, foo: 'leet' });
+  });
+
+  it('FlexComponent', () => {
+    const Component: FunctionComponent = () => <div>Hello</div>;
+
+    expectType<FlexComponent>(Component);
+  });
+
+  it('ConnectedFlexComponent', () => {
+    const Component: FunctionComponent = () => <div>Hello</div>;
+    const ConnectedComponent: ConnectedFlexComponent = connect()(Component);
+
+    expectType<ConnectedFlexComponent>(ConnectedComponent);
   });
 });

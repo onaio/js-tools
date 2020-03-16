@@ -63,9 +63,9 @@ describe('/components/GARoute', () => {
   it('renders the route tracker correctly', () => {
     const wrapper = mount(
       <Router history={history}>
-        <RouteTracker {...props} />
+        <RouteTracker />
       </Router>
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(toJson(wrapper.find('RouteTracker'))).toMatchSnapshot();
   });
 });
