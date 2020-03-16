@@ -82,8 +82,7 @@ class App extends Component {
 }
 ```
 
-Since the `RouterTracker` is not wrapped inside a `Switch` statement, it will be rendered everytime depending on
-what `initGoogleAnalytics` returns.
+Note that the `RouteTracker` is not wrapped inside the `Switch`
 
 ### API
 
