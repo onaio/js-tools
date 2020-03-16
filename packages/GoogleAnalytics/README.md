@@ -44,9 +44,11 @@ class App extends Component {
 }
 ```
 
+This approach however forces components (and all of their children components) to unmount and remount every time the URL changes.
+
 ### RouterTracker (Best approach)
 
-Uses a `Route` that matches everything so that it can be re-rendered on every route change
+Uses a `Route` that matches everything so that it can be re-rendered on every route change.
 
 #### Usage
 
