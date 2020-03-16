@@ -1,15 +1,6 @@
 import { FunctionComponent } from 'react';
-import { connect } from 'react-redux';
 import { expectType } from 'tsd';
-import {
-  ConnectedFlexComponent,
-  Dictionary,
-  Failure,
-  FlexComponent,
-  Result,
-  Success,
-  UpdateType
-} from '../types';
+import { Dictionary, Failure, FlexComponent, Result, Success, UpdateType } from '../types';
 
 describe('types', () => {
   it('Dictionary works', () => {
@@ -50,12 +41,5 @@ describe('types', () => {
     const Component: FunctionComponent = () => <div>Hello</div>;
 
     expectType<FlexComponent>(Component);
-  });
-
-  it('ConnectedFlexComponent', () => {
-    const Component: FunctionComponent = () => <div>Hello</div>;
-    const ConnectedComponent: ConnectedFlexComponent = connect()(Component);
-
-    expectType<ConnectedFlexComponent>(ConnectedComponent);
   });
 });

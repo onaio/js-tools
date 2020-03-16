@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { Dimensions, trackPage } from '../../helpers';
 
 /** Interface for GARoute
- * Component ill always render null since DOMwise we don't need
+ * Component will always render null since DOMwise we don't need
  * to do anything
  */
 export interface GARouteProps extends RouteComponentProps {
