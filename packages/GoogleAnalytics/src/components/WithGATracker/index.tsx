@@ -1,5 +1,5 @@
 import { FlexComponent } from '@onaio/utils';
-import React, { Component, ComponentType } from 'react';
+import React, { Component } from 'react';
 import { ConnectedComponent } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { trackPage } from '../../helpers';
