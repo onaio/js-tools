@@ -1,20 +1,41 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.helpers = exports.WithGATracker = exports.GARoute = void 0;
 
-var GARoute = _interopRequireWildcard(require("./components/GARoute"));
+var _GARoute = require("./components/GARoute");
 
-exports.GARoute = GARoute;
+Object.keys(_GARoute).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _GARoute[key];
+    }
+  });
+});
 
-var WithGATracker = _interopRequireWildcard(require("./components/WithGATracker"));
+var _WithGATracker = require("./components/WithGATracker");
 
-exports.WithGATracker = WithGATracker;
+Object.keys(_WithGATracker).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _WithGATracker[key];
+    }
+  });
+});
 
-var helpers = _interopRequireWildcard(require("./helpers"));
+var _helpers = require("./helpers");
 
-exports.helpers = helpers;
+Object.keys(_helpers).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _helpers[key];
+    }
+  });
+});
