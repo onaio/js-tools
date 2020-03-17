@@ -1,4 +1,3 @@
-import { ComponentType } from 'react';
 /** Interface for a generic object
  *
  * This can work when you need to describe an object which is unknown e.g.
@@ -43,7 +42,3 @@ export interface Success<T> {
  * Inspired by https://gdelgado.ca/type-safe-error-handling-in-typescript.html#title
  */
 export declare type Result<T> = Success<T> | Failure;
-/**
- * Generic type for a react component
- */
-export declare type FlexComponent<T = {}> = ComponentType<T>;

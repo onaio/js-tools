@@ -7,7 +7,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.WithGATracker = void 0;
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
@@ -61,5 +61,4 @@ var WithGATracker = function WithGATracker(WrappedComponent) {
   return WithGATrackerHOC;
 };
 
-var _default = WithGATracker;
-exports["default"] = _default;
+exports.WithGATracker = WithGATracker;

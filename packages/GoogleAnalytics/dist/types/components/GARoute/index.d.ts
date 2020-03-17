@@ -12,4 +12,3 @@ export interface GARouteProps extends RouteComponentProps {
 export declare const GARoute: (props: GARouteProps) => null;
 /** Route that matches everything so that it can be re-rendered on every route change */
 export declare const RouteTracker: () => JSX.Element;
-export default RouteTracker;
