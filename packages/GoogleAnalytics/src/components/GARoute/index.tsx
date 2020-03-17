@@ -23,5 +23,3 @@ export const GARoute = (props: GARouteProps) => {
 
 /** Route that matches everything so that it can be re-rendered on every route change */
 export const RouteTracker = () => <Route component={GARoute} />;
-
-export default RouteTracker;

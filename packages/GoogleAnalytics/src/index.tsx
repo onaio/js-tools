@@ -1,5 +1,5 @@
-import { RouteTracker } from './components/GARoute';
-import WithGATracker from './components/WithGATracker';
-import { Dimensions, initGoogleAnalytics, setDimensions } from './helpers';
+import * as GARoute from './components/GARoute';
+import * as WithGATracker from './components/WithGATracker';
+import * as helpers from './helpers';
 
-export { WithGATracker, RouteTracker, initGoogleAnalytics, Dimensions, setDimensions };
+export { WithGATracker, GARoute, helpers };

@@ -4,7 +4,7 @@ import { createBrowserHistory, Location } from 'history';
 import React from 'react';
 import GoogleAnalytics from 'react-ga';
 import { Router } from 'react-router';
-import RouteTracker, { GARoute } from '..';
+import { GARoute, RouteTracker } from '..';
 import { Dimensions } from './../../../helpers';
 
 const history = createBrowserHistory();

@@ -2,7 +2,7 @@ import { mount } from 'enzyme';
 import { createBrowserHistory, Location } from 'history';
 import React from 'react';
 import GoogleAnalytics from 'react-ga';
-import WithGATracker from '..';
+import { WithGATracker } from '..';
 
 const history = createBrowserHistory();
 

@@ -4,7 +4,7 @@ import { ConnectedComponent } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { trackPage } from '../../helpers';
 
-type ConnectedFlexComponent = ConnectedComponent<FlexComponent<any>, any>;
+export type ConnectedFlexComponent = ConnectedComponent<FlexComponent<any>, any>;
 
 /**
  * Higher Order Component (HOC) which handles Google Analytics page view tracking
@@ -12,7 +12,7 @@ type ConnectedFlexComponent = ConnectedComponent<FlexComponent<any>, any>;
  * @param {string} trackingCode Google analytics tracking code
  * @returns HOC rendering the WrappedComponent
  */
-const WithGATracker = (WrappedComponent: FlexComponent | ConnectedFlexComponent) => {
+export const WithGATracker = (WrappedComponent: FlexComponent | ConnectedFlexComponent) => {
   const WithGATrackerHOC = class extends Component<RouteComponentProps> {
     public componentDidMount() {
       // track the page view
@@ -38,5 +38,3 @@ const WithGATracker = (WrappedComponent: FlexComponent | ConnectedFlexComponent)
 
   return WithGATrackerHOC;
 };
-
-export default WithGATracker;
