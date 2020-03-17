@@ -1,29 +1,37 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var _exportNames = {
-  GARoute: true,
-  WithGATracker: true
-};
-exports.WithGATracker = exports.GARoute = void 0;
 
-var GARoute = _interopRequireWildcard(require("./components/GARoute"));
+var _GARoute = require("./components/GARoute");
 
-exports.GARoute = GARoute;
+Object.keys(_GARoute).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _GARoute[key];
+    }
+  });
+});
 
-var WithGATracker = _interopRequireWildcard(require("./components/WithGATracker"));
+var _WithGATracker = require("./components/WithGATracker");
 
-exports.WithGATracker = WithGATracker;
+Object.keys(_WithGATracker).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _WithGATracker[key];
+    }
+  });
+});
 
 var _helpers = require("./helpers");
 
 Object.keys(_helpers).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
