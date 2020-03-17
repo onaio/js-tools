@@ -1,6 +1,5 @@
-import { FunctionComponent } from 'react';
 import { expectType } from 'tsd';
-import { Dictionary, Failure, FlexComponent, Result, Success, UpdateType } from '../types';
+import { Dictionary, Failure, Result, Success, UpdateType } from '../types';
 
 describe('types', () => {
   it('Dictionary works', () => {
@@ -35,11 +34,5 @@ describe('types', () => {
     type AB = UpdateType<A, B>;
 
     expectType<AB>({ bar: 1337, foo: 'leet' });
-  });
-
-  it('FlexComponent', () => {
-    const Component: FunctionComponent = () => <div>Hello</div>;
-
-    expectType<FlexComponent>(Component);
   });
 });

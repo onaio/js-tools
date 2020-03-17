@@ -1,4 +1,4 @@
-import { FlexComponent } from '@onaio/utils';
+import { FlexComponent } from '@onaio/react-utils';
 import React from 'react';
 import { ConnectedComponent } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
