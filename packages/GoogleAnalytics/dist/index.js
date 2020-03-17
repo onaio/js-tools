@@ -1,51 +1,33 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "InitializeOptions", {
-  enumerable: true,
-  get: function get() {
-    return _reactGa.InitializeOptions;
-  }
-});
-Object.defineProperty(exports, "RouteTracker", {
-  enumerable: true,
-  get: function get() {
-    return _GARoute.RouteTracker;
-  }
-});
-Object.defineProperty(exports, "WithGATracker", {
-  enumerable: true,
-  get: function get() {
-    return _WithGATracker["default"];
-  }
-});
-Object.defineProperty(exports, "Dimensions", {
-  enumerable: true,
-  get: function get() {
-    return _helpers.Dimensions;
-  }
-});
-Object.defineProperty(exports, "initGoogleAnalytics", {
-  enumerable: true,
-  get: function get() {
-    return _helpers.initGoogleAnalytics;
-  }
-});
-Object.defineProperty(exports, "setDimensions", {
-  enumerable: true,
-  get: function get() {
-    return _helpers.setDimensions;
-  }
-});
+var _exportNames = {
+  GARoute: true,
+  WithGATracker: true
+};
+exports.WithGATracker = exports.GARoute = void 0;
 
-var _reactGa = require("react-ga");
+var GARoute = _interopRequireWildcard(require("./components/GARoute"));
 
-var _GARoute = require("./components/GARoute");
+exports.GARoute = GARoute;
 
-var _WithGATracker = _interopRequireDefault(require("./components/WithGATracker"));
+var WithGATracker = _interopRequireWildcard(require("./components/WithGATracker"));
+
+exports.WithGATracker = WithGATracker;
 
 var _helpers = require("./helpers");
+
+Object.keys(_helpers).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _helpers[key];
+    }
+  });
+});

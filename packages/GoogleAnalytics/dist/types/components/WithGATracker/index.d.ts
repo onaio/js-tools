@@ -1,13 +1,15 @@
+import { FlexComponent } from '@onaio/utils';
 import React from 'react';
 import { ConnectedComponent } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
+export declare type ConnectedFlexComponent = ConnectedComponent<FlexComponent<any>, any>;
 /**
  * Higher Order Component (HOC) which handles Google Analytics page view tracking
  * @param {FlexComponent | ConnectedFlexComponent} WrappedComponent the component to be wrapped by the HOC component
  * @param {string} trackingCode Google analytics tracking code
  * @returns HOC rendering the WrappedComponent
  */
-declare const WithGATracker: (
+export declare const WithGATracker: (
   WrappedComponent:
     | ConnectedComponent<React.ComponentType<any>, any>
     | React.ComponentClass<{}, any>
@@ -252,4 +254,3 @@ declare const WithGATracker: (
     ): void;
   };
 };
-export default WithGATracker;

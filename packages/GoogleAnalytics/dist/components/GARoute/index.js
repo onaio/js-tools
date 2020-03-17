@@ -5,7 +5,7 @@ var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWild
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.RouteTracker = exports.GARoute = void 0;
+exports.RouteTracker = exports.GARoute = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -30,5 +30,3 @@ var RouteTracker = function RouteTracker() {
 };
 
 exports.RouteTracker = RouteTracker;
-var _default = RouteTracker;
-exports["default"] = _default;
