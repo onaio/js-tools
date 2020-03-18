@@ -1,10 +1,7 @@
-import { FlexComponent } from '@onaio/react-utils';
+import { ConnectedFlexComponent, FlexComponent } from '@onaio/react-utils';
 import React, { Component } from 'react';
-import { ConnectedComponent } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { trackPage } from '../../helpers';
-
-export type ConnectedFlexComponent = ConnectedComponent<FlexComponent<any>, any>;
 
 /**
  * Higher Order Component (HOC) which handles Google Analytics page view tracking

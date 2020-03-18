@@ -25,6 +25,11 @@
       "setupFiles": [
         "../../setupTests"
       ]
+    },
+    "peerDependencies": {
+      "@types/react-redux": "^7.0.8",
+      "react": "^16.8.1",
+      "react-redux": "^7.0.2"
     }
   }
   

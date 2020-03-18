@@ -1,8 +1,5 @@
-import { FlexComponent } from '@onaio/react-utils';
 import React from 'react';
-import { ConnectedComponent } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-export declare type ConnectedFlexComponent = ConnectedComponent<FlexComponent<any>, any>;
 /**
  * Higher Order Component (HOC) which handles Google Analytics page view tracking
  * @param {FlexComponent | ConnectedFlexComponent} WrappedComponent the component to be wrapped by the HOC component
@@ -11,9 +8,9 @@ export declare type ConnectedFlexComponent = ConnectedComponent<FlexComponent<an
  */
 export declare const WithGATracker: (
   WrappedComponent:
-    | ConnectedComponent<React.ComponentType<any>, any>
     | React.ComponentClass<{}, any>
     | React.FunctionComponent<{}>
+    | import('react-redux').ConnectedComponent<React.ComponentType<any>, any>
 ) => {
   contextType?: React.Context<any> | undefined;
   new (
