@@ -19,28 +19,45 @@ A high order component `WithGATracker` wraps an entire `App` or `Route` componen
 
 #### Usage
 
-```
-import { WithGATracker, initGoogleAnalytics,setDimensions } from '@onaio/google-analytics'
+```js
+import { WithGATracker, initGoogleAnalytics, setDimensions } from '@onaio/google-analytics';
 
-const initializeOptions  = {
-    testMode: true
-}
-initGoogleAnalytics('UA-000000-01', initializeOptions)
+const initializeOptions = {
+  testMode: true
+};
+initGoogleAnalytics('UA-000000-01', initializeOptions);
 
 class App extends Component {
-    ....
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: ''
+    };
+  }
 
-    render() {
-        const dimensions = {
-            env: 'test',
-            username: 'logged-in-username'
-        }
-        setDimensions(dimensions);
-        return (
-            ....
-           <Route exact path="/users" component={WithGATracker(Users)} />
-        )
+  componentDidUpdate(prevProps, prevState) {
+    /**
+     * Set supported dimensions if need be
+     */
+
+    // Get updated username from your custom function
+    const username = getUsername();
+
+    if (prevState.username !== username) {
+      this.setState({
+        username
+      });
+      const dimensions = {
+        env: 'test',
+        username
+      };
+      setDimensions(dimensions);
     }
+  }
+
+  render() {
+    return <Route exact path="/users" component={WithGATracker(Users)} />;
+  }
 }
 ```
 
@@ -52,9 +69,10 @@ Uses a `Route` that matches everything so that it can be re-rendered on every ro
 
 #### Usage
 
-```
-import { RouteTracker, initGoogleAnalytics } from '@onaio/google-analytics'
-....
+```js
+
+import { RouteTracker, initGoogleAnalytics, setDimensions } from '@onaio/google-analytics'
+...
 
 const initializeOptions  = {
     testMode: true
@@ -62,13 +80,34 @@ const initializeOptions  = {
 initGoogleAnalytics('UA-000000-01', initializeOptions)
 
 class App extends Component {
-    ...
-    render () {
-        const dimensions = {
-            env: 'test',
-            username: 'logged-in-username'
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: ''
+        };
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        /**
+         * Set supported dimensions if need be
+         */
+
+        // Get updated username from your custom function
+        const username = getUsername();
+
+        if (prevState.username !== username) {
+            this.setState({
+                username
+            });
+            const dimensions = {
+                env: 'test',
+                username,
+            };
+            setDimensions(dimensions);
         }
-        setDimensions(dimensions);
+    }
+
+    render () {
         return (
             <BrowserRouter>
 
@@ -122,7 +161,7 @@ export interface InitializeOptions {
 
 #### setDimensions(dimensions)
 
-Set [custom dimensions](https://www.npmjs.com/package/react-ga#reactgasetfieldsobject) (user attributes) to be tracked.
+Set [custom dimensions](https://www.npmjs.com/package/react-ga#reactgasetfieldsobject) (user attributes) if any that need to be tracked.
 
 Takes the following arguments
 

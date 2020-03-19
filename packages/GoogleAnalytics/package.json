@@ -2,7 +2,7 @@
   "name": "@onaio/google-analytics",
   "version": "0.0.1",
   "description": "Google Analytics integration with React Router v4",
-  "main": "index.js",
+  "main": "dist/index.js",
   "types": "dist/types",
   "repository": "git+https://github.com/onaio/js-tools.git",
   "author": "Ona Engineering",
