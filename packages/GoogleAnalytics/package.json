@@ -1,6 +1,6 @@
 {
   "name": "@onaio/google-analytics",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Google Analytics integration with React Router v4",
   "main": "dist/index.js",
   "types": "dist/types",
