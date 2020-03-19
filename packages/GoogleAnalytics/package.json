@@ -1,6 +1,6 @@
 {
   "name": "@onaio/google-analytics",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Google Analytics integration with React Router v4",
   "main": "index.js",
   "types": "dist/types",
@@ -15,13 +15,19 @@
     "tsc": "tsc",
     "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
   },
-  "files": ["dist"],
-  "publishConfig": { "access": "public" },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "jest": {
-    "setupFiles": ["../../setupTests"]
+    "setupFiles": [
+      "../../setupTests"
+    ]
   },
   "dependencies": {
-    "@onaio/react-utils": "^0.0.0",
+    "@onaio/react-utils": "^0.0.1",
     "@onaio/utils": "^0.0.1",
     "memoize-one": "^5.1.1",
     "react-ga": "^2.7.0"
