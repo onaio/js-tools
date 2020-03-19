@@ -11,7 +11,7 @@ yarn add @onaio/google-analytics
 
 ## Tracking page views
 
-A couple of approaches are avaialable for use
+A couple of approaches are available for use
 
 ### WithGATracker
 
@@ -53,7 +53,7 @@ Uses a `Route` that matches everything so that it can be re-rendered on every ro
 #### Usage
 
 ```
-import { WithGATracker, initGoogleAnalytics } from '@onaio/google-analytics'
+import { RouteTracker, initGoogleAnalytics } from '@onaio/google-analytics'
 ....
 
 const initializeOptions  = {
@@ -71,7 +71,9 @@ class App extends Component {
         setDimensions(dimensions);
         return (
             <BrowserRouter>
+
                 { <RouteTracker /> }
+
                 <Switch>
                     <AuthorizedRoute path='/' component={Home} />
                 </Switch>
