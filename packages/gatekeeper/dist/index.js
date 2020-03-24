@@ -35,6 +35,12 @@ Object.defineProperty(exports, "ProviderLinksProps", {
     return _login.ProviderLinksProps;
   }
 });
+Object.defineProperty(exports, "useOAuthLogin", {
+  enumerable: true,
+  get: function get() {
+    return _login.useOAuthLogin;
+  }
+});
 Object.defineProperty(exports, "ConnectedLogout", {
   enumerable: true,
   get: function get() {

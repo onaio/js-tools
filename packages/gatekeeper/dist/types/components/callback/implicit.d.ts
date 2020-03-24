@@ -38,7 +38,7 @@ declare const OauthCallback: {
 };
 export { OauthCallback };
 /** created connected component */
-declare const ConnectedOauthCallback: import('react-redux').ConnectedComponentClass<
+declare const ConnectedOauthCallback: import('react-redux').ConnectedComponent<
   {
     (props: OauthCallbackProps<RouteParams>): JSX.Element;
     defaultProps: Partial<OauthCallbackProps<RouteParams>>;
