@@ -21,7 +21,7 @@ declare const Logout: {
 };
 export { Logout };
 /** Connected Logout component */
-declare const ConnectedLogout: import('react-redux').ConnectedComponentClass<
+declare const ConnectedLogout: import('react-redux').ConnectedComponent<
   {
     (props: LogoutProps): JSX.Element;
     defaultProps: LogoutProps;
