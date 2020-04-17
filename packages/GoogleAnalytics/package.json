@@ -1,0 +1,35 @@
+{
+  "name": "@onaio/google-analytics",
+  "version": "0.0.2",
+  "description": "Google Analytics integration with React Router v4",
+  "main": "dist/index.js",
+  "types": "dist/types",
+  "repository": "git+https://github.com/onaio/js-tools.git",
+  "author": "Ona Engineering",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "dependencies": {
+    "@onaio/react-utils": "^0.0.1",
+    "@onaio/utils": "^0.0.1",
+    "memoize-one": "^5.1.1",
+    "react-ga": "^2.7.0"
+  }
+}

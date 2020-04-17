@@ -29,7 +29,7 @@ declare const APICallback: {
 };
 export { APICallback };
 /** created connected component */
-declare const ConnectedAPICallback: import('react-redux').ConnectedComponentClass<
+declare const ConnectedAPICallback: import('react-redux').ConnectedComponent<
   {
     (props: APICallbackProps<RouteParams>): JSX.Element;
     defaultProps: Partial<APICallbackProps<RouteParams>>;

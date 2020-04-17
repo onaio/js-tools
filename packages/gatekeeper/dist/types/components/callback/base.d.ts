@@ -19,9 +19,9 @@ export interface BaseCallbackComponentProps<G> extends RouteComponentProps<G> {
   working: boolean;
 }
 /** default props for BaseCallbackComponent */
-export declare const defaultBaseCallbackComponentProps: Partial<
-  BaseCallbackComponentProps<RouteParams>
->;
+export declare const defaultBaseCallbackComponentProps: Partial<BaseCallbackComponentProps<
+  RouteParams
+>>;
 /** The oAuth callback component
  * This component should be on the page that receives the callback from the
  * oAuth provider.

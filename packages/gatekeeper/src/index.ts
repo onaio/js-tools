@@ -2,7 +2,8 @@ import OauthLogin, {
   AuthorizationGrantType,
   OauthLoginProps,
   ProviderLinks,
-  ProviderLinksProps
+  ProviderLinksProps,
+  useOAuthLogin
 } from './components/login';
 
 import ConnectedLogout, { defaultLogoutProps, Logout, LogoutProps } from './components/logout';
@@ -98,5 +99,6 @@ export {
   defaultAPICallbackProps,
   APICallback,
   APICallbackProps,
-  AuthorizationGrantType
+  AuthorizationGrantType,
+  useOAuthLogin
 };
