@@ -1,5 +1,5 @@
 import React from 'react';
-import { CellInfo } from 'react-table-v6';
+import { CellInfo } from 'react-table';
 import { CARET, CLICKABLE_CSS_CLASS, LINKER_ITEM_CSS_CLASS } from './constants';
 
 /** Interface for DropDown cell props */
