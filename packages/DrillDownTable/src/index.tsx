@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ReactTable, { CellInfo, Column, FinalState, RowInfo, TableProps } from 'react-table';
+import ReactTable, { CellInfo, Column, FinalState, RowInfo, TableProps } from 'react-table-v6';
 import './DrillDownTable.css';
 import { ID, PARENT_ID, ROOT_PARENT_ID } from './helpers/constants';
 import DropDownCell, { DropDownCellProps } from './helpers/DropDownCell';
