@@ -3,9 +3,9 @@ import { mount, ReactWrapper, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
 import { Column } from 'react-table';
-import { DrillDownTablev7 } from '../components/DrillDownTable';
-import { DropDownCellProps } from '../components/HelperComponents';
-import { columnsFromObject } from '../helpers/utils';
+import { columnsFromObject } from '../../helpers/utils';
+import { DrillDownTablev7 } from '../DrillDownTable';
+import { DropDownCellProps } from '../HelperComponents';
 import { data, dataLowestLevel } from './fixtures';
 
 const dataColumns = columnsFromObject(data);

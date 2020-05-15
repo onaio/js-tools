@@ -1,10 +1,15 @@
 import React from 'react';
-import { NO_DATA_FOUND } from '../../../../../configs/lang';
-import { CARET_SPAN, CLICKABLE_CSS_CLASS, LINKER_ITEM_CSS_CLASS } from '../../helpers/constants';
+import {
+  CARET_SPAN,
+  CLICKABLE_CSS_CLASS,
+  LINKER_ITEM_CSS_CLASS,
+  LOADING,
+  NO_DATA_FOUND
+} from '../../helpers/constants';
 
 /** Rendered component when there is no data for table component to render */
 export const NullDataComponent = () => (
-  <div className="jumbotron">
+  <div className="">
     <p>{NO_DATA_FOUND}</p>
   </div>
 );
@@ -28,4 +33,8 @@ export const DropDownCell: React.ElementType = (props: DropDownCellProps) => {
       </span>
     </div>
   );
+};
+
+export const Ripple = () => {
+  return <p>{LOADING}</p>;
 };

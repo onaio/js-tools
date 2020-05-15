@@ -1,8 +1,7 @@
 import { Dictionary } from '@onaio/utils';
 import React, { useState } from 'react';
 import { Cell, Column } from 'react-table';
-import Ripple from '../../../page/Loading';
-import { DropDownCell, DropDownCellProps } from './HelperComponents';
+import { DropDownCell, DropDownCellProps, Ripple } from './HelperComponents';
 import { defaultTableProps, Table, TableJSXProps } from './TableJSX';
 
 /** describes props for the DrillDownTable component */

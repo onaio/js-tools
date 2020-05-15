@@ -1,7 +1,7 @@
 /** The default custom pagination component for drillDown v7  */
 import { Dictionary } from '@onaio/utils';
+import { NEXT, OF, PAGE, PREVIOUS, ROWS_TO_DISPLAY } from 'DrillDown/src/helpers/constants';
 import React from 'react';
-import { NEXT, OF, PAGE, PREVIOUS, ROWS_TO_DISPLAY } from '../../../../../configs/lang';
 import { RenderPaginationOptions } from '../TableJSX';
 import './pagination.css';
 
