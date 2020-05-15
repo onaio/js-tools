@@ -65,7 +65,7 @@ exports[`DrillDownTable click to drill down works: InitialRender tr index 3 1`] 
 
 exports[`DrillDownTable click to drill down works: InitialRender tr index 4 1`] = `"18District D0%0%"`;
 
-exports[`DrillDownTable renders correctly lowest level hierarchy: full rendered data 1`] = `"Rows to display10203050Previouspage    of 0Next idlocationparent_idspray_coveragespray_effectivenessNo Data FoundRows to display10203050Previouspage    of 0Next "`;
+exports[`DrillDownTable renders correctly lowest level hierarchy: full rendered data 1`] = `"Rows to Display10203050PreviousPage    Of 0Next idlocationparent_idspray_coveragespray_effectivenessNo Data FoundRows to Display10203050PreviousPage    Of 0Next "`;
 
 exports[`DrillDownTable renders correctly with custom columns 1`] = `
 Object {
@@ -125,6 +125,6 @@ Object {
 }
 `;
 
-exports[`DrillDownTable works fine with extraCellProps: find the carret 1`] = `"Rows to display10203050Previouspage    of 1Next idlocationparent_idspray_coveragespray_effectiveness1 +District A80%80%2 +District B75%85%3 +District C90%90%18District D0%0%Rows to display10203050Previouspage    of 1Next "`;
+exports[`DrillDownTable works fine with extraCellProps: find the carret 1`] = `"Rows to Display10203050PreviousPage    Of 1Next idlocationparent_idspray_coveragespray_effectiveness1 +District A80%80%2 +District B75%85%3 +District C90%90%18District D0%0%Rows to Display10203050PreviousPage    Of 1Next "`;
 
-exports[`DrillDownTable works fine with useDrillDown being flase: Full render 1`] = `"Rows to display10203050Previouspage    of 2Next idlocationparent_idspray_coveragespray_effectiveness1 ▼District A80%80%4 ▼HFC 1180%80%9Operational Area 9470%90%10Operational Area 10480%100%11Operational Area 114100%100%5 ▼HFC 2180%80%12Operational Area 12586%100%2 ▼District B75%85%6 ▼HFC 3280%80%17HFC 1720%0%Rows to display10203050Previouspage    of 2Next "`;
+exports[`DrillDownTable works fine with useDrillDown being flase: Full render 1`] = `"Rows to Display10203050PreviousPage    Of 2Next idlocationparent_idspray_coveragespray_effectiveness1 ▼District A80%80%4 ▼HFC 1180%80%9Operational Area 9470%90%10Operational Area 10480%100%11Operational Area 114100%100%5 ▼HFC 2180%80%12Operational Area 12586%100%2 ▼District B75%85%6 ▼HFC 3280%80%17HFC 1720%0%Rows to Display10203050PreviousPage    Of 2Next "`;
