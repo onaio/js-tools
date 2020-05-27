@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`src/components/Table/DrillDownTable/components/HelperComponents renders default Spinner without crashing 1`] = `
+<div
+  className="spinner-border m-5"
+  role="status"
+>
+  <span
+    className="sr-only"
+  >
+    Loading
+    ...
+  </span>
+</div>
+`;
