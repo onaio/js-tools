@@ -1,6 +1,7 @@
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import React from 'react';
-import { DropDownCell, NullDataComponent } from '../index';
+import { DropDownCell, NullDataComponent, Spinner } from '../index';
 
 describe('src/components/Table/DrillDownTable/components/HelperComponents', () => {
   it('renders correctly when with children', () => {
@@ -25,5 +26,11 @@ describe('src/components/Table/DrillDownTable/components/HelperComponents', () =
   it('renders nullData components correctly', () => {
     const wrapper = mount(<NullDataComponent />);
     expect(wrapper.text()).toMatchInlineSnapshot(`"No Data Found"`);
+  });
+
+  /** tets for ripple */
+  it('renders default Spinner without crashing', () => {
+    const wrapper = shallow(<Spinner />);
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

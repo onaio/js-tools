@@ -5,18 +5,22 @@ import {
   Column,
   ColumnInstance,
   Row,
+  TableState,
   usePagination,
   UsePaginationInstanceProps,
+  UsePaginationState,
   useSortBy,
   UseSortByColumnProps,
+  UseSortByInstanceProps,
+  UseSortByState,
   useTable,
   UseTableHeaderGroupProps,
+  UseTableInstanceProps,
   UseTableOptions
 } from 'react-table';
 import { DEFAULT_ROW_HEIGHT, ID, PARENT_ID, ROOT_PARENT_ID } from '../helpers/constants';
 import { NullDataComponent } from './HelperComponents';
-import { renderPaginationFun } from './Pagination/pagination';
-import { SortIcon } from './SortIcon/sortIcon';
+import { SortIcon } from './SortIcon';
 
 /** Type definition for hasChildrenFunc */
 export type HasChildrenFuncType = <D extends object>(
@@ -34,16 +38,23 @@ export function hasChildrenFunc<D extends object>(
   return parentIdList.includes((cellObject.row.original as Dictionary)[idField]);
 }
 
-/** props for render Prop used to render filters in the top filter bar */
-export interface RenderFiltersInBarOptions {
+/** the actual table instance returned from UseTable() after including usePagination and useSortBy hooks */
+export interface ActualTableInstanceProps<T extends object>
+  extends Omit<UseTableInstanceProps<T>, 'state'>,
+    UsePaginationInstanceProps<T>,
+    UseSortByInstanceProps<T> {
+  state: TableState<T> & UsePaginationState<T> & UseSortByState<T>;
+}
+
+/** props for render Prop used to render filters section */
+export interface RenderFiltersInBarOptions<T extends object> extends ActualTableInstanceProps<T> {
   setRowHeight: Dispatch<SetStateAction<string>>;
 }
 
-/** the custom default options that will be given to a render prop that renders the pagination */
-export interface RenderPaginationOptions<T extends object> extends UsePaginationInstanceProps<T> {
-  pageSize: number;
-  pageIndex: number;
-}
+/** props for render prop function that render filter section */
+export type FilterBarRenderer<TData extends object> = (
+  prop: RenderFiltersInBarOptions<TData>
+) => ReactNode;
 
 /** describes props for the underlying Table component : TData is the type of data to be rendered in table */
 export interface TableJSXProps<TData extends object> {
@@ -56,19 +67,16 @@ export interface TableJSXProps<TData extends object> {
   parentNodes: Array<string | number> /** array of identifiers for all rows that have children */;
   parentIdentifierField: string /** the field to identify a row's parent */;
   hasChildren: HasChildrenFuncType /** function to check if a row of data has children or not */;
-  showBottomPagination: boolean /** whether to show pagination below table */;
-  renderPagination: (
-    props: RenderPaginationOptions<TData>
-  ) => ReactNode /** renderProp to for custom pagination */;
-  showTopPagination: boolean /** show pagination above table */;
-  renderFilterBar: true /** whether to show the filter components */;
-  renderInFilterBar: (
-    prop: RenderFiltersInBarOptions
-  ) => ReactNode /** add a section to the left of top pagination for filter components */;
+  renderInTopFilterBar?: FilterBarRenderer<
+    TData
+  > /** add a section immediately above table for filter components */;
+  renderInBottomFilterBar?: FilterBarRenderer<
+    TData
+  > /** add a section immediately above table for filter components */;
   rootParentId:
     | string
     | null /** the value of parentIdentifierField for rows that have not parent */;
-  renderNullDataComponent: () => ReactNode /** component to render if data is empty array */;
+  nullDataComponent: React.ElementType /** component to render if data is empty array */;
   linkerField?: string /** the field to be used to drill down the data */;
   useDrillDown: boolean /** whether component can act as a normal table */;
 }
@@ -79,19 +87,14 @@ export const defaultTableProps: Omit<TableJSXProps<{}>, 'columns' | 'fetchData' 
   hasChildren: hasChildrenFunc,
   identifierField: ID,
   linkerField: ID,
+  nullDataComponent: NullDataComponent,
   parentIdentifierField: PARENT_ID,
-  renderFilterBar: true,
-  renderInFilterBar: () => null,
-  renderNullDataComponent: NullDataComponent,
-  renderPagination: renderPaginationFun,
   rootParentId: ROOT_PARENT_ID,
-  showBottomPagination: true,
-  showTopPagination: true,
   useDrillDown: true
 };
 
 /** the underlying Table component
- * its seprarate since we want to control some of its aspects, specifically pagination
+ * its separate since we want to control some of its aspects, specifically pagination
  */
 function Table<D extends object>(props: TableJSXProps<D>) {
   const { columns, data, fetchData, identifierField } = props;
@@ -106,22 +109,7 @@ function Table<D extends object>(props: TableJSXProps<D>) {
       UseSortByColumnProps<T>,
       UsePaginationInstanceProps<T> {}
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    prepareRow,
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
-    setPageSize,
-    page,
-    state: { pageIndex, pageSize }
-  }: Dictionary = useTable(
+  const tableProps: ActualTableInstanceProps<D> = (useTable(
     {
       // prevent the table from auto resetting when we change our data source,
       // for instance if we were to change the data prop dynamically in the controlling component
@@ -133,7 +121,7 @@ function Table<D extends object>(props: TableJSXProps<D>) {
     } as UseTableOptions<D>,
     useSortBy,
     usePagination
-  );
+  ) as unknown) as ActualTableInstanceProps<D>;
 
   React.useEffect(() => {
     // data passed to this component is controlled by the component that defines fetchData.
@@ -143,27 +131,11 @@ function Table<D extends object>(props: TableJSXProps<D>) {
     skipPageResetRef.current = false;
   }, [fetchData, currentParentId]);
 
+  const { getTableProps, getTableBodyProps, headerGroups, prepareRow, page } = tableProps;
+
   return (
     <div className="table-container mb-3">
-      <div className="row">
-        <div className="col">
-          {props.renderInFilterBar({ setRowHeight })}
-          {props.showTopPagination &&
-            props.renderPagination({
-              canNextPage,
-              canPreviousPage,
-              gotoPage,
-              nextPage,
-              page,
-              pageCount,
-              pageIndex,
-              pageOptions,
-              pageSize,
-              previousPage,
-              setPageSize
-            })}
-        </div>
-      </div>
+      {props.renderInTopFilterBar && props.renderInTopFilterBar({ ...tableProps, setRowHeight })}
       <table className="table table-striped table-bordered drill-down-table" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup: UseTableHeaderGroupProps<D>) => (
@@ -232,25 +204,9 @@ function Table<D extends object>(props: TableJSXProps<D>) {
           </tbody>
         )}
       </table>
-      {data.length === 0 && props.renderNullDataComponent()}
-      <div className="row">
-        <div className="col">
-          {props.showBottomPagination &&
-            props.renderPagination({
-              canNextPage,
-              canPreviousPage,
-              gotoPage,
-              nextPage,
-              page,
-              pageCount,
-              pageIndex,
-              pageOptions,
-              pageSize,
-              previousPage,
-              setPageSize
-            })}
-        </div>
-      </div>
+      {data.length === 0 && <props.nullDataComponent />}
+      {props.renderInBottomFilterBar &&
+        props.renderInBottomFilterBar({ ...tableProps, setRowHeight })}
     </div>
   );
 }

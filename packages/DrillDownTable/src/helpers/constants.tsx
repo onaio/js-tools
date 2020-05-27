@@ -29,8 +29,28 @@ export const NO_DATA_FOUND = 'No Data Found';
 export type NO_DATA_FOUND = typeof NO_DATA_FOUND;
 
 export const NEXT = 'Next';
+export type NEXT = typeof NEXT;
+
 export const OF = 'Of';
+export type OF = typeof OF;
+
 export const PAGE = 'Page';
+export type PAGE = typeof PAGE;
+
 export const PREVIOUS = 'Previous';
-export const ROWS_TO_DISPLAY = 'Rows to Display';
+export type PREVIOUS = typeof PREVIOUS;
+
+export const ROWS_TO_DISPLAY = 'Rows to display';
+export type ROWS_TO_DISPLAY = typeof ROWS_TO_DISPLAY;
+
+export const CUSTOMIZE_COLUMNS = 'Customize Columns';
+export type CUSTOMIZE_COLUMNS = typeof CUSTOMIZE_COLUMNS;
+
+export const CUSTOMIZE_COLUMNS_FILTER_MESSAGE = 'Select the columns you want to display';
+export type CUSTOMIZE_COLUMNS_FILTER_MESSAGE = typeof CUSTOMIZE_COLUMNS_FILTER_MESSAGE;
+
 export const LOADING = 'Loading';
+export type LOADING = typeof LOADING;
+
+export const PAGE_SIZE_CATEGORIES = [10, 20, 30, 50];
+export type PAGE_SIZE_CATEGORIES = typeof PAGE_SIZE_CATEGORIES;

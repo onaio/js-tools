@@ -65,7 +65,33 @@ exports[`DrillDownTable click to drill down works: InitialRender tr index 3 1`] 
 
 exports[`DrillDownTable click to drill down works: InitialRender tr index 4 1`] = `"18District D0%0%"`;
 
-exports[`DrillDownTable renders correctly lowest level hierarchy: full rendered data 1`] = `"Rows to Display10203050PreviousPage    Of 0Next idlocationparent_idspray_coveragespray_effectivenessNo Data FoundRows to Display10203050PreviousPage    Of 0Next "`;
+exports[`DrillDownTable pagination works correctly: page 1  tr index 0 1`] = `"idgeographic_levelparent_idname"`;
+
+exports[`DrillDownTable pagination works correctly: page 1  tr index 1 1`] = `"64301afa-e973-447b-a88c-4da20025c76f1Trat ▼"`;
+
+exports[`DrillDownTable pagination works correctly: page 1  tr index 2 1`] = `"7f204867-fab0-4246-a97c-92e0b936cab61Ubon Ratchathani ▼"`;
+
+exports[`DrillDownTable pagination works correctly: page 1  tr index 3 1`] = `"61707fc2-c6ac-4112-a8d6-2a48619583961Trat 2 ▼"`;
+
+exports[`DrillDownTable pagination works correctly: page 1  tr index 4 1`] = `"29400Katete ▼"`;
+
+exports[`DrillDownTable pagination works correctly: page 1  tr index 5 1`] = `"29420Lusaka ▼"`;
+
+exports[`DrillDownTable pagination works correctly: page 1  tr index 6 1`] = `"f8863022-ff88-4c22-b2d1-83f59f31b8740Oddar Meanchey Province ▼"`;
+
+exports[`DrillDownTable pagination works correctly: page 1  tr index 7 1`] = `"29390Chadiza ▼"`;
+
+exports[`DrillDownTable pagination works correctly: page 1  tr index 8 1`] = `"9c3c2db4-bddd-44c5-870a-a0eef539e4da0Lop Buri ▼"`;
+
+exports[`DrillDownTable pagination works correctly: page 1  tr index 9 1`] = `"29410Sinda ▼"`;
+
+exports[`DrillDownTable pagination works correctly: page 1  tr index 10 1`] = `"39530Siavonga"`;
+
+exports[`DrillDownTable pagination works correctly: page 2  tr index 0 1`] = `"idgeographic_levelparent_idname"`;
+
+exports[`DrillDownTable pagination works correctly: page 2  tr index 1 1`] = `"39540Siavonga ▼"`;
+
+exports[`DrillDownTable renders correctly lowest level hierarchy: full rendered data 1`] = `"idlocationparent_idspray_coveragespray_effectivenessNo Data Found"`;
 
 exports[`DrillDownTable renders correctly with custom columns 1`] = `
 Object {
@@ -125,6 +151,6 @@ Object {
 }
 `;
 
-exports[`DrillDownTable works fine with extraCellProps: find the carret 1`] = `"Rows to Display10203050PreviousPage    Of 1Next idlocationparent_idspray_coveragespray_effectiveness1 +District A80%80%2 +District B75%85%3 +District C90%90%18District D0%0%Rows to Display10203050PreviousPage    Of 1Next "`;
+exports[`DrillDownTable works fine with extraCellProps: find the carret 1`] = `"idlocationparent_idspray_coveragespray_effectiveness1 +District A80%80%2 +District B75%85%3 +District C90%90%18District D0%0%"`;
 
-exports[`DrillDownTable works fine with useDrillDown being flase: Full render 1`] = `"Rows to Display10203050PreviousPage    Of 2Next idlocationparent_idspray_coveragespray_effectiveness1 ▼District A80%80%4 ▼HFC 1180%80%9Operational Area 9470%90%10Operational Area 10480%100%11Operational Area 114100%100%5 ▼HFC 2180%80%12Operational Area 12586%100%2 ▼District B75%85%6 ▼HFC 3280%80%17HFC 1720%0%Rows to Display10203050PreviousPage    Of 2Next "`;
+exports[`DrillDownTable works fine with useDrillDown being flase: Full render 1`] = `"idlocationparent_idspray_coveragespray_effectiveness1 ▼District A80%80%4 ▼HFC 1180%80%9Operational Area 9470%90%10Operational Area 10480%100%11Operational Area 114100%100%5 ▼HFC 2180%80%12Operational Area 12586%100%2 ▼District B75%85%6 ▼HFC 3280%80%17HFC 1720%0%"`;

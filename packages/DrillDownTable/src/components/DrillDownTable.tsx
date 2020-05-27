@@ -1,7 +1,7 @@
 import { Dictionary } from '@onaio/utils';
 import React, { useState } from 'react';
 import { Cell, Column } from 'react-table';
-import { DropDownCell, DropDownCellProps, Ripple } from './HelperComponents';
+import { DropDownCell, DropDownCellProps, Spinner } from './HelperComponents';
 import { defaultTableProps, Table, TableJSXProps } from './TableJSX';
 
 /** describes props for the DrillDownTable component */
@@ -10,25 +10,31 @@ export interface DrillDownTableProps<D extends object>
   extraCellProps?: Dictionary /** props to be given to CellComponent */;
   CellComponent: React.ElementType /** The component used to render the cell that has the drill down */;
   loading: boolean /** if loading */;
-  LoadingComponent: React.ElementType /** custom component to show whilst loading is true */;
+  loadingComponent: React.ElementType /** custom component to show whilst loading is true */;
 }
 
 /** only provide defaults for the props that are actionable as part of this HOC */
-export const defautlDrillDownTableProps = {
+export const defaultDrillDownTableProps = {
   ...defaultTableProps,
   CellComponent: DropDownCell,
-  LoadingComponent: Ripple,
-  loading: false
+  loading: false,
+  loadingComponent: Spinner
 };
 
 /** HOC component; wraps around and controls a component that makes use of react-table hooks
  * its main goal is to filter data based on set current parent id  and pass it to controlled presentational component
  */
 function DrillDownTable<D extends object>(props: DrillDownTableProps<D>) {
-  const { columns, data, parentIdentifierField, hasChildren, LoadingComponent } = props;
+  const {
+    columns,
+    data,
+    parentIdentifierField,
+    hasChildren,
+    loadingComponent: LoadingComponent
+  } = props;
   const parentNodes =
     data && parentIdentifierField ? data.map((el: Dictionary) => el[parentIdentifierField]) : [];
-  const [pageData, setpageData] = useState<D[]>([]);
+  const [pageData, setPageData] = useState<D[]>([]);
 
   const mutatedColumns = React.useMemo(() => columns.map(mutateColumns), []) as Array<Column<D>>;
 
@@ -48,7 +54,7 @@ function DrillDownTable<D extends object>(props: DrillDownTableProps<D>) {
           return row[parentIdentifierField] === parentId;
         });
       }
-      setpageData(filterByLevel);
+      setPageData(filterByLevel);
     },
     [data]
   );
@@ -102,6 +108,6 @@ function DrillDownTable<D extends object>(props: DrillDownTableProps<D>) {
   return <>{!props.loading ? <Table {...TableProps} /> : <LoadingComponent />}</>;
 }
 
-DrillDownTable.defaultProps = defautlDrillDownTableProps;
+DrillDownTable.defaultProps = defaultDrillDownTableProps;
 
-export { DrillDownTable as DrillDownTablev7 };
+export { DrillDownTable };

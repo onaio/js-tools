@@ -3,7 +3,7 @@ import { Column } from 'react-table';
 /** Takes an object and returns columns that are compatible with react-table
  * derived from the object's keys
  */
-export function columnsFromObject<D extends object>(items: D[]): Array<Column<D>> {
+export function columnsFromObjects<D extends object>(items: D[]): Array<Column<D>> {
   if (items.length < 1) {
     return [];
   }

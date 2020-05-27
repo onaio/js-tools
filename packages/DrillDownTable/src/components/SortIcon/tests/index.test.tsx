@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { SortIcon, SortIconProps } from '../sortIcon';
+import { SortIcon, SortIconProps } from '..';
 
 describe('src/components/Table/DrillDown/SortIcon', () => {
   it('renders without crashing', () => {

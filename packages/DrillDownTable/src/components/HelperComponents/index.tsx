@@ -7,12 +7,23 @@ import {
   NO_DATA_FOUND
 } from '../../helpers/constants';
 
+export interface NullDataComponentProps {
+  noDataFound: string;
+}
+
+const defaultNullDataProps: NullDataComponentProps = {
+  noDataFound: NO_DATA_FOUND
+};
+
 /** Rendered component when there is no data for table component to render */
-export const NullDataComponent = () => (
-  <div className="">
-    <p>{NO_DATA_FOUND}</p>
+const NullDataComponent = (props: NullDataComponentProps) => (
+  <div className="jumbotron">
+    <p>{props.noDataFound}</p>
   </div>
 );
+
+NullDataComponent.defaultProps = defaultNullDataProps;
+export { NullDataComponent };
 
 /** Interface for DropDown cell props */
 export interface DropDownCellProps {
@@ -35,6 +46,20 @@ export const DropDownCell: React.ElementType = (props: DropDownCellProps) => {
   );
 };
 
-export const Ripple = () => {
-  return <p>{LOADING}</p>;
+export interface SpinnerProps {
+  loadingText: string;
+}
+
+const defaultSPinnerProps: SpinnerProps = {
+  loadingText: LOADING
 };
+
+/** default loader component */
+const Spinner = (props: SpinnerProps) => (
+  <div className="spinner-border m-5" role="status">
+    <span className="sr-only">{LOADING}...</span>
+  </div>
+);
+
+Spinner.defaultProps = defaultSPinnerProps;
+export { Spinner };

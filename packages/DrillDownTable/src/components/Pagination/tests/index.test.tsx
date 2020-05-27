@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
 import React from 'react';
-import { renderPaginationFun } from '../pagination';
+import { renderPaginationFun } from '..';
 /** integration tests reside will reside in the drilldown's test folder */
 describe('src/components/Table/Drilldown/helpers/pagination', () => {
   it('renders without crashing', () => {
