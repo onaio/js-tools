@@ -8,11 +8,13 @@ describe('src/components/Table/Drilldown/helpers/pagination', () => {
       canNextPage: true,
       canPreviousPage: false,
       nextPage: jest.fn(),
-      pageIndex: 0,
       pageOptions: { length: 20 },
-      pageSize: 20,
       previousPage: jest.fn(),
-      setPageSize: jest.fn()
+      setPageSize: jest.fn(),
+      state: {
+        pageIndex: 0,
+        pageSize: 20
+      }
     };
     mount(<>{renderPaginationFun(props as any)}</>);
   });
