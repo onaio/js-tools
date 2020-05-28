@@ -38,6 +38,10 @@ div.div-table .tbody .tr:nth-child(odd) {
 }
 div.div-table .thead .th {
   background: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
 }
 div.div-table .thead .th {
   font-size: 16px;
@@ -48,4 +52,21 @@ div.div-table .thead .th {
 
 div.div-table .tbody .tr:hover {
   background-color: #efefef;
+}
+
+div.div-table .resizer {
+  display: inline-block;
+  background: #efefef;
+  width: 5px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(50%);
+  z-index: 1;
+  /* prevents from scrolling while dragging on touch devices */
+  touch-action: none;
+}
+div.div-table .resizer.isResizing {
+  background: #ccc;
 }
