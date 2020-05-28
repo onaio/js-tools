@@ -6,9 +6,12 @@ import {
   ColumnInstance,
   Row,
   TableState,
+  useFlexLayout,
   usePagination,
   UsePaginationInstanceProps,
   UsePaginationState,
+  useResizeColumns,
+  UseResizeColumnsColumnProps,
   useSortBy,
   UseSortByColumnProps,
   UseSortByInstanceProps,
@@ -94,6 +97,18 @@ export const defaultTableProps: Omit<TableJSXProps<{}>, 'columns' | 'fetchData' 
   useDrillDown: true
 };
 
+/** default properties for columns */
+const useDefaultColumn = () =>
+  React.useMemo(
+    () => ({
+      // When using the useFlexLayout:
+      maxWidth: 200, // maxWidth is only used as a limit for resizing
+      minWidth: 50, // minWidth is only used as a limit for resizing
+      width: 150 // width is used for both the flex-basis and flex-grow
+    }),
+    []
+  );
+
 /** the underlying Table component
  * its separate since we want to control some of its aspects, specifically pagination
  */
@@ -108,7 +123,8 @@ function Table<D extends object>(props: TableJSXProps<D>) {
   interface ActualColumnInstance<T extends object>
     extends ColumnInstance<T>,
       UseSortByColumnProps<T>,
-      UsePaginationInstanceProps<T> {}
+      UsePaginationInstanceProps<T>,
+      UseResizeColumnsColumnProps<T> {}
 
   const tableProps: ActualTableInstanceProps<D> = (useTable(
     {
@@ -118,10 +134,13 @@ function Table<D extends object>(props: TableJSXProps<D>) {
       autoResetSortBy: !skipPageResetRef.current,
       columns,
       data,
+      defaultColumn: useDefaultColumn(),
       initialState: { pageIndex: 0 }
     } as UseTableOptions<D>,
     useSortBy,
-    usePagination
+    usePagination,
+    useResizeColumns,
+    useFlexLayout
   ) as unknown) as ActualTableInstanceProps<D>;
 
   React.useEffect(() => {
@@ -157,6 +176,18 @@ function Table<D extends object>(props: TableJSXProps<D>) {
                     {column.canSort && (
                       <SortIcon isSorted={column.isSorted} isSortedDesc={column.isSortedDesc} />
                     )}
+                    {/* Use column.getResizerProps to hook up the events correctly */}
+                    <div
+                      {...column.getResizerProps([
+                        {
+                          onClick: (ev: React.SyntheticEvent) => {
+                            ev.stopPropagation();
+                            ev.preventDefault();
+                          }
+                        }
+                      ])}
+                      className={`resizer ${column.isResizing ? 'isResizing' : ''}`}
+                    />
                   </div>
                 );
               })}
