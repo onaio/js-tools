@@ -145,7 +145,11 @@ function Table<D extends object>(props: TableJSXProps<D>) {
                 const column = (c as unknown) as ActualColumnInstance<D>;
                 return (
                   <div
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                    {...column.getHeaderProps(
+                      column.getSortByToggleProps([
+                        { style: { minHeight: rHeight, lineHeight: rHeight } }
+                      ])
+                    )}
                     key={`thead-th-${index}`}
                     className="th"
                   >
@@ -160,7 +164,7 @@ function Table<D extends object>(props: TableJSXProps<D>) {
           ))}
         </div>
         {/* TODO - the style for lineHeight should now be div height */}
-        <div {...getTableBodyProps([{ style: { lineHeight: rHeight } }])} className="tbody">
+        <div {...getTableBodyProps()} className="tbody">
           {page.map((row: Row<D>, idx: number) => {
             prepareRow(row);
             return (
@@ -188,7 +192,8 @@ function Table<D extends object>(props: TableJSXProps<D>) {
                                 setCurrentParentId(newParentId);
                               }
                             }
-                          }
+                          },
+                          style: { minHeight: rHeight, lineHeight: rHeight }
                         }
                       ] as any)}
                       key={`td-${i}`}
