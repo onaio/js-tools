@@ -136,74 +136,72 @@ function Table<D extends object>(props: TableJSXProps<D>) {
   return (
     <div className="table-container mb-3">
       {props.renderInTopFilterBar && props.renderInTopFilterBar({ ...tableProps, setRowHeight })}
-      <table className="table table-striped table-bordered drill-down-table" {...getTableProps()}>
-        <thead>
+      <div {...getTableProps()} className="table div-table">
+        <div className="thead">
           {headerGroups.map((headerGroup: UseTableHeaderGroupProps<D>) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
+            <div {...headerGroup.getHeaderGroupProps()} className="tr">
               {headerGroup.headers.map((c: ColumnInstance<D>, index: number) => {
                 const column = (c as unknown) as ActualColumnInstance<D>;
                 return (
-                  <th
-                    // Return an array of prop objects and react-table will merge them appropriately
+                  <div
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     key={`thead-th-${index}`}
+                    className="th"
                   >
                     {column.render('Header')}
                     {column.canSort && (
                       <SortIcon isSorted={column.isSorted} isSortedDesc={column.isSortedDesc} />
                     )}
-                  </th>
+                  </div>
                 );
               })}
-            </tr>
+            </div>
           ))}
-        </thead>
-        {data.length > 0 && (
-          <tbody {...getTableBodyProps([{ style: { lineHeight: rHeight } }])}>
-            {page.map((row: Row<D>, idx: number) => {
-              prepareRow(row);
-              return (
-                // Merge user row props in
-                <tr {...row.getRowProps()} key={`tbody-tr-${idx}`}>
-                  {row.cells.map((cell: Cell<D>, i: number) => {
-                    return (
-                      <td
-                        // Return an array of prop objects and react-table will merge them appropriately
-                        {...cell.getCellProps([
-                          {
-                            // onclickHandler updates the curentParentId, i.e if the clicked on cell has children
-                            onClick: (e: React.MouseEvent<HTMLElement>) => {
-                              e.stopPropagation();
-                              // onClick will be effective only when drilldingDown and if columnId is the same as linkerField
-                              if (!(props.useDrillDown && cell.column.id === props.linkerField)) {
-                                return;
-                              }
-                              if (props.identifierField && props.parentIdentifierField) {
-                                if (
-                                  props.hasChildren &&
-                                  hasChildrenFunc<D>(cell, props.parentNodes, props.identifierField)
-                                ) {
-                                  const newParentId: string = (row.original as Dictionary)[
-                                    identifierField
-                                  ];
-                                  setCurrentParentId(newParentId);
-                                }
+        </div>
+        {/* TODO - the style for lineHeight should now be div height */}
+        <div {...getTableBodyProps([{ style: { lineHeight: rHeight } }])} className="tbody">
+          {page.map((row: Row<D>, idx: number) => {
+            prepareRow(row);
+            return (
+              <div {...row.getRowProps()} key={`tbody-tr-${idx}`} className="tr">
+                {row.cells.map((cell: Cell<D>, i: number) => {
+                  return (
+                    <div
+                      {...cell.getCellProps([
+                        {
+                          // onclickHandler updates the curentParentId, i.e if the clicked on cell has children
+                          onClick: (e: React.MouseEvent<HTMLElement>) => {
+                            e.stopPropagation();
+                            // onClick will be effective only when drilldingDown and if columnId is the same as linkerField
+                            if (!(props.useDrillDown && cell.column.id === props.linkerField)) {
+                              return;
+                            }
+                            if (props.identifierField && props.parentIdentifierField) {
+                              if (
+                                props.hasChildren &&
+                                hasChildrenFunc<D>(cell, props.parentNodes, props.identifierField)
+                              ) {
+                                const newParentId: string = (row.original as Dictionary)[
+                                  identifierField
+                                ];
+                                setCurrentParentId(newParentId);
                               }
                             }
                           }
-                        ] as any)}
-                        key={`td-${i}`}
-                      >
-                        {cell.render('Cell')}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        )}
-      </table>
+                        }
+                      ] as any)}
+                      key={`td-${i}`}
+                      className="td"
+                    >
+                      {cell.render('Cell')}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </div>
       {data.length === 0 && <props.nullDataComponent />}
       {props.renderInBottomFilterBar &&
         props.renderInBottomFilterBar({ ...tableProps, setRowHeight })}
