@@ -3,6 +3,7 @@
 import { Dictionary } from '@onaio/utils/src';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
+import { Column } from 'react-table';
 /* eslint-enable import/no-extraneous-dependencies */
 import notes from '../../packages/DrillDownTable/README.md';
 import {
@@ -31,7 +32,7 @@ function renderTable() {
       accessor: 'spray_effectiveness'
     }
   ];
-  const props = {
+  const props: any = {
     columns,
     data,
     linkerField: 'location'
@@ -59,7 +60,7 @@ function renderNestedColumnTable() {
       accessor: 'spray_coverage'
     }
   ];
-  const props = {
+  const props: any = {
     columns,
     data,
     linkerField: 'location'
@@ -123,7 +124,7 @@ function renderCustomCellTable() {
 }
 
 function largeDataSet() {
-  const columns = [
+  const columns: any = [
     {
       Header: 'Name',
       accessor: 'name'
@@ -162,7 +163,7 @@ function withPagination() {
       </div>
     );
   };
-  let props: Dictionary = {
+  let props: any = {
     columns: columnsFromObjects(jurisdictions),
     data: jurisdictions,
     linkerField: 'name',
