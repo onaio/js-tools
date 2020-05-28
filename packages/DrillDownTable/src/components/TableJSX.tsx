@@ -21,6 +21,7 @@ import {
 import { DEFAULT_ROW_HEIGHT, ID, PARENT_ID, ROOT_PARENT_ID } from '../helpers/constants';
 import { NullDataComponent } from './HelperComponents';
 import { SortIcon } from './SortIcon';
+import './table.css';
 
 /** Type definition for hasChildrenFunc */
 export type HasChildrenFuncType = <D extends object>(
