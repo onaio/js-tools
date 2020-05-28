@@ -1,7 +1,5 @@
 /** Credit: cssicon.space */
 .previous-next-filled.icon {
-  margin-left: 2px;
-  margin-top: 3px;
   width: 17px;
   height: 14px;
   transform: rotate(90deg);
@@ -17,29 +15,29 @@
 .previous-next-filled.icon:before {
   width: 0;
   height: 0;
-  border-top: solid 6px transparent;
-  border-bottom: solid 6px transparent;
-  border-right: solid 6px #d2d2d2;
+  border-top: solid 5px transparent;
+  border-bottom: solid 5px transparent;
+  border-right: solid 7px #d2d2d2;
 }
 
 .previous-next-filled.icon::after {
-  left: 8px;
+  left: 9px;
   width: 0;
   height: 0;
-  border-top: solid 6px transparent;
-  border-bottom: solid 6px transparent;
-  border-left: solid 6px #d2d2d2;
+  border-top: solid 5px transparent;
+  border-bottom: solid 5px transparent;
+  border-left: solid 7px #d2d2d2;
 }
 
 .previous-next-filled.icon.desc:before {
-  border-right: solid 6px #2bacff;
+  border-right: solid 7px #2bacff;
 }
 
 .previous-next-filled.icon.asc:after {
-  border-left: solid 6px #2bacff;
+  border-left: solid 7px #2bacff;
 }
 
 .icon-wrapper {
   display: inline-block;
-  margin-left: 5px;
+  float: right;
 }
