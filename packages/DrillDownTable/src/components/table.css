@@ -1,0 +1,72 @@
+div.div-table {
+  display: table;
+}
+div.div-table .tr {
+  display: table-row;
+}
+div.div-table .thead {
+  display: table-header-group;
+}
+div.div-table .td,
+.th {
+  display: table-cell;
+}
+div.div-table .tbody {
+  display: table-row-group;
+}
+
+div.div-table {
+  margin: 10px 0;
+  border: 1px solid #efefef;
+  background-color: #ffffff;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 #d7d7e0;
+}
+div.div-table .td,
+div.div-table .th {
+  border: 1px solid #efefef;
+  padding: 8px 10px;
+}
+div.div-table .tbody .td {
+  font-size: 15px;
+}
+div.div-table .tbody .tr:nth-child(odd) {
+  background-color: #fafafa;
+}
+div.div-table .thead .th {
+  background: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+}
+div.div-table .thead .th {
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+div.div-table .tbody .tr:hover {
+  background-color: #efefef;
+}
+
+div.div-table .resizer {
+  display: inline-block;
+  background: #efefef;
+  width: 5px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(50%);
+  z-index: 1;
+  /* prevents from scrolling while dragging on touch devices */
+  touch-action: none;
+}
+div.div-table .resizer.isResizing {
+  background: #ccc;
+}
