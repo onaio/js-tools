@@ -145,9 +145,9 @@ A custom component that should be rendered when loading is true.
 
 **optional**(`(cell: Cell) => Dictionary` | `undefined` = `undefined`)
 
-Use this to pass in a custom prop getter for the table cell elements. While the default for this is undefined, the table component
-does make use of a customTdProps getter that attaches a onClick handler that effects drilling down, This handler is only
-used when `useDrillDown = true` and `getTdProps` is undefined, otherwise if `getTdProps` is passed in then the component uses that as the click handler
+Use this to pass in a custom prop getter for the table cell elements.
+
+While the default for this is undefined, the table component does make use of a customTdProps getter that attaches a onClick handler that effects drilling down, This handler is only used when `useDrillDown = true` and `getTdProps` is undefined, otherwise if `getTdProps` is propped in then the component uses that as the click handler
 
 #### paginate
 
