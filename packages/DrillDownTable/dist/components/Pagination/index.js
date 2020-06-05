@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.RevealPagination = RevealPagination;
+exports.RevealPagination = Pagination;
 exports.renderPaginationFun = void 0;
 
 var _react = _interopRequireDefault(require("react"));
@@ -23,7 +23,7 @@ var defaultPaginationProps = {
   rowsToDisplayText: _constants.ROWS_TO_DISPLAY
 };
 
-function RevealPagination(props) {
+function Pagination(props) {
   var gotoPage = props.gotoPage,
       canPreviousPage = props.canPreviousPage,
       canNextPage = props.canNextPage,
@@ -84,10 +84,10 @@ function RevealPagination(props) {
   }, props.nextText), ' ');
 }
 
-RevealPagination.defaultProps = defaultPaginationProps;
+Pagination.defaultProps = defaultPaginationProps;
 
 var renderPaginationFun = function renderPaginationFun(props) {
-  return _react["default"].createElement(RevealPagination, props);
+  return _react["default"].createElement(Pagination, props);
 };
 
 exports.renderPaginationFun = renderPaginationFun;
