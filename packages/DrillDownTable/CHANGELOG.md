@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/onaio/js-tools/compare/@onaio/drill-down-table@0.0.21...@onaio/drill-down-table@1.0.1) (2020-06-05)
+
+### Reverts
+
+- Revert "Trying to custom declare typings for react-table-v6" ([3dba695](https://github.com/onaio/js-tools/commit/3dba69590057d340566d24985bd74588956a25c1))
+
 ## [0.0.21](https://github.com/onaio/js-tools/compare/@onaio/drill-down-table@0.0.20...@onaio/drill-down-table@0.0.21) (2019-09-24)
 
 **Note:** Version bump only for package @onaio/drill-down-table
