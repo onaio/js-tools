@@ -3,12 +3,13 @@
 import { Dictionary } from '@onaio/utils/src';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { Column } from 'react-table';
 /* eslint-enable import/no-extraneous-dependencies */
 import notes from '../../packages/DrillDownTable/README.md';
 import {
   columnsFromObjects,
+  DrillDownColumn,
   DrillDownTable,
+  DrillDownTableProps,
   DropDownCellProps,
   RenderFiltersInBarOptions,
   renderPaginationFun
@@ -32,7 +33,7 @@ function renderTable() {
       accessor: 'spray_effectiveness'
     }
   ];
-  const props: any = {
+  const props: Pick<DrillDownTableProps<Dictionary>, 'columns' | 'data' | 'linkerField'> = {
     columns,
     data,
     linkerField: 'location'
@@ -41,7 +42,7 @@ function renderTable() {
 }
 
 function renderNestedColumnTable() {
-  const columns = [
+  const columns: Array<DrillDownColumn<Dictionary>> = [
     {
       Header: 'Header Group',
       columns: [
@@ -60,7 +61,7 @@ function renderNestedColumnTable() {
       accessor: 'spray_coverage'
     }
   ];
-  const props: any = {
+  const props: Pick<DrillDownTableProps<Dictionary>, 'columns' | 'data' | 'linkerField'> = {
     columns,
     data,
     linkerField: 'location'
@@ -124,7 +125,7 @@ function renderCustomCellTable() {
 }
 
 function largeDataSet() {
-  const columns: any = [
+  const columns: Array<DrillDownColumn<Dictionary>> = [
     {
       Header: 'Name',
       accessor: 'name'
@@ -163,8 +164,17 @@ function withPagination() {
       </div>
     );
   };
-  let props: any = {
-    columns: columnsFromObjects(jurisdictions),
+  let props: Pick<
+    DrillDownTableProps<Dictionary>,
+    | 'columns'
+    | 'data'
+    | 'linkerField'
+    | 'renderInTopFilterBar'
+    | 'renderInBottomFilterBar'
+    | 'rootParentId'
+    | 'useDrillDown'
+  > = {
+    columns: columnsFromObjects<Dictionary>(jurisdictions),
     data: jurisdictions,
     linkerField: 'name',
     renderInTopFilterBar: customRenderInFilterBar,
