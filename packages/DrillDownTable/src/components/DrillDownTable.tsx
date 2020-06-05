@@ -2,7 +2,7 @@ import { Dictionary } from '@onaio/utils';
 import React, { useState } from 'react';
 import { Cell, Column } from 'react-table';
 import { DropDownCell, DropDownCellProps, Spinner } from './HelperComponents';
-import { defaultTableProps, Table, TableJSXProps } from './TableJSX';
+import { defaultTableProps, DrillDownColumn, Table, TableJSXProps } from './TableJSX';
 
 /** describes props for the DrillDownTable component */
 export interface DrillDownTableProps<D extends object>
@@ -36,7 +36,9 @@ function DrillDownTable<D extends object>(props: DrillDownTableProps<D>) {
     data && parentIdentifierField ? data.map((el: Dictionary) => el[parentIdentifierField]) : [];
   const [pageData, setPageData] = useState<D[]>([]);
 
-  const mutatedColumns = React.useMemo(() => columns.map(mutateColumns), []) as Array<Column<D>>;
+  const mutatedColumns = React.useMemo(() => columns.map(mutateColumns), []) as Array<
+    DrillDownColumn<D>
+  >;
 
   /** filters out props.data and excludes records whose parent record does not have the specified id
    * it is invoked each time the presentational component renders only if props.data has changed
@@ -81,6 +83,7 @@ function DrillDownTable<D extends object>(props: DrillDownTableProps<D>) {
           }
 
           const cellProps: DropDownCellProps = {
+            cell,
             cellValue: cell.value,
             hasChildren: thisCellHasChildren
           };

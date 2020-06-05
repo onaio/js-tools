@@ -1,4 +1,5 @@
 import React from 'react';
+import { Cell } from 'react-table';
 import {
   CARET_SPAN,
   CLICKABLE_CSS_CLASS,
@@ -27,6 +28,7 @@ export { NullDataComponent };
 
 /** Interface for DropDown cell props */
 export interface DropDownCellProps {
+  cell: Cell;
   cellValue: Node;
   hasChildren: boolean;
 }

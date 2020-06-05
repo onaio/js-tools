@@ -1,9 +1,10 @@
 import { Dictionary } from '@onaio/utils/dist/types/types';
-import { mount, ReactWrapper, shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
 import { Column } from 'react-table';
 import { columnsFromObjects } from '../../helpers/utils';
+import { renderTable } from '../../test-utils';
 import { DrillDownTable } from '../DrillDownTable';
 import { DropDownCellProps } from '../HelperComponents';
 import { renderPaginationFun } from '../Pagination';
@@ -13,12 +14,6 @@ import { data, dataLowestLevel, jurisdictions } from './fixtures';
 const dataColumns = columnsFromObjects(data);
 const jurisdictionColumns = columnsFromObjects(jurisdictions);
 const emptyColumns = columnsFromObjects([]);
-
-const renderTable = (wrap: ReactWrapper, text = '') => {
-  wrap
-    .find('table tr')
-    .forEach((tr, indx) => expect(tr.text()).toMatchSnapshot(`${text} tr index ${indx}`));
-};
 
 describe('DrillDownTable', () => {
   beforeEach(() => {
