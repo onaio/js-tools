@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PAGE_SIZE_CATEGORIES = exports.LOADING = exports.CUSTOMIZE_COLUMNS_FILTER_MESSAGE = exports.CUSTOMIZE_COLUMNS = exports.ROWS_TO_DISPLAY = exports.PREVIOUS = exports.PAGE = exports.OF = exports.NEXT = exports.NO_DATA_FOUND = exports.DEFAULT_ROW_HEIGHT = exports.CARET_SPAN = exports.CARET_CSS_CLASS = exports.CLICKABLE_CSS_CLASS = exports.LINKER_ITEM_CSS_CLASS = exports.ROOT_PARENT_ID = exports.PARENT_ID = exports.ID = void 0;
+exports.PAGE_SIZE_CATEGORIES = exports.LOADING = exports.ROWS_TO_DISPLAY = exports.PREVIOUS = exports.PAGE = exports.OF = exports.NEXT = exports.NO_DATA_FOUND = exports.DEFAULT_ROW_HEIGHT = exports.CARET_SPAN = exports.CARET_CSS_CLASS = exports.CLICKABLE_CSS_CLASS = exports.LINKER_ITEM_CSS_CLASS = exports.ROOT_PARENT_ID = exports.PARENT_ID = exports.ID = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -41,10 +41,6 @@ var PREVIOUS = 'Previous';
 exports.PREVIOUS = PREVIOUS;
 var ROWS_TO_DISPLAY = 'Rows to display';
 exports.ROWS_TO_DISPLAY = ROWS_TO_DISPLAY;
-var CUSTOMIZE_COLUMNS = 'Customize Columns';
-exports.CUSTOMIZE_COLUMNS = CUSTOMIZE_COLUMNS;
-var CUSTOMIZE_COLUMNS_FILTER_MESSAGE = 'Select the columns you want to display';
-exports.CUSTOMIZE_COLUMNS_FILTER_MESSAGE = CUSTOMIZE_COLUMNS_FILTER_MESSAGE;
 var LOADING = 'Loading';
 exports.LOADING = LOADING;
 var PAGE_SIZE_CATEGORIES = [10, 20, 30, 50];
