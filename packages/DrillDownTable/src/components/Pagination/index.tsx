@@ -33,7 +33,7 @@ const defaultPaginationProps = {
 };
 
 /** Reveal pagination component */
-function RevealPagination<T extends object = Dictionary>(props: PaginationProps<T>) {
+function Pagination<T extends object = Dictionary>(props: PaginationProps<T>) {
   const {
     gotoPage,
     canPreviousPage,
@@ -90,14 +90,14 @@ function RevealPagination<T extends object = Dictionary>(props: PaginationProps<
   );
 }
 
-RevealPagination.defaultProps = defaultPaginationProps;
+Pagination.defaultProps = defaultPaginationProps;
 
-export { RevealPagination };
+export { Pagination as RevealPagination };
 
 /** default function that can be used as a render prop. to use a custom pagination
  * component, create a custom renderProp like this and return your custom pagination from within
  * @param {DrillDownInstanceProps<t>} props - the React table instance containing applied hooks.
  */
 export const renderPaginationFun = <T extends object>(props: DrillDownInstanceProps<T>) => {
-  return <RevealPagination {...props} />;
+  return <Pagination {...props} />;
 };

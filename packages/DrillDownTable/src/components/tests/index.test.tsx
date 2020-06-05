@@ -326,7 +326,7 @@ describe('DrillDownTable', () => {
     };
     const wrapper = mount(<DrillDownTable {...props} />);
     /** pagination components are rendered */
-    expect(wrapper.find('RevealPagination').text()).toMatchInlineSnapshot(
+    expect(wrapper.find('Pagination').text()).toMatchInlineSnapshot(
       `"Rows to display10203050PreviousPage    Of 2Next "`
     );
 
