@@ -98,7 +98,7 @@ describe('DrillDownTable', () => {
       useDrillDown: true
     };
     const wrapper = mount(<DrillDownTable {...props} />);
-    // wrapper.update();
+    wrapper.update();
     // render the whole table
 
     renderTable(wrapper, 'InitialRender');
