@@ -53,7 +53,7 @@ export function getOnadataUserInfo(apiResponse: { [key: string]: any }): Session
  * @param {{[key: string]: any }} apiResponse - the API response object
  */
 export function getOpenSRPUserInfo(apiResponse: { [key: string]: any }): SessionState {
-  if (!apiResponse.userName) {
+  if (!apiResponse.username) {
     throw new Error(OAUTH2_CALLBACK_ERROR);
   }
   return {
@@ -63,7 +63,7 @@ export function getOpenSRPUserInfo(apiResponse: { [key: string]: any }): Session
       email: '',
       gravatar: '',
       name: '',
-      username: apiResponse.userName
+      username: apiResponse.username
     }
   };
 }
