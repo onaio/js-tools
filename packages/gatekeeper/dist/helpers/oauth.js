@@ -48,7 +48,7 @@ function getOnadataUserInfo(apiResponse) {
 }
 
 function getOpenSRPUserInfo(apiResponse) {
-  if (!apiResponse.userName) {
+  if (!apiResponse.username) {
     throw new Error(_constants.OAUTH2_CALLBACK_ERROR);
   }
 
@@ -59,7 +59,7 @@ function getOpenSRPUserInfo(apiResponse) {
       email: '',
       gravatar: '',
       name: '',
-      username: apiResponse.userName
+      username: apiResponse.username
     }
   };
 }
