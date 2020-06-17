@@ -24,7 +24,7 @@ export declare const defaultDrillDownTableProps: {
     renderInTopFilterBar?: import("./TableJSX").FilterBarRenderer<{}> | undefined;
     renderInBottomFilterBar?: import("./TableJSX").FilterBarRenderer<{}> | undefined;
     rootParentId: string | null;
-    nullDataComponent: React.ElementType<any>;
+    renderNullDataComponent: () => React.ReactNode;
     linkerField?: string | undefined;
     useDrillDown: boolean;
     getTdProps?: ((cell: Cell<{}, any>) => Dictionary<any>) | undefined;
@@ -50,7 +50,7 @@ declare namespace DrillDownTable {
         renderInTopFilterBar?: import("./TableJSX").FilterBarRenderer<{}> | undefined;
         renderInBottomFilterBar?: import("./TableJSX").FilterBarRenderer<{}> | undefined;
         rootParentId: string | null;
-        nullDataComponent: React.ElementType<any>;
+        renderNullDataComponent: () => React.ReactNode;
         linkerField?: string | undefined;
         useDrillDown: boolean;
         getTdProps?: ((cell: Cell<{}, any>) => Dictionary<any>) | undefined;

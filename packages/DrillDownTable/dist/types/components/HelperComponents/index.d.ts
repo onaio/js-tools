@@ -1,14 +1,7 @@
 import React from 'react';
 import { Cell } from 'react-table';
-export interface NullDataComponentProps {
-    noDataFound: string;
-}
 /** Rendered component when there is no data for table component to render */
-declare const NullDataComponent: {
-    (props: NullDataComponentProps): JSX.Element;
-    defaultProps: NullDataComponentProps;
-};
-export { NullDataComponent };
+export declare const NullDataComponent: () => JSX.Element;
 /** Interface for DropDown cell props */
 export interface DropDownCellProps {
     cell: Cell;

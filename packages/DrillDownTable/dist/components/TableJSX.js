@@ -41,9 +41,9 @@ var defaultTableProps = {
   hasChildren: hasChildrenFunc,
   identifierField: _constants.ID,
   linkerField: _constants.ID,
-  nullDataComponent: _HelperComponents.NullDataComponent,
   paginate: true,
   parentIdentifierField: _constants.PARENT_ID,
+  renderNullDataComponent: _HelperComponents.NullDataComponent,
   resize: true,
   rootParentId: _constants.ROOT_PARENT_ID,
   useDrillDown: true
@@ -169,7 +169,7 @@ function Table(props) {
         className: "td"
       }), cell.render('Cell'));
     }));
-  }))), data.length === 0 && _react["default"].createElement(props.nullDataComponent, null), props.renderInBottomFilterBar && props.renderInBottomFilterBar(_objectSpread({}, tableProps, {
+  }))), data.length === 0 && props.renderNullDataComponent(), props.renderInBottomFilterBar && props.renderInBottomFilterBar(_objectSpread({}, tableProps, {
     setRowHeight: setRowHeight
   })));
 }
