@@ -81,7 +81,7 @@ export const onadataSessionWithOauthData = {
 export const openSRPResponse = {
   preferredName: 'mosh',
   roles: ['Privilege Level: Full'],
-  username: 'moshthepitt'
+  userName: 'moshthepitt'
 };
 
 export const openSRPFinalData = {
@@ -96,7 +96,7 @@ export const openSRPSession = {
     email: '',
     gravatar: '',
     name: '',
-    username: openSRPResponse.username
+    username: openSRPResponse.userName
   }
 };
 
