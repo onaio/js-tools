@@ -14,6 +14,7 @@ import {
   RenderFiltersInBarOptions,
   renderPaginationFun
 } from '../../packages/DrillDownTable/src';
+import '../../packages/DrillDownTable/src/components/table.css';
 import { data } from '../../packages/DrillDownTable/src/components/tests/fixtures';
 import { jurisdictions } from './fixtures';
 import './story.css';
