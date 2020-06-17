@@ -26,7 +26,6 @@ import {
 import { DEFAULT_ROW_HEIGHT, ID, PARENT_ID, ROOT_PARENT_ID } from '../helpers/constants';
 import { NullDataComponent } from './HelperComponents';
 import { SortIcon } from './SortIcon';
-import './table.css';
 
 /** Type definition for hasChildrenFunc */
 export type HasChildrenFuncType = <D extends object>(
@@ -200,11 +199,7 @@ function Table<D extends object>(props: TableJSXProps<D>) {
                 const column = (c as unknown) as ActualColumnInstance<D>;
                 return (
                   <div
-                    {...column.getHeaderProps(
-                      column.getSortByToggleProps([
-                        { style: { minHeight: rHeight, lineHeight: rHeight } }
-                      ])
-                    )}
+                    {...column.getHeaderProps(column.getSortByToggleProps([]))}
                     key={`thead-th-${index}`}
                     className="th"
                   >
