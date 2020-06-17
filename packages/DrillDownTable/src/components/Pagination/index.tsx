@@ -10,7 +10,6 @@ import {
   ROWS_TO_DISPLAY
 } from '../../helpers/constants';
 import { DrillDownInstanceProps } from '../TableJSX';
-import './pagination.css';
 
 /** interface describes props for Reveal Custom Pagination */
 export interface PaginationProps<T extends object> extends DrillDownInstanceProps<T> {
