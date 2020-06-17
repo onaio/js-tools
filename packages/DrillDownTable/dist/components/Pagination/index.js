@@ -12,8 +12,6 @@ var _react = _interopRequireDefault(require("react"));
 
 var _constants = require("../../helpers/constants");
 
-require("./pagination.css");
-
 var defaultPaginationProps = {
   nextText: _constants.NEXT,
   ofText: _constants.OF,

@@ -13,7 +13,7 @@ export declare const CARET_CSS_CLASS = "dd-caret";
 export declare type CARET_CSS_CLASS = typeof CARET_CSS_CLASS;
 export declare const CARET_SPAN: JSX.Element;
 export declare type CARET_SPAN = typeof CARET_SPAN;
-export declare const DEFAULT_ROW_HEIGHT = "2em";
+export declare const DEFAULT_ROW_HEIGHT = "1.5em";
 export declare type DEFAULT_ROW_HEIGHT = typeof DEFAULT_ROW_HEIGHT;
 export declare const NO_DATA_FOUND = "No Data Found";
 export declare type NO_DATA_FOUND = typeof NO_DATA_FOUND;

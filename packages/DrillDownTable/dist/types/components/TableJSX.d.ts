@@ -1,7 +1,6 @@
 import { Dictionary } from '@onaio/utils';
 import React, { Dispatch, ReactNode, SetStateAction } from 'react';
 import { Cell, Column, TableState, UsePaginationInstanceProps, UsePaginationState, UseResizeColumnsColumnOptions, UseSortByColumnOptions, UseSortByInstanceProps, UseSortByState, UseTableInstanceProps } from 'react-table';
-import './table.css';
 /** Type definition for hasChildrenFunc */
 export declare type HasChildrenFuncType = <D extends object>(cellObject: Cell<D>, parentIdList: number[] | string[], idField: string | number) => boolean;
 /** Check if a Cell  is part of a row whose data entry can be considered to have children */
