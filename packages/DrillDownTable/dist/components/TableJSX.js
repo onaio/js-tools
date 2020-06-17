@@ -27,8 +27,6 @@ var _HelperComponents = require("./HelperComponents");
 
 var _SortIcon = require("./SortIcon");
 
-require("./table.css");
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -43,9 +41,9 @@ var defaultTableProps = {
   hasChildren: hasChildrenFunc,
   identifierField: _constants.ID,
   linkerField: _constants.ID,
-  nullDataComponent: _HelperComponents.NullDataComponent,
   paginate: true,
   parentIdentifierField: _constants.PARENT_ID,
+  renderNullDataComponent: _HelperComponents.NullDataComponent,
   resize: true,
   rootParentId: _constants.ROOT_PARENT_ID,
   useDrillDown: true
@@ -143,12 +141,7 @@ function Table(props) {
       className: "tr"
     }), headerGroup.headers.map(function (c, index) {
       var column = c;
-      return _react["default"].createElement("div", (0, _extends2["default"])({}, column.getHeaderProps(column.getSortByToggleProps([{
-        style: {
-          minHeight: rHeight,
-          lineHeight: rHeight
-        }
-      }])), {
+      return _react["default"].createElement("div", (0, _extends2["default"])({}, column.getHeaderProps(column.getSortByToggleProps([])), {
         key: "thead-th-".concat(index),
         className: "th"
       }), column.render('Header'), column.canSort && _react["default"].createElement(_SortIcon.SortIcon, {
@@ -176,7 +169,7 @@ function Table(props) {
         className: "td"
       }), cell.render('Cell'));
     }));
-  }))), data.length === 0 && _react["default"].createElement(props.nullDataComponent, null), props.renderInBottomFilterBar && props.renderInBottomFilterBar(_objectSpread({}, tableProps, {
+  }))), data.length === 0 && props.renderNullDataComponent(), props.renderInBottomFilterBar && props.renderInBottomFilterBar(_objectSpread({}, tableProps, {
     setRowHeight: setRowHeight
   })));
 }

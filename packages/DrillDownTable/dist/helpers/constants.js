@@ -27,7 +27,7 @@ var CARET_SPAN = _react["default"].createElement("span", {
 }, "\xA0\u25BC");
 
 exports.CARET_SPAN = CARET_SPAN;
-var DEFAULT_ROW_HEIGHT = '2em';
+var DEFAULT_ROW_HEIGHT = '1.5em';
 exports.DEFAULT_ROW_HEIGHT = DEFAULT_ROW_HEIGHT;
 var NO_DATA_FOUND = 'No Data Found';
 exports.NO_DATA_FOUND = NO_DATA_FOUND;

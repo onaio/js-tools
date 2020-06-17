@@ -26,7 +26,6 @@ import {
 import { DEFAULT_ROW_HEIGHT, ID, PARENT_ID, ROOT_PARENT_ID } from '../helpers/constants';
 import { NullDataComponent } from './HelperComponents';
 import { SortIcon } from './SortIcon';
-import './table.css';
 
 /** Type definition for hasChildrenFunc */
 export type HasChildrenFuncType = <D extends object>(
@@ -87,7 +86,7 @@ export interface TableJSXProps<TData extends object> {
   rootParentId:
     | string
     | null /** the value of parentIdentifierField for rows that have not parent */;
-  nullDataComponent: React.ElementType /** component to render if data is empty array */;
+  renderNullDataComponent: () => ReactNode /** component to render if data is empty array */;
   linkerField?: string /** the field to be used to drill down the data */;
   useDrillDown: boolean /** whether component can act as a normal table */;
   getTdProps?: (cell: Cell<TData>) => Dictionary;
@@ -101,9 +100,9 @@ export const defaultTableProps: Omit<TableJSXProps<{}>, 'columns' | 'fetchData' 
   hasChildren: hasChildrenFunc,
   identifierField: ID,
   linkerField: ID,
-  nullDataComponent: NullDataComponent,
   paginate: true,
   parentIdentifierField: PARENT_ID,
+  renderNullDataComponent: NullDataComponent,
   resize: true,
   rootParentId: ROOT_PARENT_ID,
   useDrillDown: true
@@ -200,11 +199,7 @@ function Table<D extends object>(props: TableJSXProps<D>) {
                 const column = (c as unknown) as ActualColumnInstance<D>;
                 return (
                   <div
-                    {...column.getHeaderProps(
-                      column.getSortByToggleProps([
-                        { style: { minHeight: rHeight, lineHeight: rHeight } }
-                      ])
-                    )}
+                    {...column.getHeaderProps(column.getSortByToggleProps([]))}
                     key={`thead-th-${index}`}
                     className="th"
                   >
@@ -256,7 +251,7 @@ function Table<D extends object>(props: TableJSXProps<D>) {
           })}
         </div>
       </div>
-      {data.length === 0 && <props.nullDataComponent />}
+      {data.length === 0 && props.renderNullDataComponent()}
       {props.renderInBottomFilterBar &&
         props.renderInBottomFilterBar({ ...tableProps, setRowHeight })}
     </div>

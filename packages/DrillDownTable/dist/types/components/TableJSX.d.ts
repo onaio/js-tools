@@ -1,7 +1,6 @@
 import { Dictionary } from '@onaio/utils';
-import React, { Dispatch, ReactNode, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { Cell, Column, TableState, UsePaginationInstanceProps, UsePaginationState, UseResizeColumnsColumnOptions, UseSortByColumnOptions, UseSortByInstanceProps, UseSortByState, UseTableInstanceProps } from 'react-table';
-import './table.css';
 /** Type definition for hasChildrenFunc */
 export declare type HasChildrenFuncType = <D extends object>(cellObject: Cell<D>, parentIdList: number[] | string[], idField: string | number) => boolean;
 /** Check if a Cell  is part of a row whose data entry can be considered to have children */
@@ -29,7 +28,7 @@ export interface TableJSXProps<TData extends object> {
     renderInTopFilterBar?: FilterBarRenderer<TData> /** add a section immediately above table for filter components */;
     renderInBottomFilterBar?: FilterBarRenderer<TData> /** add a section immediately above table for filter components */;
     rootParentId: string | null /** the value of parentIdentifierField for rows that have not parent */;
-    nullDataComponent: React.ElementType /** component to render if data is empty array */;
+    renderNullDataComponent: () => ReactNode /** component to render if data is empty array */;
     linkerField?: string /** the field to be used to drill down the data */;
     useDrillDown: boolean /** whether component can act as a normal table */;
     getTdProps?: (cell: Cell<TData>) => Dictionary;
@@ -43,6 +42,6 @@ export declare const defaultTableProps: Omit<TableJSXProps<{}>, 'columns' | 'fet
  */
 declare function Table<D extends object>(props: TableJSXProps<D>): JSX.Element;
 declare namespace Table {
-    var defaultProps: Pick<TableJSXProps<{}>, "data" | "hasChildren" | "identifierField" | "parentIdentifierField" | "renderInTopFilterBar" | "renderInBottomFilterBar" | "rootParentId" | "nullDataComponent" | "linkerField" | "useDrillDown" | "getTdProps" | "paginate" | "resize">;
+    var defaultProps: Pick<TableJSXProps<{}>, "data" | "hasChildren" | "identifierField" | "parentIdentifierField" | "renderInTopFilterBar" | "renderInBottomFilterBar" | "rootParentId" | "renderNullDataComponent" | "linkerField" | "useDrillDown" | "getTdProps" | "paginate" | "resize">;
 }
 export { Table };

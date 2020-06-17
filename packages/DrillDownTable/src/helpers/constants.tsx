@@ -22,7 +22,7 @@ export type CARET_CSS_CLASS = typeof CARET_CSS_CLASS;
 export const CARET_SPAN = <span className={CARET_CSS_CLASS}>&nbsp;&#9660;</span>;
 export type CARET_SPAN = typeof CARET_SPAN;
 
-export const DEFAULT_ROW_HEIGHT = '2em';
+export const DEFAULT_ROW_HEIGHT = '1.5em';
 export type DEFAULT_ROW_HEIGHT = typeof DEFAULT_ROW_HEIGHT;
 
 export const NO_DATA_FOUND = 'No Data Found';

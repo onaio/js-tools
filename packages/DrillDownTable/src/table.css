@@ -1,3 +1,85 @@
+div.div-table {
+  display: table;
+}
+div.div-table .tr {
+  display: table-row;
+}
+div.div-table .thead {
+  display: table-header-group;
+}
+div.div-table .td,
+.th {
+  display: table-cell;
+}
+div.div-table .tbody {
+  display: table-row-group;
+}
+
+div.div-table {
+  margin: 10px 0;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  border-radius: 5px;
+}
+div.div-table .td,
+div.div-table .th {
+  border-width: 1px 0 0 1px;
+  border-style: solid;
+  border-color: #dee2e6;
+  padding: 12px;
+}
+
+.table .tbody .tr:last-of-type .td {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table .tbody .tr .td:last-of-type,
+.table .thead .tr .th:last-of-type {
+  border-right: 1px solid #dee2e6;
+}
+
+.table .thead {
+  border-bottom: 1px solid #dee2e6;
+}
+
+div.div-table .tbody .tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+div.div-table .thead .th {
+  background: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+  word-wrap: ellipsis;
+}
+div.div-table .thead .th {
+  font-weight: bold;
+}
+
+div.div-table .tbody .tr:hover {
+  background-color: #e0e0e0;
+}
+
+div.div-table .resizer {
+  display: inline-block;
+  background: #ffffff;
+  width: 5px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(50%);
+  z-index: 1;
+  /* prevents from scrolling while dragging on touch devices */
+  touch-action: none;
+}
+div.div-table .resizer.isResizing {
+  background: #ccc;
+}
+
+/** Pagination css */
 .pagination {
   float: right;
 }

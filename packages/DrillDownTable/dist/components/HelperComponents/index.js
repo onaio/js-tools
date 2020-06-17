@@ -11,18 +11,13 @@ var _react = _interopRequireDefault(require("react"));
 
 var _constants = require("../../helpers/constants");
 
-var defaultNullDataProps = {
-  noDataFound: _constants.NO_DATA_FOUND
-};
-
-var NullDataComponent = function NullDataComponent(props) {
+var NullDataComponent = function NullDataComponent() {
   return _react["default"].createElement("div", {
     className: "jumbotron"
-  }, _react["default"].createElement("p", null, props.noDataFound));
+  }, _react["default"].createElement("p", null, _constants.NO_DATA_FOUND));
 };
 
 exports.NullDataComponent = NullDataComponent;
-NullDataComponent.defaultProps = defaultNullDataProps;
 
 var DropDownCell = function DropDownCell(props) {
   var cellValue = props.cellValue,

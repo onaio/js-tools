@@ -15,6 +15,7 @@ import {
   renderPaginationFun
 } from '../../packages/DrillDownTable/src';
 import { data } from '../../packages/DrillDownTable/src/components/tests/fixtures';
+import '../../packages/DrillDownTable/src/table.css';
 import { jurisdictions } from './fixtures';
 import './story.css';
 
