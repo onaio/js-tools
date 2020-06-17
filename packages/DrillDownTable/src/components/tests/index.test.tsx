@@ -267,7 +267,7 @@ describe('DrillDownTable', () => {
     const props: any = {
       columns,
       data: [],
-      nullDataComponent: CustomNullData
+      renderNullDataComponent: CustomNullData
     };
     // should render the default null data component
     const wrapper = mount(<DrillDownTable {...props} />);

@@ -8,23 +8,12 @@ import {
   NO_DATA_FOUND
 } from '../../helpers/constants';
 
-export interface NullDataComponentProps {
-  noDataFound: string;
-}
-
-const defaultNullDataProps: NullDataComponentProps = {
-  noDataFound: NO_DATA_FOUND
-};
-
 /** Rendered component when there is no data for table component to render */
-const NullDataComponent = (props: NullDataComponentProps) => (
+export const NullDataComponent = () => (
   <div className="jumbotron">
-    <p>{props.noDataFound}</p>
+    <p>{NO_DATA_FOUND}</p>
   </div>
 );
-
-NullDataComponent.defaultProps = defaultNullDataProps;
-export { NullDataComponent };
 
 /** Interface for DropDown cell props */
 export interface DropDownCellProps {
