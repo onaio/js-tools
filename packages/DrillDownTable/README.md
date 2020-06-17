@@ -76,18 +76,18 @@ These are:
 
 #### columns && data
 
-**Required**
+_Required_
 these 2 props should be structured as defined by react-table.
 
 #### identifierField
 
-**Optional**(`string` = `id`)
+_Optional_(`string` = `id`)
 
 Which field in the data represents the unique identifier for a row of data? This is optional, but if you do not define it then the default is set to `id`.
 
 #### parentIdentifierField
 
-**Optional**(`string` = `parent_id`)
+_Optional_(`string` = `parent_id`)
 
 Which field in the data represents the unique identifier of the parent of a row of data? This is optional, but if you do not define it then the default is set to `parent_id`.
 
@@ -101,7 +101,7 @@ This is also optional and defaults to `null`.
 
 #### linkerField
 
-**Optional**(`string` | `undefined` = `undefined`)
+_Optional_(`string` | `undefined` = `undefined`)
 
 When the table is rendered, you can click anywhere on a row to drill down to the next level of the hierarchy. However, you may want to display some kind of indication that it is possible to drill down on a row of data. The `linkerField` prop allows you to define which field should have this indicator. By default this is set to the `id` field.
 
@@ -115,43 +115,43 @@ This is an object that represents extra props to be given to the `CellComponent`
 
 #### useDrillDown
 
-**Optional**(`boolean` = `true`)
+_Optional_(`boolean` = `true`)
 
 By default `DrillDownTable` allows you to click on any row to drill-down to the next hierarchical level of data. This is achieved by adding a custom onClick handler to the cells that render the linker field. To switch this off and have the table render as a normal table, set `useDrillDown` to `false`.
 
 #### renderInTopFilterBar
 
-**Optional**(`(prop) => ReactNode` | `undefined` = `undefined`)
+_Optional_(`(prop) => ReactNode` | `undefined` = `undefined`)
 
 add a section immediately above table for filter components, through a render prop
 
 #### renderInBottomFilterBar
 
-**Optional**(`(prop) => ReactNode` | `undefined` = `undefined`)
+_Optional_(`(prop) => ReactNode` | `undefined` = `undefined`)
 
 add a section immediately below table for filter components, through a render prop
 
 #### nullDataComponent
 
-**Optional**(`React.ElementType` = `<default component>`)
+_Optional_(`() => React.ReacNode` = `<default component>`)
 
-A custom component to be rendered when data is an empty array.
+A renderProp that renders a custom component when data is an empty array.
 
 #### loading
 
-**Optional**(`boolean` = `false`)
+_Optional_(`boolean` = `false`)
 
 A boolean switch that makes the table render a custom
 
 #### loadingComponent
 
-**Optional**(`React.ElementType` = `<default component>`)
+_Optional_(`React.ElementType` = `<default component>`)
 
 A custom component that should be rendered when loading is true.
 
 #### getTdProps
 
-**optional**(`(cell: Cell) => Dictionary` | `undefined` = `undefined`)
+_optional_(`(cell: Cell) => Dictionary` | `undefined` = `undefined`)
 
 Use this to pass in a custom prop getter for the table cell elements.
 
@@ -159,19 +159,19 @@ While the default for this is undefined, the table component does make use of a 
 
 #### paginate
 
-**optional**(`boolean` = `true`)
+_optional_(`boolean` = `true`)
 
 Tells the component if should paginate the data. setting this to false will have the component show all of its data as a single page.
 
 #### resize
 
-**optional**(`boolean` = `true`)
+_optional_(`boolean` = `true`)
 
 Make table columns resizeable.
 
 #### hasChildren
 
-**Optional**
+_Optional_
 
 This is a function that returns a `boolean` indicating whether or not a row of data has children i.e. should you be able to drill down using the given row?
 
@@ -304,7 +304,7 @@ Adding global filter components like pagination
 
 // write the pagination component
 const CustomPagination = (props) => {
-    return <>{/** pagination JSX */}</>
+    return <>{/* pagination JSX */}</>
 }
 
 // create a render prop that takes the [TableInstance properties](https://github.com/tannerlinsley/react-table/blob/master/docs/api/useTable.md#instance-properties) adds custom properties and passes them to the CustomPagination component
