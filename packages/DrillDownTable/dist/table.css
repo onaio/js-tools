@@ -44,7 +44,7 @@ div.div-table .th {
 }
 
 div.div-table .tbody .tr:nth-child(odd) {
-  background-color: #fafafa;
+  background-color: #f2f2f2;
 }
 div.div-table .thead .th {
   background: #fff;
@@ -59,7 +59,7 @@ div.div-table .thead .th {
 }
 
 div.div-table .tbody .tr:hover {
-  background-color: #dee2e6;
+  background-color: #e0e0e0;
 }
 
 div.div-table .resizer {
