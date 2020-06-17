@@ -6,11 +6,19 @@ It makes use of the following hooks from react-table:
 
 - useSortBy
 - usePagination
+- useResizeColumns
+- useFlexLayout
 
 ## Installation
 
 ```sh
 yarn add @onaio/drill-down-table
+```
+
+You can opt to use the default styles by adding this to your component's file
+
+```ts
+import '@onaio/drill-down-table/dist/table.css';
 ```
 
 ## Displaying Hierarchical Data
