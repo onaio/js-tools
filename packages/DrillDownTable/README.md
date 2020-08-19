@@ -1,13 +1,24 @@
 # DrillDownTable
 
-DrillDownTable is a [higher order component](https://reactjs.org/docs/higher-order-components.html) that works with [React Table](https://github.com/tannerlinsley/react-table).
+DrillDownTable is a bootstrap-based [higher order component](https://reactjs.org/docs/higher-order-components.html) that works with [React Table](https://github.com/tannerlinsley/react-table).
 
-It supports everything that [React Table](https://github.com/tannerlinsley/react-table) supports. In this document, we shall only go over the additional features that are unique to DrillDownTable.
+It makes use of the following hooks from react-table:
+
+- useSortBy
+- usePagination
+- useResizeColumns
+- useFlexLayout
 
 ## Installation
 
 ```sh
 yarn add @onaio/drill-down-table
+```
+
+You can opt to use the default styles by adding this to your component's file
+
+```ts
+import '@onaio/drill-down-table/dist/table.css';
 ```
 
 ## Displaying Hierarchical Data
@@ -57,17 +68,26 @@ data = [
 
 ### WithHeaders
 
-As you know, you absolutely need to define `columns` when working with React Table. DrillDownTable includes another higher order component that we call `WithHeaders` that allows you to optionally define your table without defining any columns. The columns will be derived from the structure of your data. Obviously for maximum control over your table you would want to define columns, but in case you do not do that, then DrillDownTable will still work.
+As you know, you absolutely need to define `columns` when working with React Table. DrillDownTable includes a `columnsFromObject` util that can be used to create columns from your objects
 
 ### The props
 
-When defining your DrillDownTable, we expect you to provide some additional props (as in apart from the props you would need for ReactTable on its own). These are:
+These are:
+
+#### columns && data
+
+_Required_
+these 2 props should be structured as defined by react-table.
 
 #### identifierField
+
+_Optional_(`string` = `id`)
 
 Which field in the data represents the unique identifier for a row of data? This is optional, but if you do not define it then the default is set to `id`.
 
 #### parentIdentifierField
+
+_Optional_(`string` = `parent_id`)
 
 Which field in the data represents the unique identifier of the parent of a row of data? This is optional, but if you do not define it then the default is set to `parent_id`.
 
@@ -81,6 +101,8 @@ This is also optional and defaults to `null`.
 
 #### linkerField
 
+_Optional_(`string` | `undefined` = `undefined`)
+
 When the table is rendered, you can click anywhere on a row to drill down to the next level of the hierarchy. However, you may want to display some kind of indication that it is possible to drill down on a row of data. The `linkerField` prop allows you to define which field should have this indicator. By default this is set to the `id` field.
 
 #### CellComponent
@@ -91,39 +113,89 @@ This is a component responsible for rendering the cell in which the `linkerField
 
 This is an object that represents extra props to be given to the `CellComponent` (above).
 
-#### useDrillDownTrProps
+#### useDrillDown
 
-By default `DrillDownTable` allows you to click on any row to drill-down to the next hierarchical level of data. This is achieved by having a [custom geTrProps](https://github.com/tannerlinsley/react-table/tree/v6#props) built into `DrillDownTable`. You can turn this off by setting `useDrillDownTrProps` to be `false`.
+_Optional_(`boolean` = `true`)
+
+By default `DrillDownTable` allows you to click on any row to drill-down to the next hierarchical level of data. This is achieved by adding a custom onClick handler to the cells that render the linker field. To switch this off and have the table render as a normal table, set `useDrillDown` to `false`.
+
+#### renderInTopFilterBar
+
+_Optional_(`(prop) => ReactNode` | `undefined` = `undefined`)
+
+add a section immediately above table for filter components, through a render prop
+
+#### renderInBottomFilterBar
+
+_Optional_(`(prop) => ReactNode` | `undefined` = `undefined`)
+
+add a section immediately below table for filter components, through a render prop
+
+#### nullDataComponent
+
+_Optional_(`() => React.ReacNode` = `<default component>`)
+
+A renderProp that renders a custom component when data is an empty array.
+
+#### loading
+
+_Optional_(`boolean` = `false`)
+
+A boolean switch that makes the table render a custom
+
+#### loadingComponent
+
+_Optional_(`React.ElementType` = `<default component>`)
+
+A custom component that should be rendered when loading is true.
+
+#### getTdProps
+
+_optional_(`(cell: Cell) => Dictionary` | `undefined` = `undefined`)
+
+Use this to pass in a custom prop getter for the table cell elements.
+
+While the default for this is undefined, the table component does make use of a customTdProps getter that attaches a onClick handler that effects drilling down, This handler is only used when `useDrillDown = true` and `getTdProps` is undefined, otherwise if `getTdProps` is propped in then the component uses that as the click handler
+
+#### paginate
+
+_optional_(`boolean` = `true`)
+
+Tells the component if should paginate the data. setting this to false will have the component show all of its data as a single page.
+
+#### resize
+
+_optional_(`boolean` = `true`)
+
+Make table columns resizeable.
 
 #### hasChildren
+
+_Optional_
 
 This is a function that returns a `boolean` indicating whether or not a row of data has children i.e. should you be able to drill down using the given row?
 
 A sample `hasChildren` function looks like so:
 
 ```ts
-export function hasChildrenFunc(
-  currentObject: RowInfo | CellInfo,
-  parentIdList: number[] | string[],
-  idField: string | number = 'id'
+export function hasChildrenFunc<D extends object>(
+  cellObject: Cell<D>,
+  parentIdList: Array<number | string>,
+  idField: string | number = ID
 ) {
-  return parentIdList.includes(currentObject.original[idField]);
+  return parentIdList.includes(cellObject.row.original[idField]);
 }
 ```
-
-#### shouldUseEffect
-
-This is a `boolean` value that controls whether to go into the `useEffect` hook.
 
 ### Code examples
 
 Simplest example:
 
 ```tsx
-import 'react-table/react-table.css';
-import DrillDownTable from '@onaio/drill-down-table/';
+import { DrillDownTable, columnsFromObjects } from '@onaio/drill-down-table/';
 
 const props = {
+  columns: columnsFromObjects(data),
   data
 };
 <DrillDownTable {...props} />;
@@ -132,10 +204,10 @@ const props = {
 Define `location` as the column where the drill-down caret will be displayed
 
 ```tsx
-import 'react-table/react-table.css';
-import DrillDownTable from '@onaio/drill-down-table/';
+import { DrillDownTable, columnsFromObjects } from '@onaio/drill-down-table/';
 
 const props = {
+  columns: columnsFromObjects(data),
   data,
   linkerField: 'location'
 };
@@ -145,8 +217,7 @@ const props = {
 Supply columns as a prop.
 
 ```tsx
-import 'react-table/react-table.css';
-import DrillDownTable from '@onaio/drill-down-table/';
+import { DrillDownTable } from '@onaio/drill-down-table/';
 
 const columns = [
   {
@@ -166,16 +237,16 @@ const props = {
 <DrillDownTable {...props} />;
 ```
 
-Turn off clicking on a row to drill-down i.e. turn off the built-in custom `getTrProps`.
+Turn off clicking on a row to drill-down i.e. .
 
 ```tsx
-import 'react-table/react-table.css';
-import DrillDownTable from '@onaio/drill-down-table/';
+import { DrillDownTable, columnsFromObjects } from '@onaio/drill-down-table/';
 
 const props = {
+  columns: columnsFromObjects(data),
   data,
   linkerField: 'location',
-  useDrillDownTrProps: false
+  useDrillDown: false
 };
 <DrillDownTable {...props} />;
 ```
@@ -206,6 +277,7 @@ const NewCellComponent: React.ElementType = (props: NewCellComponentProps) => {
 };
 
 const props = {
+  columns: columnsFromObjects(data),
   CellComponent: NewCellComponent,
   data,
   extraCellProps: { urlPath: 'http://example.com', caret: <span>&#43;</span> }
@@ -216,12 +288,43 @@ const props = {
 Use custom `hasChildren`
 
 ```tsx
-import 'react-table/react-table.css';
-import DrillDownTable from '@onaio/drill-down-table/';
+import { DrillDownTable, columnsFromObjects } from '@onaio/drill-down-table/';
 
 const props = {
+  columns: columnsFromObjects(data),
   data: data,
   hasChildren: (item, parents, idfield) => item.original[idfield] === 10
 };
 <DrillDownTable {...props} />;
+```
+
+Adding global filter components like pagination
+
+```tsx
+
+// write the pagination component
+const CustomPagination = (props) => {
+    return <>{/* pagination JSX */}</>
+}
+
+// create a render prop that takes the [TableInstance properties](https://github.com/tannerlinsley/react-table/blob/master/docs/api/useTable.md#instance-properties) adds custom properties and passes them to the CustomPagination component
+const customRenderInFilterBar = <T extends object>(tableProps: RenderFiltersInBarOptions<T>) => {
+    return (
+      <div className="row">
+        <div className="col">{customRenderPagination(tableProps)}</div>
+      </div>
+    );
+  };
+  let props: Dictionary = {
+    columns: columnsFromObjects(jurisdictions),
+    data: jurisdictions,
+    useDrillDown: true,
+    renderInTopFilterBar: customRenderInFilterBar,
+    linkerField: 'name',
+    rootParentId: '',
+    renderInBottomFilterBar: customRenderInFilterBar
+  };
+
+<DrillDownTable {...props} />
+  );
 ```

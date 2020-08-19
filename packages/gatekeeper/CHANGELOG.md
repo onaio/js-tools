@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.21](https://github.com/onaio/js-tools/compare/@onaio/gatekeeper@0.0.20...@onaio/gatekeeper@0.0.21) (2020-06-08)
+
+**Note:** Version bump only for package @onaio/gatekeeper
+
 ## [0.0.20](https://github.com/onaio/js-tools/compare/@onaio/gatekeeper@0.0.19...@onaio/gatekeeper@0.0.20) (2020-03-24)
 
 **Note:** Version bump only for package @onaio/gatekeeper

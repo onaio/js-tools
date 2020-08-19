@@ -1,0 +1,43 @@
+/** Credit: cssicon.space */
+.previous-next-filled.icon {
+  width: 17px;
+  height: 14px;
+  transform: rotate(90deg);
+}
+
+.icon:before,
+.icon:after {
+  content: '';
+  position: absolute;
+  display: block;
+}
+
+.previous-next-filled.icon:before {
+  width: 0;
+  height: 0;
+  border-top: solid 5px transparent;
+  border-bottom: solid 5px transparent;
+  border-right: solid 7px #d2d2d2;
+}
+
+.previous-next-filled.icon::after {
+  left: 9px;
+  width: 0;
+  height: 0;
+  border-top: solid 5px transparent;
+  border-bottom: solid 5px transparent;
+  border-left: solid 7px #d2d2d2;
+}
+
+.previous-next-filled.icon.desc:before {
+  border-right: solid 7px #2bacff;
+}
+
+.previous-next-filled.icon.asc:after {
+  border-left: solid 7px #2bacff;
+}
+
+.icon-wrapper {
+  display: inline-block;
+  float: right;
+}

@@ -1,13 +1,23 @@
-// stories of DrillDownTable
+// stories of DrillDownTablev7
 /* eslint-disable import/no-extraneous-dependencies */
+import { Dictionary } from '@onaio/utils/src';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 /* eslint-enable import/no-extraneous-dependencies */
-import 'react-table/react-table.css';
 import notes from '../../packages/DrillDownTable/README.md';
-import DrillDownTable, { DropDownCellProps } from '../../packages/DrillDownTable/src';
-import { data } from '../../packages/DrillDownTable/src/tests/fixtures';
+import {
+  columnsFromObjects,
+  DrillDownColumn,
+  DrillDownTable,
+  DrillDownTableProps,
+  DropDownCellProps,
+  RenderFiltersInBarOptions,
+  renderPaginationFun
+} from '../../packages/DrillDownTable/src';
+import { data } from '../../packages/DrillDownTable/src/components/tests/fixtures';
+import '../../packages/DrillDownTable/src/table.css';
 import { jurisdictions } from './fixtures';
+import './story.css';
 
 function renderTable() {
   const columns = [
@@ -24,7 +34,7 @@ function renderTable() {
       accessor: 'spray_effectiveness'
     }
   ];
-  const props = {
+  const props: Pick<DrillDownTableProps<Dictionary>, 'columns' | 'data' | 'linkerField'> = {
     columns,
     data,
     linkerField: 'location'
@@ -33,7 +43,7 @@ function renderTable() {
 }
 
 function renderNestedColumnTable() {
-  const columns = [
+  const columns: Array<DrillDownColumn<Dictionary>> = [
     {
       Header: 'Header Group',
       columns: [
@@ -52,7 +62,7 @@ function renderNestedColumnTable() {
       accessor: 'spray_coverage'
     }
   ];
-  const props = {
+  const props: Pick<DrillDownTableProps<Dictionary>, 'columns' | 'data' | 'linkerField'> = {
     columns,
     data,
     linkerField: 'location'
@@ -62,6 +72,7 @@ function renderNestedColumnTable() {
 
 function renderDerivedTable() {
   const props = {
+    columns: columnsFromObjects(data),
     data,
     linkerField: 'location'
   };
@@ -70,9 +81,10 @@ function renderDerivedTable() {
 
 function renderNoTrPropsTable() {
   const props = {
+    columns: columnsFromObjects(data),
     data,
     linkerField: 'location',
-    useDrillDownTrProps: false
+    useDrillDown: false
   };
   return <DrillDownTable {...props} />;
 }
@@ -104,6 +116,7 @@ function renderCustomCellTable() {
   };
   const cellProps = {
     CellComponent: NewCell,
+    columns: columnsFromObjects(data),
     data,
     extraCellProps: { urlPath: 'http://example.com', caret: <span>&#43;</span> },
     linkerField: 'location',
@@ -113,7 +126,7 @@ function renderCustomCellTable() {
 }
 
 function largeDataSet() {
-  const columns = [
+  const columns: Array<DrillDownColumn<Dictionary>> = [
     {
       Header: 'Name',
       accessor: 'name'
@@ -140,10 +153,60 @@ function largeDataSet() {
   return <DrillDownTable {...props} />;
 }
 
+function withPagination() {
+  const [showBottom, setShowBottom] = React.useState<boolean>(false);
+  const hide = () => setShowBottom(false);
+  const show = () => setShowBottom(true);
+
+  const customRenderInFilterBar = <T extends object>(tableProps: RenderFiltersInBarOptions<T>) => {
+    return (
+      <div className="row">
+        <div className="col">{renderPaginationFun(tableProps)}</div>
+      </div>
+    );
+  };
+  let props: Pick<
+    DrillDownTableProps<Dictionary>,
+    | 'columns'
+    | 'data'
+    | 'linkerField'
+    | 'renderInTopFilterBar'
+    | 'renderInBottomFilterBar'
+    | 'rootParentId'
+    | 'useDrillDown'
+  > = {
+    columns: columnsFromObjects<Dictionary>(jurisdictions),
+    data: jurisdictions,
+    linkerField: 'name',
+    renderInTopFilterBar: customRenderInFilterBar,
+    rootParentId: '',
+    useDrillDown: true
+  };
+  if (showBottom) {
+    props = { ...props, renderInBottomFilterBar: customRenderInFilterBar };
+  }
+  return (
+    <div>
+      <div>
+        {!showBottom ? (
+          // tslint:disable-next-line: jsx-no-lambda
+          <button onClick={() => show()}>Show bottom pagination</button>
+        ) : (
+          // tslint:disable-next-line: jsx-no-lambda
+          <button onClick={() => hide()}>hide bottom pagination</button>
+        )}
+      </div>
+
+      <DrillDownTable {...props} />
+    </div>
+  );
+}
+
 storiesOf('DrillDownTable', module)
   .add('simple', renderTable, { notes })
   .add('get columns from data', renderDerivedTable, { notes })
   .add('with nested columns', renderNestedColumnTable, { notes })
-  .add('with no getTrProps', renderNoTrPropsTable, { notes })
+  .add('with useDrillDown set to false', renderNoTrPropsTable, { notes })
   .add('custom cell component', renderCustomCellTable, { notes })
-  .add('large dataset', largeDataSet, { notes });
+  .add('large dataset', largeDataSet, { notes })
+  .add('with pagination', withPagination, { notes });

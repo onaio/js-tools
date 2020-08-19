@@ -3,19 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.columnsFromObject = columnsFromObject;
+exports.columnsFromObjects = columnsFromObjects;
 
-function columnsFromObject(item) {
-  var columnsList = [];
-
-  for (var _i = 0, _Object$keys = Object.keys(item); _i < _Object$keys.length; _i++) {
-    var field = _Object$keys[_i];
-    var columnItem = {
-      Header: field,
-      accessor: field
-    };
-    columnsList.push(columnItem);
+function columnsFromObjects(items) {
+  if (items.length < 1) {
+    return [];
   }
 
-  return columnsList;
+  return Object.keys(items[0]).map(function (k) {
+    return {
+      Header: k,
+      accessor: k
+    };
+  });
 }
