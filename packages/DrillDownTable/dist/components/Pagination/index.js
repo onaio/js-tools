@@ -56,14 +56,16 @@ function Pagination(props) {
   };
 
   var onChangePageIndex = function onChangePageIndex(e) {
-    setPageNumber(e.target.value);
+    var newPageNumber = e.target.value;
 
     if (e.target.value) {
       var value = Number(e.target.value);
       var index = value ? pageOptions.indexOf(value - 1) >= 0 ? value - 1 : 0 : 0;
       gotoPage(index);
-      setPageNumber("".concat(index + 1));
+      newPageNumber = "".concat(index + 1);
     }
+
+    setPageNumber(newPageNumber);
   };
 
   var onClickNext = function onClickNext() {
