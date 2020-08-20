@@ -3,10 +3,10 @@ import toJson from 'enzyme-to-json';
 import React from 'react';
 
 import ProgressBar from '../';
-const GREEN = '#00FF00';
-const RED = '#FF0000';
+const RED = '#FF4136';
 const YELLOW = '#FFFF00';
 const BLUE = '#0000FF';
+const GREY = '#dddddd';
 
 describe('components/progressBar', () => {
   it('renders without crashing', () => {
@@ -63,7 +63,7 @@ describe('components/progressBar', () => {
     const wrapper = mount(<ProgressBar {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     expect(wrapper.find('.progress-bar').props().style).toMatchSnapshot({
-      backgroundColor: '#dddddd',
+      backgroundColor: GREY,
       width: '10%'
     });
     wrapper.unmount();
@@ -106,7 +106,7 @@ describe('components/progressBar', () => {
     const wrapper = mount(<ProgressBar {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     expect(wrapper.find('.progress-bar').props().style).toMatchSnapshot({
-      backgroundColor: '#FF4136',
+      backgroundColor: RED,
       width: '40%'
     });
     wrapper.unmount();
@@ -149,7 +149,7 @@ describe('components/progressBar', () => {
     const wrapper = mount(<ProgressBar {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     expect(wrapper.find('.progress-bar').props().style).toMatchSnapshot({
-      backgroundColor: '#FF4136',
+      backgroundColor: RED,
       width: '70%'
     });
     wrapper.unmount();
