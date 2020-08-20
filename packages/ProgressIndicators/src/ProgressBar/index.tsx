@@ -1,4 +1,12 @@
+import { Color } from 'csstype';
 import React, { Component } from 'react';
+
+export interface IndicatorThresholdItem {
+  color: Color;
+  name: string;
+  orEquals?: boolean;
+  value: number;
+}
 
 /** Props for ProgressBar */
 export interface ProgressBarProps {
@@ -9,7 +17,7 @@ export interface ProgressBarProps {
   max: number /** set upper bound for the progressBar range */;
   value: number /** Represents the progress bar value */;
   lineColor: string /** set line colors */;
-  lineColorThresholds?: { [key: string]: number } /** set linecolor threshold */;
+  lineColorThresholds?: { [key: string]: IndicatorThresholdItem } /** set linecolor threshold */;
   cssClass: string /** sets css gradient over progressBar */;
   showLabel: boolean /** set label on progressBar */;
   stripped: boolean /** set strips in progressBar */;
@@ -64,13 +72,18 @@ class ProgressBar extends Component<ProgressBarProps, {}> {
     // set the line color: if lineColorThresholds is not given; lineColor will be used
     if (lineColorThresholds) {
       // sort the color and their thresholds by the threshold value
-      const ascendingThresholds = Object.entries(lineColorThresholds).sort(
-        (e1, e2) => e1[1] - e2[1]
+      const ascendingThresholds = Object.keys(lineColorThresholds).sort(
+        (e1, e2) => lineColorThresholds[e1].value - lineColorThresholds[e2].value
       );
+
       // top to bottom check to see which color threshold is matched first by the percentValue
       for (const item of ascendingThresholds) {
-        if (item[1] >= percentValue) {
-          backgroundColor = item[0];
+        if (
+          lineColorThresholds[item].orEquals
+            ? percentValue <= lineColorThresholds[item].value * 100
+            : percentValue < lineColorThresholds[item].value * 100
+        ) {
+          backgroundColor = lineColorThresholds[item].color;
           break;
         }
       }
