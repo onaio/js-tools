@@ -58,14 +58,16 @@ function Pagination<T extends object = Dictionary>(props: PaginationProps<T>) {
     previousPage();
   };
   const onChangePageIndex = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPageNumber(e.target.value);
+    let newPageNumber = e.target.value;
 
     if (e.target.value) {
       const value = Number(e.target.value);
       const index = value ? (pageOptions.indexOf(value - 1) >= 0 ? value - 1 : 0) : 0;
       gotoPage(index);
-      setPageNumber(`${index + 1}`);
+      newPageNumber = `${index + 1}`;
     }
+
+    setPageNumber(newPageNumber);
   };
   const onClickNext = () => {
     nextPage();
