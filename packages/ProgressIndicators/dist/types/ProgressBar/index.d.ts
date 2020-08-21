@@ -1,4 +1,11 @@
+import { Color } from 'csstype';
 import { Component } from 'react';
+export interface IndicatorThresholdItem {
+  color: Color;
+  name: string;
+  orEquals?: boolean;
+  value: number;
+}
 /** Props for ProgressBar */
 export interface ProgressBarProps {
   animate: boolean /** apply animation to progressBar */;
@@ -9,7 +16,7 @@ export interface ProgressBarProps {
   value: number /** Represents the progress bar value */;
   lineColor: string /** set line colors */;
   lineColorThresholds?: {
-    [key: string]: number;
+    [key: string]: IndicatorThresholdItem;
   } /** set linecolor threshold */;
   cssClass: string /** sets css gradient over progressBar */;
   showLabel: boolean /** set label on progressBar */;
