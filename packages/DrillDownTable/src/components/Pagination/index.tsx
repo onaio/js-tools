@@ -1,6 +1,6 @@
 /** The default custom pagination component for drillDown v7  */
 import { Dictionary } from '@onaio/utils';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   NEXT,
   OF,
@@ -45,6 +45,12 @@ function Pagination<T extends object = Dictionary>(props: PaginationProps<T>) {
     pageSizeCategories
   } = props;
 
+  const [pageNumber, setPageNumber] = useState<string>('');
+
+  useEffect(() => {
+    setPageNumber(`${pageIndex + 1}`);
+  }, [pageIndex]);
+
   const onChangePageSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setPageSize(Number(e.target.value));
   };
@@ -52,8 +58,16 @@ function Pagination<T extends object = Dictionary>(props: PaginationProps<T>) {
     previousPage();
   };
   const onChangePageIndex = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const page = e.target.value ? Number(e.target.value) - 1 : 0;
-    gotoPage(page);
+    let newPageNumber = e.target.value;
+
+    if (e.target.value) {
+      const value = Number(e.target.value);
+      const index = value ? (pageOptions.indexOf(value - 1) >= 0 ? value - 1 : 0) : 0;
+      gotoPage(index);
+      newPageNumber = `${index + 1}`;
+    }
+
+    setPageNumber(newPageNumber);
   };
   const onClickNext = () => {
     nextPage();
@@ -76,7 +90,7 @@ function Pagination<T extends object = Dictionary>(props: PaginationProps<T>) {
         {props.pageText} {'  '}
         <input
           type="text"
-          value={pageIndex + 1}
+          value={pageNumber}
           onChange={onChangePageIndex}
           style={{ width: '40px' }}
         />{' '}

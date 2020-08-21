@@ -72,8 +72,8 @@ var ProgressBar = function (_Component) {
       var percentValueString = percentValue.toFixed(decimalPoints);
 
       if (lineColorThresholds) {
-        var ascendingThresholds = Object.entries(lineColorThresholds).sort(function (e1, e2) {
-          return e1[1] - e2[1];
+        var ascendingThresholds = Object.keys(lineColorThresholds).sort(function (e1, e2) {
+          return lineColorThresholds[e1].value - lineColorThresholds[e2].value;
         });
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
@@ -83,8 +83,8 @@ var ProgressBar = function (_Component) {
           for (var _iterator = ascendingThresholds[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
             var item = _step.value;
 
-            if (item[1] >= percentValue) {
-              backgroundColor = item[0];
+            if (lineColorThresholds[item].orEquals ? percentValue <= lineColorThresholds[item].value * 100 : percentValue < lineColorThresholds[item].value * 100) {
+              backgroundColor = lineColorThresholds[item].color;
               break;
             }
           }

@@ -5,10 +5,6 @@ import ProgressBar from '../../packages/ProgressIndicators/src/ProgressBar';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const GREEN = '#00FF00';
-const RED = '#FF0000';
-const YELLOW = '#FFFF00';
-
 const valueProps = {
   value: 59
 };
@@ -18,9 +14,27 @@ const stripped = true;
 const animate = true;
 
 const lineColorThresholds = {
-  [GREEN]: 70,
-  [RED]: 0,
-  [YELLOW]: 30
+  GREEN_THRESHOLD: {
+    color: '#2ECC40',
+    name: 'Green',
+    value: 1
+  },
+  GREY_THRESHOLD: {
+    color: '#dddddd',
+    name: 'Grey',
+    value: 0.2
+  },
+  RED_THRESHOLD: {
+    color: '#FF4136',
+    name: 'Red',
+    orEquals: true,
+    value: 0.75
+  },
+  YELLOW_THRESHOLD: {
+    color: '#FFDC00',
+    name: 'Yellow',
+    value: 0.9
+  }
 };
 
 const showLabelProps = {

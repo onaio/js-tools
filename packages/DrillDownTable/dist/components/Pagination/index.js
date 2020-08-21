@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
@@ -8,7 +10,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.RevealPagination = Pagination;
 exports.renderPaginationFun = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
+var _react = _interopRequireWildcard(require("react"));
 
 var _constants = require("../../helpers/constants");
 
@@ -34,6 +38,15 @@ function Pagination(props) {
       pageIndex = _props$state.pageIndex,
       pageSizeCategories = props.pageSizeCategories;
 
+  var _useState = (0, _react.useState)(''),
+      _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
+      pageNumber = _useState2[0],
+      setPageNumber = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    setPageNumber("".concat(pageIndex + 1));
+  }, [pageIndex]);
+
   var onChangePageSize = function onChangePageSize(e) {
     setPageSize(Number(e.target.value));
   };
@@ -43,8 +56,16 @@ function Pagination(props) {
   };
 
   var onChangePageIndex = function onChangePageIndex(e) {
-    var page = e.target.value ? Number(e.target.value) - 1 : 0;
-    gotoPage(page);
+    var newPageNumber = e.target.value;
+
+    if (e.target.value) {
+      var value = Number(e.target.value);
+      var index = value ? pageOptions.indexOf(value - 1) >= 0 ? value - 1 : 0 : 0;
+      gotoPage(index);
+      newPageNumber = "".concat(index + 1);
+    }
+
+    setPageNumber(newPageNumber);
   };
 
   var onClickNext = function onClickNext() {
@@ -70,7 +91,7 @@ function Pagination(props) {
     disabled: !canPreviousPage
   }, props.previousText), _react["default"].createElement("span", null, props.pageText, " ", '  ', _react["default"].createElement("input", {
     type: "text",
-    value: pageIndex + 1,
+    value: pageNumber,
     onChange: onChangePageIndex,
     style: {
       width: '40px'

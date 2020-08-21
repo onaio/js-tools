@@ -3,10 +3,10 @@ import toJson from 'enzyme-to-json';
 import React from 'react';
 
 import ProgressBar from '../';
-const GREEN = '#00FF00';
-const RED = '#FF0000';
+const RED = '#FF4136';
 const YELLOW = '#FFFF00';
 const BLUE = '#0000FF';
+const GREY = '#dddddd';
 
 describe('components/progressBar', () => {
   it('renders without crashing', () => {
@@ -32,9 +32,28 @@ describe('components/progressBar', () => {
       decimalPoints: 0,
       height: '10px',
       lineColorThresholds: {
-        [GREEN]: 70,
-        [RED]: 0,
-        [YELLOW]: 30
+        GREEN_THRESHOLD: {
+          color: '#2ECC40',
+          name: 'Green',
+          orEquals: true,
+          value: 1
+        },
+        GREY_THRESHOLD: {
+          color: '#dddddd',
+          name: 'Grey',
+          value: 0.2
+        },
+        RED_THRESHOLD: {
+          color: '#FF4136',
+          name: 'Red',
+          orEquals: true,
+          value: 0.75
+        },
+        YELLOW_THRESHOLD: {
+          color: '#FFDC00',
+          name: 'Yellow',
+          value: 0.9
+        }
       },
       max: 100,
       min: 0,
@@ -44,7 +63,7 @@ describe('components/progressBar', () => {
     const wrapper = mount(<ProgressBar {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     expect(wrapper.find('.progress-bar').props().style).toMatchSnapshot({
-      backgroundColor: YELLOW,
+      backgroundColor: GREY,
       width: '10%'
     });
     wrapper.unmount();
@@ -56,9 +75,28 @@ describe('components/progressBar', () => {
       height: '10px',
       lineColor: '#5269EB',
       lineColorThresholds: {
-        [GREEN]: 70,
-        [RED]: 0,
-        [YELLOW]: 30
+        GREEN_THRESHOLD: {
+          color: '#2ECC40',
+          name: 'Green',
+          orEquals: true,
+          value: 1
+        },
+        GREY_THRESHOLD: {
+          color: '#dddddd',
+          name: 'Grey',
+          value: 0.2
+        },
+        RED_THRESHOLD: {
+          color: '#FF4136',
+          name: 'Red',
+          orEquals: true,
+          value: 0.75
+        },
+        YELLOW_THRESHOLD: {
+          color: '#FFDC00',
+          name: 'Yellow',
+          value: 0.9
+        }
       },
       max: 100,
       min: 0,
@@ -68,7 +106,7 @@ describe('components/progressBar', () => {
     const wrapper = mount(<ProgressBar {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     expect(wrapper.find('.progress-bar').props().style).toMatchSnapshot({
-      backgroundColor: GREEN,
+      backgroundColor: RED,
       width: '40%'
     });
     wrapper.unmount();
@@ -80,9 +118,28 @@ describe('components/progressBar', () => {
       height: '10px',
       lineColor: '#5269EB',
       lineColorThresholds: {
-        [GREEN]: 70,
-        [RED]: 0,
-        [YELLOW]: 30
+        GREEN_THRESHOLD: {
+          color: '#2ECC40',
+          name: 'Green',
+          orEquals: true,
+          value: 1
+        },
+        GREY_THRESHOLD: {
+          color: '#dddddd',
+          name: 'Grey',
+          value: 0.2
+        },
+        RED_THRESHOLD: {
+          color: '#FF4136',
+          name: 'Red',
+          orEquals: true,
+          value: 0.75
+        },
+        YELLOW_THRESHOLD: {
+          color: '#FFDC00',
+          name: 'Yellow',
+          value: 0.9
+        }
       },
       max: 100,
       min: 0,
@@ -92,7 +149,7 @@ describe('components/progressBar', () => {
     const wrapper = mount(<ProgressBar {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
     expect(wrapper.find('.progress-bar').props().style).toMatchSnapshot({
-      backgroundColor: GREEN,
+      backgroundColor: RED,
       width: '70%'
     });
     wrapper.unmount();
