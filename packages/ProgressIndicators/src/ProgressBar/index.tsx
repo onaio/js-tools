@@ -40,6 +40,23 @@ export const defaultProgressBarProps: Partial<ProgressBarProps> = {
   value: 0
 };
 
+export function getColor(lineColorThresholds, percentValue) {
+  const ascendingThresholds = Object.keys(lineColorThresholds).sort(
+    (e1, e2) => lineColorThresholds[e1].value - lineColorThresholds[e2].value
+  );
+
+  // top to bottom check to see which color threshold is matched first by the percentValue
+  for (const item of ascendingThresholds) {
+    if (
+      lineColorThresholds[item].orEquals
+        ? percentValue <= lineColorThresholds[item].value * 100
+        : percentValue < lineColorThresholds[item].value * 100
+    ) {
+      return lineColorThresholds[item].color;
+    }
+  }
+}
+
 /** Displays configurable progress bar */
 class ProgressBar extends Component<ProgressBarProps, {}> {
   public static defaultProps = defaultProgressBarProps;
@@ -54,13 +71,12 @@ class ProgressBar extends Component<ProgressBarProps, {}> {
       animate,
       decimalPoints,
       value,
-      lineColor,
       cssClass,
       stripped,
       lineColorThresholds,
       showLabel
     } = props;
-    let backgroundColor = lineColor;
+
     const max = props.max || 100;
     const min = props.min || 0;
     let range = max - min;
