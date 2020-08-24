@@ -20,7 +20,6 @@ export interface ProgressBarProps {
   min: number /** set lower bound for the progressBar range */;
   max: number /** set upper bound for the progressBar range */;
   value: number /** Represents the progress bar value */;
-  lineColor: string /** set line colors */;
   lineColorThresholds?: { [key: string]: IndicatorThresholdItem } /** set linecolor threshold */;
   cssClass: string /** sets css gradient over progressBar */;
   showLabel: boolean /** set label on progressBar */;
@@ -33,7 +32,6 @@ export const defaultProgressBarProps: Partial<ProgressBarProps> = {
   cssClass: 'progress-bar-striped',
   decimalPoints: 0,
   height: '10px',
-  lineColor: '#0000FF',
   lineColorThresholds: undefined,
   max: 100,
   min: 0,
