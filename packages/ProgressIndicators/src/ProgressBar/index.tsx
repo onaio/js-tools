@@ -1,6 +1,10 @@
 import { Color } from 'csstype';
 import React, { Component } from 'react';
 
+export const GREEN_THRESHOLD = 0.9;
+export const YELLOW_THRESHOLD = 0.2;
+export const ORANGE_THRESHOLD = 0.8;
+
 export interface IndicatorThresholdItem {
   color: Color;
   name: string;
