@@ -87,25 +87,15 @@ class ProgressBar extends Component<ProgressBarProps, {}> {
     const percentValue = decimalValue * 100;
     const percentValueString = percentValue.toFixed(decimalPoints);
 
-    // set the line color: if lineColorThresholds is not given; lineColor will be used
-    if (lineColorThresholds) {
-      // sort the color and their thresholds by the threshold value
-      const ascendingThresholds = Object.keys(lineColorThresholds).sort(
-        (e1, e2) => lineColorThresholds[e1].value - lineColorThresholds[e2].value
-      );
-
-      // top to bottom check to see which color threshold is matched first by the percentValue
-      for (const item of ascendingThresholds) {
-        if (
-          lineColorThresholds[item].orEquals
-            ? percentValue <= lineColorThresholds[item].value * 100
-            : percentValue < lineColorThresholds[item].value * 100
-        ) {
-          backgroundColor = lineColorThresholds[item].color;
-          break;
-        }
-      }
-    }
+    const backgroundColor = lineColorThresholds
+      ? getColor(lineColorThresholds, percentValue)
+      : decimalValue >= GREEN_THRESHOLD
+      ? '#33ad33'
+      : decimalValue >= ORANGE_THRESHOLD
+      ? '#ff8533'
+      : decimalValue >= YELLOW_THRESHOLD
+      ? '#ff5c33'
+      : '#ff3';
 
     return (
       <div className="progress">
