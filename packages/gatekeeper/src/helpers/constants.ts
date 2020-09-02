@@ -10,9 +10,6 @@ export type GENERIC_ERROR = typeof GENERIC_ERROR;
 export const LOGIN_URL = '/login';
 export type LOGIN_URL = typeof LOGIN_URL;
 
-export const DEFAULT_LOGOUT_DELAY = 20;
-export type DEFAULT_LOGOUT_DELAY = typeof DEFAULT_LOGOUT_DELAY;
-
 export const OAUTH_LOGIN_PROMPT = 'Please log in with one of the following providers';
 export type OAUTH_LOGIN_PROMPT = typeof OAUTH_LOGIN_PROMPT;
 
