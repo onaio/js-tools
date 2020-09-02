@@ -22,7 +22,8 @@ export interface LogoutProps {
  * @param logoutProps - logout component props
  */
 export const defaultLogout = (logOutProps: LogoutProps) => {
-  const { redirectPath } = logOutProps;
+  const { redirectPath, logoutActionCreator } = logOutProps;
+  logoutActionCreator();
   return <Redirect to={redirectPath} />;
 };
 
@@ -35,9 +36,7 @@ export const defaultLogoutProps: LogoutProps = {
 
 /** Logout component */
 const Logout = (props: LogoutProps) => {
-  const { logoutActionCreator, logoutFunction } = props;
-  logoutActionCreator();
-  const res = logoutFunction(props);
+  const { logoutFunction } = props;
   return logoutFunction(props);
 };
 

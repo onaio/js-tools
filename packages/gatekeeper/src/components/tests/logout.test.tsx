@@ -62,7 +62,6 @@ describe('gatekeeper/ConnectedLogout', () => {
         </MemoryRouter>
       </Provider>
     );
-    expect(logoutFunctionMock).toHaveBeenCalled();
     expect(logoutFunctionMock).toBeCalledWith({
       logoutActionCreator: mockLogoutActionCreator,
       logoutFunction: logoutFunctionMock,

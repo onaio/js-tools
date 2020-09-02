@@ -18,7 +18,9 @@ var _reactRouterDom = require("react-router-dom");
 var _constants = require("../helpers/constants");
 
 var defaultLogout = function defaultLogout(logOutProps) {
-  var redirectPath = logOutProps.redirectPath;
+  var redirectPath = logOutProps.redirectPath,
+      logoutActionCreator = logOutProps.logoutActionCreator;
+  logoutActionCreator();
   return _react["default"].createElement(_reactRouterDom.Redirect, {
     to: redirectPath
   });
@@ -33,10 +35,7 @@ var defaultLogoutProps = {
 exports.defaultLogoutProps = defaultLogoutProps;
 
 var Logout = function Logout(props) {
-  var logoutActionCreator = props.logoutActionCreator,
-      logoutFunction = props.logoutFunction;
-  logoutActionCreator();
-  var res = logoutFunction(props);
+  var logoutFunction = props.logoutFunction;
   return logoutFunction(props);
 };
 
