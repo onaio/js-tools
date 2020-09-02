@@ -1,31 +1,35 @@
 /// <reference types="react" />
 import { logOutUser } from '@onaio/session-reducer';
+export declare type LogoutFunction = (props: LogoutProps) => null | JSX.Element;
 /** interface to describe props for Logout component
  * @member {typeof logOutUser}logoutActionCreator action creator that logs out user.
  * @member {string} redirectPath The URL we redirect to after logging out.
- * @member {string} logoutURL the url of the logout endpoint of the Oauth server.
- * @member {(logoutUrl: string) => void} logoutFunction custom function to log user out of the Oauth server.
+ * @member {LogoutFunction} logoutFunction custom function to log user out of the Oauth server
+ *  - called after logging the user out of the store.
  */
 export interface LogoutProps {
   logoutActionCreator: typeof logOutUser;
   redirectPath: string;
-  logoutURL: string | null;
-  logoutFunction: (logoutUrl: string) => void | null;
+  logoutFunction: LogoutFunction;
 }
+/** the default logout function : redirects to the predefined redirectPath
+ * @param logoutProps - logout component props
+ */
+export declare const defaultLogout: (logOutProps: LogoutProps) => JSX.Element;
 /** default props for Logout component */
 export declare const defaultLogoutProps: LogoutProps;
 /** Logout component */
 declare const Logout: {
-  (props: LogoutProps): JSX.Element;
+  (props: LogoutProps): JSX.Element | null;
   defaultProps: LogoutProps;
 };
 export { Logout };
 /** Connected Logout component */
 declare const ConnectedLogout: import('react-redux').ConnectedComponent<
   {
-    (props: LogoutProps): JSX.Element;
+    (props: LogoutProps): JSX.Element | null;
     defaultProps: LogoutProps;
   },
-  Pick<LogoutProps, 'redirectPath' | 'logoutURL' | 'logoutFunction'>
+  Pick<LogoutProps, 'redirectPath' | 'logoutFunction'>
 >;
 export default ConnectedLogout;
