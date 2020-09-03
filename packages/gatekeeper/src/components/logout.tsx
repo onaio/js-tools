@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { LOGIN_URL } from '../helpers/constants';
 
-export type LogoutFunction = (props: LogoutProps) => null | JSX.Element;
+export type LogoutFunction = (
+  logoutUserCreator: typeof logOutUser,
+  redirectPath: string
+) => null | JSX.Element;
 
 /** interface to describe props for Logout component
  * @member {typeof logOutUser}logoutActionCreator action creator that logs out user.
@@ -21,8 +24,7 @@ export interface LogoutProps {
 /** the default logout function : redirects to the predefined redirectPath
  * @param logoutProps - logout component props
  */
-export const defaultLogout = (logOutProps: LogoutProps) => {
-  const { redirectPath, logoutActionCreator } = logOutProps;
+export const defaultLogout: LogoutFunction = (logoutActionCreator, redirectPath) => {
   logoutActionCreator();
   return <Redirect to={redirectPath} />;
 };
@@ -36,8 +38,9 @@ export const defaultLogoutProps: LogoutProps = {
 
 /** Logout component */
 const Logout = (props: LogoutProps) => {
+  const { logoutActionCreator, redirectPath } = props;
   const { logoutFunction } = props;
-  return logoutFunction(props);
+  return logoutFunction(logoutActionCreator, redirectPath);
 };
 
 Logout.defaultProps = defaultLogoutProps;

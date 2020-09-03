@@ -62,11 +62,7 @@ describe('gatekeeper/ConnectedLogout', () => {
         </MemoryRouter>
       </Provider>
     );
-    expect(logoutFunctionMock).toBeCalledWith({
-      logoutActionCreator: mockLogoutActionCreator,
-      logoutFunction: logoutFunctionMock,
-      redirectPath: '/'
-    });
+    expect(logoutFunctionMock).toBeCalledWith(mockLogoutActionCreator, '/');
   });
 
   it('renders the ConnectedLogout component when logged out', () => {
