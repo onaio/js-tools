@@ -92,6 +92,7 @@ The logout component takes these props that are useful in extending it:
 
 - **logoutActionCreator**: a [Redux action creator](https://redux.js.org/basics/actions#action-creators) to log out the user. The default that is used here is the `logoutUser` action creator from the [session reducer package](https://github.com/onaio/js-tools/tree/master/packages/session-reducer).
 - **redirectPath**: the path that the user will be redirected to if they are not logged in. Default is "/login".
+- **logoutFunction**(optional) a function that can provide custom logout behavior.
 
 ## Working with oAuth2
 
