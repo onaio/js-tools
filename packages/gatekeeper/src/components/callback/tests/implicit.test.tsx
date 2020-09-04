@@ -148,11 +148,10 @@ describe('gatekeeper/implicit/OauthCallback', () => {
 
     const { onadataAuth } = helperFixtures;
     const url = 'https://stage-api.ona.io/api/v1/user.json';
-    const hash =
-      '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
+    const href = 'http://localhost/';
 
     expect(mock).toHaveBeenCalledWith(
-      hash,
+      href,
       url,
       onadataAuth,
       authenticateUser,
