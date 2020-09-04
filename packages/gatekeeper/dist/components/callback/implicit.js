@@ -58,7 +58,7 @@ var OauthCallback = function OauthCallback(props) {
       recordResultActionCreator = props.recordResultActionCreator,
       sessionData = props.sessionData,
       sessionUser = props.sessionUser;
-  var locationHash = props.location.hash;
+  var locationHash = window.location.href;
   var id = props.match.params.id;
 
   var parsedParams = _queryString["default"].parse(location.search);

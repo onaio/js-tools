@@ -80,7 +80,7 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
     sessionData,
     sessionUser
   } = props;
-  const locationHash = props.location.hash;
+  const locationHref = window.location.href;
   const id = props.match.params.id;
   const parsedParams = qs.parse(location.search);
   const { error } = parsedParams;
@@ -100,7 +100,7 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
   useEffect(() => {
     if (authSuccess === null || authenticated === false) {
       fetchUser(
-        locationHash,
+        locationHref,
         userUri,
         provider,
         authenticateActionCreator,
