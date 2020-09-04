@@ -19,7 +19,12 @@ describe('gatekeeper/services', () => {
 
     fetchMock.getOnce(url, JSON.stringify(data));
 
-    const response = await oauth2Callback(hash, url, provider, getOnadataUserInfo);
+    const response = await oauth2Callback(
+      new URL(hash, 'http://localhost/oauth/callback/onadata/') as any,
+      url,
+      provider,
+      getOnadataUserInfo
+    );
 
     const expectedResponse = fixtures.onadataSessionWithOauthData;
 
@@ -38,7 +43,13 @@ describe('gatekeeper/services', () => {
     const authenticateActionCreatorMock = jest.fn();
     const recordResultActionCreator = jest.fn();
 
-    await fetchUser(hash, url, provider, authenticateActionCreatorMock, recordResultActionCreator);
+    await fetchUser(
+      new URL(hash, 'http://localhost/oauth/callback/onadata/') as any,
+      url,
+      provider,
+      authenticateActionCreatorMock,
+      recordResultActionCreator
+    );
 
     expect(authenticateActionCreatorMock).toHaveBeenCalledWith(
       true,
@@ -64,7 +75,13 @@ describe('gatekeeper/services', () => {
     let error;
     const recordResultActionCreator = jest.fn();
     try {
-      await fetchUser(hash, url, provider, jest.fn(), recordResultActionCreator);
+      await fetchUser(
+        new URL(hash, 'http://localhost/oauth/callback/onadata/') as any,
+        url,
+        provider,
+        jest.fn(),
+        recordResultActionCreator
+      );
     } catch (e) {
       error = e;
     }
@@ -81,7 +98,13 @@ describe('gatekeeper/services', () => {
     const recordResultActionCreator = jest.fn();
     let error;
     try {
-      await fetchUser(hash, url, provider, jest.fn(), recordResultActionCreator);
+      await fetchUser(
+        new URL(hash, 'http://localhost/oauth/callback/onadata/') as any,
+        url,
+        provider,
+        jest.fn(),
+        recordResultActionCreator
+      );
     } catch (e) {
       error = e;
     }
