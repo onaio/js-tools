@@ -150,9 +150,10 @@ describe('gatekeeper/implicit/OauthCallback', () => {
     const url = 'https://stage-api.ona.io/api/v1/user.json';
     const hash =
       '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
+    const urlObject = new URL(hash, 'https://example.com/oauth/callback/onadata/');
 
     expect(mock).toHaveBeenCalledWith(
-      hash,
+      urlObject,
       url,
       onadataAuth,
       authenticateUser,

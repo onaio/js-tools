@@ -94,13 +94,13 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
   }
 
   const providerOptions = providers[id];
-  const { userUri } = providerOptions;
+  const { userUri, redirectUri } = providerOptions;
   const provider = getProviderFromOptions(providerOptions);
-
+  const urlObject = new URL(locationHash, redirectUri);
   useEffect(() => {
     if (authSuccess === null || authenticated === false) {
       fetchUser(
-        locationHash,
+        urlObject,
         userUri,
         provider,
         authenticateActionCreator,

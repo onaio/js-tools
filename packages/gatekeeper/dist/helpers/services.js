@@ -28,7 +28,7 @@ function oauth2Callback(_x, _x2, _x3, _x4) {
 }
 
 function _oauth2Callback() {
-  _oauth2Callback = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee3(locationHash, url, provider, userInfoCallback) {
+  _oauth2Callback = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee3(urlObject, url, provider, userInfoCallback) {
     var method,
         _args3 = arguments;
     return _regenerator["default"].wrap(function _callee3$(_context3) {
@@ -36,7 +36,7 @@ function _oauth2Callback() {
         switch (_context3.prev = _context3.next) {
           case 0:
             method = _args3.length > 4 && _args3[4] !== undefined ? _args3[4] : 'GET';
-            return _context3.abrupt("return", provider.token.getToken(locationHash).then(function () {
+            return _context3.abrupt("return", provider.token.getToken(urlObject).then(function () {
               var _ref3 = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee2(oAuthObject) {
                 var response, data;
                 return _regenerator["default"].wrap(function _callee2$(_context2) {
@@ -96,7 +96,7 @@ function fetchUser(_x5, _x6, _x7) {
 }
 
 function _fetchUser() {
-  _fetchUser = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee4(locationHash, url, provider) {
+  _fetchUser = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee4(urlObject, resourceUrl, provider) {
     var authenticateActionCreator,
         recordResultActionCreator,
         userInfoCallback,
@@ -118,7 +118,7 @@ function _fetchUser() {
             method = _args4.length > 7 && _args4[7] !== undefined ? _args4[7] : 'GET';
             _context4.prev = 5;
             _context4.next = 8;
-            return oauth2Callback(locationHash, url, provider, userInfoCallback, method);
+            return oauth2Callback(urlObject, resourceUrl, provider, userInfoCallback, method);
 
           case 8:
             responseInfo = _context4.sent;

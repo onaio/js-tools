@@ -21,20 +21,20 @@ import { ErrorCallback, errorCallback } from './utils';
 type HTTPMethod = 'GET' | 'POST' | 'get' | 'post';
 
 /** Calls the oAuth provider to get user details
- * @param {string} locationHash - the location hash value that we receive from the oAuth provider
+ * @param {URL} urlObject - the URL object defined by the location hash and href
  * @param {string} url - the URL that returns the user information for the provider
  * @param {ClientOAuth2} provider - the Oauth client object for the provider
  * @param {UserInfoFnType} userInfoCallback - function the gets user info from API response
  * @param {string} method - the HTTP method to use
  */
 export async function oauth2Callback(
-  locationHash: string,
+  urlObject: URL,
   url: string,
   provider: ClientOAuth2,
   userInfoCallback: UserInfoFnType,
   method: HTTPMethod = 'GET'
 ) {
-  return provider.token.getToken(locationHash).then(async (oAuthObject: any) => {
+  return provider.token.getToken(urlObject).then(async (oAuthObject: any) => {
     const response = await fetch(
       url,
       oAuthObject.sign({
@@ -58,7 +58,7 @@ export async function oauth2Callback(
 
 /** This function is used to fetch the user logging in by calling oauth2Callback
  * and then calling authenticateUser to store the user in the Redux store.
- * @param {string} locationHash - the location hash value that we receive from the oAuth provider
+ * @param {URL} urlObject - the URL object defined by the location hash and href
  * @param {string} url - the URL that returns the user information for the provider
  * @param {ClientOAuth2} provider - the Oauth client object for the provider
  * @param {ActionCreator<AuthenticateAction>} authenticateActionCreator - the authenticate action creator function
@@ -68,8 +68,8 @@ export async function oauth2Callback(
  * @param {string} method - the HTTP method to use
  */
 export async function fetchUser(
-  locationHash: string,
-  url: string,
+  urlObject: URL,
+  resourceUrl: string,
   provider: ClientOAuth2,
   authenticateActionCreator: ActionCreator<AuthenticateAction> = authenticateUser,
   recordResultActionCreator: ActionCreator<RecordAction> = recordResult,
@@ -79,8 +79,8 @@ export async function fetchUser(
 ) {
   try {
     const responseInfo = await oauth2Callback(
-      locationHash,
-      url,
+      urlObject,
+      resourceUrl,
       provider,
       userInfoCallback,
       method

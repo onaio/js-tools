@@ -40,7 +40,7 @@ exports[`gatekeeper/ConnectedLogout renders the ConnectedLogout component when l
   >
     <a
       className="gatekeeper-btn"
-      href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&scope=read%20write&response_type=token&state=abc"
+      href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&response_type=token&state=abc&scope=read%20write"
     >
       onadata
     </a>
@@ -88,7 +88,7 @@ exports[`gatekeeper/ConnectedLogout renders the ConnectedLogout when logged in: 
   >
     <a
       className="gatekeeper-btn"
-      href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&scope=read%20write&response_type=token&state=abc"
+      href="https://stage-api.ona.io/o/authorize/?client_id=hunter2&redirect_uri=https%3A%2F%2Fexample.com%2Foauth%2Fcallback%2Fonadata%2F&response_type=token&state=abc&scope=read%20write"
     >
       onadata
     </a>

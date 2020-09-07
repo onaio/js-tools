@@ -7,14 +7,14 @@ import { ErrorCallback } from './utils';
 /** allowed http methods */
 declare type HTTPMethod = 'GET' | 'POST' | 'get' | 'post';
 /** Calls the oAuth provider to get user details
- * @param {string} locationHash - the location hash value that we receive from the oAuth provider
+ * @param {URL} urlObject - the URL object defined by the location hash and href
  * @param {string} url - the URL that returns the user information for the provider
  * @param {ClientOAuth2} provider - the Oauth client object for the provider
  * @param {UserInfoFnType} userInfoCallback - function the gets user info from API response
  * @param {string} method - the HTTP method to use
  */
 export declare function oauth2Callback(
-  locationHash: string,
+  urlObject: URL,
   url: string,
   provider: ClientOAuth2,
   userInfoCallback: UserInfoFnType,
@@ -22,7 +22,7 @@ export declare function oauth2Callback(
 ): Promise<void | import('@onaio/session-reducer/dist/types').SessionState>;
 /** This function is used to fetch the user logging in by calling oauth2Callback
  * and then calling authenticateUser to store the user in the Redux store.
- * @param {string} locationHash - the location hash value that we receive from the oAuth provider
+ * @param {URL} urlObject - the URL object defined by the location hash and href
  * @param {string} url - the URL that returns the user information for the provider
  * @param {ClientOAuth2} provider - the Oauth client object for the provider
  * @param {ActionCreator<AuthenticateAction>} authenticateActionCreator - the authenticate action creator function
@@ -32,8 +32,8 @@ export declare function oauth2Callback(
  * @param {string} method - the HTTP method to use
  */
 export declare function fetchUser(
-  locationHash: string,
-  url: string,
+  urlObject: URL,
+  resourceUrl: string,
   provider: ClientOAuth2,
   authenticateActionCreator?: ActionCreator<AuthenticateAction>,
   recordResultActionCreator?: ActionCreator<RecordAction>,
