@@ -80,7 +80,7 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
     sessionData,
     sessionUser
   } = props;
-  const locationHref = window.location.href;
+  const locationHash = props.location.hash;
   const id = props.match.params.id;
   const parsedParams = qs.parse(location.search);
   const { error } = parsedParams;
@@ -94,13 +94,13 @@ const OauthCallback = (props: OauthCallbackProps<RouteParams>) => {
   }
 
   const providerOptions = providers[id];
-  const { userUri } = providerOptions;
+  const { userUri, redirectUri } = providerOptions;
   const provider = getProviderFromOptions(providerOptions);
-
+  const urlObject = new URL(locationHash, redirectUri);
   useEffect(() => {
     if (authSuccess === null || authenticated === false) {
       fetchUser(
-        locationHref,
+        urlObject,
         userUri,
         provider,
         authenticateActionCreator,

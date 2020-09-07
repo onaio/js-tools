@@ -14,7 +14,7 @@ declare type HTTPMethod = 'GET' | 'POST' | 'get' | 'post';
  * @param {string} method - the HTTP method to use
  */
 export declare function oauth2Callback(
-  locationHash: string,
+  urlObject: URL,
   url: string,
   provider: ClientOAuth2,
   userInfoCallback: UserInfoFnType,
@@ -32,8 +32,8 @@ export declare function oauth2Callback(
  * @param {string} method - the HTTP method to use
  */
 export declare function fetchUser(
-  locationHash: string,
-  url: string,
+  urlObject: URL,
+  resourceUrl: string,
   provider: ClientOAuth2,
   authenticateActionCreator?: ActionCreator<AuthenticateAction>,
   recordResultActionCreator?: ActionCreator<RecordAction>,

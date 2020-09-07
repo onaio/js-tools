@@ -58,7 +58,7 @@ var OauthCallback = function OauthCallback(props) {
       recordResultActionCreator = props.recordResultActionCreator,
       sessionData = props.sessionData,
       sessionUser = props.sessionUser;
-  var locationHash = window.location.href;
+  var locationHash = props.location.hash;
   var id = props.match.params.id;
 
   var parsedParams = _queryString["default"].parse(location.search);
@@ -74,11 +74,13 @@ var OauthCallback = function OauthCallback(props) {
   }
 
   var providerOptions = providers[id];
-  var userUri = providerOptions.userUri;
+  var userUri = providerOptions.userUri,
+      redirectUri = providerOptions.redirectUri;
   var provider = (0, _oauth.getProviderFromOptions)(providerOptions);
+  var urlObject = new URL(locationHash, redirectUri);
   (0, _react.useEffect)(function () {
     if (authSuccess === null || authenticated === false) {
-      (0, _services.fetchUser)(locationHash, userUri, provider, authenticateActionCreator, recordResultActionCreator, oAuthUserInfoGetter)["catch"](function (e) {});
+      (0, _services.fetchUser)(urlObject, userUri, provider, authenticateActionCreator, recordResultActionCreator, oAuthUserInfoGetter)["catch"](function (e) {});
     }
   }, []);
   var baseProps = {
