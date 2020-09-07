@@ -16,15 +16,11 @@ describe('gatekeeper/services', () => {
     const url = 'https://stage-api.ona.io/api/v1/user.json';
     const hash =
       '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
+    const urlObject: URL = new URL(hash, 'http://localhost/oauth/callback/onadata/');
 
     fetchMock.getOnce(url, JSON.stringify(data));
 
-    const response = await oauth2Callback(
-      new URL(hash, 'http://localhost/oauth/callback/onadata/') as any,
-      url,
-      provider,
-      getOnadataUserInfo
-    );
+    const response = await oauth2Callback(urlObject, url, provider, getOnadataUserInfo);
 
     const expectedResponse = fixtures.onadataSessionWithOauthData;
 
@@ -37,14 +33,14 @@ describe('gatekeeper/services', () => {
     const url = 'https://stage-api.ona.io/api/v1/user.json';
     const hash =
       '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
+    const urlObject: URL = new URL(hash, 'http://localhost/oauth/callback/onadata/');
     fetchMock.getOnce('https://stage-api.ona.io/api/v1/user.json', JSON.stringify(data));
-
     // mock authenticateActionCreator
     const authenticateActionCreatorMock = jest.fn();
     const recordResultActionCreator = jest.fn();
 
     await fetchUser(
-      new URL(hash, 'http://localhost/oauth/callback/onadata/') as any,
+      urlObject,
       url,
       provider,
       authenticateActionCreatorMock,
@@ -71,17 +67,12 @@ describe('gatekeeper/services', () => {
     const url = 'https://stage-api.ona.io/api/v1/user.json';
     const hash =
       '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
+    const urlObject: URL = new URL(hash, 'http://localhost/oauth/callback/onadata/');
     fetchMock.getOnce('https://stage-api.ona.io/api/v1/user.json', 500);
     let error;
     const recordResultActionCreator = jest.fn();
     try {
-      await fetchUser(
-        new URL(hash, 'http://localhost/oauth/callback/onadata/') as any,
-        url,
-        provider,
-        jest.fn(),
-        recordResultActionCreator
-      );
+      await fetchUser(urlObject, url, provider, jest.fn(), recordResultActionCreator);
     } catch (e) {
       error = e;
     }
@@ -94,17 +85,12 @@ describe('gatekeeper/services', () => {
     const url = 'https://stage-api.ona.io/api/v1/user.json';
     const hash =
       '#access_token=iLoveOov&expires_in=36000&token_type=Bearer&scope=read+write&state=abc';
+    const urlObject: URL = new URL(hash, 'http://localhost/oauth/callback/onadata/');
     fetchMock.getOnce('https://stage-api.ona.io/api/v1/user.json', {});
     const recordResultActionCreator = jest.fn();
     let error;
     try {
-      await fetchUser(
-        new URL(hash, 'http://localhost/oauth/callback/onadata/') as any,
-        url,
-        provider,
-        jest.fn(),
-        recordResultActionCreator
-      );
+      await fetchUser(urlObject, url, provider, jest.fn(), recordResultActionCreator);
     } catch (e) {
       error = e;
     }
