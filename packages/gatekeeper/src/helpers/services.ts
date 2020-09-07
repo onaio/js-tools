@@ -28,19 +28,18 @@ type HTTPMethod = 'GET' | 'POST' | 'get' | 'post';
  * @param {string} method - the HTTP method to use
  */
 export async function oauth2Callback(
-  currentURL: URL,
-  resourceUrl: string,
+  urlObject: URL,
+  url: string,
   provider: ClientOAuth2,
   userInfoCallback: UserInfoFnType,
   method: HTTPMethod = 'GET'
 ) {
-  const locationHash1: URL = new URL(currentURL, provider.redirectUri);
-  return provider.token.getToken(locationHash1).then(async (oAuthObject: any) => {
+  return provider.token.getToken(urlObject).then(async (oAuthObject: any) => {
     const response = await fetch(
-      resourceUrl,
+      url,
       oAuthObject.sign({
         method,
-        resourceUrl
+        url
       })
     );
 
@@ -69,7 +68,7 @@ export async function oauth2Callback(
  * @param {string} method - the HTTP method to use
  */
 export async function fetchUser(
-  currentURL: URL,
+  urlObject: URL,
   resourceUrl: string,
   provider: ClientOAuth2,
   authenticateActionCreator: ActionCreator<AuthenticateAction> = authenticateUser,
@@ -80,7 +79,7 @@ export async function fetchUser(
 ) {
   try {
     const responseInfo = await oauth2Callback(
-      currentURL,
+      urlObject,
       resourceUrl,
       provider,
       userInfoCallback,
