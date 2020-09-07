@@ -21,7 +21,7 @@ import { ErrorCallback, errorCallback } from './utils';
 type HTTPMethod = 'GET' | 'POST' | 'get' | 'post';
 
 /** Calls the oAuth provider to get user details
- * @param {string} locationHash - the location hash value that we receive from the oAuth provider
+ * @param {URL} urlObject - the URL object defined by the location hash and href
  * @param {string} url - the URL that returns the user information for the provider
  * @param {ClientOAuth2} provider - the Oauth client object for the provider
  * @param {UserInfoFnType} userInfoCallback - function the gets user info from API response
@@ -58,7 +58,7 @@ export async function oauth2Callback(
 
 /** This function is used to fetch the user logging in by calling oauth2Callback
  * and then calling authenticateUser to store the user in the Redux store.
- * @param {string} locationHash - the location hash value that we receive from the oAuth provider
+ * @param {URL} urlObject - the URL object defined by the location hash and href
  * @param {string} url - the URL that returns the user information for the provider
  * @param {ClientOAuth2} provider - the Oauth client object for the provider
  * @param {ActionCreator<AuthenticateAction>} authenticateActionCreator - the authenticate action creator function
