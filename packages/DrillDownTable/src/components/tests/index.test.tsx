@@ -344,4 +344,40 @@ describe('DrillDownTable', () => {
     renderTable(wrapper, 'page 2 ');
     wrapper.unmount();
   });
+
+  it('columns changes are picked instantly', () => {
+    const textNode =
+      'You start forgetting the things you should remember and remembering the things you should forget.';
+    const CustomNullData = () => <div id="#ghost">{textNode}</div>;
+    const columns = [
+      {
+        Header: 'Name',
+        accessor: 'location'
+      }
+    ];
+    const newColumns = [
+      {
+        Header: 'Parent ID',
+        accessor: 'parent_id'
+      }
+    ];
+    const props: any = {
+      columns,
+      data: [],
+      renderNullDataComponent: CustomNullData
+    };
+
+    const wrapper = mount(<DrillDownTable {...props} />);
+    expect(wrapper.text()).toMatchInlineSnapshot(
+      `"NameYou start forgetting the things you should remember and remembering the things you should forget."`
+    );
+
+    // change columns props
+    wrapper.setProps({ columns: newColumns });
+    wrapper.update();
+    expect(wrapper.text()).toMatchInlineSnapshot(
+      `"Parent IDYou start forgetting the things you should remember and remembering the things you should forget."`
+    );
+    wrapper.unmount();
+  });
 });

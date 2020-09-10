@@ -36,7 +36,7 @@ function DrillDownTable<D extends object>(props: DrillDownTableProps<D>) {
     data && parentIdentifierField ? data.map((el: Dictionary) => el[parentIdentifierField]) : [];
   const [pageData, setPageData] = useState<D[]>([]);
 
-  const mutatedColumns = React.useMemo(() => columns.map(mutateColumns), []) as Array<
+  const mutatedColumns = React.useMemo(() => columns.map(mutateColumns), [columns]) as Array<
     DrillDownColumn<D>
   >;
 
