@@ -49,7 +49,7 @@ function DrillDownTable(props) {
 
   var mutatedColumns = _react["default"].useMemo(function () {
     return columns.map(mutateColumns);
-  }, []);
+  }, [columns]);
 
   var fetchData = _react["default"].useCallback(function (_ref) {
     var skipPageResetRef = _ref.skipPageResetRef,
