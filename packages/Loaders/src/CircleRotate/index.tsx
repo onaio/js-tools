@@ -1,12 +1,8 @@
 import React from 'react';
-import Styled, { css, keyframes } from 'styled-components';
-import { commonDefaultProps, CommonProps } from '../commons';
+import Styled, { keyframes } from 'styled-components';
+import { commonDefaultProps, CommonProps, getAnimationDuration } from '../commons';
 
 const defaultAnimationDuration: number = 1.2;
-
-const getAnimationDuration = (props: CircleRotateProps) => {
-  return `${(1 / props.scaleSpeedBy) * defaultAnimationDuration}s`;
-};
 
 const rotation = keyframes`
 0%, 100% {
@@ -36,15 +32,14 @@ const StyledCircleRotate = Styled.div`
         border-radius: 50%;
         background: ${(props: CircleRotateProps) => props.color};
         animation: ${rotation} ${(props: CircleRotateProps) =>
-  getAnimationDuration(props)} cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  getAnimationDuration(props, defaultAnimationDuration)} cubic-bezier(0, 0.2, 0.8, 1) infinite;
     }
 `;
 
 type CircleRotateProps = CommonProps;
 
 export const defaultCircleRotate: CircleRotateProps = {
-  ...commonDefaultProps,
-  scaleSizeBy: 1
+  ...commonDefaultProps
 };
 
 const CircleRotate = (props: CircleRotateProps) => {
