@@ -1,20 +1,16 @@
 import React from 'react';
-import Styled, { css, keyframes } from 'styled-components';
-import { commonDefaultProps, CommonProps } from '../commons';
+import Styled, { keyframes } from 'styled-components';
+import { commonDefaultProps, CommonProps, getAnimationDuration } from '../commons';
 
 const defaultAnimationDuration: number = 1.2;
 
-const getAnimationDuration = (props: FaceBookProps) => {
-  return `${(1 / props.scaleSpeedBy) * defaultAnimationDuration}s`;
-};
-
 const animation = (props: FaceBookProps) => keyframes`
 0% {
-  top: 8px;
+  top: ${`${props.scaleSizeBy * 8}px`};
   height: ${`${props.scaleSizeBy * 64}px`};
 }
 50%, 100% {
-  top: 24px;
+  top: ${`${props.scaleSizeBy * 24}px`};
   height: ${`${props.scaleSizeBy * 32}px`};
 }
 `;
@@ -32,7 +28,7 @@ export const StyledFacebook = Styled.div`
     width: ${(props: FaceBookProps) => `${props.scaleSizeBy * 16}px`};
     background: ${(props: FaceBookProps) => props.color};
     animation: ${animation} ${(props: FaceBookProps) =>
-  getAnimationDuration(props)} cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  getAnimationDuration(props, defaultAnimationDuration)} cubic-bezier(0, 0.5, 0.5, 1) infinite;
   }
 
   div:nth-child(1) {
