@@ -1,6 +1,8 @@
 import React from 'react';
-import Styled, { css, keyframes } from 'styled-components';
-import { commonDefaultProps, CommonProps } from '../commons';
+import Styled, { keyframes } from 'styled-components';
+import { commonDefaultProps, CommonProps, getAnimationDuration } from '../commons';
+
+const defaultAnimationDuration = 1.2;
 
 export const ringAnimation = keyframes`
   0% {
@@ -28,27 +30,26 @@ export const StyledRing = Styled.div`
     border-radius: 50%;
     border-color: ${(props: RingProps) => props.color} transparent transparent transparent;
     animation: ${ringAnimation} ${(props: RingProps) =>
-  `${props.animationSpeed}s`} cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  getAnimationDuration(props, defaultAnimationDuration)} cubic-bezier(0.5, 0, 0.5, 1) infinite;
   }
 
   div:nth-child(1){
-    animation-delay: -0.45s;
+    animation-delay: ${(props: RingProps) => getAnimationDuration(props, -0.45)};
   }
 
   div:nth-child(2){
-    animation-delay: -0.3s;
+    animation-delay: ${(props: RingProps) => getAnimationDuration(props, -0.3)};
   }
 
   div: nth-child(3){
-    animation-delay: -0.15s;
+    animation-delay: ${(props: RingProps) => getAnimationDuration(props, -0.15)};
   }
 `;
 
 type RingProps = CommonProps;
 
 const defaultRingProps = {
-  ...commonDefaultProps,
-  animationSpeed: 1.2
+  ...commonDefaultProps
 };
 
 const Ring = (props: RingProps) => {
