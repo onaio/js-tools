@@ -1,12 +1,8 @@
 import React from 'react';
-import Styled, { css, keyframes } from 'styled-components';
-import { commonDefaultProps, CommonProps } from '../commons';
+import Styled, { keyframes } from 'styled-components';
+import { commonDefaultProps, CommonProps, getAnimationDuration } from '../commons';
 
 const defaultAnimationDuration: number = 0.6;
-
-const getAnimationDuration = (props: EllipsisProps) => {
-  return `${(1 / props.scaleSpeedBy) * defaultAnimationDuration}s`;
-};
 
 export const ellipsis1 = keyframes`
 0% {
@@ -16,12 +12,12 @@ export const ellipsis1 = keyframes`
   transform: scale(1);
 }`;
 
-export const ellipsis2 = keyframes`
+export const ellipsis2 = (props: EllipsisProps) => keyframes`
 0% {
   transform: translate(0, 0);
 }
 100% {
-  transform: translate(24px, 0);
+  transform: translate(${props.scaleSizeBy * 24}px, 0);
 }`;
 
 export const ellipsis3 = keyframes`
@@ -49,23 +45,27 @@ export const StyledEllipsis = Styled.div`
   }
 
   div:nth-child(1){
-    left: ${(props: EllipsisProps) => `${props.scaleSizeBy * 8}px`};
-    animation: ${ellipsis1} ${(props: EllipsisProps) => getAnimationDuration(props)} infinite;
+    left: 8px;
+    animation: ${ellipsis1} ${(props: EllipsisProps) =>
+  getAnimationDuration(props, defaultAnimationDuration)} infinite;
   }
 
   div:nth-child(2){
-    left: ${(props: EllipsisProps) => `${props.scaleSizeBy * 8}px`};
-    animation: ${ellipsis2} ${(props: EllipsisProps) => getAnimationDuration(props)} infinite;
+    left: 8px;
+    animation: ${(props: EllipsisProps) => ellipsis2(props)} ${(props: EllipsisProps) =>
+  getAnimationDuration(props, defaultAnimationDuration)} infinite;
   }
 
   div:nth-child(3){
     left: ${(props: EllipsisProps) => `${props.scaleSizeBy * 32}px`};
-    animation: ${ellipsis2} ${(props: EllipsisProps) => getAnimationDuration(props)} infinite;
+    animation: ${(props: EllipsisProps) => ellipsis2(props)} ${(props: EllipsisProps) =>
+  getAnimationDuration(props, defaultAnimationDuration)} infinite;
   }
 
   div:nth-child(4){
     left: ${(props: EllipsisProps) => `${props.scaleSizeBy * 56}px`};
-    animation: ${ellipsis3} ${(props: EllipsisProps) => getAnimationDuration(props)} infinite;
+    animation: ${ellipsis3} ${(props: EllipsisProps) =>
+  getAnimationDuration(props, defaultAnimationDuration)} infinite;
   }
 `;
 
