@@ -1,12 +1,8 @@
 import React from 'react';
-import Styled, { css, keyframes } from 'styled-components';
-import { commonDefaultProps, CommonProps } from '../commons';
+import Styled, { keyframes } from 'styled-components';
+import { commonDefaultProps, CommonProps, getAnimationDuration } from '../commons';
 
 const defaultAnimationDuration: number = 1.2;
-
-const getAnimationDuration = (props: DualRingProps) => {
-  return `${(1 / props.scaleSpeedBy) * defaultAnimationDuration}s`;
-};
 
 const rotation = keyframes`
   0% {
@@ -34,15 +30,14 @@ export const DualRing = Styled.div`
     border-color: ${(props: DualRingProps) => props.color} transparent ${(props: DualRingProps) =>
   props.color} transparent;
     animation : ${rotation} ${(props: DualRingProps) =>
-  getAnimationDuration(props)} linear infinite;
+  getAnimationDuration(props, defaultAnimationDuration)} linear infinite;
   }
 `;
 
 export type DualRingProps = CommonProps;
 
 export const defaultDualRingProps: DualRingProps = {
-  ...commonDefaultProps,
-  scaleSpeedBy: 1
+  ...commonDefaultProps
 };
 
 DualRing.defaultProps = defaultDualRingProps;
