@@ -32,7 +32,7 @@ export type HasChildrenFuncType = <D extends object>(
   cellObject: Cell<D>,
   parentIdList: number[] | string[],
   idField: string | number,
-  fullData: D[]
+  fullData?: D[]
 ) => boolean;
 
 /** Check if a Cell  is part of a row whose data entry can be considered to have children */
