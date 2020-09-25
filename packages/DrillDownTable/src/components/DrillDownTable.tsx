@@ -1,7 +1,6 @@
 import { Dictionary } from '@onaio/utils';
 import React, { useState } from 'react';
-import { Cell, Column } from 'react-table';
-import { Row } from 'reactstrap';
+import { Cell } from 'react-table';
 import { DrillDownTableProps } from '../helpers/types';
 import { defaultDrillDownFilter } from '../helpers/utils';
 import { DropDownCell, DropDownCellProps, Spinner } from './HelperComponents';

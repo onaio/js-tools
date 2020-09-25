@@ -3,7 +3,6 @@ import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
 import { Column } from 'react-table';
-import { DrillDownTableProps } from '../..';
 import { columnsFromObjects, defaultDrillDownFilter } from '../../helpers/utils';
 import { renderTable } from '../../test-utils';
 import { DrillDownTable } from '../DrillDownTable';

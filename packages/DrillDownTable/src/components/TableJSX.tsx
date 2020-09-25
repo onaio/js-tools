@@ -24,7 +24,6 @@ import {
   UseTableOptions
 } from 'react-table';
 import { DEFAULT_ROW_HEIGHT, ID, PARENT_ID, ROOT_PARENT_ID } from '../helpers/constants';
-import { DrillDownTableProps } from '../helpers/types';
 import { NullDataComponent } from './HelperComponents';
 import { SortIcon } from './SortIcon';
 
