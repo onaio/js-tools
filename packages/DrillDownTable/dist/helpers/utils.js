@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.columnsFromObjects = columnsFromObjects;
+exports.defaultDrillDownFilter = void 0;
 
 function columnsFromObjects(items) {
   if (items.length < 1) {
@@ -17,3 +18,12 @@ function columnsFromObjects(items) {
     };
   });
 }
+
+var defaultDrillDownFilter = function defaultDrillDownFilter(props, parentId) {
+  var filterByLevel = props.data.filter(function (row) {
+    return row[props.parentIdentifierField] === parentId;
+  });
+  return filterByLevel;
+};
+
+exports.defaultDrillDownFilter = defaultDrillDownFilter;

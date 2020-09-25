@@ -16,6 +16,8 @@ var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/de
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = require("../helpers/utils");
+
 var _HelperComponents = require("./HelperComponents");
 
 var _TableJSX = require("./TableJSX");
@@ -26,6 +28,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 var defaultDrillDownTableProps = _objectSpread({}, _TableJSX.defaultTableProps, {
   CellComponent: _HelperComponents.DropDownCell,
+  drillDownFilter: _utils.defaultDrillDownFilter,
   loading: false,
   loadingComponent: _HelperComponents.Spinner
 });
@@ -58,9 +61,7 @@ function DrillDownTable(props) {
     var filterByLevel = props.data;
 
     if (props.useDrillDown) {
-      filterByLevel = props.data.filter(function (row) {
-        return row[parentIdentifierField] === parentId;
-      });
+      filterByLevel = props.drillDownFilter(props, parentId);
     }
 
     setPageData(filterByLevel);
@@ -82,7 +83,7 @@ function DrillDownTable(props) {
           var identifierField = props.identifierField;
           var thisCellHasChildren = false;
 
-          if (hasChildren && identifierField && hasChildren(cell, parentNodes, identifierField)) {
+          if (hasChildren && identifierField && hasChildren(cell, parentNodes, identifierField, props.data)) {
             thisCellHasChildren = true;
           }
 
