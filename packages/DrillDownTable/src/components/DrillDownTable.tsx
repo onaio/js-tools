@@ -1,22 +1,17 @@
 import { Dictionary } from '@onaio/utils';
 import React, { useState } from 'react';
 import { Cell, Column } from 'react-table';
+import { Row } from 'reactstrap';
+import { DrillDownTableProps } from '../helpers/types';
+import { defaultDrillDownFilter } from '../helpers/utils';
 import { DropDownCell, DropDownCellProps, Spinner } from './HelperComponents';
 import { defaultTableProps, DrillDownColumn, Table, TableJSXProps } from './TableJSX';
-
-/** describes props for the DrillDownTable component */
-export interface DrillDownTableProps<D extends object>
-  extends Omit<TableJSXProps<D>, 'fetchData' | 'parentNodes'> {
-  extraCellProps?: Dictionary /** props to be given to CellComponent */;
-  CellComponent: React.ElementType /** The component used to render the cell that has the drill down */;
-  loading: boolean /** if loading */;
-  loadingComponent: React.ElementType /** custom component to show whilst loading is true */;
-}
 
 /** only provide defaults for the props that are actionable as part of this HOC */
 export const defaultDrillDownTableProps = {
   ...defaultTableProps,
   CellComponent: DropDownCell,
+  drillDownFilter: defaultDrillDownFilter,
   loading: false,
   loadingComponent: Spinner
 };
@@ -52,9 +47,7 @@ function DrillDownTable<D extends object>(props: DrillDownTableProps<D>) {
       skipPageResetRef.current = true;
       let filterByLevel = props.data;
       if (props.useDrillDown) {
-        filterByLevel = props.data.filter((row: Dictionary) => {
-          return row[parentIdentifierField] === parentId;
-        });
+        filterByLevel = props.drillDownFilter(props, parentId);
       }
       setPageData(filterByLevel);
     },
@@ -73,16 +66,20 @@ function DrillDownTable<D extends object>(props: DrillDownTableProps<D>) {
     }
 
     if (el.accessor === linkerField) {
-      el.Cell = (cell: Cell) => {
+      el.Cell = (cell: Cell<D>) => {
         if (CellComponent !== undefined) {
           const { identifierField } = props;
 
           let thisCellHasChildren = false;
-          if (hasChildren && identifierField && hasChildren(cell, parentNodes, identifierField)) {
+          if (
+            hasChildren &&
+            identifierField &&
+            hasChildren(cell, parentNodes, identifierField, props.data)
+          ) {
             thisCellHasChildren = true;
           }
 
-          const cellProps: DropDownCellProps = {
+          const cellProps: DropDownCellProps<D> = {
             cell,
             cellValue: cell.value,
             hasChildren: thisCellHasChildren

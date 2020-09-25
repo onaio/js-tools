@@ -4,6 +4,7 @@ export * from './components/TableJSX';
 
 /** primary utils */
 export * from './helpers/utils';
+export * from './helpers/types';
 
 /** Reasonable defaults */
 export * from './components/Pagination';

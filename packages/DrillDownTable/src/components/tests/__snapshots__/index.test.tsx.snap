@@ -41,29 +41,94 @@ Array [
 ]
 `;
 
+exports[`DrillDownTable click to drill down works 2`] = `
+Array [
+  <div
+    className="dd-linker-item dd-clickable"
+  >
+    <span>
+      1
+      <span
+        className="dd-caret"
+      >
+         ▼
+      </span>
+    </span>
+  </div>,
+  <div
+    className="dd-linker-item dd-clickable"
+  >
+    <span>
+      2
+      <span
+        className="dd-caret"
+      >
+         ▼
+      </span>
+    </span>
+  </div>,
+  <div
+    className="dd-linker-item dd-clickable"
+  >
+    <span>
+      3
+      <span
+        className="dd-caret"
+      >
+         ▼
+      </span>
+    </span>
+  </div>,
+]
+`;
+
 exports[`DrillDownTable click to drill down works: After first drillDown tr index 0 1`] = `"idlocationparent_idspray_coveragespray_effectiveness"`;
+
+exports[`DrillDownTable click to drill down works: After first drillDown tr index 0 2`] = `"idlocationparent_idspray_coveragespray_effectiveness"`;
 
 exports[`DrillDownTable click to drill down works: After first drillDown tr index 1 1`] = `"4 ▼HFC 1180%80%"`;
 
+exports[`DrillDownTable click to drill down works: After first drillDown tr index 1 2`] = `"4 ▼HFC 1180%80%"`;
+
 exports[`DrillDownTable click to drill down works: After first drillDown tr index 2 1`] = `"5 ▼HFC 2180%80%"`;
+
+exports[`DrillDownTable click to drill down works: After first drillDown tr index 2 2`] = `"5 ▼HFC 2180%80%"`;
 
 exports[`DrillDownTable click to drill down works: After second Drilldown tr index 0 1`] = `"idlocationparent_idspray_coveragespray_effectiveness"`;
 
+exports[`DrillDownTable click to drill down works: After second Drilldown tr index 0 2`] = `"idlocationparent_idspray_coveragespray_effectiveness"`;
+
 exports[`DrillDownTable click to drill down works: After second Drilldown tr index 1 1`] = `"9Operational Area 9470%90%"`;
+
+exports[`DrillDownTable click to drill down works: After second Drilldown tr index 1 2`] = `"9Operational Area 9470%90%"`;
 
 exports[`DrillDownTable click to drill down works: After second Drilldown tr index 2 1`] = `"10Operational Area 10480%100%"`;
 
+exports[`DrillDownTable click to drill down works: After second Drilldown tr index 2 2`] = `"10Operational Area 10480%100%"`;
+
 exports[`DrillDownTable click to drill down works: After second Drilldown tr index 3 1`] = `"11Operational Area 114100%100%"`;
+
+exports[`DrillDownTable click to drill down works: After second Drilldown tr index 3 2`] = `"11Operational Area 114100%100%"`;
 
 exports[`DrillDownTable click to drill down works: InitialRender tr index 0 1`] = `"idlocationparent_idspray_coveragespray_effectiveness"`;
 
+exports[`DrillDownTable click to drill down works: InitialRender tr index 0 2`] = `"idlocationparent_idspray_coveragespray_effectiveness"`;
+
 exports[`DrillDownTable click to drill down works: InitialRender tr index 1 1`] = `"1 ▼District A80%80%"`;
+
+exports[`DrillDownTable click to drill down works: InitialRender tr index 1 2`] = `"1 ▼District A80%80%"`;
 
 exports[`DrillDownTable click to drill down works: InitialRender tr index 2 1`] = `"2 ▼District B75%85%"`;
 
+exports[`DrillDownTable click to drill down works: InitialRender tr index 2 2`] = `"2 ▼District B75%85%"`;
+
 exports[`DrillDownTable click to drill down works: InitialRender tr index 3 1`] = `"3 ▼District C90%90%"`;
 
+exports[`DrillDownTable click to drill down works: InitialRender tr index 3 2`] = `"3 ▼District C90%90%"`;
+
 exports[`DrillDownTable click to drill down works: InitialRender tr index 4 1`] = `"18District D0%0%"`;
+
+exports[`DrillDownTable click to drill down works: InitialRender tr index 4 2`] = `"18District D0%0%"`;
 
 exports[`DrillDownTable pagination works correctly: page 1  tr index 0 1`] = `"idgeographic_levelparent_idname"`;
 

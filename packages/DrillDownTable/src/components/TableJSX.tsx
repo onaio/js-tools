@@ -24,6 +24,7 @@ import {
   UseTableOptions
 } from 'react-table';
 import { DEFAULT_ROW_HEIGHT, ID, PARENT_ID, ROOT_PARENT_ID } from '../helpers/constants';
+import { DrillDownTableProps } from '../helpers/types';
 import { NullDataComponent } from './HelperComponents';
 import { SortIcon } from './SortIcon';
 
@@ -31,7 +32,8 @@ import { SortIcon } from './SortIcon';
 export type HasChildrenFuncType = <D extends object>(
   cellObject: Cell<D>,
   parentIdList: number[] | string[],
-  idField: string | number
+  idField: string | number,
+  fullData: D[]
 ) => boolean;
 
 /** Check if a Cell  is part of a row whose data entry can be considered to have children */
