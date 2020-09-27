@@ -13,7 +13,7 @@ const rotation = keyframes`
   }
 `;
 
-export const DualRing = Styled.div`
+const DualRing = Styled.div`
   display: inline-block;
   width: ${(props: DualRingProps) => `${props.scaleSizeBy * 80}px`};
   height: ${(props: DualRingProps) => `${props.scaleSizeBy * 80}px`};
@@ -41,3 +41,5 @@ export const defaultDualRingProps: DualRingProps = {
 };
 
 DualRing.defaultProps = defaultDualRingProps;
+
+export { DualRing };
