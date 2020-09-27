@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loaders.CircleRotate renders without crashing 1`] = `
+.c0 {
+  display: inline-block;
+  -webkit-transform: translateZ(1px);
+  -ms-transform: translateZ(1px);
+  transform: translateZ(1px);
+}
+
+.c0 div {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  background: tomato;
+  -webkit-animation: cGjRkh 1.2s cubic-bezier(0,0.2,0.8,1) infinite;
+  animation: cGjRkh 1.2s cubic-bezier(0,0.2,0.8,1) infinite;
+}
+
+<CircleRotate
+  animationSpeed={2.4}
+  color="tomato"
+  scaleSizeBy={1}
+  scaleSpeedBy={1}
+>
+  <styled.div
+    animationSpeed={2.4}
+    color="tomato"
+    scaleSizeBy={1}
+    scaleSpeedBy={1}
+  >
+    <div
+      className="c0"
+      color="tomato"
+    >
+      <div />
+    </div>
+  </styled.div>
+</CircleRotate>
+`;

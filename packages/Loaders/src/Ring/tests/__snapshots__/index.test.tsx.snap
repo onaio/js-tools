@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loaders.Ring renders without crashing 1`] = `
+.c0 {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.c0 div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid tomato;
+  border-radius: 50%;
+  border-color: tomato transparent transparent transparent;
+  -webkit-animation: cilQsd 1.2s cubic-bezier(0.5,0,0.5,1) infinite;
+  animation: cilQsd 1.2s cubic-bezier(0.5,0,0.5,1) infinite;
+}
+
+.c0 div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+  animation-delay: -0.45s;
+}
+
+.c0 div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+  animation-delay: -0.3s;
+}
+
+.c0 div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+  animation-delay: -0.15s;
+}
+
+<Ring
+  animationSpeed={2.4}
+  color="tomato"
+  scaleSizeBy={1}
+  scaleSpeedBy={1}
+>
+  <styled.div
+    animationSpeed={2.4}
+    color="tomato"
+    scaleSizeBy={1}
+    scaleSpeedBy={1}
+  >
+    <div
+      className="c0"
+      color="tomato"
+    >
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
+  </styled.div>
+</Ring>
+`;
