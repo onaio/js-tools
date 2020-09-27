@@ -45,3 +45,25 @@ const props = {
 
 <Ripple {...props} />
 ```
+
+### Facebook, Grid, DualRing, Ring, Ellipsis, CircleRotate
+
+Attribution: [Loading.io](loading.io)
+
+The Ripple Loader displays a nice ripple effect via pure CSS. using [styled-components](https://styled-components.com)
+
+### Customization
+
+These loader can be parametrized by animation speed, size and color through the below props:
+
+- **color**: color of component
+- **scaleSizeBy**: a number to scale the size relative to the default
+- **scaleSpeedBy**: a number to scale the speed relative to the default
+
+#### Code example
+
+```typescript
+import { CircleRotate } from '@onaio/loaders';
+
+<CircleRotate {...props} />;
+```
