@@ -187,6 +187,12 @@ export function hasChildrenFunc<D extends object>(
 }
 ```
 
+#### drillDownFilter
+
+**Optional**
+
+A custom function to override how the hierarchy is decided.
+
 ### Code examples
 
 Simplest example:

@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
 import { Column } from 'react-table';
-import { columnsFromObjects } from '../../helpers/utils';
+import { columnsFromObjects, defaultDrillDownFilter } from '../../helpers/utils';
 import { renderTable } from '../../test-utils';
 import { DrillDownTable } from '../DrillDownTable';
 import { DropDownCellProps } from '../HelperComponents';
@@ -124,6 +124,48 @@ describe('DrillDownTable', () => {
     // there should now be no more drilling down possible
     expect(wrapper.find('.dd-linker-item.dd-clickable').length).toEqual(0);
     wrapper.unmount();
+  });
+
+  it('click to drill down works', () => {
+    // going to pass default DrillDownFilter as mock implementation instead of defining another
+    const drillDownFilterMock = jest.fn((...args: any[]) =>
+      defaultDrillDownFilter(args[0], args[1])
+    );
+    const props: any = {
+      columns: dataColumns,
+      data,
+      drillDownFilter: drillDownFilterMock,
+      useDrillDown: true
+    };
+    const wrapper = mount(<DrillDownTable {...props} />);
+    wrapper.update();
+    // render the whole table
+
+    renderTable(wrapper, 'InitialRender');
+
+    // drill down first level
+    expect(toJson(wrapper.find('.dd-linker-item.dd-clickable'))).toMatchSnapshot();
+    expect(wrapper.find('.dd-linker-item.dd-clickable').length).toEqual(3);
+    wrapper
+      .find('.dd-linker-item.dd-clickable')
+      .first()
+      .simulate('click');
+    wrapper.update();
+    renderTable(wrapper, 'After first drillDown');
+    // drill down second level
+    expect(wrapper.find('.dd-linker-item.dd-clickable').length).toEqual(2);
+    wrapper
+      .find('.dd-linker-item.dd-clickable')
+      .first()
+      .simulate('click');
+    wrapper.update();
+    // render the whole table
+    renderTable(wrapper, 'After second Drilldown');
+    // there should now be no more drilling down possible
+    expect(wrapper.find('.dd-linker-item.dd-clickable').length).toEqual(0);
+    wrapper.unmount();
+
+    expect(drillDownFilterMock).toHaveBeenCalledTimes(3);
   });
 
   it('renders correctly lowest level hierarchy', () => {

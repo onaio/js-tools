@@ -16,8 +16,8 @@ export const NullDataComponent = () => (
 );
 
 /** Interface for DropDown cell props */
-export interface DropDownCellProps {
-  cell: Cell;
+export interface DropDownCellProps<D extends object = {}> {
+  cell: Cell<D>;
   cellValue: Node;
   hasChildren: boolean;
 }

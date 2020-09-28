@@ -40,6 +40,18 @@ Object.keys(_utils).forEach(function (key) {
   });
 });
 
+var _types = require("./helpers/types");
+
+Object.keys(_types).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _types[key];
+    }
+  });
+});
+
 var _Pagination = require("./components/Pagination");
 
 Object.keys(_Pagination).forEach(function (key) {
