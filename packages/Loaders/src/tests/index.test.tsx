@@ -2,7 +2,7 @@ import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
 
-import { Ripple } from '../';
+import { Ripple } from '..';
 
 describe('components/Loaders/Ripple', () => {
   it('renders without crashing', () => {
