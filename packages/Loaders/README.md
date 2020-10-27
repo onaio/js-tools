@@ -50,7 +50,7 @@ const props = {
 
 Attribution: [Loading.io](loading.io)
 
-The Ripple Loader displays a nice ripple effect via pure CSS. using [styled-components](https://styled-components.com)
+These Loaders display a nice loading effects via pure CSS. using [styled-components](https://styled-components.com)
 
 ### Customization
 
