@@ -30,12 +30,16 @@
   "author": "Ona Engineering",
   "license": "Apache-2.0",
   "peerDependencies": {
-    "@types/seamless-immutable": "^7.1.8",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
-    "seamless-immutable": "^7.1.4"
+    "react": "^16.8.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "mapbox-gl": "^1.11.0",
+    "react-mapbox-gl": "^4.8.6"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.123",
+    "@types/mapbox-gl": "^0.51.7"
   },
   "gitHead": "27f4630eb8ce35033f23ccb0e3e7ef898da4a289"
 }
