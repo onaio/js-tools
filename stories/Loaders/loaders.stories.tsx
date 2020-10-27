@@ -44,10 +44,9 @@ const SingleFilter = Styled.div`
 
 const LoadersGrid = Styled.div`
   grid-area: loadersGrid;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 5px;
-  row-gap: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap
 `;
 
 const SingleGrid = Styled.div.attrs(() => ({
@@ -57,6 +56,7 @@ const SingleGrid = Styled.div.attrs(() => ({
   flex-direction: row;
   justify-content: center;
   border: 2px solid palevioletred;
+  flex-basis: 33%;
 `;
 
 export const LoadersGridView = () => {
@@ -157,7 +157,7 @@ export const LoadersGridView = () => {
   );
 };
 
-/** draw a grid with all the loaders witha section to change
+/** draw a grid with all the loaders with a section to change
  * the props:
  *
  * - color
