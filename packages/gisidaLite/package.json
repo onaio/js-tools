@@ -1,0 +1,41 @@
+{
+  "name": "@onaio/gisida-lite",
+  "version": "0.0.1",
+  "description": "A simple mapbox based map visualization package",
+  "main": "dist/index.js",
+  "types": "dist/types",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onaio/js-tools.git"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx' --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "author": "Ona Engineering",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@types/seamless-immutable": "^7.1.8",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "seamless-immutable": "^7.1.4"
+  },
+  "devDependencies": {
+  },
+  "gitHead": "27f4630eb8ce35033f23ccb0e3e7ef898da4a289"
+}
