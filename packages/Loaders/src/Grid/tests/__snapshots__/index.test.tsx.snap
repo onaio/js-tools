@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loaders.Grid renders without crashing 1`] = `
+.c0 {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.c0 div {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: tomato;
+  -webkit-animation: dlUeYW 1.2s linear infinite;
+  animation: dlUeYW 1.2s linear infinite;
+}
+
+.c0 div:nth-Child(1) {
+  top: 8px;
+  left: 8px;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+.c0 div:nth-Child(2) {
+  top: 8px;
+  left: 32px;
+  -webkit-animation-delay: -0.4s;
+  animation-delay: -0.4s;
+}
+
+.c0 div:nth-Child(3) {
+  top: 8px;
+  left: 56px;
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+.c0 div:nth-Child(4) {
+  top: 32px;
+  left: 8px;
+  -webkit-animation-delay: -0.4s;
+  animation-delay: -0.4s;
+}
+
+.c0 div:nth-Child(5) {
+  top: 32px;
+  left: 32px;
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+.c0 div:nth-Child(6) {
+  top: 32px;
+  left: 56px;
+  -webkit-animation-delay: -1.2s;
+  animation-delay: -1.2s;
+}
+
+.c0 div:nth-Child(7) {
+  top: 56px;
+  left: 8px;
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+.c0 div:nth-Child(8) {
+  top: 56px;
+  left: 32px;
+  -webkit-animation-delay: -1.2s;
+  animation-delay: -1.2s;
+}
+
+.c0 div:nth-Child(9) {
+  top: 56px;
+  left: 56px;
+  -webkit-animation-delay: -1.6s;
+  animation-delay: -1.6s;
+}
+
+<Grid
+  animationSpeed={2.4}
+  color="tomato"
+  scaleSizeBy={1}
+  scaleSpeedBy={1}
+>
+  <styled.div
+    animationSpeed={2.4}
+    color="tomato"
+    scaleSizeBy={1}
+    scaleSpeedBy={1}
+  >
+    <div
+      className="c0"
+      color="tomato"
+    >
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
+  </styled.div>
+</Grid>
+`;

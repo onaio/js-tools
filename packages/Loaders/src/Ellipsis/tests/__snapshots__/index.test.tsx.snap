@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loaders.Ellipsis renders without crashing 1`] = `
+.c0 {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.c0 div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: tomato;
+  -webkit-animation-timing-function: cubic-bezier(0,1,1,0);
+  animation-timing-function: cubic-bezier(0,1,1,0);
+}
+
+.c0 div:nth-child(1) {
+  left: 8px;
+  -webkit-animation: gvmAOf 0.6s infinite;
+  animation: gvmAOf 0.6s infinite;
+}
+
+.c0 div:nth-child(2) {
+  left: 8px;
+  -webkit-animation: fcLpqQ 0.6s infinite;
+  animation: fcLpqQ 0.6s infinite;
+}
+
+.c0 div:nth-child(3) {
+  left: 32px;
+  -webkit-animation: fcLpqQ 0.6s infinite;
+  animation: fcLpqQ 0.6s infinite;
+}
+
+.c0 div:nth-child(4) {
+  left: 56px;
+  -webkit-animation: fyyInb 0.6s infinite;
+  animation: fyyInb 0.6s infinite;
+}
+
+<Ellipsis
+  animationSpeed={2.4}
+  color="tomato"
+  scaleSizeBy={1}
+  scaleSpeedBy={1}
+>
+  <styled.div
+    animationSpeed={2.4}
+    color="tomato"
+    scaleSizeBy={1}
+    scaleSpeedBy={1}
+  >
+    <div
+      className="c0"
+      color="tomato"
+    >
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
+  </styled.div>
+</Ellipsis>
+`;
