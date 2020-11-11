@@ -147,7 +147,7 @@ Here's an example sample `package.json` for a `ts`/`tsx` package:
   "scripts": {
     "jest": "jest --coverage --verbose --color",
     "tsc": "tsc",
-    "build": "yarn run transpile",
+    "build": "yarn tsc && yarn transpile:windows",
     "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'",
     "transpile:windows": "babel src -d dist --root-mode upward --extensions .ts,.tsx  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
   },
