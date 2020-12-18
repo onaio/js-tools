@@ -86,12 +86,22 @@ export const openSRPResponse = {
 
 export const openSRPFinalData = {
   ...openSRPResponse,
-  oAuth2Data
+  oAuth2Data: {
+    ...oAuth2Data,
+    refresh_expires_in: '2592000'
+  }
 };
 
 export const openSRPSession = {
   authenticated: true,
-  extraData: openSRPFinalData,
+  extraData: {
+    ...openSRPFinalData,
+    oAuth2Data: {
+      ...openSRPFinalData.oAuth2Data,
+      refresh_expires_at: '2020-01-01T07:00:00.000Z',
+      token_expires_at: '2020-01-30T21:00:00.000Z'
+    }
+  },
   user: {
     email: '',
     gravatar: '',
