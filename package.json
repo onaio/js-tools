@@ -119,6 +119,7 @@
     "webpack": "^4.29.6"
   },
   "dependencies": {
+    "mockdate": "^3.0.2",
     "styled-components": "^5.2.0"
   },
   "resolutions": {

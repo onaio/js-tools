@@ -12,7 +12,9 @@ exports.getUser = getUser;
 exports.getApiToken = getApiToken;
 exports.getAccessToken = getAccessToken;
 exports.getOauthProviderState = getOauthProviderState;
-exports.logOutUser = exports.updateExtraData = exports.authenticateUser = exports.LOGOUT = exports.UPDATE_DATA = exports.AUTHENTICATE = exports.initialState = exports.reducerName = void 0;
+exports.isTokenExpired = isTokenExpired;
+exports.isRefreshTokenExpired = isRefreshTokenExpired;
+exports.logOutUser = exports.updateExtraData = exports.authenticateUser = exports.LOGOUT = exports.UPDATE_DATA = exports.AUTHENTICATE = exports.initialState = exports.reducerName = exports.expiryTimeNotFound = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -20,8 +22,10 @@ var _seamlessImmutable = _interopRequireDefault(require("seamless-immutable"));
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
+var expiryTimeNotFound = 'Expiry Time Not Found';
+exports.expiryTimeNotFound = expiryTimeNotFound;
 var reducerName = 'session';
 exports.reducerName = reducerName;
 var initialState = (0, _seamlessImmutable["default"])({
@@ -132,4 +136,24 @@ function getOauthProviderState(state) {
   }
 
   return null;
+}
+
+function isTokenExpired(state) {
+  var extraData = state[reducerName].extraData;
+
+  if (extraData.oAuth2Data && extraData.oAuth2Data.token_expires_at && extraData.oAuth2Data.refresh_token) {
+    return new Date(Date.now()) > new Date(extraData.oAuth2Data.token_expires_at);
+  }
+
+  return expiryTimeNotFound;
+}
+
+function isRefreshTokenExpired(state) {
+  var extraData = state[reducerName].extraData;
+
+  if (extraData.oAuth2Data && extraData.oAuth2Data.refresh_expires_at && extraData.oAuth2Data.refresh_token) {
+    return new Date(Date.now()) > new Date(extraData.oAuth2Data.refresh_expires_at);
+  }
+
+  return expiryTimeNotFound;
 }

@@ -1,3 +1,4 @@
+import MockDate from 'mockdate';
 import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { FlushThunks } from 'redux-testkit';
 import thunk from 'redux-thunk';
@@ -9,6 +10,8 @@ import session, {
   getOauthProviderState,
   getUser,
   isAuthenticated,
+  isRefreshTokenExpired,
+  isTokenExpired,
   logOutUser,
   updateExtraData
 } from '..';
@@ -201,5 +204,55 @@ describe('reducers/session', () => {
       },
       d: 'Ona'
     });
+  });
+
+  it('should check if user token or refresh token is expired', () => {
+    MockDate.set('1/30/2020');
+    store.dispatch(authenticateUser(true, sessionUser, onadataUser));
+    // when expiry time doen't exist;
+    expect(isTokenExpired(store.getState())).toEqual('Expiry Time Not Found');
+    expect(isRefreshTokenExpired(store.getState())).toEqual('Expiry Time Not Found');
+    // when refresh token doesn't exist
+    let onadataUserCopy: any = {
+      ...onadataUser,
+      oAuth2Data: {
+        ...onadataUser.oAuth2Data,
+        refresh_expires_at: '2020-12-18T12:47:18.486Z',
+        token_expires_at: '2021-01-17T11:47:18.486Z'
+      }
+    };
+    store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
+    expect(isTokenExpired(store.getState())).toEqual('Expiry Time Not Found');
+    expect(isRefreshTokenExpired(store.getState())).toEqual('Expiry Time Not Found');
+
+    // not exired
+    onadataUserCopy = {
+      ...onadataUserCopy,
+      oAuth2Data: {
+        ...onadataUserCopy.oAuth2Data,
+        refresh_expires_at: '2020-2-18T12:47:18.486Z',
+        refresh_token: '12345',
+        token_expires_at: '2020-03-17T11:47:18.486Z'
+      }
+    };
+    store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
+    expect(isTokenExpired(store.getState())).toEqual(false);
+    expect(isRefreshTokenExpired(store.getState())).toEqual(false);
+
+    // exired
+    onadataUserCopy = {
+      ...onadataUserCopy,
+      oAuth2Data: {
+        ...onadataUserCopy.oAuth2Data,
+        refresh_expires_at: '2020-01-29T12:47:18.486Z',
+        refresh_token: '12345',
+        token_expires_at: '2020-01-29T11:47:18.486Z'
+      }
+    };
+    store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
+    expect(isTokenExpired(store.getState())).toEqual(true);
+    expect(isRefreshTokenExpired(store.getState())).toEqual(true);
+
+    MockDate.reset();
   });
 });

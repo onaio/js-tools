@@ -1,5 +1,6 @@
 import { AnyAction, Store } from 'redux';
 import SeamlessImmutable from 'seamless-immutable';
+export declare const expiryTimeNotFound = 'Expiry Time Not Found';
 export declare const reducerName = 'session';
 /** Interface for authenticate action */
 export interface AuthenticateAction extends AnyAction {
@@ -103,3 +104,13 @@ export declare function getAccessToken(state: Partial<Store>): string | null;
  * @param {Partial<Store>} state - the redux store
  */
 export declare function getOauthProviderState(state: Partial<Store>): string | null;
+/** check if token is expired
+ * @param {Partial<Store>} state - the redux store
+ */
+export declare function isTokenExpired(state: Partial<Store>): boolean | typeof expiryTimeNotFound;
+/** check if refresh token is expired
+ * @param {Partial<Store>} state - the redux store
+ */
+export declare function isRefreshTokenExpired(
+  state: Partial<Store>
+): boolean | typeof expiryTimeNotFound;
