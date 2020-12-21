@@ -10,9 +10,9 @@ import session, {
   getOauthProviderState,
   getUser,
   isAuthenticated,
-  isRefreshTokenExpired,
-  isTokenExpired,
   logOutUser,
+  refreshTokenExpiryStatus,
+  tokenExiryStatus,
   updateExtraData
 } from '..';
 import {
@@ -210,8 +210,8 @@ describe('reducers/session', () => {
     MockDate.set('1/30/2020');
     store.dispatch(authenticateUser(true, sessionUser, onadataUser));
     // when expiry time doen't exist;
-    expect(isTokenExpired(store.getState())).toEqual('Expiry Time Not Found');
-    expect(isRefreshTokenExpired(store.getState())).toEqual('Expiry Time Not Found');
+    expect(tokenExiryStatus(store.getState())).toEqual('Expiry Time Not Found');
+    expect(refreshTokenExpiryStatus(store.getState())).toEqual('Expiry Time Not Found');
     // when refresh token doesn't exist
     let onadataUserCopy: any = {
       ...onadataUser,
@@ -222,8 +222,8 @@ describe('reducers/session', () => {
       }
     };
     store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
-    expect(isTokenExpired(store.getState())).toEqual('Expiry Time Not Found');
-    expect(isRefreshTokenExpired(store.getState())).toEqual('Expiry Time Not Found');
+    expect(tokenExiryStatus(store.getState())).toEqual('Expiry Time Not Found');
+    expect(refreshTokenExpiryStatus(store.getState())).toEqual('Expiry Time Not Found');
 
     // not exired
     onadataUserCopy = {
@@ -236,8 +236,8 @@ describe('reducers/session', () => {
       }
     };
     store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
-    expect(isTokenExpired(store.getState())).toEqual(false);
-    expect(isRefreshTokenExpired(store.getState())).toEqual(false);
+    expect(tokenExiryStatus(store.getState())).toEqual('Active');
+    expect(refreshTokenExpiryStatus(store.getState())).toEqual('Active');
 
     // exired
     onadataUserCopy = {
@@ -250,8 +250,8 @@ describe('reducers/session', () => {
       }
     };
     store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
-    expect(isTokenExpired(store.getState())).toEqual(true);
-    expect(isRefreshTokenExpired(store.getState())).toEqual(true);
+    expect(tokenExiryStatus(store.getState())).toEqual('Expired');
+    expect(refreshTokenExpiryStatus(store.getState())).toEqual('Expired');
 
     MockDate.reset();
   });

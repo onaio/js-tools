@@ -1,7 +1,12 @@
 import { AnyAction, Store } from 'redux';
 import SeamlessImmutable from 'seamless-immutable';
-export declare const expiryTimeNotFound = 'Expiry Time Not Found';
 export declare const reducerName = 'session';
+/** Available token status */
+export declare enum TokenStatus {
+  expired = 'Expired',
+  active = 'Active',
+  TimeNotFound = 'Expiry Time Not Found'
+}
 /** Interface for authenticate action */
 export interface AuthenticateAction extends AnyAction {
   authenticated: boolean;
@@ -92,6 +97,14 @@ export declare function getExtraData(
  * @param {Partial<Store>} state - the redux store
  */
 export declare function getUser(state: Partial<Store>): User;
+/** check if token is expired
+ * @param {Partial<Store>} state - the redux store
+ */
+export declare function tokenExiryStatus(state: Partial<Store>): TokenStatus;
+/** check if refresh token is expired
+ * @param {Partial<Store>} state - the redux store
+ */
+export declare function refreshTokenExpiryStatus(state: Partial<Store>): TokenStatus;
 /** get API Token from the Redux store
  * @param {Partial<Store>} state - the redux store
  */
@@ -104,13 +117,3 @@ export declare function getAccessToken(state: Partial<Store>): string | null;
  * @param {Partial<Store>} state - the redux store
  */
 export declare function getOauthProviderState(state: Partial<Store>): string | null;
-/** check if token is expired
- * @param {Partial<Store>} state - the redux store
- */
-export declare function isTokenExpired(state: Partial<Store>): boolean | typeof expiryTimeNotFound;
-/** check if refresh token is expired
- * @param {Partial<Store>} state - the redux store
- */
-export declare function isRefreshTokenExpired(
-  state: Partial<Store>
-): boolean | typeof expiryTimeNotFound;
