@@ -26,7 +26,7 @@ exports[`/components/errors/Fallback render correctly 1`] = `
   <TokenExpired
     logoutLinkText="Renew session"
     logoutUrl="/logout"
-    sessionExpiryText="Your session has expired. Please click the link below to start a new session"
+    sessionExpiryText="Your session has expired. Please click the link below to log in again."
   >
     <Container
       fluid={true}
@@ -87,7 +87,7 @@ exports[`/components/errors/Fallback render correctly 1`] = `
                 className="col-sm-12 col-md-8 offset-md-2"
               >
                 <h2>
-                  Your session has expired. Please click the link below to start a new session
+                  Your session has expired. Please click the link below to log in again.
                 </h2>
                 <Link
                   to="/logout"

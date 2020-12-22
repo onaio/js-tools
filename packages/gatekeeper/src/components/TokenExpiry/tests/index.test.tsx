@@ -20,7 +20,7 @@ describe('/components/errors/Fallback', () => {
     );
     expect(toJson(wrapper)).toMatchSnapshot();
     expect(wrapper.find('h2').text()).toEqual(
-      'Your session has expired. Please click the link below to start a new session'
+      'Your session has expired. Please click the link below to log in again.'
     );
     expect(wrapper.find('Link').text()).toEqual('Renew session');
 
