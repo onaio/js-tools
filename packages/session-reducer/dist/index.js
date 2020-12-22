@@ -20,9 +20,9 @@ exports.getTokenOrRedirect = exports.logOutUser = exports.updateExtraData = expo
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _seamlessImmutable = _interopRequireDefault(require("seamless-immutable"));
-
 var _connectedReducerRegistry = require("@onaio/connected-reducer-registry");
+
+var _seamlessImmutable = _interopRequireDefault(require("seamless-immutable"));
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -170,12 +170,11 @@ function getAccessToken(state) {
 }
 
 function isTokenExpired(state) {
-  return getTokenExiryStatus(state) === TokenStatus.expired;
+  return !getAccessToken(state) ? true : getTokenExiryStatus(state) === TokenStatus.expired;
 }
 
 var getTokenOrRedirect = function getTokenOrRedirect(state) {
   var redirectTo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  ;
   var tokenStatus = getTokenExiryStatus(state);
 
   if (tokenStatus === TokenStatus.expired && redirectTo) {

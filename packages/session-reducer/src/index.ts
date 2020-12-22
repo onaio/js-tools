@@ -214,7 +214,7 @@ export function getAccessToken(state: Partial<Store>): string | null {
  * @param {Partial<Store>} state - the redux store
  */
 export function isTokenExpired(state: Partial<Store>): boolean {
-  return getTokenExiryStatus(state) === TokenStatus.expired;
+  return !getAccessToken(state) ? true : getTokenExiryStatus(state) === TokenStatus.expired;
 }
 
 /**
