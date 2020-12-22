@@ -5,7 +5,7 @@ export declare const reducerName = 'session';
 export declare enum TokenStatus {
   expired = 'Expired',
   active = 'Active',
-  TimeNotFound = 'Expiry Time Not Found'
+  timeNotFound = 'Expiry Time Not Found'
 }
 /** Interface for authenticate action */
 export interface AuthenticateAction extends AnyAction {
@@ -59,7 +59,7 @@ export default function reducer(
 ): ImmutableSessionState;
 /** authenticate user action type */
 export declare const AUTHENTICATE = '@onaio/session-reducer/reducer/AUTHENTICATE';
-/** authenticate user action type */
+/** update extra data action type */
 export declare const UPDATE_DATA = '@onaio/session-reducer/reducer/UPDATE_DATA';
 /** logout user action type */
 export declare const LOGOUT = '@onaio/session-reducer/reducer/LOGOUT';
@@ -97,14 +97,18 @@ export declare function getExtraData(
  * @param {Partial<Store>} state - the redux store
  */
 export declare function getUser(state: Partial<Store>): User;
+/** get Refresh Token from the Redux store
+ * @param {Partial<Store>} state - the redux store
+ */
+export declare function getRefreshToken(state: Partial<Store>): string | null;
 /** check if token is expired
  * @param {Partial<Store>} state - the redux store
  */
-export declare function tokenExiryStatus(state: Partial<Store>): TokenStatus;
+export declare function getTokenExiryStatus(state: Partial<Store>): TokenStatus;
 /** check if refresh token is expired
  * @param {Partial<Store>} state - the redux store
  */
-export declare function refreshTokenExpiryStatus(state: Partial<Store>): TokenStatus;
+export declare function getRefreshTokenExpiryStatus(state: Partial<Store>): TokenStatus;
 /** get API Token from the Redux store
  * @param {Partial<Store>} state - the redux store
  */
@@ -113,6 +117,18 @@ export declare function getApiToken(state: Partial<Store>): string;
  * @param {Partial<Store>} state - the redux store
  */
 export declare function getAccessToken(state: Partial<Store>): string | null;
+/** check if token is updated as expired
+ * @param {Partial<Store>} state - the redux store
+ */
+export declare function isTokenExpired(state: Partial<Store>): boolean;
+/**
+ * get token or redirect to session expired page
+ * @param {Partial<Store>} state - the redux store
+ */
+export declare const getTokenOrRedirect: (
+  state: Partial<Store<any, AnyAction>>,
+  redirectTo?: string | null
+) => string | void | null;
 /** get the oAuth2 provider state parameter from the Redux store
  * @param {Partial<Store>} state - the redux store
  */

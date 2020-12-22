@@ -9,16 +9,20 @@ exports["default"] = reducer;
 exports.isAuthenticated = isAuthenticated;
 exports.getExtraData = getExtraData;
 exports.getUser = getUser;
-exports.tokenExiryStatus = tokenExiryStatus;
-exports.refreshTokenExpiryStatus = refreshTokenExpiryStatus;
+exports.getRefreshToken = getRefreshToken;
+exports.getTokenExiryStatus = getTokenExiryStatus;
+exports.getRefreshTokenExpiryStatus = getRefreshTokenExpiryStatus;
 exports.getApiToken = getApiToken;
 exports.getAccessToken = getAccessToken;
+exports.isTokenExpired = isTokenExpired;
 exports.getOauthProviderState = getOauthProviderState;
-exports.logOutUser = exports.updateExtraData = exports.authenticateUser = exports.LOGOUT = exports.UPDATE_DATA = exports.AUTHENTICATE = exports.initialState = exports.TokenStatus = exports.reducerName = void 0;
+exports.getTokenOrRedirect = exports.logOutUser = exports.updateExtraData = exports.authenticateUser = exports.LOGOUT = exports.UPDATE_DATA = exports.AUTHENTICATE = exports.initialState = exports.TokenStatus = exports.reducerName = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
 var _seamlessImmutable = _interopRequireDefault(require("seamless-immutable"));
+
+var _connectedReducerRegistry = require("@onaio/connected-reducer-registry");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -32,7 +36,7 @@ exports.TokenStatus = TokenStatus;
 (function (TokenStatus) {
   TokenStatus["expired"] = "Expired";
   TokenStatus["active"] = "Active";
-  TokenStatus["TimeNotFound"] = "Expiry Time Not Found";
+  TokenStatus["timeNotFound"] = "Expiry Time Not Found";
 })(TokenStatus || (exports.TokenStatus = TokenStatus = {}));
 
 var initialState = (0, _seamlessImmutable["default"])({
@@ -120,25 +124,34 @@ function getUser(state) {
   return state[reducerName].user;
 }
 
-function tokenExiryStatus(state) {
+function getRefreshToken(state) {
   var extraData = state[reducerName].extraData;
 
-  if (extraData.oAuth2Data && extraData.oAuth2Data.token_expires_at && extraData.oAuth2Data.refresh_token) {
+  if (extraData.oAuth2Data && extraData.oAuth2Data.refresh_token) {
+    return extraData.oAuth2Data.refresh_token;
+  }
+
+  return null;
+}
+
+function getTokenExiryStatus(state) {
+  var extraData = state[reducerName].extraData;
+
+  if (extraData.oAuth2Data && extraData.oAuth2Data.token_expires_at) {
     return new Date(Date.now()) >= new Date(extraData.oAuth2Data.token_expires_at) ? TokenStatus.expired : TokenStatus.active;
   }
 
-  return TokenStatus.TimeNotFound;
+  return TokenStatus.timeNotFound;
 }
 
-function refreshTokenExpiryStatus(state) {
+function getRefreshTokenExpiryStatus(state) {
   var extraData = state[reducerName].extraData;
 
-  if (extraData.oAuth2Data && extraData.oAuth2Data.refresh_expires_at && extraData.oAuth2Data.refresh_token) {
+  if (extraData.oAuth2Data && extraData.oAuth2Data.refresh_expires_at) {
     return new Date(Date.now()) >= new Date(extraData.oAuth2Data.refresh_expires_at) ? TokenStatus.expired : TokenStatus.active;
-    ;
   }
 
-  return TokenStatus.TimeNotFound;
+  return TokenStatus.timeNotFound;
 }
 
 function getApiToken(state) {
@@ -155,6 +168,24 @@ function getAccessToken(state) {
 
   return null;
 }
+
+function isTokenExpired(state) {
+  return getTokenExiryStatus(state) === TokenStatus.expired;
+}
+
+var getTokenOrRedirect = function getTokenOrRedirect(state) {
+  var redirectTo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  ;
+  var tokenStatus = getTokenExiryStatus(state);
+
+  if (tokenStatus === TokenStatus.expired && redirectTo) {
+    return _connectedReducerRegistry.history.push(redirectTo);
+  }
+
+  return getAccessToken(state);
+};
+
+exports.getTokenOrRedirect = getTokenOrRedirect;
 
 function getOauthProviderState(state) {
   var extraData = state[reducerName].extraData;

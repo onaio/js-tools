@@ -39,5 +39,8 @@
     "@types/redux-testkit": "^1.0.3",
     "redux-testkit": "^1.0.6"
   },
+  "dependencies": {
+    "@onaio/connected-reducer-registry": "^0.0.2"
+  },
   "gitHead": "27f4630eb8ce35033f23ccb0e3e7ef898da4a289"
 }
