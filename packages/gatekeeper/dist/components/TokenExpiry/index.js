@@ -9,11 +9,11 @@ exports.TokenExpired = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _reactRouterDom = require("react-router-dom");
+
 var _reactstrap = require("reactstrap");
 
 var _constants = require("./constants");
-
-var _reactRouterDom = require("react-router-dom");
 
 var TokenExpired = function TokenExpired(props) {
   var logoutLinkText = props.logoutLinkText,

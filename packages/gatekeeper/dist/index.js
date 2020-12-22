@@ -263,36 +263,6 @@ Object.defineProperty(exports, "oauth2Callback", {
     return _services.oauth2Callback;
   }
 });
-Object.defineProperty(exports, "errorCallback", {
-  enumerable: true,
-  get: function get() {
-    return _utils2.errorCallback;
-  }
-});
-Object.defineProperty(exports, "ErrorCallback", {
-  enumerable: true,
-  get: function get() {
-    return _utils2.ErrorCallback;
-  }
-});
-Object.defineProperty(exports, "ConnectedMonitorTokenExpiry", {
-  enumerable: true,
-  get: function get() {
-    return _monitorToken["default"];
-  }
-});
-Object.defineProperty(exports, "MonitorTokenExpiry", {
-  enumerable: true,
-  get: function get() {
-    return _monitorToken.MonitorTokenExpiry;
-  }
-});
-Object.defineProperty(exports, "MonitorTokenExpiryProps", {
-  enumerable: true,
-  get: function get() {
-    return _monitorToken.MonitorTokenExpiryProps;
-  }
-});
 Object.defineProperty(exports, "TokenExpired", {
   enumerable: true,
   get: function get() {
@@ -303,6 +273,18 @@ Object.defineProperty(exports, "TokenExpiredProps", {
   enumerable: true,
   get: function get() {
     return _TokenExpiry.TokenExpiredProps;
+  }
+});
+Object.defineProperty(exports, "errorCallback", {
+  enumerable: true,
+  get: function get() {
+    return _utils2.errorCallback;
+  }
+});
+Object.defineProperty(exports, "ErrorCallback", {
+  enumerable: true,
+  get: function get() {
+    return _utils2.ErrorCallback;
   }
 });
 
@@ -322,8 +304,6 @@ var _oauth = require("./helpers/oauth");
 
 var _services = require("./helpers/services");
 
-var _utils2 = require("./helpers/utils");
-
-var _monitorToken = _interopRequireWildcard(require("./components/TokenExpiry/monitorToken"));
-
 var _TokenExpiry = require("./components/TokenExpiry");
+
+var _utils2 = require("./helpers/utils");

@@ -24,10 +24,6 @@ import OauthLogin, {
 } from './components/login';
 import ConnectedLogout, { defaultLogoutProps, Logout, LogoutProps } from './components/logout';
 import { TokenExpired, TokenExpiredProps } from './components/TokenExpiry';
-import ConnectedMonitorTokenExpiry, {
-  MonitorTokenExpiry,
-  MonitorTokenExpiryProps
-} from './components/TokenExpiry/monitorToken';
 import gateKeeperReducer, {
   GateKeeperActionTypes,
   GateKeeperState,
@@ -69,7 +65,6 @@ export {
   recordResult,
   Component404,
   ConnectedLogout,
-  ConnectedMonitorTokenExpiry,
   ConnectedOauthCallback,
   ErrorCallback,
   GateKeeperActionTypes,
@@ -77,8 +72,6 @@ export {
   ImmutableGateKeeperState,
   Logout,
   LogoutProps,
-  MonitorTokenExpiry,
-  MonitorTokenExpiryProps,
   OauthCallback,
   OauthCallbackProps,
   OauthLogin,

@@ -54,10 +54,6 @@ import {
 import { fetchUser, oauth2Callback } from './helpers/services';
 
 import { TokenExpired, TokenExpiredProps } from './components/TokenExpiry';
-import ConnectedMonitorTokenExpiry, {
-  MonitorTokenExpiry,
-  MonitorTokenExpiryProps
-} from './components/TokenExpiry/monitorToken';
 import { errorCallback, ErrorCallback } from './helpers/utils';
 
 export {
@@ -78,7 +74,6 @@ export {
   recordResult,
   Component404,
   ConnectedLogout,
-  ConnectedMonitorTokenExpiry,
   ConnectedOauthCallback,
   ErrorCallback,
   GateKeeperActionTypes,
@@ -86,8 +81,6 @@ export {
   ImmutableGateKeeperState,
   Logout,
   LogoutProps,
-  MonitorTokenExpiry,
-  MonitorTokenExpiryProps,
   OauthCallback,
   OauthCallbackProps,
   OauthLogin,
