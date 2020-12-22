@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/components/errors/Fallback render correctly 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <TokenExpired
+    logoutLinkText="Renew session"
+    logoutUrl="/logout"
+    sessionExpiryText="Your session has expired. Please click the link below to start a new session"
+  >
+    <Container
+      fluid={true}
+      style={
+        Object {
+          "minHeight": "100vh",
+          "position": "relative",
+        }
+      }
+      tag="div"
+    >
+      <div
+        className="container-fluid"
+        style={
+          Object {
+            "minHeight": "100vh",
+            "position": "relative",
+          }
+        }
+      >
+        <Row
+          className="text-center"
+          style={
+            Object {
+              "marginTop": "40px",
+            }
+          }
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <div
+            className="text-center row"
+            style={
+              Object {
+                "marginTop": "40px",
+              }
+            }
+          >
+            <Col
+              md={
+                Object {
+                  "offset": 2,
+                  "size": 8,
+                }
+              }
+              sm="12"
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <div
+                className="col-sm-12 col-md-8 offset-md-2"
+              >
+                <h2>
+                  Your session has expired. Please click the link below to start a new session
+                </h2>
+                <Link
+                  to="/logout"
+                >
+                  <LinkAnchor
+                    href="/logout"
+                    navigate={[Function]}
+                  >
+                    <a
+                      href="/logout"
+                      onClick={[Function]}
+                    >
+                      Renew session
+                    </a>
+                  </LinkAnchor>
+                </Link>
+              </div>
+            </Col>
+          </div>
+        </Row>
+      </div>
+    </Container>
+  </TokenExpired>
+</Router>
+`;

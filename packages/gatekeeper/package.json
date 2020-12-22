@@ -31,7 +31,7 @@
   "author": "Ona Engineering",
   "license": "Apache-2.0",
   "dependencies": {
-    "@onaio/session-reducer": "^0.0.11",
+    "@onaio/session-reducer": "../js-tools/packages/session-reducer/",
     "client-oauth2": "^4.3.3",
     "query-string": "^6.4.2"
   },
