@@ -23,20 +23,17 @@ function getProviderFromOptions(options) {
   var accessTokenUri = options.accessTokenUri,
       authorizationUri = options.authorizationUri,
       clientId = options.clientId,
-      clientSecret = options.clientSecret,
       redirectUri = options.redirectUri,
       scopes = options.scopes,
       state = options.state;
-  return new _clientOauth["default"](_objectSpread({
+  return new _clientOauth["default"]({
     accessTokenUri: accessTokenUri,
     authorizationUri: authorizationUri,
     clientId: clientId,
     redirectUri: redirectUri,
     scopes: scopes,
     state: state
-  }, clientSecret && {
-    clientSecret: clientSecret
-  }));
+  });
 }
 
 function getOnadataUserInfo(apiResponse) {

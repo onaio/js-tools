@@ -16,23 +16,14 @@ export interface Providers {
  * @param {OauthOptions} options - the options for the oAuth provider
  */
 export function getProviderFromOptions(options: OauthOptions) {
-  const {
-    accessTokenUri,
-    authorizationUri,
-    clientId,
-    clientSecret,
-    redirectUri,
-    scopes,
-    state
-  } = options;
+  const { accessTokenUri, authorizationUri, clientId, redirectUri, scopes, state } = options;
   return new ClientOAuth2({
     accessTokenUri,
     authorizationUri,
     clientId,
     redirectUri,
     scopes,
-    state,
-    ...(clientSecret && { clientSecret })
+    state
   });
 }
 

@@ -55,15 +55,6 @@ exports[`/components/errors/Fallback render correctly 1`] = `
             }
           }
           tag="div"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-            ]
-          }
         >
           <div
             className="text-center row"
