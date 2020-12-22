@@ -50,7 +50,8 @@ export function getOnadataUserInfo(apiResponse: { [key: string]: any }): Session
 }
 
 /**
- * add given second to current time
+ * Takes current time and adds passes second
+ * Incase passed seconds are invalid it returns null
  * @param {number} seconds - number of seconds
  */
 const addSecToCurrentTime = (seconds: number) => {

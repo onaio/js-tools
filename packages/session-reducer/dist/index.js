@@ -16,11 +16,9 @@ exports.getApiToken = getApiToken;
 exports.getAccessToken = getAccessToken;
 exports.isTokenExpired = isTokenExpired;
 exports.getOauthProviderState = getOauthProviderState;
-exports.getTokenOrRedirect = exports.logOutUser = exports.updateExtraData = exports.authenticateUser = exports.LOGOUT = exports.UPDATE_DATA = exports.AUTHENTICATE = exports.initialState = exports.TokenStatus = exports.reducerName = void 0;
+exports.logOutUser = exports.updateExtraData = exports.authenticateUser = exports.LOGOUT = exports.UPDATE_DATA = exports.AUTHENTICATE = exports.initialState = exports.TokenStatus = exports.reducerName = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
-
-var _connectedReducerRegistry = require("@onaio/connected-reducer-registry");
 
 var _seamlessImmutable = _interopRequireDefault(require("seamless-immutable"));
 
@@ -34,9 +32,9 @@ var TokenStatus;
 exports.TokenStatus = TokenStatus;
 
 (function (TokenStatus) {
-  TokenStatus["expired"] = "Expired";
-  TokenStatus["active"] = "Active";
-  TokenStatus["timeNotFound"] = "Expiry Time Not Found";
+  TokenStatus["expired"] = "Token Expired";
+  TokenStatus["active"] = "Token Active";
+  TokenStatus["timeNotFound"] = "Token Expiry Time Not Found";
 })(TokenStatus || (exports.TokenStatus = TokenStatus = {}));
 
 var initialState = (0, _seamlessImmutable["default"])({
@@ -160,6 +158,13 @@ function getApiToken(state) {
 }
 
 function getAccessToken(state) {
+  var checkTokenStatus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var tokenStatus = getTokenExiryStatus(state);
+
+  if (tokenStatus === TokenStatus.expired && checkTokenStatus) {
+    return tokenStatus;
+  }
+
   var extraData = state[reducerName].extraData;
 
   if (extraData.oAuth2Data && extraData.oAuth2Data.access_token) {
@@ -172,19 +177,6 @@ function getAccessToken(state) {
 function isTokenExpired(state) {
   return !getAccessToken(state) ? true : getTokenExiryStatus(state) === TokenStatus.expired;
 }
-
-var getTokenOrRedirect = function getTokenOrRedirect(state) {
-  var redirectTo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var tokenStatus = getTokenExiryStatus(state);
-
-  if (tokenStatus === TokenStatus.expired && redirectTo) {
-    return _connectedReducerRegistry.history.push(redirectTo);
-  }
-
-  return getAccessToken(state);
-};
-
-exports.getTokenOrRedirect = getTokenOrRedirect;
 
 function getOauthProviderState(state) {
   var extraData = state[reducerName].extraData;

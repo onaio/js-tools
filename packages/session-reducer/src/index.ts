@@ -1,4 +1,3 @@
-import { history } from '@onaio/connected-reducer-registry';
 import { AnyAction, Store } from 'redux';
 import SeamlessImmutable from 'seamless-immutable';
 
@@ -6,9 +5,9 @@ export const reducerName = 'session';
 
 /** Available token status */
 export enum TokenStatus {
-  expired = 'Expired',
-  active = 'Active',
-  timeNotFound = 'Expiry Time Not Found'
+  expired = 'Token Expired',
+  active = 'Token Active',
+  timeNotFound = 'Token Expiry Time Not Found'
 }
 
 /** Interface for authenticate action */
@@ -202,7 +201,14 @@ export function getApiToken(state: Partial<Store>): string {
 /** get Access Token from the Redux store
  * @param {Partial<Store>} state - the redux store
  */
-export function getAccessToken(state: Partial<Store>): string | null {
+export function getAccessToken(
+  state: Partial<Store>,
+  checkTokenStatus: boolean = false
+): string | null {
+  const tokenStatus = getTokenExiryStatus(state);
+  if (tokenStatus === TokenStatus.expired && checkTokenStatus) {
+    return tokenStatus;
+  }
   const extraData = (state as any)[reducerName].extraData;
   if (extraData.oAuth2Data && extraData.oAuth2Data.access_token) {
     return extraData.oAuth2Data.access_token;
@@ -210,24 +216,12 @@ export function getAccessToken(state: Partial<Store>): string | null {
   return null;
 }
 
-/** check if token is updated as expired
+/** check if token is expired
  * @param {Partial<Store>} state - the redux store
  */
 export function isTokenExpired(state: Partial<Store>): boolean {
   return !getAccessToken(state) ? true : getTokenExiryStatus(state) === TokenStatus.expired;
 }
-
-/**
- * get token or redirect to session expired page
- * @param {Partial<Store>} state - the redux store
- */
-export const getTokenOrRedirect = (state: Partial<Store>, redirectTo: string | null = null) => {
-  const tokenStatus = getTokenExiryStatus(state);
-  if (tokenStatus === TokenStatus.expired && redirectTo) {
-    return history.push(redirectTo);
-  }
-  return getAccessToken(state);
-};
 
 /** get the oAuth2 provider state parameter from the Redux store
  * @param {Partial<Store>} state - the redux store

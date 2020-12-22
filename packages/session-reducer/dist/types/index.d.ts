@@ -3,9 +3,9 @@ import SeamlessImmutable from 'seamless-immutable';
 export declare const reducerName = 'session';
 /** Available token status */
 export declare enum TokenStatus {
-  expired = 'Expired',
-  active = 'Active',
-  timeNotFound = 'Expiry Time Not Found'
+  expired = 'Token Expired',
+  active = 'Token Active',
+  timeNotFound = 'Token Expiry Time Not Found'
 }
 /** Interface for authenticate action */
 export interface AuthenticateAction extends AnyAction {
@@ -116,19 +116,14 @@ export declare function getApiToken(state: Partial<Store>): string;
 /** get Access Token from the Redux store
  * @param {Partial<Store>} state - the redux store
  */
-export declare function getAccessToken(state: Partial<Store>): string | null;
-/** check if token is updated as expired
+export declare function getAccessToken(
+  state: Partial<Store>,
+  checkTokenStatus?: boolean
+): string | null;
+/** check if token is expired
  * @param {Partial<Store>} state - the redux store
  */
 export declare function isTokenExpired(state: Partial<Store>): boolean;
-/**
- * get token or redirect to session expired page
- * @param {Partial<Store>} state - the redux store
- */
-export declare const getTokenOrRedirect: (
-  state: Partial<Store<any, AnyAction>>,
-  redirectTo?: string | null
-) => string | void | null;
 /** get the oAuth2 provider state parameter from the Redux store
  * @param {Partial<Store>} state - the redux store
  */

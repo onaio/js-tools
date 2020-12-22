@@ -11,7 +11,6 @@ import session, {
   getRefreshToken,
   getRefreshTokenExpiryStatus,
   getTokenExiryStatus,
-  getTokenOrRedirect,
   getUser,
   isAuthenticated,
   isTokenExpired,
@@ -215,14 +214,15 @@ describe('reducers/session', () => {
     MockDate.set('1/30/2020');
     store.dispatch(authenticateUser(true, sessionUser, onadataUser));
     // when expiry time doen't exist;
-    expect(getTokenExiryStatus(store.getState())).toEqual('Expiry Time Not Found');
-    expect(getRefreshTokenExpiryStatus(store.getState())).toEqual('Expiry Time Not Found');
+    expect(getTokenExiryStatus(store.getState())).toEqual('Token Expiry Time Not Found');
+    expect(getRefreshTokenExpiryStatus(store.getState())).toEqual('Token Expiry Time Not Found');
     // get refresh token
     expect(getRefreshToken(store.getState())).toEqual(null);
     // token expired
     expect(isTokenExpired(store.getState())).toEqual(false);
-    // get token or redirect
-    expect(getTokenOrRedirect(store.getState(), sessionExpiredLink)).toEqual('hunter2');
+    // get token
+    expect(getAccessToken(store.getState())).toEqual('hunter2');
+    expect(getAccessToken(store.getState(), true)).toEqual('hunter2');
 
     // not exired
     let onadataUserCopy = {
@@ -235,12 +235,15 @@ describe('reducers/session', () => {
       }
     };
     store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
-    expect(getTokenExiryStatus(store.getState())).toEqual('Active');
-    expect(getRefreshTokenExpiryStatus(store.getState())).toEqual('Active');
+    expect(getTokenExiryStatus(store.getState())).toEqual('Token Active');
+    expect(getRefreshTokenExpiryStatus(store.getState())).toEqual('Token Active');
     // get refresh token
     expect(getRefreshToken(store.getState())).toEqual('12345');
-    // token expired
+    // token expired?
     expect(isTokenExpired(store.getState())).toEqual(false);
+    // get token
+    expect(getAccessToken(store.getState())).toEqual('hunter2');
+    expect(getAccessToken(store.getState(), true)).toEqual('hunter2');
 
     // exired
     onadataUserCopy = {
@@ -253,13 +256,13 @@ describe('reducers/session', () => {
       }
     };
     store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
-    expect(getTokenExiryStatus(store.getState())).toEqual('Expired');
-    expect(getRefreshTokenExpiryStatus(store.getState())).toEqual('Expired');
-    // token expired
+    expect(getTokenExiryStatus(store.getState())).toEqual('Token Expired');
+    expect(getRefreshTokenExpiryStatus(store.getState())).toEqual('Token Expired');
+    // token expired?
     expect(isTokenExpired(store.getState())).toEqual(true);
-    // get token or redirect
-    getTokenOrRedirect(store.getState(), sessionExpiredLink);
-    expect(window.location.pathname).toEqual(sessionExpiredLink);
+    // get token
+    expect(getAccessToken(store.getState())).toEqual('hunter2');
+    expect(getAccessToken(store.getState(), true)).toEqual('Token Expired');
 
     // token not available
     onadataUserCopy = {
