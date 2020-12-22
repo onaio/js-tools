@@ -98,8 +98,8 @@ export const openSRPSession = {
     ...openSRPFinalData,
     oAuth2Data: {
       ...openSRPFinalData.oAuth2Data,
-      refresh_expires_at: '2020-01-01T07:00:00.000Z',
-      token_expires_at: '2020-01-30T21:00:00.000Z'
+      refresh_expires_at: '2020-01-01T10:00:00.000Z',
+      token_expires_at: '2020-01-31T00:00:00.000Z'
     }
   },
   user: {
