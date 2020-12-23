@@ -11,6 +11,8 @@ For best results, we recommend that after you install this package, you set up t
 
 ## General purpose components
 
+### Logout component
+
 GateKeeper provides a simple logout component to sign out an authenticated user.
 
 You can use it in this way:
@@ -86,13 +88,50 @@ export default App
 
 the default logoutFunction prop supports logging out using GET requests to the logout URL of the authentication server; i.e. it does not support logging out by making POST requests. If your authentication server requires you to use a POST request, you need to pass in a suitable logout function.
 
-### Extending the logout component
+#### Extending the logout component
 
 The logout component takes these props that are useful in extending it:
 
 - **logoutActionCreator**: a [Redux action creator](https://redux.js.org/basics/actions#action-creators) to log out the user. The default that is used here is the `logoutUser` action creator from the [session reducer package](https://github.com/onaio/js-tools/tree/master/packages/session-reducer).
 - **redirectPath**: the path that the user will be redirected to if they are not logged in. Default is "/login".
 - **logoutFunction**(optional) a function that can provide custom logout behavior.
+
+### Token expiry component
+
+This component can be displayed when user access token has expired.
+
+Usage:
+
+```tsx
+import { ConnectedLogout, TokenExpired, TokenExpiredProps } from `@onaio/gatekeeper`;
+
+const App = () => {
+  const logoutUrl =  "/logout";
+  const tokenExpiredProps: TokenExpiredProps = {
+    logoutLinkText: 'Logout',
+    logoutUrl,
+    sessionExpiryText: 'Your session has expired. Please click on link below to login again',
+  }
+  return (
+    ...
+      <Router>
+        <div className={'main-container'}>
+          <Switch>
+            <Route path={logoutUrl} component={ConnectedLogout} />
+            <Route path="/session/expired" component={() => (
+              <TokenExpired {...tokenExpiredProps}/>
+            )} />
+          </Switch>
+        </div>
+      </Router>
+    ...
+  )
+}
+
+export default App
+```
+
+The text to be displayed on the component and a link to navigate to logout component or other components are passed as props.
 
 ## Working with oAuth2
 
