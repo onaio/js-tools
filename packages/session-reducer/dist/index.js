@@ -10,13 +10,14 @@ exports.isAuthenticated = isAuthenticated;
 exports.getExtraData = getExtraData;
 exports.getUser = getUser;
 exports.getRefreshToken = getRefreshToken;
-exports.getTokenExiryStatus = getTokenExiryStatus;
+exports.getAccessOrRefreshTokenStatus = getAccessOrRefreshTokenStatus;
+exports.getAcessTokenExiryStatus = getAcessTokenExiryStatus;
 exports.getRefreshTokenExpiryStatus = getRefreshTokenExpiryStatus;
 exports.getApiToken = getApiToken;
 exports.getAccessToken = getAccessToken;
 exports.isTokenExpired = isTokenExpired;
 exports.getOauthProviderState = getOauthProviderState;
-exports.logOutUser = exports.updateExtraData = exports.authenticateUser = exports.LOGOUT = exports.UPDATE_DATA = exports.AUTHENTICATE = exports.initialState = exports.TokenStatus = exports.reducerName = void 0;
+exports.TokenExpiresAtKeys = exports.logOutUser = exports.updateExtraData = exports.authenticateUser = exports.LOGOUT = exports.UPDATE_DATA = exports.AUTHENTICATE = exports.initialState = exports.TokenStatus = exports.reducerName = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -132,24 +133,30 @@ function getRefreshToken(state) {
   return null;
 }
 
-function getTokenExiryStatus(state) {
+var TokenExpiresAtKeys;
+exports.TokenExpiresAtKeys = TokenExpiresAtKeys;
+
+(function (TokenExpiresAtKeys) {
+  TokenExpiresAtKeys["acessTokenExpiresAt"] = "token_expires_at";
+  TokenExpiresAtKeys["refreshTokenExpiresAt"] = "refresh_expires_at";
+})(TokenExpiresAtKeys || (exports.TokenExpiresAtKeys = TokenExpiresAtKeys = {}));
+
+function getAccessOrRefreshTokenStatus(state, TokenExpiryTimeKey) {
   var extraData = state[reducerName].extraData;
 
-  if (extraData.oAuth2Data && extraData.oAuth2Data.token_expires_at) {
-    return new Date(Date.now()) >= new Date(extraData.oAuth2Data.token_expires_at) ? TokenStatus.expired : TokenStatus.active;
+  if (extraData.oAuth2Data && extraData.oAuth2Data[TokenExpiryTimeKey]) {
+    return new Date(Date.now()) >= new Date(extraData.oAuth2Data[TokenExpiryTimeKey]) ? TokenStatus.expired : TokenStatus.active;
   }
 
   return TokenStatus.timeNotFound;
 }
 
+function getAcessTokenExiryStatus(state) {
+  return getAccessOrRefreshTokenStatus(state, TokenExpiresAtKeys.acessTokenExpiresAt);
+}
+
 function getRefreshTokenExpiryStatus(state) {
-  var extraData = state[reducerName].extraData;
-
-  if (extraData.oAuth2Data && extraData.oAuth2Data.refresh_expires_at) {
-    return new Date(Date.now()) >= new Date(extraData.oAuth2Data.refresh_expires_at) ? TokenStatus.expired : TokenStatus.active;
-  }
-
-  return TokenStatus.timeNotFound;
+  return getAccessOrRefreshTokenStatus(state, TokenExpiresAtKeys.refreshTokenExpiresAt);
 }
 
 function getApiToken(state) {
@@ -159,7 +166,7 @@ function getApiToken(state) {
 
 function getAccessToken(state) {
   var checkTokenStatus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-  var tokenStatus = getTokenExiryStatus(state);
+  var tokenStatus = getAcessTokenExiryStatus(state);
 
   if (tokenStatus === TokenStatus.expired && checkTokenStatus) {
     return tokenStatus;
@@ -175,7 +182,7 @@ function getAccessToken(state) {
 }
 
 function isTokenExpired(state) {
-  return !getAccessToken(state) ? true : getTokenExiryStatus(state) === TokenStatus.expired;
+  return !getAccessToken(state) ? true : getAcessTokenExiryStatus(state) === TokenStatus.expired;
 }
 
 function getOauthProviderState(state) {

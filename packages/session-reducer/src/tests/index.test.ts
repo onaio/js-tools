@@ -5,17 +5,16 @@ import thunk from 'redux-thunk';
 import session, {
   authenticateUser,
   getAccessToken,
+  getAcessTokenExiryStatus,
   getApiToken,
   getExtraData,
   getOauthProviderState,
   getRefreshToken,
   getRefreshTokenExpiryStatus,
-  getTokenExiryStatus,
   getUser,
   isAuthenticated,
   isTokenExpired,
   logOutUser,
-  TokenStatus,
   updateExtraData
 } from '..';
 import {
@@ -214,7 +213,7 @@ describe('reducers/session', () => {
     MockDate.set('1/30/2020');
     store.dispatch(authenticateUser(true, sessionUser, onadataUser));
     // when expiry time doen't exist;
-    expect(getTokenExiryStatus(store.getState())).toEqual('Token Expiry Time Not Found');
+    expect(getAcessTokenExiryStatus(store.getState())).toEqual('Token Expiry Time Not Found');
     expect(getRefreshTokenExpiryStatus(store.getState())).toEqual('Token Expiry Time Not Found');
     // get refresh token
     expect(getRefreshToken(store.getState())).toEqual(null);
@@ -235,7 +234,7 @@ describe('reducers/session', () => {
       }
     };
     store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
-    expect(getTokenExiryStatus(store.getState())).toEqual('Token Active');
+    expect(getAcessTokenExiryStatus(store.getState())).toEqual('Token Active');
     expect(getRefreshTokenExpiryStatus(store.getState())).toEqual('Token Active');
     // get refresh token
     expect(getRefreshToken(store.getState())).toEqual('12345');
@@ -256,7 +255,7 @@ describe('reducers/session', () => {
       }
     };
     store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
-    expect(getTokenExiryStatus(store.getState())).toEqual('Token Expired');
+    expect(getAcessTokenExiryStatus(store.getState())).toEqual('Token Expired');
     expect(getRefreshTokenExpiryStatus(store.getState())).toEqual('Token Expired');
     // token expired?
     expect(isTokenExpired(store.getState())).toEqual(true);

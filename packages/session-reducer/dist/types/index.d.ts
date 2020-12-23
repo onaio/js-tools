@@ -101,10 +101,24 @@ export declare function getUser(state: Partial<Store>): User;
  * @param {Partial<Store>} state - the redux store
  */
 export declare function getRefreshToken(state: Partial<Store>): string | null;
+/** access and refresh tokens expiry time keys */
+export declare enum TokenExpiresAtKeys {
+  acessTokenExpiresAt = 'token_expires_at',
+  refreshTokenExpiresAt = 'refresh_expires_at'
+}
+/**
+ * gets the status of either acess or refresh token
+ * @param {Partial<Store>} state - the redux store
+ * @param {TokenExpiresAtKeys} TokenExpiryTimeKey - key of either acess or refresh token expiry time
+ */
+export declare function getAccessOrRefreshTokenStatus(
+  state: Partial<Store>,
+  TokenExpiryTimeKey: TokenExpiresAtKeys
+): TokenStatus;
 /** check if token is expired
  * @param {Partial<Store>} state - the redux store
  */
-export declare function getTokenExiryStatus(state: Partial<Store>): TokenStatus;
+export declare function getAcessTokenExiryStatus(state: Partial<Store>): TokenStatus;
 /** check if refresh token is expired
  * @param {Partial<Store>} state - the redux store
  */
