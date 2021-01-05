@@ -149,18 +149,27 @@ export const fetchState = async (
     });
 };
 
+/** describes options to be passed to refreshToken as third argument */
+interface RefreshTokenActionCreators {
+  authenticateActionCreator?: ActionCreator<AuthenticateAction>;
+  recordResultActionCreator?: ActionCreator<RecordAction>;
+  errorCallbackFn?: ErrorCallback;
+}
+
 /**
- * Refresh token and return new token
+ * call express API to Refresh token and return new token
  * @param {string} url - token refresh endpoint
  * @param {Dispatch<AnyAction>} dispatch - dispatch action
- * @param {ActionCreator<AuthenticateAction>} authenticateActionCreator - the authenticate action creator function
- * @param {ActionCreator<RecordAction>} recordResultActionCreator - the recordResult action creator function
+ * @param {RefreshTokenActionCreators} options - optional params
  */
-export const refreshToken = (
+export const refreshToken = async (
   url: string,
   dispatch: Dispatch<AnyAction>,
-  authenticateActionCreator: ActionCreator<AuthenticateAction> = authenticateUser,
-  recordResultActionCreator: ActionCreator<RecordAction> = recordResult
+  {
+    authenticateActionCreator = authenticateUser,
+    errorCallbackFn = errorCallback,
+    recordResultActionCreator = recordResult
+  }: RefreshTokenActionCreators
 ) => {
   return fetch(url)
     .then(res => {
@@ -173,7 +182,7 @@ export const refreshToken = (
     .then(data => {
       const { session } = data;
       if (!session) {
-        throw new Error(data);
+        throw new Error('Failed to refresh token');
       }
       const { authenticated, user, extraData } = session;
       const access_token = extraData?.oAuth2Data?.access_token;
@@ -182,6 +191,6 @@ export const refreshToken = (
       return access_token;
     })
     .catch(err => {
-      throw new Error(err);
+      errorCallbackFn(err);
     });
 };
