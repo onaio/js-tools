@@ -77,8 +77,8 @@ export function getOpenSRPUserInfo(apiResponse: { [key: string]: any }): Session
       ...responseCopy,
       oAuth2Data: {
         ...apiResponse.oAuth2Data,
-        ...(tokenExpiryTime && { refresh_expires_at: tokenExpiryTime }),
-        ...(refreshExpiryTime && { token_expires_at: refreshExpiryTime })
+        ...(tokenExpiryTime && { token_expires_at: tokenExpiryTime }),
+        ...(refreshExpiryTime && { refresh_expires_at: refreshExpiryTime })
       }
     };
   }

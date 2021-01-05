@@ -73,9 +73,9 @@ function getOpenSRPUserInfo(apiResponse) {
     var refreshExpiryTime = addSecToCurrentTime(refresh_expires_in);
     responseCopy = _objectSpread({}, responseCopy, {
       oAuth2Data: _objectSpread({}, apiResponse.oAuth2Data, {}, tokenExpiryTime && {
-        refresh_expires_at: tokenExpiryTime
+        token_expires_at: tokenExpiryTime
       }, {}, refreshExpiryTime && {
-        token_expires_at: refreshExpiryTime
+        refresh_expires_at: refreshExpiryTime
       })
     });
   }
