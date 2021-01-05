@@ -45,7 +45,7 @@ import {
   Providers,
   UserInfoFnType
 } from './helpers/oauth';
-import { fetchUser, oauth2Callback } from './helpers/services';
+import { fetchUser, oauth2Callback, refreshToken } from './helpers/services';
 import { errorCallback, ErrorCallback } from './helpers/utils';
 export {
   defaultLogoutProps,
@@ -83,6 +83,7 @@ export {
   SuccessfulLogin,
   SuccessfulLoginProps,
   RecordAction,
+  refreshToken,
   RenderErrorComponent,
   RouteParams,
   UserInfoFnType,

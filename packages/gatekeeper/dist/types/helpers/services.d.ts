@@ -1,6 +1,6 @@
 import { AuthenticateAction, LogOutAction } from '@onaio/session-reducer';
 import ClientOAuth2 from 'client-oauth2';
-import { ActionCreator } from 'redux';
+import { ActionCreator, AnyAction, Dispatch } from 'redux';
 import { AuthenticationProgressAction, RecordAction } from '../ducks/gatekeeper';
 import { UserInfoFnType } from './oauth';
 import { ErrorCallback } from './utils';
@@ -63,4 +63,17 @@ export declare const fetchState: (
     logoutActionCreator
   }: FetchStateActionCreators
 ) => Promise<void>;
+/**
+ * Refresh token and return new token
+ * @param {string} url - token refresh endpoint
+ * @param {Dispatch<AnyAction>} dispatch - dispatch action
+ * @param {ActionCreator<AuthenticateAction>} authenticateActionCreator - the authenticate action creator function
+ * @param {ActionCreator<RecordAction>} recordResultActionCreator - the recordResult action creator function
+ */
+export declare const refreshToken: (
+  url: string,
+  dispatch: Dispatch<AnyAction>,
+  authenticateActionCreator?: ActionCreator<AuthenticateAction>,
+  recordResultActionCreator?: ActionCreator<RecordAction>
+) => Promise<any>;
 export {};

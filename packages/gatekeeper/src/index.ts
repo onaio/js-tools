@@ -51,7 +51,7 @@ import {
   UserInfoFnType
 } from './helpers/oauth';
 
-import { fetchUser, oauth2Callback } from './helpers/services';
+import { fetchUser, oauth2Callback, refreshToken } from './helpers/services';
 
 import { TokenExpired, TokenExpiredProps } from './components/TokenExpiry';
 import { errorCallback, ErrorCallback } from './helpers/utils';
@@ -92,6 +92,7 @@ export {
   SuccessfulLogin,
   SuccessfulLoginProps,
   RecordAction,
+  refreshToken,
   RenderErrorComponent,
   RouteParams,
   UserInfoFnType,

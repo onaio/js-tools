@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.oauth2Callback = oauth2Callback;
 exports.fetchUser = fetchUser;
-exports.fetchState = void 0;
+exports.refreshToken = exports.fetchState = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -208,3 +208,35 @@ var fetchState = function () {
 }();
 
 exports.fetchState = fetchState;
+
+var refreshToken = function refreshToken(url, dispatch) {
+  var authenticateActionCreator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _sessionReducer.authenticateUser;
+  var recordResultActionCreator = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : _gatekeeper.recordResult;
+  return fetch(url).then(function (res) {
+    if (res.ok) {
+      return res.json();
+    } else {
+      throw new Error('Failed to refresh token');
+    }
+  }).then(function (data) {
+    var _extraData$oAuth2Data;
+
+    var session = data.session;
+
+    if (!session) {
+      throw new Error(data);
+    }
+
+    var authenticated = session.authenticated,
+        user = session.user,
+        extraData = session.extraData;
+    var access_token = extraData === null || extraData === void 0 ? void 0 : (_extraData$oAuth2Data = extraData.oAuth2Data) === null || _extraData$oAuth2Data === void 0 ? void 0 : _extraData$oAuth2Data.access_token;
+    dispatch(authenticateActionCreator(authenticated, user, extraData));
+    dispatch(recordResultActionCreator(true, extraData));
+    return access_token;
+  })["catch"](function (err) {
+    throw new Error(err);
+  });
+};
+
+exports.refreshToken = refreshToken;
