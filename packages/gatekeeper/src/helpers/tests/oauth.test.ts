@@ -1,3 +1,4 @@
+import MockDate from 'mockdate';
 import {
   getOnadataUserInfo,
   getOpenSRPUserInfo,
@@ -12,6 +13,7 @@ describe('gatekeeper/oAuth', () => {
   });
 
   it('getProviderFromOptions should work', async () => {
+    MockDate.set('1/1/2020');
     const expected = fixtures.onadataAuth;
     const providersObj: Providers = {
       onadata: {
@@ -36,4 +38,6 @@ describe('gatekeeper/oAuth', () => {
   it('getOpenSRPUserInfo should work', async () => {
     expect(getOpenSRPUserInfo(fixtures.openSRPFinalData)).toEqual(fixtures.openSRPSession);
   });
+
+  MockDate.reset();
 });

@@ -9,10 +9,15 @@ exports["default"] = reducer;
 exports.isAuthenticated = isAuthenticated;
 exports.getExtraData = getExtraData;
 exports.getUser = getUser;
+exports.getRefreshToken = getRefreshToken;
+exports.getAccessOrRefreshTokenStatus = getAccessOrRefreshTokenStatus;
+exports.getAcessTokenExiryStatus = getAcessTokenExiryStatus;
+exports.getRefreshTokenExpiryStatus = getRefreshTokenExpiryStatus;
 exports.getApiToken = getApiToken;
 exports.getAccessToken = getAccessToken;
+exports.isTokenExpired = isTokenExpired;
 exports.getOauthProviderState = getOauthProviderState;
-exports.logOutUser = exports.updateExtraData = exports.authenticateUser = exports.LOGOUT = exports.UPDATE_DATA = exports.AUTHENTICATE = exports.initialState = exports.reducerName = void 0;
+exports.TokenExpiresAtKeys = exports.logOutUser = exports.updateExtraData = exports.authenticateUser = exports.LOGOUT = exports.UPDATE_DATA = exports.AUTHENTICATE = exports.initialState = exports.TokenStatus = exports.reducerName = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -20,10 +25,19 @@ var _seamlessImmutable = _interopRequireDefault(require("seamless-immutable"));
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var reducerName = 'session';
 exports.reducerName = reducerName;
+var TokenStatus;
+exports.TokenStatus = TokenStatus;
+
+(function (TokenStatus) {
+  TokenStatus["expired"] = "Token Expired";
+  TokenStatus["active"] = "Token Active";
+  TokenStatus["timeNotFound"] = "Token Expiry Time Not Found";
+})(TokenStatus || (exports.TokenStatus = TokenStatus = {}));
+
 var initialState = (0, _seamlessImmutable["default"])({
   authenticated: false,
   extraData: {},
@@ -109,12 +123,55 @@ function getUser(state) {
   return state[reducerName].user;
 }
 
+function getRefreshToken(state) {
+  var extraData = state[reducerName].extraData;
+
+  if (extraData.oAuth2Data && extraData.oAuth2Data.refresh_token) {
+    return extraData.oAuth2Data.refresh_token;
+  }
+
+  return null;
+}
+
+var TokenExpiresAtKeys;
+exports.TokenExpiresAtKeys = TokenExpiresAtKeys;
+
+(function (TokenExpiresAtKeys) {
+  TokenExpiresAtKeys["acessTokenExpiresAt"] = "token_expires_at";
+  TokenExpiresAtKeys["refreshTokenExpiresAt"] = "refresh_expires_at";
+})(TokenExpiresAtKeys || (exports.TokenExpiresAtKeys = TokenExpiresAtKeys = {}));
+
+function getAccessOrRefreshTokenStatus(state, TokenExpiryTimeKey) {
+  var extraData = state[reducerName].extraData;
+
+  if (extraData.oAuth2Data && extraData.oAuth2Data[TokenExpiryTimeKey]) {
+    return new Date(Date.now()) >= new Date(extraData.oAuth2Data[TokenExpiryTimeKey]) ? TokenStatus.expired : TokenStatus.active;
+  }
+
+  return TokenStatus.timeNotFound;
+}
+
+function getAcessTokenExiryStatus(state) {
+  return getAccessOrRefreshTokenStatus(state, TokenExpiresAtKeys.acessTokenExpiresAt);
+}
+
+function getRefreshTokenExpiryStatus(state) {
+  return getAccessOrRefreshTokenStatus(state, TokenExpiresAtKeys.refreshTokenExpiresAt);
+}
+
 function getApiToken(state) {
   var extraData = state[reducerName].extraData;
   return extraData.api_token || null;
 }
 
 function getAccessToken(state) {
+  var checkTokenStatus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var tokenStatus = getAcessTokenExiryStatus(state);
+
+  if (tokenStatus === TokenStatus.expired && checkTokenStatus) {
+    return tokenStatus;
+  }
+
   var extraData = state[reducerName].extraData;
 
   if (extraData.oAuth2Data && extraData.oAuth2Data.access_token) {
@@ -122,6 +179,10 @@ function getAccessToken(state) {
   }
 
   return null;
+}
+
+function isTokenExpired(state) {
+  return !getAccessToken(state) ? true : getAcessTokenExiryStatus(state) === TokenStatus.expired;
 }
 
 function getOauthProviderState(state) {

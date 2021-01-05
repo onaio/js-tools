@@ -23,6 +23,7 @@ import OauthLogin, {
   useOAuthLogin
 } from './components/login';
 import ConnectedLogout, { defaultLogoutProps, Logout, LogoutProps } from './components/logout';
+import { TokenExpired, TokenExpiredProps } from './components/TokenExpiry';
 import gateKeeperReducer, {
   GateKeeperActionTypes,
   GateKeeperState,
@@ -86,6 +87,8 @@ export {
   RouteParams,
   UserInfoFnType,
   RECORD,
+  TokenExpired,
+  TokenExpiredProps,
   ConnectedAPICallback,
   defaultAPICallbackProps,
   APICallback,

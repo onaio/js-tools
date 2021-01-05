@@ -53,6 +53,7 @@ import {
 
 import { fetchUser, oauth2Callback } from './helpers/services';
 
+import { TokenExpired, TokenExpiredProps } from './components/TokenExpiry';
 import { errorCallback, ErrorCallback } from './helpers/utils';
 
 export {
@@ -95,6 +96,8 @@ export {
   RouteParams,
   UserInfoFnType,
   RECORD,
+  TokenExpired,
+  TokenExpiredProps,
   ConnectedAPICallback,
   defaultAPICallbackProps,
   APICallback,

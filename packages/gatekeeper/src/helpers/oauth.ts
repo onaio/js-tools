@@ -49,6 +49,18 @@ export function getOnadataUserInfo(apiResponse: { [key: string]: any }): Session
   };
 }
 
+/**
+ * Takes current time and adds passes second
+ * Incase passed seconds are invalid it returns null
+ * @param {number} seconds - number of seconds
+ */
+const addSecToCurrentTime = (seconds: number) => {
+  const date = new Date(Date.now());
+  return !isNaN(Number(seconds))
+    ? new Date(date.setSeconds(date.getSeconds() + Number(seconds))).toISOString()
+    : null;
+};
+
 /** Function to get OpenSRP user info from api response object
  * @param {{[key: string]: any }} apiResponse - the API response object
  */
@@ -56,9 +68,23 @@ export function getOpenSRPUserInfo(apiResponse: { [key: string]: any }): Session
   if (!apiResponse.username) {
     throw new Error(OAUTH2_CALLBACK_ERROR);
   }
+  let responseCopy = { ...apiResponse };
+  if (apiResponse.oAuth2Data) {
+    const { expires_in, refresh_expires_in } = apiResponse.oAuth2Data;
+    const tokenExpiryTime = addSecToCurrentTime(expires_in);
+    const refreshExpiryTime = addSecToCurrentTime(refresh_expires_in);
+    responseCopy = {
+      ...responseCopy,
+      oAuth2Data: {
+        ...apiResponse.oAuth2Data,
+        ...(tokenExpiryTime && { token_expires_at: tokenExpiryTime }),
+        ...(refreshExpiryTime && { refresh_expires_at: refreshExpiryTime })
+      }
+    };
+  }
   return {
     authenticated: true,
-    extraData: apiResponse,
+    extraData: responseCopy,
     user: {
       email: '',
       gravatar: '',

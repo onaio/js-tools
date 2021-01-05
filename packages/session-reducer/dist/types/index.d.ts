@@ -1,6 +1,12 @@
 import { AnyAction, Store } from 'redux';
 import SeamlessImmutable from 'seamless-immutable';
 export declare const reducerName = 'session';
+/** Available token status */
+export declare enum TokenStatus {
+  expired = 'Token Expired',
+  active = 'Token Active',
+  timeNotFound = 'Token Expiry Time Not Found'
+}
 /** Interface for authenticate action */
 export interface AuthenticateAction extends AnyAction {
   authenticated: boolean;
@@ -53,7 +59,7 @@ export default function reducer(
 ): ImmutableSessionState;
 /** authenticate user action type */
 export declare const AUTHENTICATE = '@onaio/session-reducer/reducer/AUTHENTICATE';
-/** authenticate user action type */
+/** update extra data action type */
 export declare const UPDATE_DATA = '@onaio/session-reducer/reducer/UPDATE_DATA';
 /** logout user action type */
 export declare const LOGOUT = '@onaio/session-reducer/reducer/LOGOUT';
@@ -91,6 +97,32 @@ export declare function getExtraData(
  * @param {Partial<Store>} state - the redux store
  */
 export declare function getUser(state: Partial<Store>): User;
+/** get Refresh Token from the Redux store
+ * @param {Partial<Store>} state - the redux store
+ */
+export declare function getRefreshToken(state: Partial<Store>): string | null;
+/** access and refresh tokens expiry time keys */
+export declare enum TokenExpiresAtKeys {
+  acessTokenExpiresAt = 'token_expires_at',
+  refreshTokenExpiresAt = 'refresh_expires_at'
+}
+/**
+ * gets the status of either acess or refresh token
+ * @param {Partial<Store>} state - the redux store
+ * @param {TokenExpiresAtKeys} TokenExpiryTimeKey - key of either acess or refresh token expiry time
+ */
+export declare function getAccessOrRefreshTokenStatus(
+  state: Partial<Store>,
+  TokenExpiryTimeKey: TokenExpiresAtKeys
+): TokenStatus;
+/** check if token is expired
+ * @param {Partial<Store>} state - the redux store
+ */
+export declare function getAcessTokenExiryStatus(state: Partial<Store>): TokenStatus;
+/** check if refresh token is expired
+ * @param {Partial<Store>} state - the redux store
+ */
+export declare function getRefreshTokenExpiryStatus(state: Partial<Store>): TokenStatus;
 /** get API Token from the Redux store
  * @param {Partial<Store>} state - the redux store
  */
@@ -98,7 +130,14 @@ export declare function getApiToken(state: Partial<Store>): string;
 /** get Access Token from the Redux store
  * @param {Partial<Store>} state - the redux store
  */
-export declare function getAccessToken(state: Partial<Store>): string | null;
+export declare function getAccessToken(
+  state: Partial<Store>,
+  checkTokenStatus?: boolean
+): string | null;
+/** check if token is expired
+ * @param {Partial<Store>} state - the redux store
+ */
+export declare function isTokenExpired(state: Partial<Store>): boolean;
 /** get the oAuth2 provider state parameter from the Redux store
  * @param {Partial<Store>} state - the redux store
  */

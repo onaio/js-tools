@@ -3,6 +3,13 @@ import SeamlessImmutable from 'seamless-immutable';
 
 export const reducerName = 'session';
 
+/** Available token status */
+export enum TokenStatus {
+  expired = 'Token Expired',
+  active = 'Token Active',
+  timeNotFound = 'Token Expiry Time Not Found'
+}
+
 /** Interface for authenticate action */
 export interface AuthenticateAction extends AnyAction {
   authenticated: boolean;
@@ -88,7 +95,7 @@ export default function reducer(
 /** authenticate user action type */
 export const AUTHENTICATE = '@onaio/session-reducer/reducer/AUTHENTICATE';
 
-/** authenticate user action type */
+/** update extra data action type */
 export const UPDATE_DATA = '@onaio/session-reducer/reducer/UPDATE_DATA';
 
 /** logout user action type */
@@ -146,6 +153,54 @@ export function getUser(state: Partial<Store>): User {
   return (state as any)[reducerName].user;
 }
 
+/** get Refresh Token from the Redux store
+ * @param {Partial<Store>} state - the redux store
+ */
+export function getRefreshToken(state: Partial<Store>): string | null {
+  const extraData = (state as any)[reducerName].extraData;
+  if (extraData.oAuth2Data && extraData.oAuth2Data.refresh_token) {
+    return extraData.oAuth2Data.refresh_token;
+  }
+  return null;
+}
+
+/** access and refresh tokens expiry time keys */
+export enum TokenExpiresAtKeys {
+  acessTokenExpiresAt = 'token_expires_at',
+  refreshTokenExpiresAt = 'refresh_expires_at'
+}
+/**
+ * gets the status of either acess or refresh token
+ * @param {Partial<Store>} state - the redux store
+ * @param {TokenExpiresAtKeys} TokenExpiryTimeKey - key of either acess or refresh token expiry time
+ */
+export function getAccessOrRefreshTokenStatus(
+  state: Partial<Store>,
+  TokenExpiryTimeKey: TokenExpiresAtKeys
+): TokenStatus {
+  const extraData = (state as any)[reducerName].extraData;
+  if (extraData.oAuth2Data && extraData.oAuth2Data[TokenExpiryTimeKey]) {
+    return new Date(Date.now()) >= new Date(extraData.oAuth2Data[TokenExpiryTimeKey])
+      ? TokenStatus.expired
+      : TokenStatus.active;
+  }
+  return TokenStatus.timeNotFound;
+}
+
+/** check if token is expired
+ * @param {Partial<Store>} state - the redux store
+ */
+export function getAcessTokenExiryStatus(state: Partial<Store>): TokenStatus {
+  return getAccessOrRefreshTokenStatus(state, TokenExpiresAtKeys.acessTokenExpiresAt);
+}
+
+/** check if refresh token is expired
+ * @param {Partial<Store>} state - the redux store
+ */
+export function getRefreshTokenExpiryStatus(state: Partial<Store>): TokenStatus {
+  return getAccessOrRefreshTokenStatus(state, TokenExpiresAtKeys.refreshTokenExpiresAt);
+}
+
 /** get API Token from the Redux store
  * @param {Partial<Store>} state - the redux store
  */
@@ -157,12 +212,26 @@ export function getApiToken(state: Partial<Store>): string {
 /** get Access Token from the Redux store
  * @param {Partial<Store>} state - the redux store
  */
-export function getAccessToken(state: Partial<Store>): string | null {
+export function getAccessToken(
+  state: Partial<Store>,
+  checkTokenStatus: boolean = false
+): string | null {
+  const tokenStatus = getAcessTokenExiryStatus(state);
+  if (tokenStatus === TokenStatus.expired && checkTokenStatus) {
+    return tokenStatus;
+  }
   const extraData = (state as any)[reducerName].extraData;
   if (extraData.oAuth2Data && extraData.oAuth2Data.access_token) {
     return extraData.oAuth2Data.access_token;
   }
   return null;
+}
+
+/** check if token is expired
+ * @param {Partial<Store>} state - the redux store
+ */
+export function isTokenExpired(state: Partial<Store>): boolean {
+  return !getAccessToken(state) ? true : getAcessTokenExiryStatus(state) === TokenStatus.expired;
 }
 
 /** get the oAuth2 provider state parameter from the Redux store

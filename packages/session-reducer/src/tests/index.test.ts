@@ -1,14 +1,19 @@
+import MockDate from 'mockdate';
 import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { FlushThunks } from 'redux-testkit';
 import thunk from 'redux-thunk';
 import session, {
   authenticateUser,
   getAccessToken,
+  getAcessTokenExiryStatus,
   getApiToken,
   getExtraData,
   getOauthProviderState,
+  getRefreshToken,
+  getRefreshTokenExpiryStatus,
   getUser,
   isAuthenticated,
+  isTokenExpired,
   logOutUser,
   updateExtraData
 } from '..';
@@ -201,5 +206,71 @@ describe('reducers/session', () => {
       },
       d: 'Ona'
     });
+  });
+
+  it('should check if user token or refresh token is expired', () => {
+    const sessionExpiredLink = '/session/expired';
+    MockDate.set('1/30/2020');
+    store.dispatch(authenticateUser(true, sessionUser, onadataUser));
+    // when expiry time doen't exist;
+    expect(getAcessTokenExiryStatus(store.getState())).toEqual('Token Expiry Time Not Found');
+    expect(getRefreshTokenExpiryStatus(store.getState())).toEqual('Token Expiry Time Not Found');
+    // get refresh token
+    expect(getRefreshToken(store.getState())).toEqual(null);
+    // token expired
+    expect(isTokenExpired(store.getState())).toEqual(false);
+    // get token
+    expect(getAccessToken(store.getState())).toEqual('hunter2');
+    expect(getAccessToken(store.getState(), true)).toEqual('hunter2');
+
+    // not exired
+    let onadataUserCopy = {
+      ...onadataUser,
+      oAuth2Data: {
+        ...onadataUser.oAuth2Data,
+        refresh_expires_at: '2020-2-18T12:47:18.486Z',
+        refresh_token: '12345',
+        token_expires_at: '2020-03-17T11:47:18.486Z'
+      }
+    };
+    store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
+    expect(getAcessTokenExiryStatus(store.getState())).toEqual('Token Active');
+    expect(getRefreshTokenExpiryStatus(store.getState())).toEqual('Token Active');
+    // get refresh token
+    expect(getRefreshToken(store.getState())).toEqual('12345');
+    // token expired?
+    expect(isTokenExpired(store.getState())).toEqual(false);
+    // get token
+    expect(getAccessToken(store.getState())).toEqual('hunter2');
+    expect(getAccessToken(store.getState(), true)).toEqual('hunter2');
+
+    // exired
+    onadataUserCopy = {
+      ...onadataUserCopy,
+      oAuth2Data: {
+        ...onadataUserCopy.oAuth2Data,
+        refresh_expires_at: '2020-01-29T12:47:18.486Z',
+        refresh_token: '12345',
+        token_expires_at: '2020-01-29T11:47:18.486Z'
+      }
+    };
+    store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
+    expect(getAcessTokenExiryStatus(store.getState())).toEqual('Token Expired');
+    expect(getRefreshTokenExpiryStatus(store.getState())).toEqual('Token Expired');
+    // token expired?
+    expect(isTokenExpired(store.getState())).toEqual(true);
+    // get token
+    expect(getAccessToken(store.getState())).toEqual('hunter2');
+    expect(getAccessToken(store.getState(), true)).toEqual('Token Expired');
+
+    // token not available
+    onadataUserCopy = {
+      ...onadataUserCopy,
+      oAuth2Data: {} as any
+    };
+    store.dispatch(authenticateUser(true, sessionUser, onadataUserCopy));
+    expect(isTokenExpired(store.getState())).toEqual(true);
+
+    MockDate.reset();
   });
 });

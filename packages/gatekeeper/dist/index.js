@@ -263,6 +263,18 @@ Object.defineProperty(exports, "oauth2Callback", {
     return _services.oauth2Callback;
   }
 });
+Object.defineProperty(exports, "TokenExpired", {
+  enumerable: true,
+  get: function get() {
+    return _TokenExpiry.TokenExpired;
+  }
+});
+Object.defineProperty(exports, "TokenExpiredProps", {
+  enumerable: true,
+  get: function get() {
+    return _TokenExpiry.TokenExpiredProps;
+  }
+});
 Object.defineProperty(exports, "errorCallback", {
   enumerable: true,
   get: function get() {
@@ -291,5 +303,7 @@ var _gatekeeper = _interopRequireWildcard(require("./ducks/gatekeeper"));
 var _oauth = require("./helpers/oauth");
 
 var _services = require("./helpers/services");
+
+var _TokenExpiry = require("./components/TokenExpiry");
 
 var _utils2 = require("./helpers/utils");
