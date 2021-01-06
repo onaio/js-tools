@@ -5,15 +5,14 @@ import {
   logOutUser
 } from '@onaio/session-reducer';
 import ClientOAuth2 from 'client-oauth2';
-import { Action } from 'history';
-import { ActionCreator } from 'redux';
+import { ActionCreator, AnyAction, Dispatch } from 'redux';
 import {
   authenticationProgress,
   AuthenticationProgressAction,
   RecordAction,
   recordResult
 } from '../ducks/gatekeeper';
-import { GENERIC_ERROR, OAUTH2_HTTP_ERROR } from './constants';
+import { GENERIC_ERROR, OAUTH2_HTTP_ERROR, TOKEN_REFRESH_FAILED } from './constants';
 import { getOnadataUserInfo, UserInfoFnType } from './oauth';
 import { ErrorCallback, errorCallback } from './utils';
 
@@ -146,6 +145,52 @@ export const fetchState = async (
     .catch(err => {
       recordResultActionCreator(false, { err });
       authenticationProgressCreator(false);
+      errorCallbackFn(err);
+    });
+};
+
+/** describes options to be passed to refreshToken as third argument */
+interface RefreshTokenActionCreators {
+  authenticateActionCreator?: ActionCreator<AuthenticateAction>;
+  recordResultActionCreator?: ActionCreator<RecordAction>;
+  errorCallbackFn?: ErrorCallback;
+}
+
+/**
+ * call express API to Refresh token and return new token
+ * @param {string} url - token refresh endpoint
+ * @param {Dispatch<AnyAction>} dispatch - dispatch action
+ * @param {RefreshTokenActionCreators} options - optional params
+ */
+export const refreshToken = async (
+  url: string,
+  dispatch: Dispatch<AnyAction>,
+  {
+    authenticateActionCreator = authenticateUser,
+    errorCallbackFn = errorCallback,
+    recordResultActionCreator = recordResult
+  }: RefreshTokenActionCreators
+) => {
+  return fetch(url)
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error(TOKEN_REFRESH_FAILED);
+      }
+    })
+    .then(data => {
+      const { session } = data;
+      if (!session) {
+        throw new Error(TOKEN_REFRESH_FAILED);
+      }
+      const { authenticated, user, extraData } = session;
+      const access_token = extraData?.oAuth2Data?.access_token;
+      dispatch(authenticateActionCreator(authenticated, user, extraData));
+      dispatch(recordResultActionCreator(true, extraData));
+      return access_token;
+    })
+    .catch(err => {
       errorCallbackFn(err);
     });
 };

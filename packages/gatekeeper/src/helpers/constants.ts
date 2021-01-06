@@ -27,3 +27,6 @@ export type PLEASE_WAIT = typeof PLEASE_WAIT;
 
 export const WELCOME_BACK = 'Welcome back, ';
 export type WELCOME_BACK = typeof WELCOME_BACK;
+
+export const TOKEN_REFRESH_FAILED = 'Failed to refresh token';
+export type TOKEN_REFRESH_FAILED = typeof TOKEN_REFRESH_FAILED;
