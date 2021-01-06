@@ -222,7 +222,7 @@ var refreshToken = function () {
               if (res.ok) {
                 return res.json();
               } else {
-                throw new Error('Failed to refresh token');
+                throw new Error(_constants.TOKEN_REFRESH_FAILED);
               }
             }).then(function (data) {
               var _extraData$oAuth2Data;
@@ -230,7 +230,7 @@ var refreshToken = function () {
               var session = data.session;
 
               if (!session) {
-                throw new Error('Failed to refresh token');
+                throw new Error(_constants.TOKEN_REFRESH_FAILED);
               }
 
               var authenticated = session.authenticated,

@@ -12,7 +12,7 @@ import {
   RecordAction,
   recordResult
 } from '../ducks/gatekeeper';
-import { GENERIC_ERROR, OAUTH2_HTTP_ERROR } from './constants';
+import { GENERIC_ERROR, OAUTH2_HTTP_ERROR, TOKEN_REFRESH_FAILED } from './constants';
 import { getOnadataUserInfo, UserInfoFnType } from './oauth';
 import { ErrorCallback, errorCallback } from './utils';
 
@@ -176,13 +176,13 @@ export const refreshToken = async (
       if (res.ok) {
         return res.json();
       } else {
-        throw new Error('Failed to refresh token');
+        throw new Error(TOKEN_REFRESH_FAILED);
       }
     })
     .then(data => {
       const { session } = data;
       if (!session) {
-        throw new Error('Failed to refresh token');
+        throw new Error(TOKEN_REFRESH_FAILED);
       }
       const { authenticated, user, extraData } = session;
       const access_token = extraData?.oAuth2Data?.access_token;

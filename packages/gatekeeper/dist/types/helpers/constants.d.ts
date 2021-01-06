@@ -19,3 +19,5 @@ export declare const PLEASE_WAIT = 'Please wait...';
 export declare type PLEASE_WAIT = typeof PLEASE_WAIT;
 export declare const WELCOME_BACK = 'Welcome back, ';
 export declare type WELCOME_BACK = typeof WELCOME_BACK;
+export declare const TOKEN_REFRESH_FAILED = 'Failed to refresh token';
+export declare type TOKEN_REFRESH_FAILED = typeof TOKEN_REFRESH_FAILED;
