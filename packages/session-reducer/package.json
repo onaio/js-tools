@@ -1,6 +1,6 @@
 {
   "name": "@onaio/session-reducer",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A simple configurable session reducer",
   "main": "dist/index.js",
   "types": "dist/types",

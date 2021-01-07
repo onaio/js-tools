@@ -1,6 +1,6 @@
 {
   "name": "@onaio/connected-private-route",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Declarative private routing for React and Redux",
   "main": "dist/index.js",
   "types": "dist/types",
@@ -27,7 +27,7 @@
     ]
   },
   "dependencies": {
-    "@onaio/session-reducer": "^0.0.11"
+    "@onaio/session-reducer": "^0.0.12"
   },
   "peerDependencies": {
     "@types/react-redux": "^7.0.8",
