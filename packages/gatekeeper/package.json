@@ -1,6 +1,6 @@
 {
   "name": "@onaio/gatekeeper",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Reusable tools for adding authentication to your React app",
   "main": "dist/index.js",
   "types": "dist/types",
@@ -31,18 +31,18 @@
   "author": "Ona Engineering",
   "license": "Apache-2.0",
   "dependencies": {
-    "@onaio/session-reducer": "^0.0.11",
+    "@onaio/session-reducer": "^0.0.12",
     "client-oauth2": "^4.3.3",
-    "reactstrap": "^7.1.0",
-    "query-string": "^6.4.2"
+    "query-string": "^6.4.2",
+    "reactstrap": "^7.1.0"
   },
   "devDependencies": {
     "@types/enzyme": "^3.9.0",
     "@types/enzyme-to-json": "^1.5.3",
     "@types/fetch-mock": "^7.2.3",
-    "@types/reactstrap": "^7.1.3",
     "@types/react-router": "^4.4.5",
     "@types/react-router-dom": "^4.3.2",
+    "@types/reactstrap": "^7.1.3",
     "enzyme": "^3.8.0",
     "enzyme-to-json": "^3.3.5",
     "fetch-mock": "^7.3.1",

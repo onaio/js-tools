@@ -1,6 +1,6 @@
 {
   "name": "@onaio/drill-down-table",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "DrillDownTable",
   "main": "dist/index.js",
   "types": "dist/types",
