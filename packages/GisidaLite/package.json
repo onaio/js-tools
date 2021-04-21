@@ -1,0 +1,41 @@
+{
+  "name": "@onaio/gisida-lite",
+  "version": "0.0.0",
+  "description": "Mininimal map wrapper for MAPBOX GL JS",
+  "main": "dist/index.js",
+  "types": "dist/types",
+  "repository": "https://github.com/onaio/js-tools",
+  "author": "Ona Engineering",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "scripts": {
+    "jest": "jest --coverage --verbose --color",
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "peerDependencies": {
+    "react": "^16.8.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.168",
+    "@types/mapbox-gl": "^2.1.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "mapbox-gl": "^2.2.0",
+    "react-mapbox-gl": "^5.1.1"
+  }
+}

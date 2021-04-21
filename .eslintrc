@@ -1,17 +1,35 @@
 {
-    "parser": "babel-eslint",
-    "env": {
-        "browser": true,
-        "jest/globals": true
-    },
-    "extends": [
-        "airbnb",
-        "plugin:prettier/recommended"
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "jest/globals": true
+  },
+  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "rules": {
+    "strict": 0,
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     ],
-    "rules": {
-        "strict": 0
-    },
-    "plugins": [
-        "jest"
-    ]
+    "import/extensions": "off"
+  },
+  "plugins": ["jest", "import"],
+  "overrides": [
+    {
+      "files": ["*.{ts,tsx}"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
 }
