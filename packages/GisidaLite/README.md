@@ -1,4 +1,4 @@
-# GisidLite
+# GisidaLite
 
 A simple `React` component that takes react-mapbox-gl configurations and outputs a map based on configurations provided.
 
