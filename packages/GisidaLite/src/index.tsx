@@ -25,14 +25,16 @@ const mapProps = {
 
 /** interface for  GisidaLite props */
 export interface GisidaLiteProps {
-  reactMapboxGlMapFactoryUtilConfigs: FactoryParameters;
+  layers: JSX.Element[];
+  Mapbox: typeof React.Component;
   mapConfigs: Props & Events;
   mapComponents: JSX.Element[];
-  layers: JSX.Element[];
+  reactMapboxGlMapFactoryUtilConfigs: FactoryParameters;
 }
 
 /** Default props for GisidaLite */
 export const gisidaLiteDefaultProps: GisidaLiteProps = {
+  Mapbox: ReactMapboxGl({ ...ReactMapboxGlProps }),
   layers: [
     <GeoJSONLayer
       key="geoLayer"
@@ -49,22 +51,29 @@ export const gisidaLiteDefaultProps: GisidaLiteProps = {
   mapConfigs: mapProps,
   reactMapboxGlMapFactoryUtilConfigs: ReactMapboxGlProps
 };
+
+// eslint-disable-next-line import/no-mutable-exports
 /**
  * Simple React mapbox gl renderer :)
  *
  * Inspired by GisidaLite component in reveal
  */
-const GisidaLite: React.FC<GisidaLiteProps> = (props: GisidaLiteProps) => {
+
+const GisidaLite = (props: GisidaLiteProps) => {
   const { mapConfigs, reactMapboxGlMapFactoryUtilConfigs, mapComponents, layers } = props;
-  const Mapbox = ReactMapboxGl({ ...reactMapboxGlMapFactoryUtilConfigs });
-  return (
+  let { Mapbox } = props;
+  /** Instanciate map instance on mount only */
+  React.useEffect(() => {
+    Mapbox = ReactMapboxGl({ ...reactMapboxGlMapFactoryUtilConfigs });
+  }, []);
+  return Mapbox ? (
     <Mapbox {...mapConfigs}>
       <>
         {layers}
         {mapComponents}
       </>
     </Mapbox>
-  );
+  ) : null;
 };
 
 GisidaLite.defaultProps = gisidaLiteDefaultProps;
