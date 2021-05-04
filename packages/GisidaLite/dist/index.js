@@ -36,6 +36,7 @@ var mapProps = {
   style: _constants.DEFAULT_STYLES
 };
 var gisidaLiteDefaultProps = {
+  Mapbox: (0, _reactMapboxGl["default"])(_objectSpread({}, ReactMapboxGlProps)),
   layers: [_react["default"].createElement(_reactMapboxGl.GeoJSONLayer, {
     key: "geoLayer",
     data: _constants.GEOJSON_DATA,
@@ -60,8 +61,13 @@ var GisidaLite = function GisidaLite(props) {
       reactMapboxGlMapFactoryUtilConfigs = props.reactMapboxGlMapFactoryUtilConfigs,
       mapComponents = props.mapComponents,
       layers = props.layers;
-  var Mapbox = (0, _reactMapboxGl["default"])(_objectSpread({}, reactMapboxGlMapFactoryUtilConfigs));
-  return _react["default"].createElement(Mapbox, mapConfigs, _react["default"].createElement(_react["default"].Fragment, null, layers, mapComponents));
+  var Mapbox = props.Mapbox;
+
+  _react["default"].useEffect(function () {
+    Mapbox = (0, _reactMapboxGl["default"])(_objectSpread({}, reactMapboxGlMapFactoryUtilConfigs));
+  }, []);
+
+  return Mapbox ? _react["default"].createElement(Mapbox, mapConfigs, _react["default"].createElement(_react["default"].Fragment, null, layers, mapComponents)) : null;
 };
 
 exports.GisidaLite = GisidaLite;
