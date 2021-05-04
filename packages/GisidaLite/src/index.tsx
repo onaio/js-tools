@@ -66,14 +66,14 @@ const GisidaLite = (props: GisidaLiteProps) => {
   React.useEffect(() => {
     Mapbox = ReactMapboxGl({ ...reactMapboxGlMapFactoryUtilConfigs });
   }, []);
-  return Mapbox ? (
+  return (
     <Mapbox {...mapConfigs}>
       <>
         {layers}
         {mapComponents}
       </>
     </Mapbox>
-  ) : null;
+  );
 };
 
 GisidaLite.defaultProps = gisidaLiteDefaultProps;
