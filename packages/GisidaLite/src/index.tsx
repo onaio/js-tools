@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactMapboxGl, { GeoJSONLayer, ScaleControl, ZoomControl } from 'react-mapbox-gl';
 import { FactoryParameters, Props } from 'react-mapbox-gl/lib/map';
 import { Events } from 'react-mapbox-gl/lib/map-events';
@@ -26,7 +26,6 @@ const mapProps = {
 /** interface for  GisidaLite props */
 export interface GisidaLiteProps {
   layers: JSX.Element[];
-  Mapbox: typeof React.Component;
   mapConfigs: Props & Events;
   mapComponents: JSX.Element[];
   reactMapboxGlMapFactoryUtilConfigs: FactoryParameters;
@@ -34,7 +33,6 @@ export interface GisidaLiteProps {
 
 /** Default props for GisidaLite */
 export const gisidaLiteDefaultProps: GisidaLiteProps = {
-  Mapbox: ReactMapboxGl({ ...ReactMapboxGlProps }),
   layers: [
     <GeoJSONLayer
       key="geoLayer"
@@ -52,7 +50,6 @@ export const gisidaLiteDefaultProps: GisidaLiteProps = {
   reactMapboxGlMapFactoryUtilConfigs: ReactMapboxGlProps
 };
 
-// eslint-disable-next-line import/no-mutable-exports
 /**
  * Simple React mapbox gl renderer :)
  *
@@ -61,19 +58,21 @@ export const gisidaLiteDefaultProps: GisidaLiteProps = {
 
 const GisidaLite = (props: GisidaLiteProps) => {
   const { mapConfigs, reactMapboxGlMapFactoryUtilConfigs, mapComponents, layers } = props;
-  let { Mapbox } = props;
-  /** Instanciate map instance on mount only */
-  React.useEffect(() => {
-    Mapbox = ReactMapboxGl({ ...reactMapboxGlMapFactoryUtilConfigs });
+  const [Map, setMap] = useState<typeof React.Component | null>(null);
+  useEffect(() => {
+    setMap(ReactMapboxGl({ ...reactMapboxGlMapFactoryUtilConfigs }));
   }, []);
-  return (
-    <Mapbox {...mapConfigs}>
-      <>
+  useEffect(() => {
+    setMap(ReactMapboxGl({ ...reactMapboxGlMapFactoryUtilConfigs }));
+  }, [reactMapboxGlMapFactoryUtilConfigs]);
+  return Map ? (
+    <Map {...mapConfigs}>
+      <Map>
         {layers}
         {mapComponents}
-      </>
-    </Mapbox>
-  );
+      </Map>
+    </Map>
+  ) : null;
 };
 
 GisidaLite.defaultProps = gisidaLiteDefaultProps;
