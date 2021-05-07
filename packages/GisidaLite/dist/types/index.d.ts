@@ -2,10 +2,16 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import React from 'react';
 import { FactoryParameters, Props } from 'react-mapbox-gl/lib/map';
 import { Events } from 'react-mapbox-gl/lib/map-events';
+/** ReactMapboxGlProps & mapProps props */
+export declare const ReactMapboxGlProps: {
+  accessToken: string;
+  attributionControl: boolean;
+  customAttribution: string;
+  injectCSS: boolean;
+};
 /** interface for  GisidaLite props */
 export interface GisidaLiteProps {
   layers: JSX.Element[];
-  Mapbox: typeof React.Component;
   mapConfigs: Props & Events;
   mapComponents: JSX.Element[];
   reactMapboxGlMapFactoryUtilConfigs: FactoryParameters;
@@ -18,7 +24,7 @@ export declare const gisidaLiteDefaultProps: GisidaLiteProps;
  * Inspired by GisidaLite component in reveal
  */
 declare const GisidaLite: {
-  (props: GisidaLiteProps): JSX.Element;
+  (props: GisidaLiteProps): JSX.Element | null;
   defaultProps: GisidaLiteProps;
 };
 /**
@@ -31,7 +37,7 @@ export declare const arePropsEqual: (
   nextProps: GisidaLiteProps
 ) => boolean;
 declare const MemoizedGisidaLite: React.MemoExoticComponent<{
-  (props: GisidaLiteProps): JSX.Element;
+  (props: GisidaLiteProps): JSX.Element | null;
   defaultProps: GisidaLiteProps;
 }>;
 export { GisidaLite, MemoizedGisidaLite };
