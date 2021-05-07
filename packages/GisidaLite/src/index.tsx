@@ -12,7 +12,7 @@ import {
   GEOJSON_DATA
 } from './constants';
 /** ReactMapboxGlProps & mapProps props */
-const ReactMapboxGlProps = {
+export const ReactMapboxGlProps = {
   accessToken: DEFAULT_ACCESS_TOKEN,
   attributionControl: true,
   customAttribution: DEFAULT_ATTRIBUTION,
@@ -59,9 +59,7 @@ export const gisidaLiteDefaultProps: GisidaLiteProps = {
 const GisidaLite = (props: GisidaLiteProps) => {
   const { mapConfigs, reactMapboxGlMapFactoryUtilConfigs, mapComponents, layers } = props;
   const [Map, setMap] = useState<typeof React.Component | null>(null);
-  useEffect(() => {
-    setMap(ReactMapboxGl({ ...reactMapboxGlMapFactoryUtilConfigs }));
-  }, []);
+  // instantiate MapFactory on reactMapboxGlMapFactoryUtilConfigs change
   useEffect(() => {
     setMap(ReactMapboxGl({ ...reactMapboxGlMapFactoryUtilConfigs }));
   }, [reactMapboxGlMapFactoryUtilConfigs]);
