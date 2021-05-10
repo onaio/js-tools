@@ -36,20 +36,20 @@ describe('component/GisidaLite', () => {
 
     const wrapper = mount(<MemoizedGisidaLite {...gisidaLiteDefaultProps} />);
     expect(mockReactMapboxGlMock).toHaveBeenCalledTimes(1);
-    expect(wrapper.props().reactMapboxGlMapFactoryUtilConfigs).toEqual(ReactMapboxGlProps);
+    expect(wrapper.props().reactMapboxGlConfigs).toEqual(ReactMapboxGlProps);
     // should not re-instanciate reactmapboxgl on other props change
     wrapper.setProps({
       ...gisidaLiteDefaultProps,
       layers: []
     });
     expect(mockReactMapboxGlMock).toHaveBeenCalledTimes(1);
-    expect(wrapper.props().reactMapboxGlMapFactoryUtilConfigs).toEqual(ReactMapboxGlProps);
+    expect(wrapper.props().reactMapboxGlConfigs).toEqual(ReactMapboxGlProps);
     // should re-instanciate map on reactmapboxgl factory options change
     wrapper.setProps({
       ...gisidaLiteDefaultProps,
-      reactMapboxGlMapFactoryUtilConfigs: updatedReactMapboxglProps
+      reactMapboxGlConfigs: updatedReactMapboxglProps
     });
-    expect(wrapper.props().reactMapboxGlMapFactoryUtilConfigs).toEqual(updatedReactMapboxglProps);
+    expect(wrapper.props().reactMapboxGlConfigs).toEqual(updatedReactMapboxglProps);
   });
   it('returns false if layers length has changed', () => {
     const prevProps = {
