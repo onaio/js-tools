@@ -44,7 +44,7 @@ exports[`component/GisidaLite renders component correctly: gisida lite render 1`
       "style": "mapbox://styles/mapbox/streets-v9",
     }
   }
-  reactMapboxGlMapFactoryUtilConfigs={
+  reactMapboxGlConfigs={
     Object {
       "accessToken": "pk.eyJ1Ijoib25hIiwiYSI6IlVYbkdyclkifQ.0Bz-QOOXZZK01dq4MuMImQ",
       "attributionControl": true,
@@ -93,7 +93,7 @@ Object {
     },
     "style": "mapbox://styles/mapbox/streets-v9",
   },
-  "reactMapboxGlMapFactoryUtilConfigs": Object {
+  "reactMapboxGlConfigs": Object {
     "accessToken": "pk.eyJ1Ijoib25hIiwiYSI6IlVYbkdyclkifQ.0Bz-QOOXZZK01dq4MuMImQ",
     "attributionControl": true,
     "customAttribution": "&copy; ONA Engineering",
