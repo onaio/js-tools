@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import ReactMapboxGl, { GeoJSONLayer, ScaleControl, ZoomControl } from 'react-mapbox-gl';
 import { FactoryParameters, Props } from 'react-mapbox-gl/lib/map';
 import { Events } from 'react-mapbox-gl/lib/map-events';
@@ -28,7 +28,7 @@ export interface GisidaLiteProps {
   layers: JSX.Element[];
   mapConfigs: Props & Events;
   mapComponents: JSX.Element[];
-  reactMapboxGlMapFactoryUtilConfigs: FactoryParameters;
+  reactMapboxGlConfigs: FactoryParameters;
 }
 
 /** Default props for GisidaLite */
@@ -47,7 +47,7 @@ export const gisidaLiteDefaultProps: GisidaLiteProps = {
     <ScaleControl key="scalectrl" position="bottom-left" />
   ],
   mapConfigs: mapProps,
-  reactMapboxGlMapFactoryUtilConfigs: ReactMapboxGlProps
+  reactMapboxGlConfigs: ReactMapboxGlProps
 };
 
 /**
@@ -57,20 +57,21 @@ export const gisidaLiteDefaultProps: GisidaLiteProps = {
  */
 
 const GisidaLite = (props: GisidaLiteProps) => {
-  const { mapConfigs, reactMapboxGlMapFactoryUtilConfigs, mapComponents, layers } = props;
-  const [Map, setMap] = useState<typeof React.Component | null>(null);
-  // instantiate MapFactory on reactMapboxGlMapFactoryUtilConfigs change
-  useEffect(() => {
-    setMap(ReactMapboxGl({ ...reactMapboxGlMapFactoryUtilConfigs }));
-  }, [reactMapboxGlMapFactoryUtilConfigs]);
-  return Map ? (
-    <Map {...mapConfigs}>
-      <Map>
+  const { mapConfigs, reactMapboxGlConfigs, mapComponents, layers } = props;
+  /**
+   * Re-instanciate Mapbox on configs change only
+   */
+  const Mapbox = useMemo<typeof React.Component>(() => ReactMapboxGl(reactMapboxGlConfigs), [
+    reactMapboxGlConfigs
+  ]);
+  return (
+    <Mapbox {...mapConfigs}>
+      <>
         {layers}
         {mapComponents}
-      </Map>
-    </Map>
-  ) : null;
+      </>
+    </Mapbox>
+  );
 };
 
 GisidaLite.defaultProps = gisidaLiteDefaultProps;
