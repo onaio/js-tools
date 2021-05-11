@@ -1,7 +1,7 @@
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
-import ReactMapboxGl from 'react-mapbox-gl';
+import * as reactMapboxGl from 'react-mapbox-gl';
 import {
   arePropsEqual,
   gisidaLiteDefaultProps,
@@ -11,6 +11,10 @@ import {
 } from '..';
 
 jest.mock('react-mapbox-gl');
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
 describe('component/GisidaLite', () => {
   it('renders without crashing', () => {
@@ -25,31 +29,41 @@ describe('component/GisidaLite', () => {
     expect(toJson(wrapper)).toMatchSnapshot('gisida lite render');
   });
   it('reacts to props changes accordingly in relation to ReactMapboxGl constructor', () => {
+    const mockReactMapboxGlMock = jest
+      .spyOn(reactMapboxGl, 'default')
+      .mockReturnValue(() => React.Component);
+
     const updatedReactMapboxglProps = {
       accessToken: '',
       attributionControl: true,
       customAttribution: '',
       injectCSS: true
     };
-    const mockReactMapboxGlMock = jest.fn();
-    (ReactMapboxGl as jest.Mock).mockImplementationOnce(() => mockReactMapboxGlMock);
-
+    // should instanciate reactmapboxgl
     const wrapper = mount(<MemoizedGisidaLite {...gisidaLiteDefaultProps} />);
-    expect(mockReactMapboxGlMock).toHaveBeenCalledTimes(1);
+    expect(mockReactMapboxGlMock).toBeCalledWith(ReactMapboxGlProps);
+    expect(mockReactMapboxGlMock.mock.calls.length).toBe(1);
     expect(wrapper.props().reactMapboxGlConfigs).toEqual(ReactMapboxGlProps);
+
     // should not re-instanciate reactmapboxgl on other props change
     wrapper.setProps({
       ...gisidaLiteDefaultProps,
       layers: []
     });
-    expect(mockReactMapboxGlMock).toHaveBeenCalledTimes(1);
+    wrapper.update();
+    expect(mockReactMapboxGlMock).toBeCalledWith(ReactMapboxGlProps);
+    expect(mockReactMapboxGlMock.mock.calls.length).toBe(1);
     expect(wrapper.props().reactMapboxGlConfigs).toEqual(ReactMapboxGlProps);
+
     // should re-instanciate map on reactmapboxgl factory options change
     wrapper.setProps({
       ...gisidaLiteDefaultProps,
       reactMapboxGlConfigs: updatedReactMapboxglProps
     });
+    wrapper.update();
     expect(wrapper.props().reactMapboxGlConfigs).toEqual(updatedReactMapboxglProps);
+    expect(mockReactMapboxGlMock).toBeCalledWith(updatedReactMapboxglProps);
+    expect(mockReactMapboxGlMock.mock.calls.length).toBe(2);
   });
   it('returns false if layers length has changed', () => {
     const prevProps = {

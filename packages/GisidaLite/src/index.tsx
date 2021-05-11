@@ -61,9 +61,9 @@ const GisidaLite = (props: GisidaLiteProps) => {
   /**
    * Re-instanciate Mapbox on configs change only
    */
-  const Mapbox = useMemo<typeof React.Component>(() => ReactMapboxGl(reactMapboxGlConfigs), [
-    reactMapboxGlConfigs
-  ]);
+  const Mapbox = useMemo<typeof React.Component>(() => {
+    return ReactMapboxGl(reactMapboxGlConfigs);
+  }, [reactMapboxGlConfigs]);
   return Mapbox ? (
     <Mapbox {...mapConfigs}>
       <>

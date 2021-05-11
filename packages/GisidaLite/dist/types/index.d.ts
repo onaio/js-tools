@@ -24,7 +24,7 @@ export declare const gisidaLiteDefaultProps: GisidaLiteProps;
  * Inspired by GisidaLite component in reveal
  */
 declare const GisidaLite: {
-  (props: GisidaLiteProps): JSX.Element;
+  (props: GisidaLiteProps): JSX.Element | null;
   defaultProps: GisidaLiteProps;
 };
 /**
@@ -37,7 +37,7 @@ export declare const arePropsEqual: (
   nextProps: GisidaLiteProps
 ) => boolean;
 declare const MemoizedGisidaLite: React.MemoExoticComponent<{
-  (props: GisidaLiteProps): JSX.Element;
+  (props: GisidaLiteProps): JSX.Element | null;
   defaultProps: GisidaLiteProps;
 }>;
 export { GisidaLite, MemoizedGisidaLite };
