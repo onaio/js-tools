@@ -1,6 +1,6 @@
 {
   "name": "@onaio/loaders",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "types": " dist/types",
   "description": "Loading components for your everyday use",
   "main": "dist/index.js",

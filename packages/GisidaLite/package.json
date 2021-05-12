@@ -1,6 +1,6 @@
 {
   "name": "@onaio/gisida-lite",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Mininimal map wrapper for MAPBOX GL JS",
   "main": "dist/index.js",
   "types": "dist/types",
