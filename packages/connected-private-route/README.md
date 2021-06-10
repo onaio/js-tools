@@ -21,6 +21,8 @@ If the path `/dashboard` routes to this component like so:
                 component={Dashboard}
                 redirectPath="/login"
                 disableLoginProtection=false
+                routerEnabled=true
+                routerDisabledRedirectPath='/'
               />
               <Route component={NotFound} />
             </Switch>
@@ -50,6 +52,8 @@ class App extends Component {
                 path="/"
                 component={Home}
                 redirectPath="/login"
+                routerEnabled=true
+                routerDisabledRedirectPath='/'
                 disableLoginProtection=false
               />
               <Route component={NotFound} />
@@ -72,3 +76,5 @@ Behind the scenes, it works with the [session reducer](https://github.com/onaio/
 
 - **disableLoginProtection**: if this is true, we don't check if the user is authenticated. Useful for turning off login protection without doing much else. Default value is false.
 - **redirectPath**: the path that the user will be redirected to if they are not logged in. Default is "/login".
+- **routerEnabled**: check if user is allowed to navigate to this route. Is a protection against navigation to disabled routes. Default is true.
+- **routerDisabledRedirectPath**: redirect path if the router is disabled. Default is "/".

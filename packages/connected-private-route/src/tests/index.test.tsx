@@ -14,6 +14,11 @@ const TestComponent = (props: { [key: string]: any }) => {
   return <span>{props.someProp}</span>;
 };
 
+const disableRouteDefaultProps = {
+  routerDisabledRedirectPath: '/',
+  routerEnabled: true
+};
+
 describe('ConnectedPrivateRoute', () => {
   let flushThunks;
   let store: Store;
@@ -121,7 +126,10 @@ describe('ConnectedPrivateRoute', () => {
     expect(wrapper.find('TestComponent').length).toEqual(0);
     expect(wrapper.find('PrivateRoute').length).toEqual(1);
     expect(toJson(wrapper.find('PrivateRoute'))).toMatchSnapshot();
-    expect(wrapper.find('PrivateRoute').props()).toEqual(props);
+    expect(wrapper.find('PrivateRoute').props()).toEqual({
+      ...props,
+      ...disableRouteDefaultProps
+    });
     /** check that a redirect happened */
     expect(wrapper.find('Router').prop('history')).toMatchSnapshot({
       entries: expect.any(Array),
@@ -157,7 +165,10 @@ describe('ConnectedPrivateRoute', () => {
       </MemoryRouter>
     );
 
-    expect(wrapper.find('PrivateRoute').props()).toEqual(props);
+    expect(wrapper.find('PrivateRoute').props()).toEqual({
+      ...props,
+      ...disableRouteDefaultProps
+    });
     /** check that a redirect happened */
     expect(wrapper.find('Router').prop('history')).toMatchSnapshot({
       entries: expect.any(Array),
@@ -250,6 +261,50 @@ describe('ConnectedPrivateRoute', () => {
      * keys in the spanshot test
      */
     expect(toJson(wrapper.find('TestComponent span'))).toMatchSnapshot();
+    wrapper.unmount();
+  });
+
+  it('renders as expected when router is disabled', () => {
+    const routerDisabledRedirectPath = '/route_disabled';
+    const props = {
+      authenticated: true,
+      component: TestComponent,
+      disableLoginProtection: true,
+      location: {
+        hash: '#howdy',
+        pathname: '/dashboard',
+        search: '?q=string',
+        state: {}
+      },
+      path: '/',
+      redirectPath: '/denied',
+      routerDisabledRedirectPath,
+      routerEnabled: false
+    };
+    const wrapper = mount(
+      <MemoryRouter initialEntries={['/dashboard?q=string#howdy']} initialIndex={0}>
+        <PrivateRoute {...props} />
+      </MemoryRouter>
+    );
+
+    expect(wrapper.find('TestComponent').length).toEqual(0);
+    expect(wrapper.find('PrivateRoute').length).toEqual(1);
+    expect(wrapper.find('PrivateRoute').props()).toEqual({
+      ...props,
+      routerDisabledRedirectPath,
+      routerEnabled: false
+    });
+    /** check that a redirect happened */
+    expect(wrapper.find('Router').prop('history')).toMatchSnapshot({
+      entries: expect.any(Array),
+      location: expect.objectContaining({
+        hash: '',
+        key: expect.any(String),
+        pathname: routerDisabledRedirectPath,
+        search: '',
+        state: undefined
+      })
+    });
     wrapper.unmount();
   });
 });

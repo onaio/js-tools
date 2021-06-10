@@ -10,13 +10,17 @@ interface PrivateRouteProps extends RouteProps {
   authenticated: boolean /** is the current user authenticated */;
   disableLoginProtection: boolean /** should we disable login protection */;
   redirectPath: string /** redirect to this path is use if not authenticated */;
+  routerDisabledRedirectPath: string /** redirect to this path if router is not enabled */;
+  routerEnabled: boolean /** is this route enabled */;
 }
 
 /** declare default props for PrivateRoute */
 const defaultPrivateRouteProps: Partial<PrivateRouteProps> = {
   authenticated: false,
   disableLoginProtection: false,
-  redirectPath: '/login'
+  redirectPath: '/login',
+  routerDisabledRedirectPath: '/',
+  routerEnabled: true
 };
 
 /** The PrivateRoute component
@@ -34,6 +38,8 @@ const PrivateRoute = (props: PrivateRouteProps) => {
     authenticated,
     disableLoginProtection,
     redirectPath,
+    routerEnabled,
+    routerDisabledRedirectPath,
     location,
     ...theOtherProps
   } = props;
@@ -48,13 +54,17 @@ const PrivateRoute = (props: PrivateRouteProps) => {
     /* tslint:disable jsx-no-lambda */
     <Route
       {...theOtherProps}
-      render={routeProps =>
-        (authenticated === true || disableLoginProtection === true) && Component ? (
-          <Component {...routeProps} {...theOtherProps} />
-        ) : (
-          <Redirect to={fullRedirectPath} />
-        )
-      }
+      render={routeProps => {
+        if (routerEnabled) {
+          return (authenticated === true || disableLoginProtection === true) && Component ? (
+            <Component {...routeProps} {...theOtherProps} />
+          ) : (
+            <Redirect to={fullRedirectPath} />
+          );
+        } else {
+          return <Redirect to={routerDisabledRedirectPath} />;
+        }
+      }}
     />
     /* tslint:enable jsx-no-lambda */
   );

@@ -5,6 +5,8 @@ interface PrivateRouteProps extends RouteProps {
   authenticated: boolean /** is the current user authenticated */;
   disableLoginProtection: boolean /** should we disable login protection */;
   redirectPath: string /** redirect to this path is use if not authenticated */;
+  routerDisabledRedirectPath: string /** redirect to this path if router is not enabled */;
+  routerEnabled: boolean /** is this route enabled */;
 }
 /** The PrivateRoute component
  * This component is a simple wrapper around Route and takes all its props in
@@ -30,7 +32,7 @@ export { PrivateRoute };
  * If authenticated === true then render the component supplied
  * Otherwise redirect to the redirectPath
  */
-declare const ConnectedPrivateRoute: import('react-redux').ConnectedComponentClass<
+declare const ConnectedPrivateRoute: import('react-redux').ConnectedComponent<
   {
     (props: PrivateRouteProps): JSX.Element;
     defaultProps: Partial<PrivateRouteProps>;
