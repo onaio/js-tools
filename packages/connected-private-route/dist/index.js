@@ -25,7 +25,8 @@ var defaultPrivateRouteProps = {
   authenticated: false,
   disableLoginProtection: false,
   redirectPath: '/login',
-  routerDisabledRedirectPath: '/'
+  routerDisabledRedirectPath: '/',
+  routerEnabled: true
 };
 
 var PrivateRoute = function PrivateRoute(props) {
@@ -43,15 +44,15 @@ var PrivateRoute = function PrivateRoute(props) {
   }));
   return _react["default"].createElement(_reactRouterDom.Route, (0, _extends2["default"])({}, theOtherProps, {
     render: function render(routeProps) {
-      if (routerEnabled === false) {
+      if (routerEnabled) {
+        return (authenticated === true || disableLoginProtection === true) && Component ? _react["default"].createElement(Component, (0, _extends2["default"])({}, routeProps, theOtherProps)) : _react["default"].createElement(_reactRouterDom.Redirect, {
+          to: fullRedirectPath
+        });
+      } else {
         return _react["default"].createElement(_reactRouterDom.Redirect, {
           to: routerDisabledRedirectPath
         });
       }
-
-      return (authenticated === true || disableLoginProtection === true) && Component ? _react["default"].createElement(Component, (0, _extends2["default"])({}, routeProps, theOtherProps)) : _react["default"].createElement(_reactRouterDom.Redirect, {
-        to: fullRedirectPath
-      });
     }
   }));
 };

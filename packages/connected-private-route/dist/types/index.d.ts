@@ -5,8 +5,8 @@ interface PrivateRouteProps extends RouteProps {
   authenticated: boolean /** is the current user authenticated */;
   disableLoginProtection: boolean /** should we disable login protection */;
   redirectPath: string /** redirect to this path is use if not authenticated */;
-  routerEnabled?: boolean /** is this route enabled */;
-  routerDisabledRedirectPath?: string /** redirect to this path if router is not enabled */;
+  routerDisabledRedirectPath: string /** redirect to this path if router is not enabled */;
+  routerEnabled: boolean /** is this route enabled */;
 }
 /** The PrivateRoute component
  * This component is a simple wrapper around Route and takes all its props in
