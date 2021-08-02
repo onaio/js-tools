@@ -1,0 +1,45 @@
+.legend {
+  position: absolute;
+  left: 20px;
+  color: #555;
+  font-size: 11px;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.2;
+  z-index: 1;
+  margin-right: 75%;
+  width: 22%;
+  bottom: 0px;
+  background: transparent;
+  margin-right: 75%;
+  bottom: 0;
+}
+.legend-fill {
+  padding: 15px;
+  position: relative;
+  height: 17px;
+  margin: 3px 0;
+}
+.legend-fill ul {
+  padding: 0;
+  list-style-type: none;
+}
+.legend-fill ul li {
+  width: 33px;
+  float: left;
+  display: block;
+  color: #fff;
+  opacity: 0.8;
+}
+.legend-label {
+  height: 17px;
+}
+.legend-label li {
+  text-align: center;
+  height: 17px;
+  padding-top: 2px;
+}
+.legend > span {
+  display: inline-block;
+  padding-left: 15px;
+  padding-top: 5px;
+}
