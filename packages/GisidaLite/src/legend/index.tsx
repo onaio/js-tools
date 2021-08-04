@@ -11,12 +11,11 @@ export interface LegendBlock {
 /** Legend props */
 export interface LegendProps {
   legendData: LegendBlock[];
-  legendCreditText: string;
+  legendCreditText?: string;
 }
 
 /** Default props for GisidaLite */
 export const defaultLegendProps: LegendProps = {
-  legendCreditText: 'Age break down',
   legendData: [
     { color: '#bdd7e7', fillWidth: '33px', label: '0' },
     { color: '#4292c6', fillWidth: '33px', label: '1-2' },
@@ -38,7 +37,7 @@ const Legend = (props: LegendProps) => {
       <div className="legend-fill legend-label">
         <ul id="legend-background">{background}</ul>
       </div>
-      <span>{legendCreditText}</span>
+      {legendCreditText && <span>{legendCreditText}</span>}
     </div>
   );
 };
