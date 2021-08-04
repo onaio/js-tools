@@ -18,7 +18,7 @@ describe('Legend Component', () => {
   });
   it('returns legend text correctly', () => {
     const wrapper = mount(<Legend />);
-    expect(wrapper.text()).toMatchInlineSnapshot(`"01-23-66-1112-16Age break down"`);
+    expect(wrapper.text()).toMatchInlineSnapshot(`"01-23-66-1112-16"`);
   });
   it('builds legendblocks correctly', () => {
     expect(legendBlockBuilder('#000', '20', 'a-b')).toMatchInlineSnapshot(`
