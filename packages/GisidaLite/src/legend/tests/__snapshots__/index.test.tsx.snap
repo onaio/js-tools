@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Legend Component renders props correctly: legend props 1`] = `ReactWrapper {}`;
+
+exports[`Legend Component returns legend markup: legend markup 1`] = `"<div class=\\"legend\\"><div class=\\"legend-fill legend-label\\"><ul id=\\"legend-background\\"><li style=\\"background: rgb(189, 215, 231);\\">0</li><li style=\\"background: rgb(66, 146, 198);\\">1-2</li><li style=\\"background: rgb(33, 113, 181);\\">3-6</li><li style=\\"background: rgb(8, 81, 156);\\">6-11</li><li style=\\"background: rgb(8, 48, 107);\\">12-16</li></ul></div></div>"`;
