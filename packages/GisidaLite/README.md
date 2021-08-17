@@ -50,7 +50,11 @@ interface LegendProps {
 }
 ```
 
-The legend builds the total number of legendBlocks e.g
+_legendData_ - array of objects that contain color, block width and label that will be printed on every block.
+
+_legendCreditText_ - optional string that is rendered below the legend.
+
+The legend builds the total legendBlocks based on the legendData e.g
 
 ```js
 [
