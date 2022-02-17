@@ -1,0 +1,43 @@
+{
+  "name": "@onaio/eslint-config",
+  "version": "0.0.1",
+  "description": "Shareable eslint configs",
+  "main": "dist/index.js",
+  "types": "dist/types",
+  "repository": "https://github.com/onaio/js-tools",
+  "author": "Ona Engineering",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/onaio/js-tools/issues"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "transpile": "babel src -d dist --root-mode upward --extensions '.ts,.tsx'  --ignore '**/*.test.ts,**/*.test.tsx,**/tests,**/__tests__'"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "dependencies": {
+    "enzyme-to-json": "^3.5.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-config-typestrict": "^1.0.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.0.0",
+    "eslint-plugin-jsdoc": "^30.6.2",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-sonarjs": "^0.5.0"
+  }
+}
