@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TOKEN_REFRESH_FAILED = exports.WELCOME_BACK = exports.PLEASE_WAIT = exports.AN_ERROR_OCCURRED = exports.NOTHING_HERE = exports.NO_PROVIDERS = exports.OAUTH_LOGIN_PROMPT = exports.LOGIN_URL = exports.GENERIC_ERROR = exports.OAUTH2_HTTP_ERROR = exports.OAUTH2_CALLBACK_ERROR = void 0;
+exports.WELCOME_BACK = exports.TOKEN_REFRESH_FAILED = exports.PLEASE_WAIT = exports.OAUTH_LOGIN_PROMPT = exports.OAUTH2_HTTP_ERROR = exports.OAUTH2_CALLBACK_ERROR = exports.NO_PROVIDERS = exports.NOTHING_HERE = exports.LOGIN_URL = exports.GENERIC_ERROR = exports.AN_ERROR_OCCURRED = void 0;
 var OAUTH2_CALLBACK_ERROR = 'oAuth service oauth2Callback failed, data not returned';
 exports.OAUTH2_CALLBACK_ERROR = OAUTH2_CALLBACK_ERROR;
 var OAUTH2_HTTP_ERROR = 'oAuth service oauth2Callback failed, HTTP status';

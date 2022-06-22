@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { SessionState } from '@onaio/session-reducer';
 import ClientOAuth2, { Options } from 'client-oauth2';
 import { OAUTH2_CALLBACK_ERROR } from './constants';
@@ -64,7 +65,30 @@ const addSecToCurrentTime = (seconds: number) => {
 /** Function to get OpenSRP user info from api response object
  * @param {{[key: string]: any }} apiResponse - the API response object
  */
-export function getOpenSRPUserInfo(apiResponse: { [key: string]: any }): SessionState {
+export function getOpenSRPUserInfo(apiRes: { [key: string]: any }): SessionState {
+  const {
+    email_verified,
+    oAuth2Data,
+    given_name,
+    family_name,
+    preferred_username,
+    realm_access,
+    sub,
+    name,
+    organization
+  } = apiRes;
+  const apiResponse = {
+    roles: (realm_access?.roles ?? []).map((role: string) => `ROLE_${role}`),
+    email: null,
+    username: preferred_username,
+    user_id: sub,
+    preferred_name: name,
+    family_name,
+    given_name,
+    email_verified,
+    oAuth2Data,
+    organization
+  };
   if (!apiResponse.username) {
     throw new Error(OAUTH2_CALLBACK_ERROR);
   }

@@ -81,13 +81,14 @@ export const onadataSessionWithOauthData = {
 export const openSRPResponse = {
   preferredName: 'mosh',
   roles: ['Privilege Level: Full'],
-  username: 'moshthepitt'
+  preferred_username: 'moshthepitt'
 };
 
 export const openSRPFinalData = {
   ...openSRPResponse,
   oAuth2Data: {
     ...oAuth2Data,
+    roles: ['view_keycloak_users'],
     refresh_expires_in: '2592000'
   }
 };
@@ -95,19 +96,28 @@ export const openSRPFinalData = {
 export const openSRPSession = {
   authenticated: true,
   extraData: {
-    ...openSRPFinalData,
+    email: null,
+    email_verified: undefined,
+    family_name: undefined,
+    given_name: undefined,
     oAuth2Data: {
-      ...openSRPFinalData.oAuth2Data,
+      access_token: 'iLoveOov',
+      expires_in: '36000',
       refresh_expires_at: '2020-01-31T00:00:00.000Z',
-      token_expires_at: '2020-01-01T10:00:00.000Z'
-    }
+      refresh_expires_in: '2592000',
+      roles: ['view_keycloak_users'],
+      scope: 'read write',
+      state: 'abc',
+      token_expires_at: '2020-01-01T10:00:00.000Z',
+      token_type: 'Bearer'
+    },
+    organization: undefined,
+    preferred_name: undefined,
+    roles: [],
+    user_id: undefined,
+    username: 'moshthepitt'
   },
-  user: {
-    email: '',
-    gravatar: '',
-    name: '',
-    username: openSRPResponse.username
-  }
+  user: { email: '', gravatar: '', name: '', username: 'moshthepitt' }
 };
 
 export const expressAPIResponse = {

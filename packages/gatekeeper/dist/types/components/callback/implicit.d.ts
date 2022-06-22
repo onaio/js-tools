@@ -6,22 +6,22 @@ import { Providers, UserInfoFnType } from '../../helpers/oauth';
 import { BaseCallbackComponentProps } from './base';
 /** Route params interface */
 export interface RouteParams {
-  id: string;
+    id: string;
 }
 /** interface for OauthCallbackProps props */
 export interface OauthCallbackProps<G> extends BaseCallbackComponentProps<G> {
-  ErrorComponent: React.ElementType;
-  HTTP404Component: React.ElementType;
-  authenticateActionCreator: ActionCreator<AuthenticateAction>;
-  oAuthUserInfoGetter: UserInfoFnType;
-  providers: Providers;
-  recordResultActionCreator: ActionCreator<RecordAction>;
+    ErrorComponent: React.ElementType;
+    HTTP404Component: React.ElementType;
+    authenticateActionCreator: ActionCreator<AuthenticateAction>;
+    oAuthUserInfoGetter: UserInfoFnType;
+    providers: Providers;
+    recordResultActionCreator: ActionCreator<RecordAction>;
 }
 /** default props for OauthCallback */
 export declare const defaultOauthCallbackProps: Partial<OauthCallbackProps<RouteParams>>;
 /** interface to describe state variables for OauthCallback */
 export interface OauthCallbackState {
-  loading: boolean;
+    loading: boolean;
 }
 /** The OAuth callback component for the implicit OAuth flow.
  * This component should be on the page that receives the callback from the
@@ -33,31 +33,13 @@ export interface OauthCallbackState {
  * Once successfully processed, the user is stored in the session Reducer.
  */
 declare const OauthCallback: {
-  (props: OauthCallbackProps<RouteParams>): JSX.Element;
-  defaultProps: Partial<OauthCallbackProps<RouteParams>>;
+    (props: OauthCallbackProps<RouteParams>): JSX.Element;
+    defaultProps: Partial<OauthCallbackProps<RouteParams>>;
 };
 export { OauthCallback };
 /** created connected component */
-declare const ConnectedOauthCallback: import('react-redux').ConnectedComponent<
-  {
+declare const ConnectedOauthCallback: import("react-redux").ConnectedComponent<{
     (props: OauthCallbackProps<RouteParams>): JSX.Element;
     defaultProps: Partial<OauthCallbackProps<RouteParams>>;
-  },
-  Pick<
-    OauthCallbackProps<RouteParams>,
-    | 'providers'
-    | 'working'
-    | 'match'
-    | 'LoadingComponent'
-    | 'SuccessfulLoginComponent'
-    | 'UnSuccessfulLoginComponent'
-    | 'history'
-    | 'location'
-    | 'staticContext'
-    | 'ErrorComponent'
-    | 'HTTP404Component'
-    | 'oAuthUserInfoGetter'
-  > &
-    Partial<OauthCallbackProps<RouteParams>>
->;
+}, Pick<OauthCallbackProps<RouteParams>, "providers" | "working" | "match" | "LoadingComponent" | "SuccessfulLoginComponent" | "UnSuccessfulLoginComponent" | "history" | "location" | "staticContext" | "ErrorComponent" | "HTTP404Component" | "oAuthUserInfoGetter"> & Partial<OauthCallbackProps<RouteParams>>>;
 export default ConnectedOauthCallback;

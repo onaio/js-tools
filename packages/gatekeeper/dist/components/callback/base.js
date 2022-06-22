@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.BaseCallbackComponent = exports.defaultBaseCallbackComponentProps = void 0;
+exports.defaultBaseCallbackComponentProps = exports.BaseCallbackComponent = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 

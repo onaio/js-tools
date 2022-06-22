@@ -7,7 +7,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.OauthCallback = exports.defaultOauthCallbackProps = void 0;
+exports.defaultOauthCallbackProps = exports["default"] = exports.OauthCallback = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 

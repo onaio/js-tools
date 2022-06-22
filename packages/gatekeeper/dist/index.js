@@ -5,102 +5,6 @@ var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWild
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "OauthLogin", {
-  enumerable: true,
-  get: function get() {
-    return _login["default"];
-  }
-});
-Object.defineProperty(exports, "AuthorizationGrantType", {
-  enumerable: true,
-  get: function get() {
-    return _login.AuthorizationGrantType;
-  }
-});
-Object.defineProperty(exports, "OauthLoginProps", {
-  enumerable: true,
-  get: function get() {
-    return _login.OauthLoginProps;
-  }
-});
-Object.defineProperty(exports, "ProviderLinks", {
-  enumerable: true,
-  get: function get() {
-    return _login.ProviderLinks;
-  }
-});
-Object.defineProperty(exports, "ProviderLinksProps", {
-  enumerable: true,
-  get: function get() {
-    return _login.ProviderLinksProps;
-  }
-});
-Object.defineProperty(exports, "useOAuthLogin", {
-  enumerable: true,
-  get: function get() {
-    return _login.useOAuthLogin;
-  }
-});
-Object.defineProperty(exports, "ConnectedLogout", {
-  enumerable: true,
-  get: function get() {
-    return _logout["default"];
-  }
-});
-Object.defineProperty(exports, "defaultLogoutProps", {
-  enumerable: true,
-  get: function get() {
-    return _logout.defaultLogoutProps;
-  }
-});
-Object.defineProperty(exports, "Logout", {
-  enumerable: true,
-  get: function get() {
-    return _logout.Logout;
-  }
-});
-Object.defineProperty(exports, "LogoutProps", {
-  enumerable: true,
-  get: function get() {
-    return _logout.LogoutProps;
-  }
-});
-Object.defineProperty(exports, "ConnectedOauthCallback", {
-  enumerable: true,
-  get: function get() {
-    return _implicit["default"];
-  }
-});
-Object.defineProperty(exports, "defaultOauthCallbackProps", {
-  enumerable: true,
-  get: function get() {
-    return _implicit.defaultOauthCallbackProps;
-  }
-});
-Object.defineProperty(exports, "OauthCallback", {
-  enumerable: true,
-  get: function get() {
-    return _implicit.OauthCallback;
-  }
-});
-Object.defineProperty(exports, "OauthCallbackProps", {
-  enumerable: true,
-  get: function get() {
-    return _implicit.OauthCallbackProps;
-  }
-});
-Object.defineProperty(exports, "RouteParams", {
-  enumerable: true,
-  get: function get() {
-    return _implicit.RouteParams;
-  }
-});
-Object.defineProperty(exports, "ConnectedAPICallback", {
-  enumerable: true,
-  get: function get() {
-    return _custom["default"];
-  }
-});
 Object.defineProperty(exports, "APICallback", {
   enumerable: true,
   get: function get() {
@@ -113,10 +17,10 @@ Object.defineProperty(exports, "APICallbackProps", {
     return _custom.APICallbackProps;
   }
 });
-Object.defineProperty(exports, "defaultAPICallbackProps", {
+Object.defineProperty(exports, "AuthorizationGrantType", {
   enumerable: true,
   get: function get() {
-    return _custom.defaultAPICallbackProps;
+    return _login.AuthorizationGrantType;
   }
 });
 Object.defineProperty(exports, "Component404", {
@@ -125,28 +29,28 @@ Object.defineProperty(exports, "Component404", {
     return _utils.Component404;
   }
 });
-Object.defineProperty(exports, "RenderErrorComponent", {
+Object.defineProperty(exports, "ConnectedAPICallback", {
   enumerable: true,
   get: function get() {
-    return _utils.RenderErrorComponent;
+    return _custom["default"];
   }
 });
-Object.defineProperty(exports, "SuccessfulLogin", {
+Object.defineProperty(exports, "ConnectedLogout", {
   enumerable: true,
   get: function get() {
-    return _utils.SuccessfulLogin;
+    return _logout["default"];
   }
 });
-Object.defineProperty(exports, "SuccessfulLoginProps", {
+Object.defineProperty(exports, "ConnectedOauthCallback", {
   enumerable: true,
   get: function get() {
-    return _utils.SuccessfulLoginProps;
+    return _implicit["default"];
   }
 });
-Object.defineProperty(exports, "gateKeeperReducer", {
+Object.defineProperty(exports, "ErrorCallback", {
   enumerable: true,
   get: function get() {
-    return _gatekeeper["default"];
+    return _utils2.ErrorCallback;
   }
 });
 Object.defineProperty(exports, "GateKeeperActionTypes", {
@@ -161,34 +65,70 @@ Object.defineProperty(exports, "GateKeeperState", {
     return _gatekeeper.GateKeeperState;
   }
 });
-Object.defineProperty(exports, "getResult", {
-  enumerable: true,
-  get: function get() {
-    return _gatekeeper.getResult;
-  }
-});
-Object.defineProperty(exports, "getSuccess", {
-  enumerable: true,
-  get: function get() {
-    return _gatekeeper.getSuccess;
-  }
-});
 Object.defineProperty(exports, "ImmutableGateKeeperState", {
   enumerable: true,
   get: function get() {
     return _gatekeeper.ImmutableGateKeeperState;
   }
 });
-Object.defineProperty(exports, "initialGateKeeperState", {
+Object.defineProperty(exports, "Logout", {
   enumerable: true,
   get: function get() {
-    return _gatekeeper.initialState;
+    return _logout.Logout;
   }
 });
-Object.defineProperty(exports, "isAuthenticating", {
+Object.defineProperty(exports, "LogoutProps", {
   enumerable: true,
   get: function get() {
-    return _gatekeeper.isAuthenticating;
+    return _logout.LogoutProps;
+  }
+});
+Object.defineProperty(exports, "OauthCallback", {
+  enumerable: true,
+  get: function get() {
+    return _implicit.OauthCallback;
+  }
+});
+Object.defineProperty(exports, "OauthCallbackProps", {
+  enumerable: true,
+  get: function get() {
+    return _implicit.OauthCallbackProps;
+  }
+});
+Object.defineProperty(exports, "OauthLogin", {
+  enumerable: true,
+  get: function get() {
+    return _login["default"];
+  }
+});
+Object.defineProperty(exports, "OauthLoginProps", {
+  enumerable: true,
+  get: function get() {
+    return _login.OauthLoginProps;
+  }
+});
+Object.defineProperty(exports, "OauthOptions", {
+  enumerable: true,
+  get: function get() {
+    return _oauth.OauthOptions;
+  }
+});
+Object.defineProperty(exports, "ProviderLinks", {
+  enumerable: true,
+  get: function get() {
+    return _login.ProviderLinks;
+  }
+});
+Object.defineProperty(exports, "ProviderLinksProps", {
+  enumerable: true,
+  get: function get() {
+    return _login.ProviderLinksProps;
+  }
+});
+Object.defineProperty(exports, "Providers", {
+  enumerable: true,
+  get: function get() {
+    return _oauth.Providers;
   }
 });
 Object.defineProperty(exports, "RECORD", {
@@ -203,10 +143,82 @@ Object.defineProperty(exports, "RecordAction", {
     return _gatekeeper.RecordAction;
   }
 });
-Object.defineProperty(exports, "recordResult", {
+Object.defineProperty(exports, "RenderErrorComponent", {
   enumerable: true,
   get: function get() {
-    return _gatekeeper.recordResult;
+    return _utils.RenderErrorComponent;
+  }
+});
+Object.defineProperty(exports, "RouteParams", {
+  enumerable: true,
+  get: function get() {
+    return _implicit.RouteParams;
+  }
+});
+Object.defineProperty(exports, "SuccessfulLogin", {
+  enumerable: true,
+  get: function get() {
+    return _utils.SuccessfulLogin;
+  }
+});
+Object.defineProperty(exports, "SuccessfulLoginProps", {
+  enumerable: true,
+  get: function get() {
+    return _utils.SuccessfulLoginProps;
+  }
+});
+Object.defineProperty(exports, "TokenExpired", {
+  enumerable: true,
+  get: function get() {
+    return _TokenExpiry.TokenExpired;
+  }
+});
+Object.defineProperty(exports, "TokenExpiredProps", {
+  enumerable: true,
+  get: function get() {
+    return _TokenExpiry.TokenExpiredProps;
+  }
+});
+Object.defineProperty(exports, "UserInfoFnType", {
+  enumerable: true,
+  get: function get() {
+    return _oauth.UserInfoFnType;
+  }
+});
+Object.defineProperty(exports, "defaultAPICallbackProps", {
+  enumerable: true,
+  get: function get() {
+    return _custom.defaultAPICallbackProps;
+  }
+});
+Object.defineProperty(exports, "defaultLogoutProps", {
+  enumerable: true,
+  get: function get() {
+    return _logout.defaultLogoutProps;
+  }
+});
+Object.defineProperty(exports, "defaultOauthCallbackProps", {
+  enumerable: true,
+  get: function get() {
+    return _implicit.defaultOauthCallbackProps;
+  }
+});
+Object.defineProperty(exports, "errorCallback", {
+  enumerable: true,
+  get: function get() {
+    return _utils2.errorCallback;
+  }
+});
+Object.defineProperty(exports, "fetchUser", {
+  enumerable: true,
+  get: function get() {
+    return _services.fetchUser;
+  }
+});
+Object.defineProperty(exports, "gateKeeperReducer", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper["default"];
   }
 });
 Object.defineProperty(exports, "gateKeeperReducerName", {
@@ -233,28 +245,28 @@ Object.defineProperty(exports, "getProviderFromOptions", {
     return _oauth.getProviderFromOptions;
   }
 });
-Object.defineProperty(exports, "OauthOptions", {
+Object.defineProperty(exports, "getResult", {
   enumerable: true,
   get: function get() {
-    return _oauth.OauthOptions;
+    return _gatekeeper.getResult;
   }
 });
-Object.defineProperty(exports, "Providers", {
+Object.defineProperty(exports, "getSuccess", {
   enumerable: true,
   get: function get() {
-    return _oauth.Providers;
+    return _gatekeeper.getSuccess;
   }
 });
-Object.defineProperty(exports, "UserInfoFnType", {
+Object.defineProperty(exports, "initialGateKeeperState", {
   enumerable: true,
   get: function get() {
-    return _oauth.UserInfoFnType;
+    return _gatekeeper.initialState;
   }
 });
-Object.defineProperty(exports, "fetchUser", {
+Object.defineProperty(exports, "isAuthenticating", {
   enumerable: true,
   get: function get() {
-    return _services.fetchUser;
+    return _gatekeeper.isAuthenticating;
   }
 });
 Object.defineProperty(exports, "oauth2Callback", {
@@ -263,34 +275,22 @@ Object.defineProperty(exports, "oauth2Callback", {
     return _services.oauth2Callback;
   }
 });
+Object.defineProperty(exports, "recordResult", {
+  enumerable: true,
+  get: function get() {
+    return _gatekeeper.recordResult;
+  }
+});
 Object.defineProperty(exports, "refreshToken", {
   enumerable: true,
   get: function get() {
     return _services.refreshToken;
   }
 });
-Object.defineProperty(exports, "TokenExpired", {
+Object.defineProperty(exports, "useOAuthLogin", {
   enumerable: true,
   get: function get() {
-    return _TokenExpiry.TokenExpired;
-  }
-});
-Object.defineProperty(exports, "TokenExpiredProps", {
-  enumerable: true,
-  get: function get() {
-    return _TokenExpiry.TokenExpiredProps;
-  }
-});
-Object.defineProperty(exports, "errorCallback", {
-  enumerable: true,
-  get: function get() {
-    return _utils2.errorCallback;
-  }
-});
-Object.defineProperty(exports, "ErrorCallback", {
-  enumerable: true,
-  get: function get() {
-    return _utils2.ErrorCallback;
+    return _login.useOAuthLogin;
   }
 });
 

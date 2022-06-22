@@ -5,9 +5,9 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getProviderFromOptions = getProviderFromOptions;
 exports.getOnadataUserInfo = getOnadataUserInfo;
 exports.getOpenSRPUserInfo = getOpenSRPUserInfo;
+exports.getProviderFromOptions = getProviderFromOptions;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -58,7 +58,33 @@ var addSecToCurrentTime = function addSecToCurrentTime(seconds) {
   return !isNaN(Number(seconds)) ? new Date(date.setSeconds(date.getSeconds() + Number(seconds))).toISOString() : null;
 };
 
-function getOpenSRPUserInfo(apiResponse) {
+function getOpenSRPUserInfo(apiRes) {
+  var _ref;
+
+  var email_verified = apiRes.email_verified,
+      oAuth2Data = apiRes.oAuth2Data,
+      given_name = apiRes.given_name,
+      family_name = apiRes.family_name,
+      preferred_username = apiRes.preferred_username,
+      realm_access = apiRes.realm_access,
+      sub = apiRes.sub,
+      name = apiRes.name,
+      organization = apiRes.organization;
+  var apiResponse = {
+    roles: ((_ref = realm_access === null || realm_access === void 0 ? void 0 : realm_access.roles) !== null && _ref !== void 0 ? _ref : []).map(function (role) {
+      return "ROLE_".concat(role);
+    }),
+    email: null,
+    username: preferred_username,
+    user_id: sub,
+    preferred_name: name,
+    family_name: family_name,
+    given_name: given_name,
+    email_verified: email_verified,
+    oAuth2Data: oAuth2Data,
+    organization: organization
+  };
+
   if (!apiResponse.username) {
     throw new Error(_constants.OAUTH2_CALLBACK_ERROR);
   }

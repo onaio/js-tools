@@ -13,13 +13,7 @@ declare type HTTPMethod = 'GET' | 'POST' | 'get' | 'post';
  * @param {UserInfoFnType} userInfoCallback - function the gets user info from API response
  * @param {string} method - the HTTP method to use
  */
-export declare function oauth2Callback(
-  urlObject: URL,
-  url: string,
-  provider: ClientOAuth2,
-  userInfoCallback: UserInfoFnType,
-  method?: HTTPMethod
-): Promise<void | import('@onaio/session-reducer/dist/types').SessionState>;
+export declare function oauth2Callback(urlObject: URL, url: string, provider: ClientOAuth2, userInfoCallback: UserInfoFnType, method?: HTTPMethod): Promise<void | import("@onaio/session-reducer/dist/types").SessionState>;
 /** This function is used to fetch the user logging in by calling oauth2Callback
  * and then calling authenticateUser to store the user in the Redux store.
  * @param {URL} urlObject - the URL object defined by the location hash and href
@@ -31,43 +25,25 @@ export declare function oauth2Callback(
  * @param {ErrorCallback} errorCallbackFn - a function that handles error messages
  * @param {string} method - the HTTP method to use
  */
-export declare function fetchUser(
-  urlObject: URL,
-  resourceUrl: string,
-  provider: ClientOAuth2,
-  authenticateActionCreator?: ActionCreator<AuthenticateAction>,
-  recordResultActionCreator?: ActionCreator<RecordAction>,
-  userInfoCallback?: UserInfoFnType,
-  errorCallbackFn?: ErrorCallback,
-  method?: HTTPMethod
-): Promise<void>;
+export declare function fetchUser(urlObject: URL, resourceUrl: string, provider: ClientOAuth2, authenticateActionCreator?: ActionCreator<AuthenticateAction>, recordResultActionCreator?: ActionCreator<RecordAction>, userInfoCallback?: UserInfoFnType, errorCallbackFn?: ErrorCallback, method?: HTTPMethod): Promise<void>;
 /** describes options to be passed to fetchState as second argument */
 interface FetchStateActionCreators {
-  authenticateActionCreator?: ActionCreator<AuthenticateAction>;
-  recordResultActionCreator?: ActionCreator<RecordAction>;
-  authenticationProgressCreator?: ActionCreator<AuthenticationProgressAction>;
-  errorCallbackFn?: ErrorCallback;
-  logoutActionCreator?: ActionCreator<LogOutAction>;
+    authenticateActionCreator?: ActionCreator<AuthenticateAction>;
+    recordResultActionCreator?: ActionCreator<RecordAction>;
+    authenticationProgressCreator?: ActionCreator<AuthenticationProgressAction>;
+    errorCallbackFn?: ErrorCallback;
+    logoutActionCreator?: ActionCreator<LogOutAction>;
 }
 /** fetches session info from provided url
  * @params {string} url - points to location of the sessions
  * @params {options} - actionCreators
  */
-export declare const fetchState: (
-  url: string,
-  {
-    authenticateActionCreator,
-    recordResultActionCreator,
-    authenticationProgressCreator,
-    errorCallbackFn,
-    logoutActionCreator
-  }: FetchStateActionCreators
-) => Promise<void>;
+export declare const fetchState: (url: string, { authenticateActionCreator, recordResultActionCreator, authenticationProgressCreator, errorCallbackFn, logoutActionCreator }: FetchStateActionCreators) => Promise<void>;
 /** describes options to be passed to refreshToken as third argument */
 interface RefreshTokenActionCreators {
-  authenticateActionCreator?: ActionCreator<AuthenticateAction>;
-  recordResultActionCreator?: ActionCreator<RecordAction>;
-  errorCallbackFn?: ErrorCallback;
+    authenticateActionCreator?: ActionCreator<AuthenticateAction>;
+    recordResultActionCreator?: ActionCreator<RecordAction>;
+    errorCallbackFn?: ErrorCallback;
 }
 /**
  * call express API to Refresh token and return new token
@@ -75,13 +51,5 @@ interface RefreshTokenActionCreators {
  * @param {Dispatch<AnyAction>} dispatch - dispatch action
  * @param {RefreshTokenActionCreators} options - optional params
  */
-export declare const refreshToken: (
-  url: string,
-  dispatch: Dispatch<AnyAction>,
-  {
-    authenticateActionCreator,
-    errorCallbackFn,
-    recordResultActionCreator
-  }: RefreshTokenActionCreators
-) => Promise<any>;
+export declare const refreshToken: (url: string, dispatch: Dispatch<AnyAction>, { authenticateActionCreator, errorCallbackFn, recordResultActionCreator }: RefreshTokenActionCreators) => Promise<any>;
 export {};

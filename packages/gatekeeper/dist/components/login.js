@@ -5,8 +5,8 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.useOAuthLogin = useOAuthLogin;
 exports["default"] = exports.ProviderLinks = exports.AuthorizationGrantType = void 0;
+exports.useOAuthLogin = useOAuthLogin;
 
 var _react = _interopRequireDefault(require("react"));
 
