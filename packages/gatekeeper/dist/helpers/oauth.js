@@ -53,8 +53,8 @@ function getOnadataUserInfo(apiResponse) {
   };
 }
 
-var addSecToCurrentTime = function addSecToCurrentTime(seconds) {
-  var date = new Date(Date.now());
+var addSecToCurrentTime = function addSecToCurrentTime(seconds, baseDate) {
+  var date = baseDate && !isNaN(baseDate.getTime()) ? baseDate : new Date(Date.now());
   return !isNaN(Number(seconds)) ? new Date(date.setSeconds(date.getSeconds() + Number(seconds))).toISOString() : null;
 };
 
@@ -68,8 +68,7 @@ function getOpenSRPUserInfo(apiRes) {
       preferred_username = apiRes.preferred_username,
       realm_access = apiRes.realm_access,
       sub = apiRes.sub,
-      name = apiRes.name,
-      organization = apiRes.organization;
+      name = apiRes.name;
   var apiResponse = {
     roles: ((_ref = realm_access === null || realm_access === void 0 ? void 0 : realm_access.roles) !== null && _ref !== void 0 ? _ref : []).map(function (role) {
       return "ROLE_".concat(role);
@@ -81,8 +80,7 @@ function getOpenSRPUserInfo(apiRes) {
     family_name: family_name,
     given_name: given_name,
     email_verified: email_verified,
-    oAuth2Data: oAuth2Data,
-    organization: organization
+    oAuth2Data: oAuth2Data
   };
 
   if (!apiResponse.username) {
@@ -95,8 +93,9 @@ function getOpenSRPUserInfo(apiRes) {
     var _apiResponse$oAuth2Da = apiResponse.oAuth2Data,
         expires_in = _apiResponse$oAuth2Da.expires_in,
         refresh_expires_in = _apiResponse$oAuth2Da.refresh_expires_in;
-    var tokenExpiryTime = addSecToCurrentTime(expires_in);
-    var refreshExpiryTime = addSecToCurrentTime(refresh_expires_in);
+    var authTime = new Date(apiRes.auth_time * 1000);
+    var tokenExpiryTime = addSecToCurrentTime(expires_in, authTime);
+    var refreshExpiryTime = addSecToCurrentTime(refresh_expires_in, authTime);
     responseCopy = _objectSpread({}, responseCopy, {
       oAuth2Data: _objectSpread({}, apiResponse.oAuth2Data, {}, tokenExpiryTime && {
         token_expires_at: tokenExpiryTime
