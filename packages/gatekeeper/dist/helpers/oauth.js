@@ -13,6 +13,8 @@ var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/de
 
 var _clientOauth = _interopRequireDefault(require("client-oauth2"));
 
+var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
+
 var _constants = require("./constants");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -61,14 +63,25 @@ var addSecToCurrentTime = function addSecToCurrentTime(seconds, baseDate) {
 function getOpenSRPUserInfo(apiRes) {
   var _ref;
 
-  var email_verified = apiRes.email_verified,
-      oAuth2Data = apiRes.oAuth2Data,
-      given_name = apiRes.given_name,
-      family_name = apiRes.family_name,
-      preferred_username = apiRes.preferred_username,
-      realm_access = apiRes.realm_access,
-      sub = apiRes.sub,
-      name = apiRes.name;
+  var accessToken = apiRes.oAuth2Data.access_token;
+
+  if (!accessToken) {
+    throw new Error(_constants.OAUTH2_CALLBACK_ERROR);
+  }
+
+  var tokenClaims = _jsonwebtoken["default"].decode(accessToken);
+
+  if (!tokenClaims) {
+    throw new Error(_constants.OAUTH2_CALLBACK_ERROR);
+  }
+
+  var email_verified = tokenClaims.email_verified,
+      given_name = tokenClaims.given_name,
+      family_name = tokenClaims.family_name,
+      preferred_username = tokenClaims.preferred_username,
+      realm_access = tokenClaims.realm_access,
+      sub = tokenClaims.sub,
+      name = tokenClaims.name;
   var apiResponse = {
     roles: ((_ref = realm_access === null || realm_access === void 0 ? void 0 : realm_access.roles) !== null && _ref !== void 0 ? _ref : []).map(function (role) {
       return "ROLE_".concat(role);
@@ -80,31 +93,24 @@ function getOpenSRPUserInfo(apiRes) {
     family_name: family_name,
     given_name: given_name,
     email_verified: email_verified,
-    oAuth2Data: oAuth2Data
+    oAuth2Data: apiRes.oAuth2Data
   };
-
-  if (!apiResponse.username) {
-    throw new Error(_constants.OAUTH2_CALLBACK_ERROR);
-  }
+  var _apiResponse$oAuth2Da = apiResponse.oAuth2Data,
+      expires_in = _apiResponse$oAuth2Da.expires_in,
+      refresh_expires_in = _apiResponse$oAuth2Da.refresh_expires_in;
+  var authTime = new Date(tokenClaims.auth_time * 1000);
+  var tokenExpiryTime = addSecToCurrentTime(expires_in, authTime);
+  var refreshExpiryTime = addSecToCurrentTime(refresh_expires_in, authTime);
 
   var responseCopy = _objectSpread({}, apiResponse);
 
-  if (apiResponse.oAuth2Data) {
-    var _apiResponse$oAuth2Da = apiResponse.oAuth2Data,
-        expires_in = _apiResponse$oAuth2Da.expires_in,
-        refresh_expires_in = _apiResponse$oAuth2Da.refresh_expires_in;
-    var authTime = new Date(apiRes.auth_time * 1000);
-    var tokenExpiryTime = addSecToCurrentTime(expires_in, authTime);
-    var refreshExpiryTime = addSecToCurrentTime(refresh_expires_in, authTime);
-    responseCopy = _objectSpread({}, responseCopy, {
-      oAuth2Data: _objectSpread({}, apiResponse.oAuth2Data, {}, tokenExpiryTime && {
-        token_expires_at: tokenExpiryTime
-      }, {}, refreshExpiryTime && {
-        refresh_expires_at: refreshExpiryTime
-      })
-    });
-  }
-
+  responseCopy = _objectSpread({}, responseCopy, {
+    oAuth2Data: _objectSpread({}, apiResponse.oAuth2Data, {}, tokenExpiryTime && {
+      token_expires_at: tokenExpiryTime
+    }, {}, refreshExpiryTime && {
+      refresh_expires_at: refreshExpiryTime
+    })
+  });
   return {
     authenticated: true,
     extraData: responseCopy,

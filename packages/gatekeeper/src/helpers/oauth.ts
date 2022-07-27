@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import { SessionState } from '@onaio/session-reducer';
 import ClientOAuth2, { Options } from 'client-oauth2';
+import jwt from 'jsonwebtoken';
 import { OAUTH2_CALLBACK_ERROR } from './constants';
 
 /** interface for oAuth options */
@@ -45,9 +46,9 @@ export interface OpensrpKeycloakTokenClaims {
   family_name: string;
 }
 
-export type RawOpensrpUserInfo = OpensrpKeycloakTokenClaims & {
+export interface RawOpensrpUserInfo {
   oAuth2Data: Record<string, any>;
-};
+}
 
 /** interface for providers object */
 export interface Providers {
@@ -107,16 +108,24 @@ const addSecToCurrentTime = (seconds: number, baseDate?: Date) => {
  * @param {RawOpensrpUserInfo} apiResponse - the API response object
  */
 export function getOpenSRPUserInfo(apiRes: RawOpensrpUserInfo): SessionState {
+  const { access_token: accessToken } = apiRes.oAuth2Data;
+  if (!accessToken) {
+    throw new Error(OAUTH2_CALLBACK_ERROR);
+  }
+
+  const tokenClaims = jwt.decode(accessToken) as OpensrpKeycloakTokenClaims | null;
+  if (!tokenClaims) {
+    throw new Error(OAUTH2_CALLBACK_ERROR);
+  }
   const {
     email_verified,
-    oAuth2Data,
     given_name,
     family_name,
     preferred_username,
     realm_access,
     sub,
     name
-  } = apiRes;
+  } = tokenClaims;
   const apiResponse = {
     roles: (realm_access?.roles ?? []).map((role: string) => `ROLE_${role}`),
     email: null,
@@ -126,26 +135,24 @@ export function getOpenSRPUserInfo(apiRes: RawOpensrpUserInfo): SessionState {
     family_name,
     given_name,
     email_verified,
-    oAuth2Data
+    oAuth2Data: apiRes.oAuth2Data
   };
-  if (!apiResponse.username) {
-    throw new Error(OAUTH2_CALLBACK_ERROR);
-  }
+
+  const { expires_in, refresh_expires_in } = apiResponse.oAuth2Data;
+  const authTime = new Date(tokenClaims.auth_time * 1000);
+  const tokenExpiryTime = addSecToCurrentTime(expires_in, authTime);
+  const refreshExpiryTime = addSecToCurrentTime(refresh_expires_in, authTime);
+
   let responseCopy = { ...apiResponse };
-  if (apiResponse.oAuth2Data) {
-    const { expires_in, refresh_expires_in } = apiResponse.oAuth2Data;
-    const authTime = new Date(apiRes.auth_time * 1000);
-    const tokenExpiryTime = addSecToCurrentTime(expires_in, authTime);
-    const refreshExpiryTime = addSecToCurrentTime(refresh_expires_in, authTime);
-    responseCopy = {
-      ...responseCopy,
-      oAuth2Data: {
-        ...apiResponse.oAuth2Data,
-        ...(tokenExpiryTime && { token_expires_at: tokenExpiryTime }),
-        ...(refreshExpiryTime && { refresh_expires_at: refreshExpiryTime })
-      }
-    };
-  }
+  responseCopy = {
+    ...responseCopy,
+    oAuth2Data: {
+      ...apiResponse.oAuth2Data,
+      ...(tokenExpiryTime && { token_expires_at: tokenExpiryTime }),
+      ...(refreshExpiryTime && { refresh_expires_at: refreshExpiryTime })
+    }
+  };
+
   return {
     authenticated: true,
     extraData: responseCopy,

@@ -9,7 +9,7 @@ import {
   finalExtraData,
   onadataAuth,
   onadataSessionWithOauthData,
-  openSRPFinalData,
+  opensrpOauthClientData,
   openSRPSession
 } from './fixtures';
 
@@ -41,18 +41,7 @@ describe('gatekeeper/oAuth', () => {
 
   it('getOpenSRPUserInfo should work', async () => {
     MockDate.set('1/1/2020');
-    expect(getOpenSRPUserInfo(openSRPFinalData)).toEqual(openSRPSession);
-    expect(getOpenSRPUserInfo({ ...openSRPFinalData, auth_time: 1658734151 })).toEqual({
-      ...openSRPSession,
-      extraData: {
-        ...openSRPSession.extraData,
-        oAuth2Data: {
-          ...openSRPSession.extraData.oAuth2Data,
-          refresh_expires_at: '2022-08-24T17:29:11.000Z',
-          token_expires_at: '2022-07-25T17:29:11.000Z'
-        }
-      }
-    });
+    expect(getOpenSRPUserInfo(opensrpOauthClientData)).toEqual(openSRPSession);
   });
 
   MockDate.reset();

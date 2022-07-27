@@ -36,9 +36,9 @@ export interface OpensrpKeycloakTokenClaims {
   given_name: string;
   family_name: string;
 }
-export declare type RawOpensrpUserInfo = OpensrpKeycloakTokenClaims & {
+export interface RawOpensrpUserInfo {
   oAuth2Data: Record<string, any>;
-};
+}
 /** interface for providers object */
 export interface Providers {
   [key: string]: OauthOptions;
