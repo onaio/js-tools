@@ -98,7 +98,7 @@ function getOpenSRPUserInfo(apiRes) {
   var _apiResponse$oAuth2Da = apiResponse.oAuth2Data,
       expires_in = _apiResponse$oAuth2Da.expires_in,
       refresh_expires_in = _apiResponse$oAuth2Da.refresh_expires_in;
-  var authTime = new Date(tokenClaims.auth_time * 1000);
+  var authTime = new Date(tokenClaims.iat * 1000);
   var tokenExpiryTime = addSecToCurrentTime(expires_in, authTime);
   var refreshExpiryTime = addSecToCurrentTime(refresh_expires_in, authTime);
 

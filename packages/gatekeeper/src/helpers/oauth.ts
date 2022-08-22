@@ -139,7 +139,7 @@ export function getOpenSRPUserInfo(apiRes: RawOpensrpUserInfo): SessionState {
   };
 
   const { expires_in, refresh_expires_in } = apiResponse.oAuth2Data;
-  const authTime = new Date(tokenClaims.auth_time * 1000);
+  const authTime = new Date(tokenClaims.iat * 1000);
   const tokenExpiryTime = addSecToCurrentTime(expires_in, authTime);
   const refreshExpiryTime = addSecToCurrentTime(refresh_expires_in, authTime);
 
