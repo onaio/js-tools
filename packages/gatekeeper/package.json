@@ -1,6 +1,6 @@
 {
   "name": "@onaio/gatekeeper",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Reusable tools for adding authentication to your React app",
   "main": "dist/index.js",
   "types": "dist/types",
