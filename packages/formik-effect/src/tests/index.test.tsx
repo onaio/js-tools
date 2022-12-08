@@ -1,4 +1,5 @@
 import { mount } from 'enzyme';
+import flushPromises from 'flush-promises';
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import FormikEffect from '..';
@@ -8,7 +9,7 @@ describe('formik-effect', () => {
     jest.resetAllMocks();
   });
 
-  it('works as expected', () => {
+  it('works as expected', async () => {
     const mock = jest.fn();
 
     const SignupForm = () => (
@@ -40,9 +41,10 @@ describe('formik-effect', () => {
       .last()
       .simulate('change', { target: { value: 'Doe', name: 'lastName' } });
 
+    await flushPromises();
     wrapper.update();
 
-    expect(mock).toHaveBeenCalledTimes(3);
+    expect(mock).toHaveBeenCalledTimes(5);
 
     expect(mock.mock.calls[2]).toMatchSnapshot();
   });
