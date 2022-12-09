@@ -1,6 +1,7 @@
 # js-tools
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+[![codecov](https://codecov.io/gh/onaio/js-tools/branch/main/graph/badge.svg?token=4uqffWAwNV)](https://codecov.io/gh/onaio/js-tools)
 
 This is the home of shared javascript components and utilities for Ona.
 
