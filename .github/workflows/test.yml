@@ -35,11 +35,11 @@ jobs:
         run: yarn test --verbose --collectCoverage=true --forceExit --detectOpenHandles
         env:
           NODE_OPTIONS: --max_old_space_size=4096
-      # - 
-      #   name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v3
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     directory: ./coverage
-      #     fail_ci_if_error: true
-      #     verbose: true
+      - 
+        name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage
+          fail_ci_if_error: true
+          verbose: true
