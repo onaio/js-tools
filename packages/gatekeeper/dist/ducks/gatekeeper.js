@@ -5,11 +5,13 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.authenticationProgress = exports.RECORD = exports.AUTHENTICATION_PROGRESS = void 0;
 exports["default"] = reducer;
 exports.getResult = getResult;
 exports.getSuccess = getSuccess;
+exports.initialState = void 0;
 exports.isAuthenticating = isAuthenticating;
-exports.authenticationProgress = exports.recordResult = exports.AUTHENTICATION_PROGRESS = exports.RECORD = exports.initialState = exports.reducerName = void 0;
+exports.reducerName = exports.recordResult = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 

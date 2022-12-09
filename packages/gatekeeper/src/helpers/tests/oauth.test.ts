@@ -5,7 +5,13 @@ import {
   getProviderFromOptions,
   Providers
 } from '../oauth';
-import * as fixtures from './fixtures';
+import {
+  finalExtraData,
+  onadataAuth,
+  onadataSessionWithOauthData,
+  opensrpOauthClientData,
+  openSRPSession
+} from './fixtures';
 
 describe('gatekeeper/oAuth', () => {
   beforeEach(() => {
@@ -14,7 +20,7 @@ describe('gatekeeper/oAuth', () => {
 
   it('getProviderFromOptions should work', async () => {
     MockDate.set('1/1/2020');
-    const expected = fixtures.onadataAuth;
+    const expected = onadataAuth;
     const providersObj: Providers = {
       onadata: {
         accessTokenUri: 'https://stage-api.ona.io/o/token/',
@@ -30,13 +36,12 @@ describe('gatekeeper/oAuth', () => {
   });
 
   it('getOnadataUserInfo should work', async () => {
-    expect(getOnadataUserInfo(fixtures.finalExtraData)).toEqual(
-      fixtures.onadataSessionWithOauthData
-    );
+    expect(getOnadataUserInfo(finalExtraData)).toEqual(onadataSessionWithOauthData);
   });
 
   it('getOpenSRPUserInfo should work', async () => {
-    expect(getOpenSRPUserInfo(fixtures.openSRPFinalData)).toEqual(fixtures.openSRPSession);
+    MockDate.set('1/1/2020');
+    expect(getOpenSRPUserInfo(opensrpOauthClientData)).toEqual(openSRPSession);
   });
 
   MockDate.reset();

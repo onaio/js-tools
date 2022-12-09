@@ -5,9 +5,10 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.oauth2Callback = oauth2Callback;
+exports.fetchState = void 0;
 exports.fetchUser = fetchUser;
-exports.refreshToken = exports.fetchState = void 0;
+exports.oauth2Callback = oauth2Callback;
+exports.refreshToken = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -156,14 +157,14 @@ function _fetchUser() {
 }
 
 var fetchState = function () {
-  var _ref = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee(url, _ref2) {
-    var _ref2$authenticateAct, authenticateActionCreator, _ref2$recordResultAct, recordResultActionCreator, _ref2$authenticationP, authenticationProgressCreator, _ref2$errorCallbackFn, errorCallbackFn, _ref2$logoutActionCre, logoutActionCreator;
+  var _ref2 = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee(url, _ref) {
+    var _ref$authenticateActi, authenticateActionCreator, _ref$recordResultActi, recordResultActionCreator, _ref$authenticationPr, authenticationProgressCreator, _ref$errorCallbackFn, errorCallbackFn, _ref$logoutActionCrea, logoutActionCreator;
 
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _ref2$authenticateAct = _ref2.authenticateActionCreator, authenticateActionCreator = _ref2$authenticateAct === void 0 ? _sessionReducer.authenticateUser : _ref2$authenticateAct, _ref2$recordResultAct = _ref2.recordResultActionCreator, recordResultActionCreator = _ref2$recordResultAct === void 0 ? _gatekeeper.recordResult : _ref2$recordResultAct, _ref2$authenticationP = _ref2.authenticationProgressCreator, authenticationProgressCreator = _ref2$authenticationP === void 0 ? _gatekeeper.authenticationProgress : _ref2$authenticationP, _ref2$errorCallbackFn = _ref2.errorCallbackFn, errorCallbackFn = _ref2$errorCallbackFn === void 0 ? _utils.errorCallback : _ref2$errorCallbackFn, _ref2$logoutActionCre = _ref2.logoutActionCreator, logoutActionCreator = _ref2$logoutActionCre === void 0 ? _sessionReducer.logOutUser : _ref2$logoutActionCre;
+            _ref$authenticateActi = _ref.authenticateActionCreator, authenticateActionCreator = _ref$authenticateActi === void 0 ? _sessionReducer.authenticateUser : _ref$authenticateActi, _ref$recordResultActi = _ref.recordResultActionCreator, recordResultActionCreator = _ref$recordResultActi === void 0 ? _gatekeeper.recordResult : _ref$recordResultActi, _ref$authenticationPr = _ref.authenticationProgressCreator, authenticationProgressCreator = _ref$authenticationPr === void 0 ? _gatekeeper.authenticationProgress : _ref$authenticationPr, _ref$errorCallbackFn = _ref.errorCallbackFn, errorCallbackFn = _ref$errorCallbackFn === void 0 ? _utils.errorCallback : _ref$errorCallbackFn, _ref$logoutActionCrea = _ref.logoutActionCreator, logoutActionCreator = _ref$logoutActionCrea === void 0 ? _sessionReducer.logOutUser : _ref$logoutActionCrea;
             authenticationProgressCreator(true);
             fetch(url).then(function (res) {
               if (res.ok) {
@@ -203,21 +204,21 @@ var fetchState = function () {
   }));
 
   return function fetchState(_x8, _x9) {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }();
 
 exports.fetchState = fetchState;
 
 var refreshToken = function () {
-  var _ref3 = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee2(url, dispatch, _ref4) {
-    var _ref4$authenticateAct, authenticateActionCreator, _ref4$errorCallbackFn, errorCallbackFn, _ref4$recordResultAct, recordResultActionCreator;
+  var _ref4 = (0, _asyncToGenerator2["default"])(_regenerator["default"].mark(function _callee2(url, dispatch, _ref3) {
+    var _ref3$authenticateAct, authenticateActionCreator, _ref3$errorCallbackFn, errorCallbackFn, _ref3$recordResultAct, recordResultActionCreator;
 
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _ref4$authenticateAct = _ref4.authenticateActionCreator, authenticateActionCreator = _ref4$authenticateAct === void 0 ? _sessionReducer.authenticateUser : _ref4$authenticateAct, _ref4$errorCallbackFn = _ref4.errorCallbackFn, errorCallbackFn = _ref4$errorCallbackFn === void 0 ? _utils.errorCallback : _ref4$errorCallbackFn, _ref4$recordResultAct = _ref4.recordResultActionCreator, recordResultActionCreator = _ref4$recordResultAct === void 0 ? _gatekeeper.recordResult : _ref4$recordResultAct;
+            _ref3$authenticateAct = _ref3.authenticateActionCreator, authenticateActionCreator = _ref3$authenticateAct === void 0 ? _sessionReducer.authenticateUser : _ref3$authenticateAct, _ref3$errorCallbackFn = _ref3.errorCallbackFn, errorCallbackFn = _ref3$errorCallbackFn === void 0 ? _utils.errorCallback : _ref3$errorCallbackFn, _ref3$recordResultAct = _ref3.recordResultActionCreator, recordResultActionCreator = _ref3$recordResultAct === void 0 ? _gatekeeper.recordResult : _ref3$recordResultAct;
             return _context2.abrupt("return", fetch(url).then(function (res) {
               if (res.ok) {
                 return res.json();
@@ -253,7 +254,7 @@ var refreshToken = function () {
   }));
 
   return function refreshToken(_x10, _x11, _x12) {
-    return _ref3.apply(this, arguments);
+    return _ref4.apply(this, arguments);
   };
 }();
 

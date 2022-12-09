@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.Logout = exports.defaultLogoutProps = exports.defaultLogout = void 0;
+exports.defaultLogoutProps = exports.defaultLogout = exports["default"] = exports.Logout = void 0;
 
 var _sessionReducer = require("@onaio/session-reducer");
 

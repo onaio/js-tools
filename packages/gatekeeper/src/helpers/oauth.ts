@@ -1,10 +1,53 @@
+/* eslint-disable camelcase */
 import { SessionState } from '@onaio/session-reducer';
 import ClientOAuth2, { Options } from 'client-oauth2';
+import jwt from 'jsonwebtoken';
 import { OAUTH2_CALLBACK_ERROR } from './constants';
 
 /** interface for oAuth options */
 export interface OauthOptions extends Options {
   userUri: string;
+}
+
+export type UnixTimestamp = number;
+export interface OpensrpKeycloakTokenClaims {
+  // expiration time (seconds since unix epoch)
+  exp: UnixTimestamp;
+  // issued at
+  iat: UnixTimestamp;
+  // time authentication occurred
+  auth_time: UnixTimestamp;
+  jti: string;
+  iss: string;
+  aud: string[];
+  // subject
+  sub: string;
+  typ: string;
+  azp: string;
+  session_state: string;
+  'allowed-origins': string[];
+  realm_access: {
+    roles: string[];
+  };
+  resource_access: {
+    'realm-management': {
+      roles: string[];
+    };
+    account: {
+      roles: string[];
+    };
+  };
+  scope: string;
+  sid: string;
+  email_verified: false;
+  name: string;
+  preferred_username: string;
+  given_name: string;
+  family_name: string;
+}
+
+export interface RawOpensrpUserInfo {
+  oAuth2Data: Record<string, any>;
 }
 
 /** interface for providers object */
@@ -54,34 +97,62 @@ export function getOnadataUserInfo(apiResponse: { [key: string]: any }): Session
  * Incase passed seconds are invalid it returns null
  * @param {number} seconds - number of seconds
  */
-const addSecToCurrentTime = (seconds: number) => {
-  const date = new Date(Date.now());
+const addSecToCurrentTime = (seconds: number, baseDate?: Date) => {
+  const date = baseDate && !isNaN(baseDate.getTime()) ? baseDate : new Date(Date.now());
   return !isNaN(Number(seconds))
     ? new Date(date.setSeconds(date.getSeconds() + Number(seconds))).toISOString()
     : null;
 };
 
 /** Function to get OpenSRP user info from api response object
- * @param {{[key: string]: any }} apiResponse - the API response object
+ * @param {RawOpensrpUserInfo} apiResponse - the API response object
  */
-export function getOpenSRPUserInfo(apiResponse: { [key: string]: any }): SessionState {
-  if (!apiResponse.username) {
+export function getOpenSRPUserInfo(apiRes: RawOpensrpUserInfo): SessionState {
+  const { access_token: accessToken } = apiRes.oAuth2Data;
+  if (!accessToken) {
     throw new Error(OAUTH2_CALLBACK_ERROR);
   }
-  let responseCopy = { ...apiResponse };
-  if (apiResponse.oAuth2Data) {
-    const { expires_in, refresh_expires_in } = apiResponse.oAuth2Data;
-    const tokenExpiryTime = addSecToCurrentTime(expires_in);
-    const refreshExpiryTime = addSecToCurrentTime(refresh_expires_in);
-    responseCopy = {
-      ...responseCopy,
-      oAuth2Data: {
-        ...apiResponse.oAuth2Data,
-        ...(tokenExpiryTime && { token_expires_at: tokenExpiryTime }),
-        ...(refreshExpiryTime && { refresh_expires_at: refreshExpiryTime })
-      }
-    };
+
+  const tokenClaims = jwt.decode(accessToken) as OpensrpKeycloakTokenClaims | null;
+  if (!tokenClaims) {
+    throw new Error(OAUTH2_CALLBACK_ERROR);
   }
+  const {
+    email_verified,
+    given_name,
+    family_name,
+    preferred_username,
+    realm_access,
+    sub,
+    name
+  } = tokenClaims;
+  const apiResponse = {
+    roles: (realm_access?.roles ?? []).map((role: string) => `ROLE_${role}`),
+    email: null,
+    username: preferred_username,
+    user_id: sub,
+    preferred_name: name,
+    family_name,
+    given_name,
+    email_verified,
+    oAuth2Data: apiRes.oAuth2Data
+  };
+
+  const { expires_in, refresh_expires_in } = apiResponse.oAuth2Data;
+  const authTime = new Date(tokenClaims.iat * 1000);
+  const tokenExpiryTime = addSecToCurrentTime(expires_in, authTime);
+  const refreshExpiryTime = addSecToCurrentTime(refresh_expires_in, authTime);
+
+  let responseCopy = { ...apiResponse };
+  responseCopy = {
+    ...responseCopy,
+    oAuth2Data: {
+      ...apiResponse.oAuth2Data,
+      ...(tokenExpiryTime && { token_expires_at: tokenExpiryTime }),
+      ...(refreshExpiryTime && { refresh_expires_at: refreshExpiryTime })
+    }
+  };
+
   return {
     authenticated: true,
     extraData: responseCopy,

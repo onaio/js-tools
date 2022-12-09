@@ -5,13 +5,15 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getProviderFromOptions = getProviderFromOptions;
 exports.getOnadataUserInfo = getOnadataUserInfo;
 exports.getOpenSRPUserInfo = getOpenSRPUserInfo;
+exports.getProviderFromOptions = getProviderFromOptions;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
 var _clientOauth = _interopRequireDefault(require("client-oauth2"));
+
+var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
 var _constants = require("./constants");
 
@@ -53,33 +55,62 @@ function getOnadataUserInfo(apiResponse) {
   };
 }
 
-var addSecToCurrentTime = function addSecToCurrentTime(seconds) {
-  var date = new Date(Date.now());
+var addSecToCurrentTime = function addSecToCurrentTime(seconds, baseDate) {
+  var date = baseDate && !isNaN(baseDate.getTime()) ? baseDate : new Date(Date.now());
   return !isNaN(Number(seconds)) ? new Date(date.setSeconds(date.getSeconds() + Number(seconds))).toISOString() : null;
 };
 
-function getOpenSRPUserInfo(apiResponse) {
-  if (!apiResponse.username) {
+function getOpenSRPUserInfo(apiRes) {
+  var _ref;
+
+  var accessToken = apiRes.oAuth2Data.access_token;
+
+  if (!accessToken) {
     throw new Error(_constants.OAUTH2_CALLBACK_ERROR);
   }
 
-  var responseCopy = _objectSpread({}, apiResponse);
+  var tokenClaims = _jsonwebtoken["default"].decode(accessToken);
 
-  if (apiResponse.oAuth2Data) {
-    var _apiResponse$oAuth2Da = apiResponse.oAuth2Data,
-        expires_in = _apiResponse$oAuth2Da.expires_in,
-        refresh_expires_in = _apiResponse$oAuth2Da.refresh_expires_in;
-    var tokenExpiryTime = addSecToCurrentTime(expires_in);
-    var refreshExpiryTime = addSecToCurrentTime(refresh_expires_in);
-    responseCopy = _objectSpread({}, responseCopy, {
-      oAuth2Data: _objectSpread({}, apiResponse.oAuth2Data, {}, tokenExpiryTime && {
-        token_expires_at: tokenExpiryTime
-      }, {}, refreshExpiryTime && {
-        refresh_expires_at: refreshExpiryTime
-      })
-    });
+  if (!tokenClaims) {
+    throw new Error(_constants.OAUTH2_CALLBACK_ERROR);
   }
 
+  var email_verified = tokenClaims.email_verified,
+      given_name = tokenClaims.given_name,
+      family_name = tokenClaims.family_name,
+      preferred_username = tokenClaims.preferred_username,
+      realm_access = tokenClaims.realm_access,
+      sub = tokenClaims.sub,
+      name = tokenClaims.name;
+  var apiResponse = {
+    roles: ((_ref = realm_access === null || realm_access === void 0 ? void 0 : realm_access.roles) !== null && _ref !== void 0 ? _ref : []).map(function (role) {
+      return "ROLE_".concat(role);
+    }),
+    email: null,
+    username: preferred_username,
+    user_id: sub,
+    preferred_name: name,
+    family_name: family_name,
+    given_name: given_name,
+    email_verified: email_verified,
+    oAuth2Data: apiRes.oAuth2Data
+  };
+  var _apiResponse$oAuth2Da = apiResponse.oAuth2Data,
+      expires_in = _apiResponse$oAuth2Da.expires_in,
+      refresh_expires_in = _apiResponse$oAuth2Da.refresh_expires_in;
+  var authTime = new Date(tokenClaims.iat * 1000);
+  var tokenExpiryTime = addSecToCurrentTime(expires_in, authTime);
+  var refreshExpiryTime = addSecToCurrentTime(refresh_expires_in, authTime);
+
+  var responseCopy = _objectSpread({}, apiResponse);
+
+  responseCopy = _objectSpread({}, responseCopy, {
+    oAuth2Data: _objectSpread({}, apiResponse.oAuth2Data, {}, tokenExpiryTime && {
+      token_expires_at: tokenExpiryTime
+    }, {}, refreshExpiryTime && {
+      refresh_expires_at: refreshExpiryTime
+    })
+  });
   return {
     authenticated: true,
     extraData: responseCopy,
