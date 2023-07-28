@@ -13,7 +13,7 @@ import store from '@onaio/connected-reducer-registry';
 This is a redux store that:
 
 - works with the Reducer Registry i.e. any reducers added to the Reducer registry will be added to the Redux store dynamically
-- is integrated with [connected-react-router](https://github.com/supasate/connected-react-router)
+- is integrated with [@lagunovsky/redux-react-router](https://github.com/lagunovsky/redux-react-router)
 - is integrated with [redux thunk](https://github.com/reduxjs/redux-thunk)
 - includes redux dev tools for easy debugging
 

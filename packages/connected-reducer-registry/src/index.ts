@@ -1,5 +1,5 @@
+import { createRouterMiddleware, createRouterReducer } from '@lagunovsky/redux-react-router';
 import reducerRegistry, { combine, Registry } from '@onaio/redux-reducer-registry';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -39,12 +39,12 @@ export function getConnectedStore(reducers: Registry, initialState: State = {}) 
   return createStore(
     reducer,
     initialState,
-    composeEnhancers(applyMiddleware(thunk, routerMiddleware(history)))
+    composeEnhancers(applyMiddleware(thunk, createRouterMiddleware(history)))
   );
 }
 
 /** Router reducer */
-export const connectReducer = connectRouter(history);
+export const connectReducer = createRouterReducer(history);
 
 /** Initial reducers in the reducer registry */
 const defaultReducers: Registry = {
