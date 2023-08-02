@@ -76,7 +76,6 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-polyfill": "^6.26.0",
     "babel-preset-react-app": "^9.1.2",
-    "connected-react-router": "^6.4.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.1",
     "enzyme-to-json": "^3.3.5",
@@ -122,6 +121,7 @@
     "webpack": "^4.29.6"
   },
   "dependencies": {
+    "@lagunovsky/redux-react-router": "^4.3.0",
     "styled-components": "^5.2.0"
   },
   "resolutions": {

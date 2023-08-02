@@ -1,4 +1,5 @@
 /** Store module */
+import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers, createStore, Reducer } from 'redux';
 import reducerRegistry, { Registry } from './registry';
 
@@ -19,11 +20,17 @@ export function combine(reducers: Registry, initialState: State = {}) {
 /** Function that returns a Redux store given a list of Reducers and initial
  * state
  */
+// export function getStore(reducers: Registry, initialState: State = {}) {
+//   if (Object.keys(reducers).length > 0) {
+//     return createStore(combine(reducers, initialState));
+//   }
+//   return createStore(() => initialState);
+// }
 export function getStore(reducers: Registry, initialState: State = {}) {
-  if (Object.keys(reducers).length > 0) {
-    return createStore(combine(reducers, initialState));
-  }
-  return createStore(() => initialState);
+  return configureStore({
+    reducer: combine(reducers, initialState),
+    preloadedState: initialState
+  });
 }
 
 /** Ready-to-use default store made from an empty Reducer registry */

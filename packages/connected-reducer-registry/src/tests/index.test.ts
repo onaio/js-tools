@@ -18,13 +18,12 @@ describe('store', () => {
     expect(typeof store.replaceReducer).toEqual('function');
   });
 
-  it('should include connectReducer by default', () => {
+  it('should include createRouterReducer by default', () => {
     expect(store.getState().router).toEqual({
       action: 'POP',
       location: {
         hash: '',
         pathname: '/',
-        query: {},
         search: '',
         state: undefined
       }

@@ -1,5 +1,6 @@
+import { createRouterMiddleware, createRouterReducer } from '@lagunovsky/redux-react-router';
 import reducerRegistry, { combine, Registry } from '@onaio/redux-reducer-registry';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { configureStore } from '@reduxjs/toolkit';
 import { createBrowserHistory } from 'history';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -30,21 +31,32 @@ export function getConnectedStore(reducers: Registry, initialState: State = {}) 
   });
 
   /** Combine reducers */
-  const reducer = combine(reducerRegistry.getReducers(), initialState);
+  // const reducer = combine(reducerRegistry.getReducers(), initialState);
+  const reducer = reducerRegistry.getReducers();
 
   /** Add redux dev tools to enhancers */
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   /** Create the store */
-  return createStore(
+  // return createStore(
+  //   reducer,
+  //   initialState,
+  //   composeEnhancers(applyMiddleware(thunk, createRouterMiddleware(history)))
+  // );
+
+  const routerMiddleware = createRouterMiddleware(history);
+
+  return configureStore({
     reducer,
-    initialState,
-    composeEnhancers(applyMiddleware(thunk, routerMiddleware(history)))
-  );
+    middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(routerMiddleware),
+    devTools: process.env.NODE_ENV !== 'production',
+    preloadedState: initialState,
+    enhancers: [composeEnhancers()]
+  });
 }
 
 /** Router reducer */
-export const connectReducer = connectRouter(history);
+export const connectReducer = createRouterReducer(history);
 
 /** Initial reducers in the reducer registry */
 const defaultReducers: Registry = {
