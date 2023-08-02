@@ -1,18 +1,15 @@
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.combine = combine;
-exports.getStore = getStore;
 exports["default"] = void 0;
-
+exports.getStore = getStore;
 var _redux = require("redux");
-
 var _registry = _interopRequireDefault(require("./registry"));
-
+var _toolkit = require("@reduxjs/toolkit");
 function combine(reducers) {
   var initialState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   Object.keys(initialState).forEach(function (item) {
@@ -23,24 +20,16 @@ function combine(reducers) {
   });
   return (0, _redux.combineReducers)(reducers);
 }
-
 function getStore(reducers) {
   var initialState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-  if (Object.keys(reducers).length > 0) {
-    return (0, _redux.createStore)(combine(reducers, initialState));
-  }
-
-  return (0, _redux.createStore)(function () {
-    return initialState;
+  return (0, _toolkit.configureStore)({
+    reducer: combine(reducers, initialState),
+    preloadedState: initialState
   });
 }
-
 var store = getStore(_registry["default"].getReducers());
-
 _registry["default"].setChangeListener(function (reducers) {
   store.replaceReducer(combine(reducers));
 });
-
 var _default = store;
 exports["default"] = _default;
