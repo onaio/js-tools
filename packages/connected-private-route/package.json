@@ -27,15 +27,15 @@
     ]
   },
   "dependencies": {
-    "@onaio/session-reducer": "^0.0.13"
+    "@onaio/session-reducer": "^0.0.13",
+    "react-router": "^6.15.0",
+    "react-router-dom": "^6.15.0"
   },
   "peerDependencies": {
     "@types/react-redux": "^7.0.8",
     "@types/react-router": "^4.4.5",
     "@types/react-router-dom": "^4.3.2",
     "react-redux": "^7.0.2",
-    "react-router": "^5.0.0",
-    "react-router-dom": "^5.0.0",
     "redux": "^4.0.1"
   },
   "devDependencies": {
