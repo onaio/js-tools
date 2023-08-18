@@ -30,11 +30,11 @@
   "author": "Ona Engineering",
   "license": "Apache-2.0",
   "dependencies": {
-    "@onaio/redux-reducer-registry": "^0.0.9"
+    "@onaio/redux-reducer-registry": "^0.0.9",
+    "@reduxjs/toolkit": "^1.9.5"
   },
   "peerDependencies": {
     "@types/history": "^4.7.2",
-    "connected-react-router": "^6.4.0",
     "history": "^4.9.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"

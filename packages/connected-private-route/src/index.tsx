@@ -2,11 +2,11 @@ import { isAuthenticated } from '@onaio/session-reducer';
 import queryString from 'querystring';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route, RouteProps } from 'react-router-dom';
+import { Navigate, PathRouteProps, Route, RouteProps, Routes, useLocation } from 'react-router-dom';
 import { Store } from 'redux';
 
 /** interface for PrivateRoute props */
-interface PrivateRouteProps extends RouteProps {
+interface PrivateRouteProps extends PathRouteProps {
   authenticated: boolean /** is the current user authenticated */;
   disableLoginProtection: boolean /** should we disable login protection */;
   redirectPath: string /** redirect to this path is use if not authenticated */;
@@ -34,15 +34,17 @@ const defaultPrivateRouteProps: Partial<PrivateRouteProps> = {
  */
 const PrivateRoute = (props: PrivateRouteProps) => {
   const {
-    component: Component,
+    Component,
     authenticated,
     disableLoginProtection,
     redirectPath,
     routerEnabled,
     routerDisabledRedirectPath,
-    location,
     ...theOtherProps
   } = props;
+
+  console.log({ props });
+  const location = useLocation();
 
   /** recreates the url : the path; query string if any; a hash tag if any */
   const currentPath = `${(location && location.pathname) || ''}${(location && location.search) ||
@@ -52,20 +54,22 @@ const PrivateRoute = (props: PrivateRouteProps) => {
 
   return (
     /* tslint:disable jsx-no-lambda */
-    <Route
-      {...theOtherProps}
-      render={routeProps => {
-        if (routerEnabled) {
-          return (authenticated === true || disableLoginProtection === true) && Component ? (
-            <Component {...routeProps} {...theOtherProps} />
-          ) : (
-            <Redirect to={fullRedirectPath} />
-          );
-        } else {
-          return <Redirect to={routerDisabledRedirectPath} />;
-        }
-      }}
-    />
+    <Routes>
+      <Route
+        {...theOtherProps}
+        Component={(routeProps: any) => {
+          if (routerEnabled) {
+            return (authenticated === true || disableLoginProtection === true) && Component ? (
+              <Component {...routeProps} {...theOtherProps} />
+            ) : (
+              <Navigate to={fullRedirectPath} />
+            );
+          } else {
+            return <Navigate to={routerDisabledRedirectPath} />;
+          }
+        }}
+      />
+    </Routes>
     /* tslint:enable jsx-no-lambda */
   );
 };
@@ -77,7 +81,7 @@ export { PrivateRoute }; // export the un-connected component
 /** Connect the component to the store */
 
 /** interface to describe props from mapStateToProps */
-interface DispatchedStateProps extends RouteProps {
+interface DispatchedStateProps {
   authenticated: boolean;
 }
 
