@@ -126,5 +126,6 @@
   },
   "resolutions": {
     "styled-components": "^5"
-  }
+  },
+  "packageManager": "yarn@1.22.4"
 }
