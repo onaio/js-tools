@@ -94,7 +94,9 @@ export async function fetchUser(
     }
   } catch (error) {
     recordResultActionCreator(false, { error });
-    errorCallbackFn(error.message);
+    if (error instanceof Error) {
+      errorCallbackFn(error.message);
+    }
   }
 }
 
@@ -126,10 +128,9 @@ export const fetchState = async (
     .then(res => {
       if (res.ok) {
         return res.json();
-      } else {
-        authenticationProgressCreator(false);
-        throw new Error('fetching state failed');
       }
+      authenticationProgressCreator(false);
+      throw new Error('fetching state failed');
     })
     .then(data => {
       const { session } = data;
@@ -175,9 +176,8 @@ export const refreshToken = async (
     .then(res => {
       if (res.ok) {
         return res.json();
-      } else {
-        throw new Error(TOKEN_REFRESH_FAILED);
       }
+      throw new Error(TOKEN_REFRESH_FAILED);
     })
     .then(data => {
       const { session } = data;
