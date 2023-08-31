@@ -1,30 +1,23 @@
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = exports.ProviderLinks = exports.AuthorizationGrantType = void 0;
 exports.useOAuthLogin = useOAuthLogin;
-
 var _react = _interopRequireDefault(require("react"));
-
 var _constants = require("../helpers/constants");
-
 var _oauth = require("../helpers/oauth");
-
-var AuthorizationGrantType;
-exports.AuthorizationGrantType = AuthorizationGrantType;
-
-(function (AuthorizationGrantType) {
+var AuthorizationGrantType = function (AuthorizationGrantType) {
   AuthorizationGrantType["IMPLICIT"] = "IMPLICIT";
   AuthorizationGrantType["AUTHORIZATION_CODE"] = "AUTHORIZATION_CODE";
-})(AuthorizationGrantType || (exports.AuthorizationGrantType = AuthorizationGrantType = {}));
-
+  return AuthorizationGrantType;
+}({});
+exports.AuthorizationGrantType = AuthorizationGrantType;
 function useOAuthLogin(options) {
   var rawProviders = options.providers,
-      authorizationGrantType = options.authorizationGrantType;
+    authorizationGrantType = options.authorizationGrantType;
   var authorizationUris = {};
   Object.entries(rawProviders).map(function (item) {
     var thisProvider = (0, _oauth.getProviderFromOptions)(item[1]);
@@ -34,11 +27,10 @@ function useOAuthLogin(options) {
   });
   return authorizationUris;
 }
-
 var ProviderLinks = function ProviderLinks(props) {
   var providers = props.providers,
-      authorizationGrantType = props.authorizationGrantType,
-      OAuthLoginPromptMessage = props.OAuthLoginPromptMessage;
+    authorizationGrantType = props.authorizationGrantType,
+    OAuthLoginPromptMessage = props.OAuthLoginPromptMessage;
   var authorizationUris = useOAuthLogin({
     authorizationGrantType: authorizationGrantType,
     providers: providers
@@ -57,15 +49,13 @@ var ProviderLinks = function ProviderLinks(props) {
     }, item[0]));
   }));
 };
-
 exports.ProviderLinks = ProviderLinks;
-
 var OauthLogin = function OauthLogin(props) {
   var providers = props.providers,
-      ProviderLinksComponent = props.ProviderLinksComponent,
-      authorizationGrantType = props.authorizationGrantType,
-      noProvidersMessage = props.noProvidersMessage,
-      OAuthLoginPromptMessage = props.OAuthLoginPromptMessage;
+    ProviderLinksComponent = props.ProviderLinksComponent,
+    authorizationGrantType = props.authorizationGrantType,
+    noProvidersMessage = props.noProvidersMessage,
+    OAuthLoginPromptMessage = props.OAuthLoginPromptMessage;
   return ProviderLinksComponent && providers ? _react["default"].createElement(ProviderLinksComponent, {
     providers: providers,
     authorizationGrantType: authorizationGrantType,
@@ -76,7 +66,6 @@ var OauthLogin = function OauthLogin(props) {
     className: "gatekeeper-p"
   }, noProvidersMessage));
 };
-
 OauthLogin.defaultProps = {
   OAuthLoginPromptMessage: _constants.OAUTH_LOGIN_PROMPT,
   ProviderLinksComponent: ProviderLinks,
