@@ -1,24 +1,18 @@
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.TokenExpired = void 0;
-
 var _react = _interopRequireDefault(require("react"));
-
 var _reactRouterDom = require("react-router-dom");
-
 var _reactstrap = require("reactstrap");
-
 var _constants = require("./constants");
-
 var TokenExpired = function TokenExpired(props) {
   var logoutLinkText = props.logoutLinkText,
-      logoutUrl = props.logoutUrl,
-      sessionExpiryText = props.sessionExpiryText;
+    logoutUrl = props.logoutUrl,
+    sessionExpiryText = props.sessionExpiryText;
   return _react["default"].createElement(_reactstrap.Container, {
     fluid: true,
     style: {
@@ -40,7 +34,6 @@ var TokenExpired = function TokenExpired(props) {
     to: logoutUrl
   }, logoutLinkText))));
 };
-
 exports.TokenExpired = TokenExpired;
 var defaultTokenExpiryProps = {
   logoutLinkText: _constants.LOGIN_BUTTON_TEXT,

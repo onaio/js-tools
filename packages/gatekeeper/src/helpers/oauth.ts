@@ -123,11 +123,19 @@ export function getOpenSRPUserInfo(apiRes: RawOpensrpUserInfo): SessionState {
     family_name,
     preferred_username,
     realm_access,
+    resource_access,
     sub,
     name
   } = tokenClaims;
+  const resourceAccessRoles: Record<string, string[]> = {};
+  Object.entries(resource_access ?? {}).forEach(([clientID, rolesObj]) => {
+    resourceAccessRoles[clientID] = rolesObj.roles;
+  });
   const apiResponse = {
-    roles: (realm_access?.roles ?? []).map((role: string) => `ROLE_${role}`),
+    roles: {
+      realmAccess: realm_access?.roles ?? [],
+      clientRoles: resourceAccessRoles
+    },
     email: null,
     username: preferred_username,
     user_id: sub,

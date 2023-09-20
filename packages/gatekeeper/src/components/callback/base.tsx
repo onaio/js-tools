@@ -9,7 +9,8 @@ export interface RouteParams {
 }
 
 /** interface for BaseCallbackComponentProps props */
-export interface BaseCallbackComponentProps<G> extends RouteComponentProps<G> {
+export interface BaseCallbackComponentProps<G extends { [K in keyof G]?: string }>
+  extends RouteComponentProps<G> {
   LoadingComponent: React.ElementType;
   SuccessfulLoginComponent: React.ElementType;
   UnSuccessfulLoginComponent: React.ElementType;

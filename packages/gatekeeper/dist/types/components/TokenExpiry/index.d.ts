@@ -1,13 +1,15 @@
-/// <reference types="react" />
+import React from 'react';
 /** TokenExpired props interface */
 export interface TokenExpiredProps {
-    logoutLinkText: string;
-    logoutUrl: string;
-    sessionExpiryText: string;
+  logoutLinkText: string;
+  logoutUrl: string;
+  sessionExpiryText: string;
 }
 /** default page to display when token expires */
 declare const TokenExpired: {
-    (props: TokenExpiredProps): JSX.Element;
-    defaultProps: Pick<TokenExpiredProps, "logoutLinkText" | "sessionExpiryText">;
+  (props: TokenExpiredProps): React.JSX.Element;
+  defaultProps: DefaultTokenExpiryProps;
 };
+/** default TokenExpired props */
+type DefaultTokenExpiryProps = Pick<TokenExpiredProps, 'logoutLinkText' | 'sessionExpiryText'>;
 export { TokenExpired };

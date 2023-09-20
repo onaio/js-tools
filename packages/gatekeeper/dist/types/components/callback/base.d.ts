@@ -3,23 +3,29 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router';
 /** Route params interface */
 export interface RouteParams {
-    id: string;
+  id: string;
 }
 /** interface for BaseCallbackComponentProps props */
-export interface BaseCallbackComponentProps<G> extends RouteComponentProps<G> {
-    LoadingComponent: React.ElementType;
-    SuccessfulLoginComponent: React.ElementType;
-    UnSuccessfulLoginComponent: React.ElementType;
-    authSuccess: boolean | null;
-    authenticated: boolean;
-    sessionData: {
-        [key: string]: any;
-    };
-    sessionUser: User;
-    working: boolean;
+export interface BaseCallbackComponentProps<
+  G extends {
+    [K in keyof G]?: string;
+  }
+> extends RouteComponentProps<G> {
+  LoadingComponent: React.ElementType;
+  SuccessfulLoginComponent: React.ElementType;
+  UnSuccessfulLoginComponent: React.ElementType;
+  authSuccess: boolean | null;
+  authenticated: boolean;
+  sessionData: {
+    [key: string]: any;
+  };
+  sessionUser: User;
+  working: boolean;
 }
 /** default props for BaseCallbackComponent */
-export declare const defaultBaseCallbackComponentProps: Partial<BaseCallbackComponentProps<RouteParams>>;
+export declare const defaultBaseCallbackComponentProps: Partial<BaseCallbackComponentProps<
+  RouteParams
+>>;
 /** The oAuth callback component
  * This component should be on the page that receives the callback from the
  * oAuth provider.
@@ -30,7 +36,7 @@ export declare const defaultBaseCallbackComponentProps: Partial<BaseCallbackComp
  * Once successfully processed, the user is stored in the session Reducer.
  */
 declare const BaseCallbackComponent: {
-    (props: BaseCallbackComponentProps<RouteParams>): JSX.Element;
-    defaultProps: Partial<BaseCallbackComponentProps<RouteParams>>;
+  (props: BaseCallbackComponentProps<RouteParams>): React.JSX.Element;
+  defaultProps: Partial<BaseCallbackComponentProps<RouteParams>>;
 };
 export { BaseCallbackComponent };

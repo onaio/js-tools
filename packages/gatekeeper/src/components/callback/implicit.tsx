@@ -30,7 +30,8 @@ export interface RouteParams {
 }
 
 /** interface for OauthCallbackProps props */
-export interface OauthCallbackProps<G> extends BaseCallbackComponentProps<G> {
+export interface OauthCallbackProps<G extends { [K in keyof G]?: string }>
+  extends BaseCallbackComponentProps<G> {
   ErrorComponent: React.ElementType;
   HTTP404Component: React.ElementType;
   authenticateActionCreator: ActionCreator<AuthenticateAction>;

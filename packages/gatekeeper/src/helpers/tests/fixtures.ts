@@ -108,17 +108,23 @@ export const openSRPSession = {
       token_type: 'Bearer'
     },
     preferred_name: 'Demo User',
-    roles: [
-      'ROLE_MANAGE_REPORTS',
-      'ROLE_OPENMRS',
-      'ROLE_realm-admin',
-      'ROLE_EDIT_KEYCLOAK_USERS',
-      'ROLE_VIEW_KEYCLOAK_USERS',
-      'ROLE_PLANS_FOR_USER',
-      'ROLE_offline_access',
-      'ROLE_uma_authorization',
-      'ROLE_ALL_EVENTS'
-    ],
+    roles: {
+      clientRoles: {
+        account: ['manage-account', 'manage-account-links', 'view-profile'],
+        'realm-management': ['manage-users', 'view-users', 'query-groups', 'query-users']
+      },
+      realmAccess: [
+        'MANAGE_REPORTS',
+        'OPENMRS',
+        'realm-admin',
+        'EDIT_KEYCLOAK_USERS',
+        'VIEW_KEYCLOAK_USERS',
+        'PLANS_FOR_USER',
+        'offline_access',
+        'uma_authorization',
+        'ALL_EVENTS'
+      ]
+    },
     user_id: 'db90092f-b983-4f26-b129-daddaf02384f',
     username: 'demo'
   },

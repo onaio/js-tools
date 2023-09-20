@@ -4,7 +4,7 @@ import ClientOAuth2, { Options } from 'client-oauth2';
 export interface OauthOptions extends Options {
   userUri: string;
 }
-export declare type UnixTimestamp = number;
+export type UnixTimestamp = number;
 export interface OpensrpKeycloakTokenClaims {
   exp: UnixTimestamp;
   iat: UnixTimestamp;
@@ -48,7 +48,7 @@ export interface Providers {
  */
 export declare function getProviderFromOptions(options: OauthOptions): ClientOAuth2;
 /** Type definition for userInfo functions  */
-export declare type UserInfoFnType = (obj: { [key: string]: any }) => SessionState | void;
+export type UserInfoFnType = (obj: { [key: string]: any }) => SessionState | void;
 /** Function to get onadata user info from api response object
  * @param {{[key: string]: any }} apiResponse - the API response object
  */

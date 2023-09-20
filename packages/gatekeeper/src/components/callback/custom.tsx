@@ -32,7 +32,8 @@ interface RouteParams {
 }
 
 /** interface for APICallbackProps props */
-export interface APICallbackProps<G> extends BaseCallbackComponentProps<G> {
+export interface APICallbackProps<G extends { [K in keyof G]?: string }>
+  extends BaseCallbackComponentProps<G> {
   ErrorComponent: React.ElementType;
   HTTP404Component: React.ElementType;
   apiURL: string;
