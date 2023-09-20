@@ -1,6 +1,6 @@
 {
   "name": "@onaio/gatekeeper",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Reusable tools for adding authentication to your React app",
   "main": "dist/index.js",
   "types": "dist/types",
@@ -53,6 +53,5 @@
     "redux": "^4.0.1",
     "redux-testkit": "^1.0.6",
     "typescript": "^5.2.2"
-  },
-  "gitHead": "27f4630eb8ce35033f23ccb0e3e7ef898da4a289"
+  }
 }
